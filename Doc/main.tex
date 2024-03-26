@@ -1,0 +1,199 @@
+\documentclass[
+   paper=a4,
+   twoside=false,
+   parskip=half,
+   listof=entryprefix,
+   listof=totoc,
+   index=totoc,
+   bibliography=totoc,
+   headsepline,
+]{scrbook}
+
+\usepackage{silence}
+\WarningFilter{biblatex}{File 'ngerman-iso.lbx'}
+\WarningFilter{biblatex}{'\mainlang'}
+\WarningFilter{biblatex}{Bibliography string 'online' untranslated}
+\WarningFilter{hyperref}{Token not allowed in a PDF string}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Fonts Fonts Fonts
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+
+\usepackage{scrhack}
+\usepackage{pdfpages,graphicx,subcaption,lastpage,xspace}
+\graphicspath{ {./images} }
+\usepackage{float,xcolor,csquotes,microtype,etoolbox}
+\MakeOuterQuote{"}
+\usepackage[automark,markcase=ignoreuppercase,autooneside=false]{scrlayer-scrpage}
+\usepackage[official]{eurosym}
+\usepackage[breaklinks,colorlinks,linkcolor=black,citecolor=black,filecolor=black,urlcolor=black]{hyperref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Listings Paket
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{listings,caption,pmboxdraw}
+\definecolor{codebg}{rgb}{0.95,0.95,0.95}
+\definecolor{lightgray}{rgb}{.9,.9,.9}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+
+\lstdefinelanguage{JavaScript}{
+  keywords={break, case, catch, continue, debugger, default, delete, do, else, false, finally, for, function, if, in, instanceof, new, null, return, switch, this, throw, true, try, typeof, var, void, while, with, const},
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]',
+  morestring=[b]",
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  sensitive=true,
+}
+\lstset{
+   basicstyle =\ttfamily\color{black}\small,
+   keywordstyle =,
+   commentstyle =\color{teal},
+   stringstyle =\itshape,
+   tabsize=2,
+   breaklines=true,
+   captionpos=b,
+   breakatwhitespace,
+   backgroundcolor={\color{codebg}},
+   basewidth=0.5em,
+   numbers=left,
+   numberstyle=\tiny,
+   numbersep=-8pt,
+   language=JavaScript,
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Bibliography
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[
+   backend=biber,
+   urldate=long,
+   style=iso-authoryear,
+   useauthor=true,
+   mincitenames=1,
+   maxcitenames=3,
+   maxbibnames=99,
+]{biblatex}
+\addbibresource{./bib/online.bib}
+\addbibresource{./bib/book.bib}
+\DeclareNameAlias{default}{family-given/given-family}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Fussnoten
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\deffootnote{1.5em}{1em}{\makebox[1.5em][l]{\thefootnotemark}}
+\addtolength{\skip\footins}{\baselineskip}
+\setlength{\dimen\footins}{10\baselineskip}
+\interfootnotelinepenalty=10000  % Verhindert das Fortsetzen von Fussnoten
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\workDatum}{\today\xspace}
+\newcommand{\workDateTime}{\today{} - \thistime\ Uhr}
+\newcommand{\workFirma}{AStA\xspace}
+\newcommand{\workTitel}{AStA - Prozessdigitalisierung}
+\newcommand{\workTyp}{Projektarbeit Softwaretechnik und Medieninformatik\xspace}
+
+\newcommand{\www}[1]{\href{http://#1}{#1}}
+\newcommand{\wwwhttp}[1]{\href{#1}{#1}}
+\newcommand{\wwwlink}[1]{\footnote{\www{#1}}}
+
+\newcommand{\zB}{\mbox{z.\,B.}\xspace}
+\newcommand{\ua}{\mbox{u.\,a.}\xspace}
+\newcommand{\dah}{\mbox{d.\,h.}\xspace}
+\newcommand{\uAe}{\mbox{u.\,a.}\xspace}
+
+\newcommand{\refp}[1]{Seite~\pageref{#1}\xspace}
+\newcommand{\refk}[1]{Kapitel~\ref{#1}\xspace}
+\newcommand{\refa}[1]{Abbildung~\ref{#1}\xspace}
+\newcommand{\reft}[1]{Tabelle~\ref{#1}\xspace}
+\newcommand{\reflst}[1]{Listing~\ref{#1}\xspace}
+
+\newcommand{\engl}[1]{(engl: \textit{#1})\xspace}
+\newcommand{\dt}[1]{(dt: \textit{#1})\xspace}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Kopf und Fusszeilen
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{scrtime}
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+\ihead[]{\leftmark}
+\ohead[]{\rightmark}
+\counterwithout{footnote}{chapter}
+\ifoot[\workDateTime]{\workDateTime}
+\ofoot[\pagemark]{\pagemark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aufzählungen
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\labelenumi}{\arabic{enumi}}
+\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
+\renewcommand{\labelenumiii}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}}
+\renewcommand{\labelenumiv}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}.\arabic{enumiv}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Acronyms
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% https://ctan.math.washington.edu/tex-archive/macros/latex/contrib/acro/acro-manual.pdf
+\usepackage{acro,supertabular,array}
+
+\acsetup{
+   make-links=true,
+   list/template=supertabular,
+   list/heading=chapter*,
+   list/sort=true,
+   list/display=used,
+   list/name=Abkürzungsverzeichnis,
+}
+
+\DeclareAcronym{ex}{short=ex,long=example}
+
+\usepackage{todonotes}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Glossar
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[nonumberlist,toc]{glossaries}
+\usepackage{glossary-super}
+\setglossarystyle{super}
+\makenoidxglossaries
+\renewcommand*{\glstextformat}{\textbf}
+\renewcommand*{\glsnamefont}{\textbf}
+\setlength{\glsdescwidth}{0.6\linewidth}
+
+\newglossaryentry{example}
+{
+   name=example,
+   description={example description}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Dokument
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+   \include{titlepage/titlepage}
+
+   \tableofcontents
+   \newpage
+   \printacronyms[heading=addchap]
+   \printnoidxglossary
+
+   \include{paragraphs/paragraph1}
+
+   \printbibheading[title=Externe Quellen]
+   \printbibliography[type=book,heading=subbibliography,title=Buch-Quellen]
+   \printbibliography[type=online,heading=subbibliography,title=Online-Quellen]
+
+\end{document}
