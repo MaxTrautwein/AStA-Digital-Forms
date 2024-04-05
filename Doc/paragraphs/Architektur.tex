@@ -1,1 +1,27 @@
 \chapter{Architektur}\label{ch:architektur}
+
+\section{Überblick}\label{sec:uberblick}
+Wie in \refa{fig:HighLevelArch} zu sehen ist, wird hier eine klassische Web-App Architektur angewendet,
+welche um einen Authentifizierungsdienst erweitert wird.\\
+Das Frontend übernimmt die Aufgabe der Darstellung und Interaktion mit dem benutzer.
+Dabei interagiert dieses mit dem Backend über eine \ac{REST} Schnittstelle sowie dem Authentifizierungsdienst.\\
+Das Backend stellt dem Frontend Daten berit und interagiert mit einem Datenspeicher.\\
+Der Authentifizierungsdienst ist ein externer Dienst der verwendet wir, um die Nutzer Accounts zu managen.
+Über diesen erhält das Frontend einen \ac{JWT} Token, welcher den Nutzer gegenüber dem Backend Authentifizieren kann.
+Dazu stellt das Backend mithilfe des \ac{JWT} Tokens eine entsprechende anfrage an den Authentifizierungsdienst.
+
+\begin{figure}[h]
+    \includesvg[width=10cm]{images/HighLevelArch}
+    \caption{Architektur überblick}\label{fig:HighLevelArch}
+\end{figure}
+
+\section{Fokus: Backend}\label{sec:fokus:-backend}
+
+Während die innere Struktur des Frontends stark vom verwendeten Framework abhängt und an diese Stelle nicht näher beschrieben werden kann,
+ist es für das Backend durchaus möglich.
+\refa{fig:BackendArch} Zeigt den strukturellen Aufbau des Backends Näher, dabei
+
+\begin{figure}[h]
+    \includesvg[width=15cm]{images/BackendArch}
+    \caption{Backend Architektur}\label{fig:BackendArch}
+\end{figure}
