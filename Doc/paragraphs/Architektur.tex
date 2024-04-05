@@ -19,9 +19,37 @@ Dazu stellt das Backend mithilfe des \ac{JWT} Tokens eine entsprechende anfrage 
 
 Während die innere Struktur des Frontends stark vom verwendeten Framework abhängt und an diese Stelle nicht näher beschrieben werden kann,
 ist es für das Backend durchaus möglich.
-\refa{fig:BackendArch} Zeigt den strukturellen Aufbau des Backends Näher, dabei
+\refa{fig:BackendArch} Zeigt den strukturellen Aufbau des Backends Näher, dabei kann die grafik in vier zonen unterteilt werden:
+\begin{itemize}
+    \item Links Kommunikation mit Webdiensten sowie dem eigenen Frontend.
+    \item Unten Interface mit Datenspeichern.
+    \item Rechts zugriff auf Konfigurationsdateien.
+    \item Zentral die Verarbeitung aller teilkomponenten
+\end{itemize}
 
 \begin{figure}[h]
     \includesvg[width=15cm]{images/BackendArch}
     \caption{Backend Architektur}\label{fig:BackendArch}
 \end{figure}
+
+Die Kommunikation mit Webdiensten lässt sich in zwei Teilmodule, unterteilen: die \ac{REST} \ac{API},
+sowie die Authentifizierungsprüfung.\\
+Dabei stellt ersteres Klare Schnittstellen bereit und greift auf letzteres zu um die Berechtigungen der Nutzer zu prüfen.\\
+\\
+Das Interface mit den Datenspeichern entkoppelt die Anwendung sowie deren Daten vom verwendeten Speicherdienst beziehungsweise
+Datenbank.\\
+Dabei wird zwischen "Core Daten" welche für die funktionalität zwingend notwendig benötigt werden
+und "User Daten" welche lediglich die bedingung sowie handhabung des Nutzers verbessern.\\
+"Core Daten" werden dabei immer auf einer eigenen Datenbank gespeichert.
+Hierbei ust die Datenbank Technologie selbst durch das Datenbankinterface entkoppelt.\\
+"User Daten" hingegen könnten an anderer Stelle gespeichert werden.
+Diese Möglichkeit wird hier zwar eindeutig berücksichtigt jedoch wird ein dementsprechendes Interface nicht explizit entwickelt.
+\\\\
+Rechts ist der Zugriff auf Konfigurationsdateien angedeutet, welche eine Zentrale Rolle spielen.
+Prozess Konfigurationen encapsulation all jene welchen den fluss und inhalt eines Antrags sowie dessen Export beschreiben.
+Diese weisen eine hohe komplexität auf und können nicht unbedingt ohne weiteres bearbeitet werden.
+Regel Konfigurationen hingegen sind einfach gestaltet und sollten nach einer erklärung aus der Anleitung leicht anpassbar sein.
+Diese enthalten beispielsweise parameter zu berechnung von Reisekosten.
+\\\\
+Zentral steht die Verarbeitung der außenstehenden Module.
+Dabei werden die Informationen der Konfigurationsdateien ausgewertet und kombiniert.
