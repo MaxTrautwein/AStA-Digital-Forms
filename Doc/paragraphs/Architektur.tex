@@ -3,12 +3,12 @@
 \section{Überblick}\label{sec:uberblick}
 Wie in \refa{fig:HighLevelArch} zu sehen ist, wird hier eine klassische Web-App Architektur angewendet,
 welche um einen Authentifizierungsdienst erweitert wird.\\
-Das Frontend übernimmt die Aufgabe der Darstellung und Interaktion mit dem benutzer.
+Das Frontend übernimmt die Aufgabe der Darstellung und Interaktion mit dem Benutzer.
 Dabei interagiert dieses mit dem Backend über eine \ac{REST} Schnittstelle sowie dem Authentifizierungsdienst.\\
 Das Backend stellt dem Frontend Daten berit und interagiert mit einem Datenspeicher.\\
-Der Authentifizierungsdienst ist ein externer Dienst der verwendet wir, um die Nutzer Accounts zu managen.
+Der Authentifizierungsdienst ist ein externer Dienst, der verwendet wird, um die Nutzer Accounts zu managen.
 Über diesen erhält das Frontend einen \ac{JWT} Token, welcher den Nutzer gegenüber dem Backend Authentifizieren kann.
-Dazu stellt das Backend mithilfe des \ac{JWT} Tokens eine entsprechende anfrage an den Authentifizierungsdienst.
+Dazu stellt das Backend mithilfe des \ac{JWT} Tokens eine entsprechende Anfrage an den Authentifizierungsdienst.
 
 \begin{figure}[h]
     \centering
@@ -42,15 +42,17 @@ Datenbank.\\
 Dabei wird zwischen "Core Daten" welche für die funktionalität zwingend notwendig benötigt werden
 und "User Daten" welche lediglich die bedingung sowie handhabung des Nutzers verbessern.\\
 "Core Daten" werden dabei immer auf einer eigenen Datenbank gespeichert.
-Hierbei ust die Datenbank Technologie selbst durch das Datenbankinterface entkoppelt.\\
+Hierbei ist die Datenbank Technologie selbst durch das Datenbank Interface entkoppelt.\\
 "User Daten" hingegen könnten an anderer Stelle gespeichert werden.
-Diese Möglichkeit wird hier zwar eindeutig berücksichtigt jedoch wird ein dementsprechendes Interface nicht explizit entwickelt.
+Diese Möglichkeit wird hier zwar eindeutig berücksichtigt, jedoch wird ein dementsprechendes Interface nicht explizit entwickelt.
 \\\\
 Rechts ist der Zugriff auf Konfigurationsdateien angedeutet, welche eine Zentrale Rolle spielen.
-Prozess Konfigurationen encapsulation all jene welchen den fluss und inhalt eines Antrags sowie dessen Export beschreiben.
-Diese weisen eine hohe komplexität auf und können nicht unbedingt ohne weiteres bearbeitet werden.
-Regel Konfigurationen hingegen sind einfach gestaltet und sollten nach einer erklärung aus der Anleitung leicht anpassbar sein.
-Diese enthalten beispielsweise parameter zu berechnung von Reisekosten.
+Prozess Konfigurationen beinhalten all jene, welchen den Fluss und Inhalt eines Antrags sowie dessen Export beschreiben.
+Diese weisen eine hohe Komplexität auf und können nicht unbedingt ohne weiteres bearbeitet werden.
+Regel Konfigurationen hingegen sind einfach gestaltet und sollten nach einer Erklärung aus der Anleitung leicht anpassbar sein.
+Diese enthalten beispielsweise Parameter zur Berechnung von Reisekosten.
 \\\\
 Zentral steht die Verarbeitung der außenstehenden Module.
 Dabei werden die Informationen der Konfigurationsdateien ausgewertet und kombiniert.
+
+%2h 30 min%
