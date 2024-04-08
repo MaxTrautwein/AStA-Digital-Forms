@@ -2,16 +2,15 @@
 % Helper Command to format entrys in the Table %
 \newcommand{\trschaetzung}[3]{\rowcolor{lightgray}\textbf{#1} & \textbf{#2} \\* \multicolumn{2}{|l|}{\begin{tabular}[c]{@{}l@{}}#3\end{tabular}} \\ \hline}
 
-\section{Aufwandsschätzung}\label{sec:aufwandsschatzung}
+\section{Definition}\label{sec:aufwandsschatzungdef}
 
 In einer Aufwandsschätzung wird offengelegt, wie viel Zeit das Projekt benötigt und wie lange einzelne Tasks benötigen.
-Eine Aufwandsschätzung ist eine grobe Schätzung und meist ungenau. Diese wird benötigt, um vorab einen Überblick zu haben.\\
-In diesem Projekt wird zwischen Gruppenarbeiten und einzelnen Tasks unterschieden. Einzelne Tasks umfassen die Arbeit, die eine Person aufwendet, um den Task abzuschließen und eine Schätzung erfolgt dabei mit der 1:3 Regel. Es wird zwischen dem rohen Aufwand für das schreiben des Codes, dem Testing und der Dokumentation unterschieden, daher wird die Zeit für den rohen Aufwand mit dem Faktor 3 multipliziert.\\
-Bei Gruppenarbeiten wird die Zeit angegeben, bei der alle Gruppenmitglieder beteiligt sind und ausschliesslich nur in der Gruppe durchgeführt werden können. 
+Eine Aufwandsschätzung ist eine grobe Schätzung und meist ungenau. Diese wird benötigt, um vorab einen Überblick zu haben.
+In diesem Projekt wird zwischen Gruppenarbeiten und einzelnen Tasks unterschieden. 
 
 \section{Gruppenleistungen}\label{sec:gruppenleistungen}
 
-% Add Text Explaining this Category %
+Bei Gruppenarbeiten wird die Zeit angegeben, bei der \textbf{alle} Gruppenmitglieder beteiligt sind und ausschliesslich nur in der Gruppe durchgeführt werden können. 
 
 \begin{longtable}{|lr|}
     \hline
@@ -44,7 +43,8 @@ Bei Gruppenarbeiten wird die Zeit angegeben, bei der alle Gruppenmitglieder bete
 
 \newpage\section{Individualleistungen}\label{sec:individualleistungen}
 
-% Add Text explaining that Category %
+Individualleistungen umfassen die Arbeit, die überwiegend \textbf{eine} Person aufwendet, um den Task abzuschließen und eine Schätzung erfolgt dabei mit der 1:3 Regel. Es wird zwischen dem rohen Aufwand für das schreiben des Codes, dem Testing und der Dokumentation unterschieden, daher wird die Zeit für den rohen Aufwand mit dem Faktor 3 multipliziert.
+
 
 \begin{longtable}{|lr|}
     \hline
@@ -92,7 +92,7 @@ Bei Gruppenarbeiten wird die Zeit angegeben, bei der alle Gruppenmitglieder bete
     \trschaetzung{Formular Fortschritt Laden}{12}{\ac{GUI} und System zum Laden von Gespeicherten Aufträgen
     \\Umfasst unfertige sowie alte komplette Anträge}
     \trschaetzung{Hinweis System}{3}{Generelles System um Nutzer auf Zusammenhänge hinzuweisen
-    \\\zb Nötige begründung bei wahl einer Teureren Option}
+    \\\zB Nötige begründung bei wahl einer Teureren Option}
     \trschaetzung{Keycloak Einrichten}{4.5}{Konfigurations zeit für Keycloak.
     \\Generell, Testuser, Richtlinien sowie dem Anmelde Flow}
     \trschaetzung{Keycloak Anmeldung Frontend}{6}{Managment im Frontend um einen JWT Token von Keycloak für den User zu Erhalten}
