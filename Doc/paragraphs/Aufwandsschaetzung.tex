@@ -1,6 +1,6 @@
 \chapter{Aufwandsschätzung}\label{ch:aufwandsschatzung}
 % Helper Command to format entrys in the Table %
-\newcommand{\trschaetzung}[3]{\rowcolor{lightgray}\multicolumn{1}{|l|}{\textbf{#1}} & \textbf{#2} \\* \multicolumn{2}{|l|}{\begin{tabular}[c]{@{}l@{}}#3\end{tabular}} \\ \hline}
+\newcommand{\trschaetzung}[3]{\rowcolor{lightgray}\textbf{#1} & \textbf{#2} \\* \multicolumn{2}{|l|}{\begin{tabular}[c]{@{}l@{}}#3\end{tabular}} \\ \hline}
 
 \section{Aufwandsschätzung}\label{sec:aufwandsschatzung}
 
@@ -15,7 +15,7 @@ Bei Gruppenarbeiten wird die Zeit angegeben, bei der alle Gruppenmitglieder bete
 
 \begin{longtable}{|lr|}
     \hline
-    \rowcolor{darkgray}\multicolumn{1}{|l|}{\textbf{Aufgabe}} & \textbf{\begin{tabular}[c]{@{}c@{}}Zeitschätzung\\\(Stunden\)\end{tabular}} \\ \hline
+    \rowcolor{gray}\textbf{Aufgabe} & \textbf{\begin{tabular}[c]{@{}c@{}}Zeitschätzung\\\(Stunden\)\end{tabular}} \\ \hline
     \endhead
     \trschaetzung{Betreuer Meeting 1}{1.5}{Das Erste Treffen mit unserem Betreuer}
     \trschaetzung{Kunden Treffen 1}{1}{Das Erste Treffen mit Unseren Kunden}
@@ -42,13 +42,13 @@ Bei Gruppenarbeiten wird die Zeit angegeben, bei der alle Gruppenmitglieder bete
     \trschaetzung{Style Guide Auswahl}{3}{Festlegung von Internen Style Richtlinien für bessere Codequalität und Verständnis}
 \end{longtable}
 
-\section{Individualleistungen}\label{sec:individualleistungen}
+\newpage\section{Individualleistungen}\label{sec:individualleistungen}
 
 % Add Text explaining that Category %
 
 \begin{longtable}{|lr|}
     \hline
-    \rowcolor{darkgray}\multicolumn{1}{|l|}{\textbf{Aufgabe}} & \textbf{\begin{tabular}[c]{@{}c@{}}Zeitschätzung\\\(Stunden\)\end{tabular}} \\ \hline
+    \rowcolor{gray}\textbf{Aufgabe} & \textbf{\begin{tabular}[c]{@{}c@{}}Zeitschätzung\\\(Stunden\)\end{tabular}} \\ \hline
     \endhead
     \trschaetzung{Docker Compose Setup}{6}{Vollständiges Docker Compose Setup für alle Module
     \\Sowie Verifikation auf allen Team Systemen}
