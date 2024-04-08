@@ -25,7 +25,7 @@
 \usepackage{scrhack}
 \usepackage{pdfpages,graphicx,subcaption,lastpage,xspace}
 \graphicspath{ {./images} }
-\usepackage{float,xcolor,csquotes,microtype,etoolbox}
+\usepackage{float,xcolor,colortbl,csquotes,microtype,etoolbox}
 \MakeOuterQuote{"}
 \usepackage[automark,markcase=ignoreuppercase,autooneside=false]{scrlayer-scrpage}
 \usepackage[official]{eurosym}
@@ -33,6 +33,8 @@
 
 %Requiers Incscape to be installed%
 \usepackage[inkscapeformat=png,inkscapedpi=600]{svg}
+% Used for Tables spanning across Pages %
+\usepackage{longtable}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Listings Paket
@@ -165,6 +167,9 @@
 \DeclareAcronym{JWT}{short=JWT,long=\ac{JSON} Web Token}
 \DeclareAcronym{REST}{short=REST,long=Representational State Transfer}
 \DeclareAcronym{API}{short=API,long=Application Programming Interface}
+\DeclareAcronym{PDF}{short=PDF,long=Portable Document Format}
+\DeclareAcronym{UI}{short=UI,long=User Interface}
+\DeclareAcronym{GUI}{short=GUI,long=Graphical user interface}
 \DeclareAcronym{ECTS}{short=ECTS,long=European Credit Transfer System}
 
 \usepackage{todonotes}
