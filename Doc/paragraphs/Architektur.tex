@@ -11,7 +11,7 @@ Dazu stellt das Backend eine entsprechende Anfrage an den Authentifizierungsdien
 \begin{figure}[h]
     \centering
     \includesvg[width=8cm]{images/HighLevelArch}
-    \caption{Architektur überblick}\label{fig:HighLevelArch}
+    \caption{Architektur Überblick}\label{fig:HighLevelArch}
 \end{figure}
 
 \section{Frontend}\label{sec:frontend}
@@ -34,7 +34,7 @@ Daher ist an diese Stelle keine näher Beschreibung möglich.
     \caption{Backend Architektur}\label{fig:BackendArch}
 \end{figure}
 
-Die Kommunikation mit den Webdiensten lässt sich in zwei Teilmodule, unterteilen:
+Die Kommunikation mit den Webdiensten lässt sich in zwei Teilmodule unterteilen:
 \begin{itemize}
     \item \ac{REST} \ac{API}
     \item Authentifizierungsprüfung
@@ -43,14 +43,14 @@ Dabei stellt die \ac{REST} \ac{API} eine klare Schnittstelle bereit und greift a
 um die Berechtigungen des Nutzers zu prüfen.
 
 Das Interface mit den Datenspeichern entkoppelt die Anwendung sowie deren Daten von dem verwendeten Speicherdienst.
-Dabei wird zwischen "Core Daten" welche für die funktionalität zwingend notwendig benötigt werden
-und "User Daten" welche lediglich die bedingung sowie handhabung des Nutzers verbessern.\\
+Dabei wird zwischen "Core Daten" welche für die Funktionalität zwingend benötigt werden
+und "User Daten" welche lediglich die Bedingung sowie Handhabung des Nutzers verbessern.\\
 "Core Daten" werden dabei immer auf einer eigenen Datenbank gespeichert.
-Hierbei ist die Datenbank Technologie selbst durch das Datenbank Interface entkoppelt.\\
+Hierbei ist die Datenbanktechnologie selbst durch das Datenbankinterface entkoppelt.\\
 "User Daten" hingegen könnten an anderer Stelle gespeichert werden.
 Diese Möglichkeit wird hier zwar eindeutig berücksichtigt, jedoch wird ein dementsprechendes Interface nicht explizit entwickelt.
 
-Prozess Konfigurationen beinhalten all jene, welchen den Fluss und Inhalt eines Antrags sowie dessen Export beschreiben.
+Prozess Konfigurationen beinhalten all jene, welche den Fluss und Inhalt eines Antrags sowie dessen Export beschreiben.
 Diese weisen eine hohe Komplexität auf und können nicht unbedingt ohne weiteres bearbeitet werden.
 Regel Konfigurationen hingegen sind einfach gestaltet und sollten nach einer Erklärung aus der Anleitung leicht anpassbar sein.
 Diese enthalten beispielsweise Parameter zur Berechnung von Reisekosten.
