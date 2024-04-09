@@ -1,14 +1,13 @@
 \chapter{Architektur}\label{ch:architektur}
 
-\section{Überblick}\label{sec:uberblick}
-Wie in \refa{fig:HighLevelArch} zu sehen ist, wird hier eine klassische Web-App Architektur angewendet,
+Wie in \refa{fig:HighLevelArch} zu sehen ist, wird hier eine Web-App Architektur angewendet,
 welche um einen Authentifizierungsdienst erweitert wird.\\
 Das Frontend übernimmt die Aufgabe der Darstellung und Interaktion mit dem Benutzer.
-Dabei interagiert dieses mit dem Backend über eine \ac{REST} Schnittstelle sowie dem Authentifizierungsdienst.\\
-Das Backend stellt dem Frontend Daten berit und interagiert mit einem Datenspeicher.\\
-Der Authentifizierungsdienst ist ein externer Dienst, der verwendet wird, um die Nutzer Accounts zu managen.
-Über diesen erhält das Frontend einen \ac{JWT} Token, welcher den Nutzer gegenüber dem Backend Authentifizieren kann.
-Dazu stellt das Backend mithilfe des \ac{JWT} Tokens eine entsprechende Anfrage an den Authentifizierungsdienst.
+Dabei interagiert dieses mit dem Backend über eine \ac{REST} Schnittstelle, sowie dem Authentifizierungsdienst.\\
+Das Backend stellt dem Frontend Daten bereit und interagiert mit einem Datenspeicher.\\
+Der Authentifizierungsdienst ist ein externer Dienst, um die Nutzer Accounts zu managen.
+Über diesen erhält das Frontend einen \ac{JWT}, welcher den Nutzer gegenüber dem Backend authentifiziert.
+Dazu stellt das Backend eine entsprechende Anfrage an den Authentifizierungsdienst mit dem \ac{JWT}.
 
 \begin{figure}[h]
     \centering
@@ -16,16 +15,20 @@ Dazu stellt das Backend mithilfe des \ac{JWT} Tokens eine entsprechende Anfrage 
     \caption{Architektur überblick}\label{fig:HighLevelArch}
 \end{figure}
 
-\section{Fokus: Backend}\label{sec:fokus:-backend}
+\section{Frontend}
 
 Während die innere Struktur des Frontends stark vom verwendeten Framework abhängt und an diese Stelle nicht näher beschrieben werden kann,
-ist es für das Backend durchaus möglich.
+TODO Anpassen.
+
+\section{Backend}\label{sec:fokus:-backend}
+
 \refa{fig:BackendArch} Zeigt den strukturellen Aufbau des Backends Näher, dabei kann die grafik in vier zonen unterteilt werden:
 \begin{itemize}
-    \item Links Kommunikation mit Webdiensten sowie dem eigenen Frontend.
-    \item Unten Interface mit Datenspeichern.
-    \item Rechts zugriff auf Konfigurationsdateien.
-    \item Zentral die Verarbeitung aller teilkomponenten
+    %Farben nehmen%
+    \item Links: Kommunikation mit Webdiensten sowie dem eigenen Frontend.
+    \item Unten: Interface mit Datenspeicher.
+    \item Rechts: zugriff auf Konfigurationsdateien.
+    \item Zentral: die Verarbeitung aller Teilkomponenten
 \end{itemize}
 
 \begin{figure}[h]
@@ -33,12 +36,16 @@ ist es für das Backend durchaus möglich.
     \caption{Backend Architektur}\label{fig:BackendArch}
 \end{figure}
 
-Die Kommunikation mit Webdiensten lässt sich in zwei Teilmodule, unterteilen: die \ac{REST} \ac{API},
-sowie die Authentifizierungsprüfung.\\
-Dabei stellt ersteres Klare Schnittstellen bereit und greift auf letzteres zu um die Berechtigungen der Nutzer zu prüfen.\\
+Die Kommunikation mit den Webdiensten lässt sich in zwei Teilmodule, unterteilen:
+\begin{itemize}
+    \item \ac{REST} \ac{API}
+    \item Authentifizierungsprüfung
+\end{itemize}
+% eventuell checken%
+Dabei stellt ersteres klare Schnittstellen bereit und greift auf letzteres zu, um die Berechtigungen des Nutzers zu prüfen.\\
 \\
 Das Interface mit den Datenspeichern entkoppelt die Anwendung sowie deren Daten vom verwendeten Speicherdienst beziehungsweise
-Datenbank.\\
+Datenbank.\\ %maybe formulate diffently%
 Dabei wird zwischen "Core Daten" welche für die funktionalität zwingend notwendig benötigt werden
 und "User Daten" welche lediglich die bedingung sowie handhabung des Nutzers verbessern.\\
 "Core Daten" werden dabei immer auf einer eigenen Datenbank gespeichert.
@@ -46,7 +53,6 @@ Hierbei ist die Datenbank Technologie selbst durch das Datenbank Interface entko
 "User Daten" hingegen könnten an anderer Stelle gespeichert werden.
 Diese Möglichkeit wird hier zwar eindeutig berücksichtigt, jedoch wird ein dementsprechendes Interface nicht explizit entwickelt.
 \\\\
-Rechts ist der Zugriff auf Konfigurationsdateien angedeutet, welche eine Zentrale Rolle spielen.
 Prozess Konfigurationen beinhalten all jene, welchen den Fluss und Inhalt eines Antrags sowie dessen Export beschreiben.
 Diese weisen eine hohe Komplexität auf und können nicht unbedingt ohne weiteres bearbeitet werden.
 Regel Konfigurationen hingegen sind einfach gestaltet und sollten nach einer Erklärung aus der Anleitung leicht anpassbar sein.
