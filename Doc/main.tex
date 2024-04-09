@@ -164,13 +164,14 @@
 
 \DeclareAcronym{ex}{short=ex,long=example}
 \DeclareAcronym{JSON}{short=JSON,long=JavaScript Object Natation}
-\DeclareAcronym{JWT}{short=JWT,long=\ac{JSON} Web Token}
+\DeclareAcronym{JWT}{short=JWT,long=JSON Web Token}
 \DeclareAcronym{REST}{short=REST,long=Representational State Transfer}
 \DeclareAcronym{API}{short=API,long=Application Programming Interface}
 \DeclareAcronym{PDF}{short=PDF,long=Portable Document Format}
 \DeclareAcronym{UI}{short=UI,long=User Interface}
 \DeclareAcronym{GUI}{short=GUI,long=Graphical user interface}
 \DeclareAcronym{ECTS}{short=ECTS,long=European Credit Transfer System}
+\DeclareAcronym{AStA}{short=AStA,long=Allgemeiner Studierenden Ausschuss}
 
 \usepackage{todonotes}
 
@@ -185,10 +186,11 @@
 \renewcommand*{\glsnamefont}{\textbf}
 \setlength{\glsdescwidth}{0.6\linewidth}
 
-\newglossaryentry{example}
+\newglossaryentry{Spike}
 {
-   name=example,
-   description={example description}
+   name=Spike,
+   description={Ein Spike erlaubt es Teammitgliedern sich während eines Sprints mit einem Thema
+   zu beschäftigen, um mehr Kenntnis darüber zu erhalten und zukünftige Risiken zu minieren}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -211,8 +213,10 @@
    \include{paragraphs/Architektur}
    \include{paragraphs/Mockups}
 
-   \printbibheading[title=Externe Quellen]
+   % Derzeit noch keine Enthalten
+   %\printbibheading[title=Externe Quellen]
    \printbibliography[type=book,heading=subbibliography,title=Buch-Quellen]
    \printbibliography[type=online,heading=subbibliography,title=Online-Quellen]
+   \listoffigures
 
 \end{document}

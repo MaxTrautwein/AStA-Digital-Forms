@@ -1,32 +1,6 @@
 \chapter{Funktionsumfang}\label{ch:funktionsumfang}
 
-\section{Nicht Anforderung}\label{sec:nicht-anforderung}
-\subsection{Unterschriften}\label{subsec:unterschriften}
-Die Applikation soll sich nicht um die benötigten Unterschriften kümmern,
-diese müssen von den Nutzern selbst auf eigene Weise hinzugefügt werden.
-\subsection{Config Editor}\label{subsec:config-editor}
-Es ist nicht gefordert einen Editor für die Konfigurations-Dateien, welche den dynamischen Aufbau ermöglichen, zu entwickeln.
-
-\section{Nice To Have}\label{sec:nice-to-have}
-\subsection{Nextcloud Integration}\label{subsec:nextcloud-integration}
-Es soll dem Benutzer ermöglicht werden, seine Daten auf einer Nexcloud Instanz statt der integrierten Datenbank zu speichern.
-\subsection{DB Preiskalkulation}\label{subsec:db-preiskalkulation}
-Über die Deutsche Bahn \ac{API} soll der Preis zwischen zwei Punkten zu einem bestimmten Zeitpunkt abgefragt werden können.
-\subsection{Häuser Speichern}\label{subsec:hauser-speichern}
-Die Applikation soll es ermöglichen, Häuser oder Locations, welche in vorherigen Anträgen genannt wurden, zu speichern,
-um sie in späteren Anträgen schneller wiederzufinden.
-
-\section{Non Functional}\label{sec:non-functional}
-\subsection{Dockerized}\label{subsec:dockerized}
-Die Applikation soll in Docker Containern Deployed werden können.
-\subsection{Vorgehen}\label{subsec:vorgehen}
-Im Projekt soll eine agile Vorgehensweise verwendet werden.
-\subsection{Bedienung/Layout}\label{subsec:bedienung/layout}
-Die Bedienung der Applikation soll auch für fachfremde Personen möglich sein.
-Daher sollte das Layout nach den gängigen Prinzipien der Usability und User Experience gestaltet werden.
-Die Oberfläche sollte ferner nicht zu sehr verschachtelt sein.
-\subsection{Technologie}\label{subsec:technologie}
-Es sollen auf bewährte Technologien gesetzt werden
+Die Anforderungen an das Projekt \workTitel~sind in diesem Kapitel dokumentiert.
 
 \section{Functional}\label{sec:functional}
 \subsection{Dynamischer Formular Aufbau}\label{subsec:dynamischer-formular-aufbau}
@@ -40,7 +14,7 @@ Dies soll dabei helfen, den passenden Antrag zu wählen.
 \subsection{Vollständigkeitskontrolle}\label{subsec:vollstandigkeitskontrolle}
 Die Applikation soll prüfen, ob der Antrag vollständig ausgefüllt ist.
 Falls nicht, soll der Nutzer informiert werden, was noch aussteht.
-\subsection{Auswahls Helfer}\label{subsec:auswahls-helfer}
+\subsection{Auswahlhelfer}\label{subsec:auswahls-helfer}
 Es soll einen Funktion zur Verfügung stehen, welche einem Nutzer dabei hilft,
 den passenden Antrag zu finden, indem dem Nutzer Fragen gestellt werden und so schrittweise der passende Antrag ermittelt wird.
 \subsection{Favoriten}\label{subsec:favoriten}
@@ -50,7 +24,7 @@ Anträge sollen einer generellen Kategorie zugeordnet werden können.
 Dabei ist zwischen Anträgen auf X, sowie Anträgen auf Abrechnung von X Beantragtem zu unterscheiden.
 \subsection{Import von Antragsdaten}\label{subsec:import-von-antragsdaten}
 Es soll möglich sein, Daten aus einem Antrag in dessen Abrechnungs-Antrag zu übernehmen.
-\subsection{Hinweis System}\label{subsec:hinweis-system}
+\subsection{Hinweissystem}\label{subsec:hinweis-system}
 Die Applikation soll einen Nutzer darauf hinweisen, wenn eine von ihm getroffene Entscheidung eine Begründung erfordert.
 \subsection{Login}\label{subsec:login}
 Es sollte ein Login mit Keycloak möglich sein.
@@ -84,3 +58,31 @@ Dem Nutzer soll es ermöglicht werden, automatisch generierte Inhalte zu übersc
 Es muss kalkuliert werden, wie viel für die Reise erstattet wird.
 Bei der konfigurierbaren Berechnung des Erstattungsbetrages sollte neben der Entfernung auch die Zahl der Insassen für
 die individuellen Abschnitte berücksichtigt werden.
+
+\section{Nice To Have}\label{sec:nice-to-have}
+\subsection{Nextcloud Integration}\label{subsec:nextcloud-integration}
+Es soll dem Benutzer ermöglicht werden, seine Daten auf einer Nexcloud Instanz statt der integrierten Datenbank zu speichern.
+\subsection{DB Preiskalkulation}\label{subsec:db-preiskalkulation}
+Über die Deutsche Bahn \ac{API} soll der Preis zwischen zwei Punkten zu einem bestimmten Zeitpunkt abgefragt werden können.
+\subsection{Häuser Speichern}\label{subsec:hauser-speichern}
+Die Applikation soll es ermöglichen, Häuser oder Locations, welche in vorherigen Anträgen genannt wurden, zu speichern,
+um sie in späteren Anträgen schneller wiederzufinden.
+
+\section{Non-Functional}\label{sec:non-functional}
+\subsection{Dockerized}\label{subsec:dockerized}
+Die Applikation soll in Docker Containern Deployed werden können.
+\subsection{Vorgehen}\label{subsec:vorgehen}
+Im Projekt soll eine agile Vorgehensweise verwendet werden.
+\subsection{Bedienung/Layout}\label{subsec:bedienung/layout}
+Die Bedienung der Applikation soll auch für fachfremde Personen möglich sein.
+Daher sollte das Layout nach den gängigen Prinzipien der Usability und User Experience gestaltet werden.
+Die Oberfläche sollte ferner nicht zu sehr verschachtelt sein.
+\subsection{Technologie}\label{subsec:technologie}
+Es sollen auf bewährte Technologien gesetzt werden
+
+\section{Out of Scope}\label{sec:nicht-anforderung}
+\subsection{Unterschriften}\label{subsec:unterschriften}
+Die Applikation soll sich nicht um die benötigten Unterschriften kümmern,
+diese müssen von den Nutzern selbst auf eigene Weise hinzugefügt werden.
+\subsection{Config Editor}\label{subsec:config-editor}
+Es ist nicht gefordert einen Editor für die Konfigurations-Dateien, welche den dynamischen Aufbau ermöglichen, zu entwickeln.

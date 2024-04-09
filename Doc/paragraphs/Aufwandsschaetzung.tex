@@ -1,16 +1,14 @@
-\chapter{Aufwandsschätzung}\label{ch:aufwandsschatzung}
 % Helper Command to format entrys in the Table %
 \newcommand{\trschaetzung}[3]{\rowcolor{lightgray}\textbf{#1} & \textbf{#2} \\* \multicolumn{2}{|l|}{\begin{tabular}[c]{@{}l@{}}#3\end{tabular}} \\ \hline}
-
-\section{Definition}\label{sec:aufwandsschatzungdef}
-
+\chapter{Aufwandsschätzung}\label{ch:aufwandsschatzung}
 In einer Aufwandsschätzung wird offengelegt, wie viel Zeit das Projekt benötigt und wie lange einzelne Tasks benötigen.
-Eine Aufwandsschätzung ist eine grobe Schätzung und meist ungenau. Diese wird benötigt, um vorab einen Überblick zu haben.
+Eine Aufwandsschätzung ist eine grobe Schätzung und meist ungenau.
+Diese wird benötigt, um vorab einen Überblick zu haben.
 In diesem Projekt wird zwischen Gruppenarbeiten und einzelnen Tasks unterschieden. 
 
 \section{Gruppenleistungen}\label{sec:gruppenleistungen}
-
-Bei Gruppenarbeiten wird die Zeit angegeben, bei der \textbf{alle} Gruppenmitglieder beteiligt sind und ausschliesslich nur in der Gruppe durchgeführt werden können. 
+Bei Gruppenleistungen wird die Zeit angegeben, bei der alle Gruppenmitglieder beteiligt sind
+und ausschließlich nur in der Gruppe durchgeführt werden können.
 
 \begin{longtable}{|lr|}
     \hline
@@ -24,7 +22,7 @@ Bei Gruppenarbeiten wird die Zeit angegeben, bei der \textbf{alle} Gruppenmitgli
     \trschaetzung{Präsentation}{1}{Präsentationszeit}
     \trschaetzung{Präsentation vorbereiten}{12}{Vorbereitungszeit auf die Präsentationen.
     \\Umfasst das Erstellen, Verfeinern sowie Einproben.}
-    \trschaetzung{Angular Testen}{5}{Spike um sich mit Angular vertraut zu machen und zu prüfen, ob das
+    \trschaetzung{Angular Testen}{5}{\Gls{Spike} um sich mit Angular vertraut zu machen und zu prüfen, ob das
     \\Team damit effektiv arbeiten kann}
     \trschaetzung{Erste Team Festlegungen}{1}{Interne Besprechung grundlegenden Themen wie:
     \\Lizenz, GitHub-Flow, Repository Struktur, Dokumentationsformat}
@@ -37,14 +35,16 @@ Bei Gruppenarbeiten wird die Zeit angegeben, bei der \textbf{alle} Gruppenmitgli
     \trschaetzung{Protokoll}{6}{Aufbereiten und versenden der Protokolle zu allen Meetings}
     \trschaetzung{Reflektion Projektmanagement}{3}{Zeit für die Reflektion über das Projektmanagement am Ende des Projekts}
     \trschaetzung{Reflektion Lernfortschritt \& Doku}{4}{Zeit für die Reflektion über den Lernfortschritt am Ende des Projekts}
-    \trschaetzung{Spike \ac{PDF} Generator Wahl}{3}{Spike um die Optionen zur automatisierten Generation von \ac{PDF} Dokumenten zu evaluieren.}
+    \trschaetzung{\Gls{Spike} \ac{PDF} Generator Wahl}{3}{\Gls{Spike} um die Optionen zur automatisierten Generation von \ac{PDF} Dokumenten zu evaluieren.}
     \trschaetzung{Style Guide Auswahl}{3}{Festlegung von internen Style-Richtlinien für bessere Codequalität und Verständnis}
 \end{longtable}
 
 \newpage\section{Individualleistungen}\label{sec:individualleistungen}
-
-Individualleistungen umfassen die Arbeit, die überwiegend \textbf{eine} Person aufwendet, um den Task abzuschließen und eine Schätzung erfolgt dabei mit der 1:3 Regel. Es wird zwischen dem rohen Aufwand für das schreiben des Codes, dem Testing und der Dokumentation unterschieden, daher wird die Zeit für den rohen Aufwand mit dem Faktor 3 multipliziert.
-
+Individualleistungen umfassen die Arbeit, die überwiegend \textbf{eine} Person aufwendet,
+um den Task abzuschließen und eine Schätzung erfolgt dabei mit der 1:3 Regel.
+Es wird zwischen dem rohen Aufwand für das schreiben des Codes,
+dem Testing und der Dokumentation unterschieden,
+daher wird die Zeit für den rohen Aufwand mit dem Faktor 3 multipliziert.
 
 \begin{longtable}{|lr|}
     \hline
@@ -96,8 +96,10 @@ Individualleistungen umfassen die Arbeit, die überwiegend \textbf{eine} Person 
     \\\zB nötige Begründung bei Wahl einer teureren Option}
     \trschaetzung{Keycloak Einrichten}{4.5}{Konfigurationszeit für Keycloak.
     \\Generell, Testnutzer, Richtlinien sowie den Anmelde-Flow}
-    \trschaetzung{Keycloak Anmeldung Frontend}{6}{Management im Frontend um einen \ac{JWT} Token von Keycloak, für den Nutzer zu erhalten}
-    \trschaetzung{Keycloak Verifikation}{6}{Backend Logik um den \ac{JWT} Token zu verifizieren und einem Nutzer zuzuordnen}
+    \trschaetzung{Keycloak Anmeldung Frontend}{6}{Management im Frontend um einen \ac{JWT} Token von Keycloak,
+        \\für den Nutzer zu erhalten}
+    \trschaetzung{Keycloak Verifikation}{6}{Backend Logik um den \ac{JWT} Token
+    \\zu verifizieren und einem Nutzer zuzuordnen}
     \trschaetzung{Backend Datenbank Interface}{12}{Entwicklung von grundlegendem Interface mit der Datenbank.}
     \trschaetzung{Formular Auto Fill Option}{12}{Automatisches Ausfüllen von Feldern nach Spezifikation des Nutzers
     \\Nutzer hat Kontrolle darüber, was zur Wiederverwendung gespeichert wird,
@@ -124,7 +126,7 @@ Individualleistungen umfassen die Arbeit, die überwiegend \textbf{eine} Person 
     \\Erfordert enge Zusammenarbeit mit dem \ac{UI} Design sowie eine sinnvolle Parameterwahl}
     \trschaetzung{Datums und Uhrzeit Feld}{6}{Generisches Feld zum Auswählen von Datum und oder Uhrzeit.
     \\Nähere Einstellung durch die Konfiguration}
-    \trschaetzung{generisches Textfeld}{3}{Einzel oder mehrzeiliges Textfeld}
+    \trschaetzung{Generisches Textfeld}{3}{Einzel oder mehrzeiliges Textfeld}
     \trschaetzung{Adress Feld}{3}{Feld für die Eingabe von Adressen}
     \trschaetzung{Feld Gruppierung autogeneriert}{30}{Für die Umsetzung bestimmter Funktionalitäten müssen die Eingaben von
     \\Feldern in einer Gruppe betrachtet werden.
@@ -139,7 +141,7 @@ Individualleistungen umfassen die Arbeit, die überwiegend \textbf{eine} Person 
     \\Wahlweise mit oder ohne Uhrzeit}
     \trschaetzung{FS-WE Kostenkategorie Element}{12}{Spezialisiertes Abrechnungsfeld für Fachschaftswochenenden
     \\Aufschlüsselung und erhalt der bestehenden Kategorien}
-    \trschaetzung{Telnemer Listenelement}{6}{Element für die Erstellung von Teilnehmerlisten}
+    \trschaetzung{Teilnemer Listenelement}{6}{Element für die Erstellung von Teilnehmerlisten}
     \trschaetzung{Generisches Text Listen Element}{6}{Generisches Listenelement}
     \trschaetzung{Weiterführendes \ac{UI} Design}{21}{Weiterentwicklung des \ac{UI} Designs über den Klickdummie hinaus}
     \trschaetzung{Doku Meilenstein 1 Zeitplanung Textform}{6}{Die Zeitplanung, welche im Team erstellt wurde,
