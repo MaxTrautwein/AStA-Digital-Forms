@@ -1,6 +1,20 @@
 secrets:
-  mongo-user: ./secrets/mongo_user
-  mongo-pw: ./secrets/mongo_pw
+  mongo-user: 
+    file: ${pwd}/secrets/mongo_user
+  mongo-pw: 
+    file: ${pwd}/secrets/mongo_pw
+  # Keycloak secrets (DO NOT RENAME)
+  KC_HOSTNAME:
+    file: ${pwd}/secrets/KC_HOSTNAME
+  KC_DB_PASSWORD:
+    file: ${pwd}/secrets/KC_DB_PASSWORD
+  KEYCLOAK_ADMIN_PASSWORD:
+    file: ${pwd}/secrets/KEYCLOAK_ADMIN_PASSWORD
+  KEYCLOAK_ADMIN:
+    file: ${pwd}/secrets/KEYCLOAK_ADMIN
+  # For Local Testing vs Deplyment
+  Backend_URL:
+    file: ${pwd}/secrets/Backend_URL
 
 
 services:
@@ -11,6 +25,9 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD_File=/run/secrets/mongo-pw
     volumes:
       - ./DB/data:/data/db
+    secrets:
+      - mongo-user
+    
   
   Forntend:
     build:
@@ -19,6 +36,39 @@ services:
     volumes:
       - Forntend:/project
       - /project/node_modules
+    secrets:
+      - Backend_URL
+      - KC_HOSTNAME
     
   Backend:
-    
+    build: Backend
+  
+  # may 
+  Auth: 
+    build: Auth
+    profiles:
+      - server
+    environment:
+      - KC_DB=postgres
+      - KC_DB_USERNAME=postgres
+      - KC_DB_URL_HOST=db
+      # In case of Proxy Setup
+      #- KC_PROXY=edge
+    secrets:
+      - KC_HOSTNAME
+      - KC_DB_PASSWORD
+      - KEYCLOAK_ADMIN_PASSWORD
+      - KEYCLOAK_ADMIN
+
+  Auth-db:
+    image: postgres:15
+    profiles:
+      - server
+    restart: unless-stopped
+    volumes:
+      - Auth/db:/var/lib/postgresql/data
+      - Auth/initdb:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_PASSWORD_FILE=/run/secrets/KC_DB_PASSWORD
+    secrets:
+      - KC_DB_PASSWORD
