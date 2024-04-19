@@ -6,14 +6,20 @@ Zwischenpräsentation: https://docs.google.com/presentation/d/1JXEr9MCTt3LuM759l
 
 ## Docker Compose
 
+Zuerst müssen die `Docker Secrets` generiert werden.
+Dazu `./init_secrets.sh` im Terminal ausführen. Unter Windows kann die `Git Bash` (`MINGW64`) verwendet werden.
+Dies generiert mithilfe von `openssl rand -base64` zufällige Werte für Passwörter.
+
 ### Development
 
 ```
 docker compose up
 ```
+Startet Alle Dinste bis auf Keycloak.
 
 ### Hosting
 
 ```
 docker compose --profile server up
 ```
+Startet Alle Dinste.
