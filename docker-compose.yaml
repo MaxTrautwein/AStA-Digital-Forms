@@ -29,9 +29,9 @@ services:
       - mongo-user
     
   
-  forntend:
+  frontend:
     build:
-      context: angular
+      context: Frontend
       target: builder
     volumes:
       #- Forntend:/project
@@ -39,6 +39,8 @@ services:
     secrets:
       - Backend_URL
       - KC_HOSTNAME
+    ports:
+      - 4200:4200
     
   backend:
     build: Backend/
@@ -61,6 +63,8 @@ services:
       - KC_DB_PASSWORD
       - KEYCLOAK_ADMIN_PASSWORD
       - KEYCLOAK_ADMIN
+    depends_on:
+      - auth-db
 
   auth-db:
     image: postgres:15
