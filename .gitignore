@@ -307,3 +307,6 @@ TSWLatexianTemp*
 
 #Local secrets
 secrets/*
+
+# Database Contents
+DB/data/*
