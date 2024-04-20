@@ -5,4 +5,4 @@ do
 	export ${i}=$(cat /run/secrets/${i})
 done
 
-"$@"
+/opt/keycloak/bin/kc.sh start-dev

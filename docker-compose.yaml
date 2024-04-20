@@ -59,7 +59,7 @@ services:
     environment:
       - KC_DB=postgres
       - KC_DB_USERNAME=postgres
-      - KC_DB_URL_HOST=db
+      - KC_DB_URL_HOST=auth-db
       # In case of Proxy Setup
       #- KC_PROXY=edge
     secrets:
@@ -76,8 +76,8 @@ services:
       - server
     restart: unless-stopped
     volumes:
-      - Auth/db:/var/lib/postgresql/data
-      - Auth/initdb:/docker-entrypoint-initdb.d
+      - ./Auth/db:/var/lib/postgresql/data
+      - ./Auth/initdb:/docker-entrypoint-initdb.d
     environment:
       - POSTGRES_PASSWORD_FILE=/run/secrets/KC_DB_PASSWORD
     secrets:

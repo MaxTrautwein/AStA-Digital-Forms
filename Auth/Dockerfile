@@ -5,5 +5,6 @@ FROM quay.io/keycloak/keycloak:latest
 #ENV KC_PROXY=edge
 
 COPY ./initEnv.sh /initEnv.sh
+#RUN chmod o+x /initEnv.sh
 
-ENTRYPOINT ["/initEnv.sh" ,"/opt/keycloak/bin/kc.sh"]
+ENTRYPOINT ["/initEnv.sh"]
