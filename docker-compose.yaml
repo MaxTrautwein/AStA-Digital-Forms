@@ -69,6 +69,8 @@ services:
       - KEYCLOAK_ADMIN
     depends_on:
       - auth-db
+    ports:
+      - 8081:8080
 
   auth-db:
     image: postgres:15
