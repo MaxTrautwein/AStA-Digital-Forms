@@ -1,0 +1,64 @@
+\chapter{Datenbank}
+Da in diesem Projekt eine NoSQL Datenbank verwendet wird, gibt es kein Datenbanklayout im klassischen Sinne.
+Regeln für die Strukturierung von Daten wie Normalformen bei Relationalen Datenbanken gibt es bei MongoDB nicht.
+
+Dennoch gibt es einige Punkte die zu beachten sind:
+\begin{itemize}
+    \item Limit von 16\ac{MB} Pro Dokument
+    \item Einbetten ist bei NoSQL Datenbanken zu bevorzugen, jedoch nicht immer passend
+    \item Arrays sollten nicht unendlich wachsen können
+\end{itemize}
+
+Es folgt die vorläufige Struktur für die verschiedenen Dokumente.
+Der genaue Inhalt wird angefügt, sobald dieser bekannt wird.
+
+\section{User}
+
+\begin{lstlisting}[label={lst:lstlistingusers}]
+    // Users Document
+    {
+    id: string
+    settings:
+        {
+            ...
+        }
+    }
+
+\end{lstlisting}
+
+\section{Autofill}
+\begin{lstlisting}[label={lst:lstlistingauto}]
+    // Autofill Document
+    {
+    Userid: ref
+    pairs:
+        [
+            {
+                key:value
+            },
+            {
+            ...
+            }
+        ]
+    }
+
+\end{lstlisting}
+
+\section{Document}
+\begin{lstlisting}[label={lst:lstlistingdoc}]
+    // Document Document
+    {
+    Userid: ref
+    status: string
+    data:   [
+                {
+                    ref: string
+                    val: object
+                },
+                {
+                ...
+                }
+            ]
+    }
+
+\end{lstlisting}
