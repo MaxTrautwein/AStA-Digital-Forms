@@ -1,46 +1,46 @@
-\chapter{Technologien & Frameworks}
+\chapter{Technologien & Frameworks}\label{ch:technologien-&-frameworks}
 
-In diesem Kapitän sind die verwendeten Technologien und Frameworks benannt, erklärt
+In diesem Kapitel sind die verwendeten Technologien und Frameworks benannt, erklärt
 sowie begründet, weshalb diese verwendet werden.
 
-\section{Angular}
+\section{Angular}\label{sec:angular}
 
 Im Frontend wir Angular für die komponentenbasierte Darstellung verwendet.
 Da in Angular die einzelnen Komponenten direkt in solche unterteilt sind,
-eignet es sich für den angstresten modularen Aufbau besonders.
+eignet es sich für den angestrebten modularen Aufbau besonders.
 
-Angular ist eine auf \gls{TypeScript} basierende Entwicklungsplattform die folgende Funktionalitäten umfasst:
+Angular ist eine auf \gls{TypeScript} basierende Entwicklungsplattform, die folgende Funktionalitäten umfasst:
 \begin{itemize}
     \item Komponenten basiertes Framework
-    \item Eine Vielzahl von stark intigriten Bibliotheken für routing, forms management, client-server communication
+    \item Eine Vielzahl von stark integrierten Bibliotheken für Routing, Formularmanagement, Client-Server Kommunikation
     \item Entwicklertools zu Entwickel, Testen und Updaten des Codes
 \end{itemize}
 \cite{about-angular}
 
-Angular ist MIT Lizenziert.
-Für Mehr details siehe \refk{sec:mit}.
+Angular ist MIT lizenziert.
+Für mehr Details siehe \refk{sec:mit}.
 
-\section{Spring Boot}
+\section{Spring Boot}\label{sec:spring-boot}
 
-Im Backend kommt die bewährte Technologie Spring Boot zu einsatz.
+Im Backend kommt die bewährte Technologie Spring Boot zu Einsatz.
 
 Spring ermöglicht es Java schneller, leichter und sicherer zu programmieren.
 Aufgrund seiner Geschwindigkeit, Einfachheit und Produktivität gilt Spring zum am meisten geschätzten Java-Framework weltweit.
 \cite{about-springboot}
 
 Spring Boot ist Apache-2.0 Lizenziert.
-Für Mehr details siehe \refk{sec:apache-2.0}.
+Für mehr Details siehe \refk{sec:apache-2.0}.
 
-\section{Keycloak}
+\section{Keycloak}\label{sec:keycloak}
 
-Keycloak dient, als einfache möglichkeit die Applikation abzusichern, ohne selbst passwörter zu managen.
-Zusätzlich wird Benutzerföderation, stake Authentifizierung sowie eine Feine Autorisierung bereitgestellt.
+Keycloak dient, als einfache Möglichkeit, die Applikation abzusichern, ohne selbst Passwörter zu managen.
+Zusätzlich wird Benutzerföderation, starke Authentifizierung sowie eine Feine Autorisierung bereitgestellt.
 \cite{about-keycloak}
 
 Keycloak ist Apache-2.0 Lizenziert.
-Für Mehr details siehe \refk{sec:apache-2.0}.
+Für mehr Details siehe \refk{sec:apache-2.0}.
 
-\section{Postgres}
+\section{Postgres}\label{sec:postgres}
 
 Postgres dient in diesem Projekt als Datenspeicher für Keycloak.
 
@@ -50,32 +50,33 @@ die es ermöglichen, selbst die komplexesten Daten-Workloads sicher zu speichern
 \cite{about-postgres}
 
 Postgres steht unter der The PostgreSQL Licence.
-Für Mehr details siehe \refk{sec:the-postgresql-licence}.
+Für mehr Details siehe \refk{sec:the-postgresql-licence}.
 
 
-\section{MongoDB}
+\section{MongoDB}\label{sec:mongodb}
 
 MongoDB wird zum Speichern der Anträge sowie der Verknüpfung zu den Keycloak Accounts genutzt.
-Im gegensatz zu den klassischen relationalen datenbanken zählt MongoDB als Dokumentenbasierte NoSQL Datenbank.
+Im Gegensatz zu den klassischen relationalen Datenbanken zählt MongoDB als Dokumenten basierte NoSQL Datenbank.
 Dabei werden Information nicht streng auf einzelne Tabellen verteilt, sondern in Form von \ac{JSON} Objekten in Dokumenten abgelegt.
 
-MongoDB ist steht unter der Server Side Public License zur verfügung.
-Für Mehr details siehe \refk{sec:the-postgresql-licence}.
+MongoDB steht unter der \acl{SSPL} zur Verfügung.
+Für mehr Details siehe \refk{sec:server-side-public-license}.
 
-\section{Docker}
+\section{Docker}\label{sec:docker}
 
-Docker bietet eine unkomplizierte option container zu konfigurieren und zu Teilen.
-Dabei kann auf Datenbanken mit basis Images zugegriffen werden, welche bei Bedarf
+Docker bietet eine unkomplizierte Option, Container zu konfigurieren und zu teilen.
+Dabei kann auf Datenbanken mit Basis Images zugegriffen werden, welche bei Bedarf
 einfach in einem Dockerfile angepasst werden können.
 
-Docker selbst ist nicht OpenSource, jedoch für die meisten kostenlos verfügbar.
-Davon ausgeschlossen sind lediglich Firmen mit mehr als 250 Mitarbeitern oder mindesten 10 Millionen Dollar Einkommen.
+Docker selbst ist nicht Open Source, jedoch für die meisten kostenlos verfügbar.
+Davon ausgeschlossen sind lediglich Firmen mit mehr als 250 Mitarbeitern oder mindestens 10 Millionen Dollar Einkommen.
 
-\section{Docker Compose}
+\section{Docker Compose}\label{sec:docker-compose}
 
 Docker Compose ist eine Erweiterung von Docker.
 Diese ermöglicht es direkt mehrere Container in einer Datei zu managen.
 Ein weiterer Vorteil stellt die einfache Konfiguration von Docker-Secrets dar, wodurch \ua Passwörter sicher übergeben werden können.
 
 Docker Compose ist Apache-2.0 Lizenziert.
-Für Mehr details siehe \refk{sec:apache-2.0}.
+Für mehr Details siehe \refk{sec:apache-2.0}.
+
