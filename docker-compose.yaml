@@ -1,0 +1,86 @@
+secrets:
+  mongo-user: 
+    file: ./secrets/mongo_user
+  mongo-pw: 
+    file: ./secrets/mongo_pw
+  # Keycloak secrets (DO NOT RENAME)
+  KC_HOSTNAME:
+    file: ./secrets/KC_HOSTNAME
+  KC_DB_PASSWORD:
+    file: ./secrets/KC_DB_PASSWORD
+  KEYCLOAK_ADMIN_PASSWORD:
+    file: ./secrets/KEYCLOAK_ADMIN_PASSWORD
+  KEYCLOAK_ADMIN:
+    file: ./secrets/KEYCLOAK_ADMIN
+  # For Local Testing vs Deplyment
+  Backend_URL:
+    file: ./secrets/Backend_URL
+
+
+services:
+  db:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME_FILE: /run/secrets/mongo-user
+      MONGO_INITDB_ROOT_PASSWORD_FILE: /run/secrets/mongo-pw
+    volumes:
+      - ./DB/data:/data/db
+    secrets:
+      - mongo-user
+      - mongo-pw
+    ports:
+      # Development ONLY
+      - 27017:27017
+    
+  
+  frontend:
+    build:
+      context: Frontend
+      target: builder
+    volumes:
+      #- Forntend:/project
+      - /project/node_modules
+    secrets:
+      - Backend_URL
+      - KC_HOSTNAME
+    ports:
+      - 4200:4200
+    
+  backend:
+    build: Backend/
+    ports:
+      - 8080:8080
+  
+  # may requier a proxy
+  auth: 
+    build: Auth
+    profiles:
+      - server
+    environment:
+      - KC_DB=postgres
+      - KC_DB_USERNAME=postgres
+      - KC_DB_URL_HOST=auth-db
+      # In case of Proxy Setup
+      #- KC_PROXY=edge
+    secrets:
+      - KC_HOSTNAME
+      - KC_DB_PASSWORD
+      - KEYCLOAK_ADMIN_PASSWORD
+      - KEYCLOAK_ADMIN
+    depends_on:
+      - auth-db
+    ports:
+      - 8081:8080
+
+  auth-db:
+    image: postgres:15
+    profiles:
+      - server
+    restart: unless-stopped
+    volumes:
+      - ./Auth/db:/var/lib/postgresql/data
+      - ./Auth/initdb:/docker-entrypoint-initdb.d
+    environment:
+      - POSTGRES_PASSWORD_FILE=/run/secrets/KC_DB_PASSWORD
+    secrets:
+      - KC_DB_PASSWORD
