@@ -172,6 +172,8 @@
 \DeclareAcronym{GUI}{short=GUI,long=Graphical user interface}
 \DeclareAcronym{ECTS}{short=ECTS,long=European Credit Transfer System}
 \DeclareAcronym{AStA}{short=AStA,long=Allgemeiner Studierenden Ausschuss}
+\DeclareAcronym{SSPL}{short=SSPL,long=Server Side Public License}
+
 
 \usepackage{todonotes}
 
@@ -192,6 +194,18 @@
    description={Ein Spike erlaubt es Teammitgliedern sich während eines Sprints mit einem Thema
    zu beschäftigen, um mehr Kenntnis darüber zu erhalten und zukünftige Risiken zu minieren}
 }
+\newglossaryentry{TypeScript}
+{
+   name=TypeScript,
+   description={TypeScript ist JavaScript mit Types}
+}
+\newglossaryentry{Benutzer-Foederation}
+{
+   name=Benutzer-Föderation,
+   description={Die Föderierte Identität, auch bekannt als Benutzer-Föderation,
+   bezeichnet die verwendung der Identität eines Benutzers über mehrere Systeme.}
+}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Dokument
@@ -212,10 +226,11 @@
    \include{paragraphs/Aufwandsschaetzung}
    \include{paragraphs/Projektmanagement}
    \include{paragraphs/Architektur}
+   \include{paragraphs/Techno}
    \include{paragraphs/Mockups}
+   \include{paragraphs/Lizenzen}
 
-   % Derzeit noch keine Enthalten
-   %\printbibheading[title=Externe Quellen]
+   \printbibheading[title=Externe Quellen]
    \printbibliography[type=book,heading=subbibliography,title=Buch-Quellen]
    \printbibliography[type=online,heading=subbibliography,title=Online-Quellen]
    \listoffigures
