@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import de.PSWTM.DigitalForms.collection.Person;
 
 @Repository
-public interface PersonRepository extends MongoRepository<Person,String> {                  //Repository Stores Persons and the Primary Key is of Type Strring
+public interface PersonRepository extends MongoRepository<Person,String> {                  //Repository Stores Persons and the Primary Key is of Type String
 
     
 }

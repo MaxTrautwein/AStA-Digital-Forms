@@ -10,7 +10,7 @@ import lombok.Data;
 
 @Data
 @Builder
-@Document(collation = "person")
+@Document(collection = "person")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Person {
     @Id
