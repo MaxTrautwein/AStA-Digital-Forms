@@ -87,7 +87,7 @@ index 0347810..747ccee 100644
 +      - kcdb
 +    labels:
 +      - 'traefik.enable=true'
-+      - 'traefik.http.routers.auth_df.rule=Host(`AUTH_DOMAIN`)'
++      - 'traefik.http.routers.auth_df.rule=Host(`{AUTH_DOMAIN}`)'
 +      - 'traefik.http.routers.auth_df.entrypoints=https'
 +      - 'traefik.http.routers.auth_df.tls=true'
 +      - 'traefik.http.routers.auth_df.tls.certresolver=letsencrypt'
