@@ -1,0 +1,130 @@
+diff --git a/Auth/initEnv.sh b/Auth/initEnv.sh
+index 36c19e9..7fb427b 100644
+--- a/Auth/initEnv.sh
++++ b/Auth/initEnv.sh
+@@ -5,4 +5,4 @@ do
+ 	export ${i}=$(cat /run/secrets/${i})
+ done
+ 
+-/opt/keycloak/bin/kc.sh start-dev
+\ No newline at end of file
++/opt/keycloak/bin/kc.sh start
+\ No newline at end of file
+diff --git a/docker-compose.yaml b/docker-compose.yaml
+index 0347810..747ccee 100644
+--- a/docker-compose.yaml
++++ b/docker-compose.yaml
+@@ -28,10 +28,9 @@ services:
+     secrets:
+       - mongo-user
+       - mongo-pw
+-    ports:
++    #ports:
+       # Development ONLY
+-      - 27017:27017
+-    
++      #- 27017:27017
+   
+   frontend:
+     build:
+@@ -43,13 +42,33 @@ services:
+     secrets:
+       - Backend_URL
+       - KC_HOSTNAME
+-    ports:
+-      - 4200:4200
++    #ports:
++    #  - 4200:4200
++    networks:
++      - proxy
++    labels:
++      - 'traefik.enable=true'
++      - 'traefik.http.routers.df.rule=Host(`{FRONTEND_DOMAIN}`)'
++      - 'traefik.http.routers.df.entrypoints=https'
++      - 'traefik.http.routers.df.tls=true'
++      - 'traefik.http.services.df.loadbalancer.server.port=4200'
++      - 'traefik.http.routers.df.tls.certresolver=letsencrypt'
++      - "traefik.docker.network=proxy"
+     
+   backend:
+     build: Backend/
+-    ports:
+-      - 8080:8080
++    #ports:
++    #  - 8080:8080
++    networks:
++      - proxy
++    labels:
++      - 'traefik.enable=true'
++      - 'traefik.http.routers.backend_df.rule=Host(`{BACKEND_DOMAIN}`)'
++      - 'traefik.http.routers.backend_df.entrypoints=https'
++      - 'traefik.http.routers.backend_df.tls=true'
++      - 'traefik.http.services.backend_df.loadbalancer.server.port=8080'
++      - 'traefik.http.routers.backend_df.tls.certresolver=letsencrypt'
++      - "traefik.docker.network=proxy"
+   
+   # may requier a proxy
+   auth: 
+@@ -61,7 +80,7 @@ services:
+       - KC_DB_USERNAME=postgres
+       - KC_DB_URL_HOST=auth-db
+       # In case of Proxy Setup
+-      #- KC_PROXY=edge
++      - KC_PROXY=edge
+     secrets:
+       - KC_HOSTNAME
+       - KC_DB_PASSWORD
+@@ -69,8 +88,18 @@ services:
+       - KEYCLOAK_ADMIN
+     depends_on:
+       - auth-db
+-    ports:
+-      - 8081:8080
++    #ports:
++    #  - 8081:8080
++    networks:
++      - proxy
++      - kcdb
++    labels:
++      - 'traefik.enable=true'
++      - 'traefik.http.routers.auth_df.rule=Host(`{AUTH_DOMAIN}`)'
++      - 'traefik.http.routers.auth_df.entrypoints=https'
++      - 'traefik.http.routers.auth_df.tls=true'
++      - 'traefik.http.routers.auth_df.tls.certresolver=letsencrypt'
++      - "traefik.docker.network=proxy"
+ 
+   auth-db:
+     image: postgres:15
+@@ -83,4 +112,15 @@ services:
+     environment:
+       - POSTGRES_PASSWORD_FILE=/run/secrets/KC_DB_PASSWORD
+     secrets:
+-      - KC_DB_PASSWORD
+\ No newline at end of file
++      - KC_DB_PASSWORD
++    networks:
++      - kcdb
++
++
++
++
++networks:
++  kcdb:
++    driver: bridge
++  proxy:
++    external: true
+\ No newline at end of file
+diff --git a/init_secrets.sh b/init_secrets.sh
+index 1c770ca..a607ba1 100755
+--- a/init_secrets.sh
++++ b/init_secrets.sh
+@@ -9,5 +9,5 @@ openssl rand -base64 40 > ./secrets/KEYCLOAK_ADMIN_PASSWORD
+ openssl rand -base64 20 > ./secrets/KEYCLOAK_ADMIN
+ 
+ #For testing
+-echo "localhost" > ./secrets/Backend_URL
+-echo "localhost" > ./secrets/KC_HOSTNAME
+\ No newline at end of file
++echo "{BACKEND_DOMAIN}" > ./secrets/Backend_URL
++echo "{AUTH_DOMAIN}" > ./secrets/KC_HOSTNAME
+\ No newline at end of file
