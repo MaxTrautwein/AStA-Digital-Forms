@@ -23,9 +23,14 @@ public class HelloWorldController {
     }
 
     @GetMapping("/test")
-    public String greeting()  {
+    public String test()  {
         repository.save(new Person("bla"));
         repository.save(new Person("blub"));
         return "test";
+    }
+
+    @GetMapping("/get")
+    public String getDb()  {
+        return  repository.findAll().toString();
     }
 }
