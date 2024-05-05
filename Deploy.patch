@@ -11,10 +11,14 @@ index 36c19e9..7fb427b 100644
 +/opt/keycloak/bin/kc.sh start
 \ No newline at end of file
 diff --git a/docker-compose.yaml b/docker-compose.yaml
-index 0347810..747ccee 100644
+index 0347810..85128a9 100644
 --- a/docker-compose.yaml
 +++ b/docker-compose.yaml
-@@ -28,10 +28,9 @@ services:
+@@ -25,13 +25,13 @@ services:
+       MONGO_INITDB_ROOT_PASSWORD_FILE: /run/secrets/mongo-pw
+     volumes:
+       - ./DB/data:/data/db
++    restart: unless-stopped
      secrets:
        - mongo-user
        - mongo-pw
@@ -27,7 +31,7 @@ index 0347810..747ccee 100644
    
    frontend:
      build:
-@@ -43,13 +42,33 @@ services:
+@@ -43,13 +43,35 @@ services:
      secrets:
        - Backend_URL
        - KC_HOSTNAME
@@ -35,6 +39,7 @@ index 0347810..747ccee 100644
 -      - 4200:4200
 +    #ports:
 +    #  - 4200:4200
++    restart: unless-stopped
 +    networks:
 +      - proxy
 +    labels:
@@ -52,6 +57,7 @@ index 0347810..747ccee 100644
 -      - 8080:8080
 +    #ports:
 +    #  - 8080:8080
++    restart: unless-stopped
 +    networks:
 +      - proxy
 +    labels:
@@ -65,7 +71,7 @@ index 0347810..747ccee 100644
    
    # may requier a proxy
    auth: 
-@@ -61,7 +80,7 @@ services:
+@@ -61,7 +83,7 @@ services:
        - KC_DB_USERNAME=postgres
        - KC_DB_URL_HOST=auth-db
        # In case of Proxy Setup
@@ -74,7 +80,7 @@ index 0347810..747ccee 100644
      secrets:
        - KC_HOSTNAME
        - KC_DB_PASSWORD
-@@ -69,8 +88,18 @@ services:
+@@ -69,8 +91,19 @@ services:
        - KEYCLOAK_ADMIN
      depends_on:
        - auth-db
@@ -82,6 +88,7 @@ index 0347810..747ccee 100644
 -      - 8081:8080
 +    #ports:
 +    #  - 8081:8080
++    restart: unless-stopped
 +    networks:
 +      - proxy
 +      - kcdb
@@ -95,7 +102,7 @@ index 0347810..747ccee 100644
  
    auth-db:
      image: postgres:15
-@@ -83,4 +112,15 @@ services:
+@@ -83,4 +116,15 @@ services:
      environment:
        - POSTGRES_PASSWORD_FILE=/run/secrets/KC_DB_PASSWORD
      secrets:
