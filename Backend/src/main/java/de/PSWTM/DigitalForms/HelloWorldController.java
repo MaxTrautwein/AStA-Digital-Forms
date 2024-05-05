@@ -26,7 +26,7 @@ public class HelloWorldController {
     public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
         return new Greeting(counter.incrementAndGet(), String.format(template, name));
     }
-
+/* 
     @GetMapping("/test")
     public String test()  {
         repository.save(new Person("My"));
@@ -38,4 +38,5 @@ public class HelloWorldController {
     public String getDb()  {
         return  repository.findAll().toString();
     }
+    */
 }
