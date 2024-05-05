@@ -5,11 +5,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import org.springframework.web.bind.annotation.RestController;
 
 import de.PSWTM.DigitalForms.collection.Person;
 import de.PSWTM.DigitalForms.service.PersonService;
 
+/* 
 @RestController
 @RequestMapping(value = "/person", method = RequestMethod.POST)
 public class PersonController {
@@ -27,3 +29,5 @@ public class PersonController {
         return personService.save(person);
     }
 }
+
+*/

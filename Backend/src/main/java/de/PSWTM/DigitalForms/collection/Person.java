@@ -9,12 +9,17 @@ import lombok.Builder;
 import lombok.Data;
 
 @Data
-@Builder
+//@Builder
 @Document(collection = "person")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Person {
+
     @Id
-    private String PersonId;
-    private String FirstName;
-    private String SecondName;
+    public String id;
+
+    public String name;
+
+    public Person(String name) {
+        this.name = name;
+    }
 }
