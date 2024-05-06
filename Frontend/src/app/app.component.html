@@ -227,6 +227,11 @@
       </svg>
       <h1>Hello, {{ title }}</h1>
       <p>Congratulations! Your app is running. 🎉</p>
+      <a (click)="login()">Login</a>
+      <p>Refresh the browser after login to view the text</p>
+      <h1>{{text}}</h1>
+<br>
+<a (click)="logout()">Logout</a>
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
     <div class="right-side">
