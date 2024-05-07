@@ -25,13 +25,15 @@ services:
       MONGO_INITDB_ROOT_PASSWORD_FILE: /run/secrets/mongo-pw
     volumes:
       - ./DB/data:/data/db
+    restart: unless-stopped
     secrets:
       - mongo-user
       - mongo-pw
+    networks:
+      - mongodb
     ports:
       # Development ONLY
       - 27017:27017
-    
   
   frontend:
     build:
@@ -45,11 +47,18 @@ services:
       - KC_HOSTNAME
     ports:
       - 4200:4200
+    restart: unless-stopped
     
   backend:
     build: Backend/
     ports:
       - 8080:8080
+    restart: unless-stopped
+    secrets:
+      - mongo-user
+      - mongo-pw
+    networks:
+      - mongodb
   
   # may requier a proxy
   auth: 
@@ -71,6 +80,9 @@ services:
       - auth-db
     ports:
       - 8081:8080
+    restart: unless-stopped
+    networks:
+      - kcdb
 
   auth-db:
     image: postgres:15
@@ -84,3 +96,14 @@ services:
       - POSTGRES_PASSWORD_FILE=/run/secrets/KC_DB_PASSWORD
     secrets:
       - KC_DB_PASSWORD
+    networks:
+      - kcdb
+
+
+
+
+networks:
+  kcdb:
+    driver: bridge
+  mongodb:
+    driver: bridge
