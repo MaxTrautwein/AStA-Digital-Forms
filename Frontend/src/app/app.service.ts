@@ -12,7 +12,8 @@ export class AppService {
 
   start(): Observable<string> {
     const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
-    return this.httpClient.get("http://localhost:4200/",
+    
+    return this.httpClient.get("Anfrage an Backend",
       {headers, responseType: 'text'});
   }
 

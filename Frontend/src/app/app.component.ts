@@ -3,6 +3,7 @@ import { RouterModule} from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {OAuthService} from "angular-oauth2-oidc";
 import {authConfig} from "./auth.config";
+import { AppService } from './app.service';
 
 
 @Component({
@@ -16,8 +17,11 @@ export class AppComponent {
   title = 'DigitalForms';
   text = '';
   
-  constructor(private oauthService: OAuthService) {
+  constructor(private oauthService: OAuthService, private appService: AppService ) {
   this.configure();
+  appService.start().subscribe(response => {
+    this.text = response;
+  });
   }
   
   private configure() {
