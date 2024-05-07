@@ -1,7 +1,7 @@
 import {AuthConfig} from 'angular-oauth2-oidc';
 
 export const authConfig: AuthConfig = {
-  issuer: 'https://auth.df.dk4max.com/realms/DigitalForms/account/#/',
+  issuer: 'https://auth.df.dk4max.com/realms/DigitalForms',
   redirectUri: window.location.origin,
   clientId: 'DigitalForms',
   responseType: 'code',

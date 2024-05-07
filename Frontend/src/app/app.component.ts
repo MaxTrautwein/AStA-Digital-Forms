@@ -1,20 +1,22 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule} from '@angular/router';
+import { CommonModule } from '@angular/common';
 import {OAuthService} from "angular-oauth2-oidc";
 import {authConfig} from "./auth.config";
 
+
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
+  imports: [CommonModule, RouterModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
+  standalone:true,
 })
 export class AppComponent {
   title = 'DigitalForms';
   text = '';
   
-constructor(private oauthService: OAuthService) {
+  constructor(private oauthService: OAuthService) {
   this.configure();
   }
   
@@ -26,7 +28,7 @@ constructor(private oauthService: OAuthService) {
   login() {
     this.oauthService.initCodeFlow();
   }
-
+ 
 
 
   logout() {
