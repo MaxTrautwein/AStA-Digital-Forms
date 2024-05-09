@@ -1,9 +1,13 @@
 FROM eclipse-temurin:21-jdk-jammy as build
 
 WORKDIR /workspace/app
+
+COPY gradle* .
+COPY gradle/ gradle/
+RUN ./gradlew build --no-daemon ; exit 0
+
 COPY . .
 
-# Make the Build
 RUN ./gradlew build
 
 #RUN gradle build
