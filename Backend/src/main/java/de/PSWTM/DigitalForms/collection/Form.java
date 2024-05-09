@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.List;
 
 @Data
+@Builder
 @Document(collection = "form")
 public class Form {
     @Id
@@ -19,12 +20,6 @@ public class Form {
     public String Titel;
 
     public String Description;
-
-    public Form(boolean template, String titel, String description) {
-        Template = template;
-        Titel = titel;
-        Description = description;
-    }
 
     public ECategory Category;
 

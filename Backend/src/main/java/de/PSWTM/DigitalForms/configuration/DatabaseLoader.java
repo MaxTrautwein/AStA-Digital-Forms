@@ -1,12 +1,10 @@
 package de.PSWTM.DigitalForms.configuration;
 
-import de.PSWTM.DigitalForms.collection.ECategory;
-import de.PSWTM.DigitalForms.collection.FormSection;
+import de.PSWTM.DigitalForms.collection.*;
 import de.PSWTM.DigitalForms.repository.FormRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import de.PSWTM.DigitalForms.collection.Form;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,27 +15,31 @@ public class DatabaseLoader {
     CommandLineRunner initDatabase(FormRepository userRepository) {
         return args -> {
             if(true) {
-
-                Form f1 = new Form(true,
-                        "Genehmigung von Ausgaben und Anschaffungen",
-                        "bla Genehmigung von zeugs");
-                f1.setCategory(ECategory.Antrag);
-
                 List<FormSection> sections = new ArrayList<>();
 
-                FormSection s1 = new FormSection();
-                s1.setOrder(0);
-                s1.setSection("Generell");
+                sections.add(FormSection.builder()
+                        .order(0)
+                        .section("")
+                        .items(new ArrayList<>())
+                        .build());
+                sections.get(sections.size() - 1).items.add(FormElement.builder()
+                        .type(EFormElement.date)
+                        .Description("asas")
+                        .help("")
+                        .id("ID")
+                        .build());
+                sections.get(sections.size() - 1).items.add(FormElement.builder()
+                        .type(EFormElement.date)
+                        .build());
 
-                FormSection s2 = new FormSection();
-                s2.setOrder(1);
-                s2.setSection("begründung");
+                Form f1 = Form.builder().Template(true)
+                        .Titel("Genehmigung von Ausgaben und Anschaffungen")
+                        .Description("bla Genehmigung von zeugs")
+                        .Category(ECategory.Antrag)
+                        .form(sections)
+                        .build();
 
-                sections.add(s1);
-                sections.add(s2);
-
-                f1.setForm(sections);
-
+                
 
                 userRepository.save(f1);
 

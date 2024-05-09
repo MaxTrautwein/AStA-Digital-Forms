@@ -1,5 +1,10 @@
 package de.PSWTM.DigitalForms.collection;
 
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
 public class FormElement {
 
     public String id;
@@ -13,8 +18,5 @@ public class FormElement {
 
     //Not Shure how to best handle that refence in java
     //public String ref;
-
-    // 45
-    // + 30
 
 }
