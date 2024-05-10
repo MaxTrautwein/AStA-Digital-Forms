@@ -24,11 +24,14 @@ public class FormController {
 
     @GetMapping("/getTemplates")
     public List<Form> getTemplates(){
-       // Example<Form> example = Example.of( Form.builder().template(true).build());
-
         return repository.findAllTemplates_IdNameDescription();
+    }
 
-      //  return repository.findAll(example).stream().toList();
+    //Used to allow for a regenerate on next Start
+    @GetMapping("/debug/clear")
+    public String debugClear(){
+        repository.deleteAll();
+        return "deleteAll";
     }
 
 }
