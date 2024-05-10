@@ -1,0 +1,22 @@
+\chapter{Setup}\label{ch:setup}
+
+Dieses Handbuch soll künftigen Administratoren und Endnutzern dabei helfen,
+die Applikation in ihr vorhandenes System zu integrieren, zu warten und gegebenenfalls zu erweitern.
+
+\section{Secrets}\label{sec:secrets}
+
+Zuerst müssen die Docker Secrets generiert werden. Dazu \verb|./init_secrets.sh |im Terminal 
+ausführen. Unter Windows kann die Git Bash (MINGW64) verwendet werden. Dies generiert mithilfe von 
+\verb|openssl rand -base64| zufällige Werte für Passwörter. \\
+\\
+Unter Windows könnte es zusätzlich erforderlich sein, in Git 'autocrlf' abzuschalten. Um nicht versehentlich bash scipts zu beschädigen.\\
+\\
+\verb|git config core.autocrlf false|\\
+\section{Development}
+\verb|docker compose up|\\
+\\
+Startet alle Dienste bis auf Keycloak.
+\section{Hosting}
+\verb|docker compose --profile server up|\\
+\\
+Startet alle Dienste.
