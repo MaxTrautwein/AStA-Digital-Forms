@@ -15,17 +15,17 @@ public class Form {
     @Id
     public String id;
 
-    public boolean Template;
+    public boolean template;
 
-    public String Titel;
+    public String titel;
 
-    public String Description;
+    public String description;
 
-    public ECategory Category;
+    public ECategory category;
 
     public List<FormSection> form;
 
-    public List<Attachment> Attachments;
+    public List<Attachment> attachments;
 
 
 }

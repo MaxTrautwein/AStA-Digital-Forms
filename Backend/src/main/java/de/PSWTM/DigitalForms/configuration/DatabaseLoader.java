@@ -32,10 +32,10 @@ public class DatabaseLoader {
                         .type(EFormElement.date)
                         .build());
 
-                Form f1 = Form.builder().Template(true)
-                        .Titel("Genehmigung von Ausgaben und Anschaffungen")
-                        .Description("bla Genehmigung von zeugs")
-                        .Category(ECategory.Antrag)
+                Form f1 = Form.builder().template(true)
+                        .titel("Genehmigung von Ausgaben und Anschaffungen")
+                        .description("bla Genehmigung von zeugs")
+                        .category(ECategory.Antrag)
                         .form(sections)
                         .build();
 
