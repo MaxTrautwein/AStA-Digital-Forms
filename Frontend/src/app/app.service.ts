@@ -13,7 +13,7 @@ export class AppService {
   start(): Observable<string> {
     const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
     
-    return this.httpClient.get("Token",
+    return this.httpClient.get("backend.df.dk4max.com",
       {headers, responseType: 'text'});
   }
 
