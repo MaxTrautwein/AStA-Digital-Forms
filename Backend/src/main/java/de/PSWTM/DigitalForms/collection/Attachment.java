@@ -9,6 +9,6 @@ public class Attachment {
 
     public String id;
 
-    public String Description;
+    public String description;
 
 }

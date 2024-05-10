@@ -1,6 +1,7 @@
 package de.PSWTM.DigitalForms.controller;
 
 import de.PSWTM.DigitalForms.collection.Form;
+import de.PSWTM.DigitalForms.configuration.DatabaseLoader;
 import de.PSWTM.DigitalForms.repository.FormRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -27,11 +28,13 @@ public class FormController {
         return repository.findAllTemplates_IdNameDescription();
     }
 
-    //Used to allow for a regenerate on next Start
-    @GetMapping("/debug/clear")
+    //Used to allow for a regenerate Forms
+    @GetMapping("/debug/reset")
     public String debugClear(){
         repository.deleteAll();
-        return "deleteAll";
+
+        DatabaseLoader.initFormRepository(repository);
+        return "Reset Done";
     }
 
 }
