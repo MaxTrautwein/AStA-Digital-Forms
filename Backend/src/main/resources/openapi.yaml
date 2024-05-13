@@ -1,0 +1,39 @@
+openapi: 3.0.3
+info:
+  title: Digital Forms
+  description: |-
+    API For...
+  license:
+    name: GPL v3
+  version: 0.0.1
+servers:
+  - url: https://backend.df.dk4max.com/api/v3
+
+paths:
+  /template/list:
+    get:
+      summary: Get all Templats
+      description: Returns all templates
+      responses:
+        '200':
+          description: successful operation
+      
+  
+  /template/{templateId}:
+    get:
+      summary: Find Template by ID
+      description: Returns a single Template
+      parameters:
+        - name: templateId
+          in: path
+          description: ID of Template to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+        '404':
+          description: Template not found
+
