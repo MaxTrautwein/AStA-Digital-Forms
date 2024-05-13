@@ -1,6 +1,6 @@
 package de.PSWTM.DigitalForms.configuration;
 
-import de.PSWTM.DigitalForms.collection.*;
+import de.PSWTM.DigitalForms.model.*;
 import de.PSWTM.DigitalForms.repository.FormRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -9,36 +9,31 @@ import org.springframework.context.annotation.Configuration;
 import java.util.ArrayList;
 import java.util.List;
 
+import static de.PSWTM.DigitalForms.Factory.AttachmentFactory.createAttachment;
+import static de.PSWTM.DigitalForms.Factory.FormElementFactory.createFormElement;
+import static de.PSWTM.DigitalForms.Factory.FormFactory.createForm;
+import static de.PSWTM.DigitalForms.Factory.FormSectionFactory.createFormSection;
+
 @Configuration
 public class DatabaseLoader {
 
-    private static void addFormElement(List<FormSection> sections, EFormElement type, String dec, String help, String id){
+    private static void addFormElement(List<FormSection> sections, FormElement.TypeEnum type, String dec, String help, String id){
         addFormElement(sections,type,dec,help,id,null);
     }
 
-    private static void addFormElement(List<FormSection> sections, EFormElement type, String dec, String help, String id, String ref){
-        sections.get(sections.size() - 1).items.add(FormElement.builder()
-                .type(type)
-                .Description(dec)
-                .help(help)
-                .id(id)
-                //TODO Add ref later
-                .build());
+    private static void addFormElement(List<FormSection> sections, FormElement.TypeEnum type, String dec, String help, String id, String ref){
+        sections.get(sections.size() - 1).addItemsItem(createFormElement(id,type,dec,help));
     }
 
     private static void addPaymentSection(List<FormSection> sections, int orderIndex){
-        sections.add(FormSection.builder()
-                .order(orderIndex)
-                .section("Zahlung")
-                .items(new ArrayList<>())
-                .build());
-        addFormElement(sections,EFormElement.text,"Empfänger*in"
+        sections.add(createFormSection(orderIndex,"Zahlung"));
+        addFormElement(sections,FormElement.TypeEnum.TEXT,"Empfänger*in"
                 ,null,"prepay_empf");
-        addFormElement(sections,EFormElement.address,"Anschrift"
+        addFormElement(sections,FormElement.TypeEnum.ADDRESS,"Anschrift"
                 ,null,"prepay_adress");
-        addFormElement(sections,EFormElement.iban,"IBAN"
+        addFormElement(sections,FormElement.TypeEnum.IBAN,"IBAN"
                 ,null,"prepay_iban");
-        addFormElement(sections,EFormElement.text,"Kreditinstitut"
+        addFormElement(sections,FormElement.TypeEnum.TEXT,"Kreditinstitut"
                 ,null,"prepay_bank");
     }
 
@@ -46,47 +41,39 @@ public class DatabaseLoader {
     private static Form gen_Genehmigung_von_Ausgaben_und_Anschaffungen(){
         List<FormSection> sections = new ArrayList<>();
 
-        sections.add(FormSection.builder()
-                .order(0)
-                .section("Generell")
-                .items(new ArrayList<>())
-                .build());
-        addFormElement(sections,EFormElement.text,"Kurzbezeichnung des Antrages"
+        sections.add(createFormSection(0,"Generell"));
+        addFormElement(sections,FormElement.TypeEnum.TEXT,"Kurzbezeichnung des Antrages"
                 ,null,"bez");
-        addFormElement(sections,EFormElement.text,"Fachschaft/Referat/Arbeitskreis"
+        addFormElement(sections,FormElement.TypeEnum.TEXT,"Fachschaft/Referat/Arbeitskreis"
                 ,null,"fs_ref_ar");
-        addFormElement(sections,EFormElement.text,"Kontaktdaten"
+        addFormElement(sections,FormElement.TypeEnum.TEXT,"Kontaktdaten"
                 ,"(Handy-Nr., E-mail)","contact");
-        addFormElement(sections,EFormElement.text,"Antragsteller*in"
+        addFormElement(sections,FormElement.TypeEnum.TEXT,"Antragsteller*in"
                 ,"(Name, Vorname)","user");
-        sections.add(FormSection.builder()
-                .order(1)
-                .section("Hauptteil")
-                .items(new ArrayList<>())
-                .build());
-        addFormElement(sections,EFormElement.TextMultiLine,"Verwendungszweck: (Bitte ausführlich beschreiben! Evtl. Beiblatt nutzen)"
+        sections.add(createFormSection(1,"Hauptteil"));
+        addFormElement(sections,FormElement.TypeEnum.TEXTMULTILINE,"Verwendungszweck: (Bitte ausführlich beschreiben! Evtl. Beiblatt nutzen)"
                 ,"Was? Warum? Welcher Preis?","reason");
-        addFormElement(sections,EFormElement.bool,"Unterschriebenes Protokoll der FS-Sitzung mit genau erläutertem Beschluss im Anhang?"
+        addFormElement(sections,FormElement.TypeEnum.BOOL,"Unterschriebenes Protokoll der FS-Sitzung mit genau erläutertem Beschluss im Anhang?"
                 ,null,"prtocoll",
                 "Attachments-Protokoll");
-        addFormElement(sections,EFormElement.date,"Termin (geplant):"
+        addFormElement(sections,FormElement.TypeEnum.DATE,"Termin (geplant):"
                 ,null,"date");
-        addFormElement(sections,EFormElement.money,"Höhe der Ausgaben (ca.):"
+        addFormElement(sections,FormElement.TypeEnum.MONEY,"Höhe der Ausgaben (ca.):"
                 ,"(voraussichtliche Höhe angeben, falls nicht genau bekannt)","money");
 
         addPaymentSection(sections,2);
 
         List<Attachment> attachments = new ArrayList<>();
 
-        attachments.add(Attachment.builder().id("Protokoll").description("Unterschriebenes Protokoll der FS-Sitzung\nEnthält detailarten beschluss,...").build());
+        attachments.add(createAttachment("Protokoll","Unterschriebenes Protokoll der FS-Sitzung\nEnthält detailarten beschluss,..."));
 
-        Form f1 = Form.builder().template(true)
-                .titel("Genehmigung von Ausgaben und Anschaffungen")
-                .description("bla Genehmigung von zeugs")
-                .category(ECategory.Antrag)
-                .form(sections)
-                .attachments(attachments)
-                .build();
+        Form f1 = new Form();
+        f1.setTitel("Genehmigung von Ausgaben und Anschaffungen");
+        f1.template(true);
+        f1.setDescription("bla Genehmigung von zeugs");
+        f1.setCategory(Form.CategoryEnum.ANTRAG);
+        f1.setForm(sections);
+        f1.attachments(attachments);
 
         return f1;
     }
@@ -94,12 +81,12 @@ public class DatabaseLoader {
     public static void initFormRepository(FormRepository repository){
         repository.save(gen_Genehmigung_von_Ausgaben_und_Anschaffungen());
 
-        repository.save(Form.builder().template(true).titel("FS-Wochenende").description("Ein wochenende für die FS").category(ECategory.Antrag).build());
-        repository.save(Form.builder().template(true).titel("Wirtschaftliche Veranstaltung").description("Ne Veranstaltung wo geld eingenommen werden soll").category(ECategory.Antrag).build());
+        repository.save(createForm("FS-Wochenende",true,"Ein wochenende für die FS", Form.CategoryEnum.ANTRAG));
+        repository.save(createForm("Wirtschaftliche Veranstaltung",true,"Ne Veranstaltung wo geld eingenommen werden soll", Form.CategoryEnum.ANTRAG));
 
-        repository.save(Form.builder().template(true).titel("Reisekosten").description("Ich / Wir wollen wo hin.").category(ECategory.Antrag).build());
-        repository.save(Form.builder().template(true).titel("Kulturelle Veranstaltung").description("Eine Kulturelle Veranstaltung. Keine gewinnabsichten").category(ECategory.Antrag).build());
-        repository.save(Form.builder().template(true).titel("Erstattung Reisekosten").description("Wir sind nach Antrag mit Genehmigung wo hin. Gib geld").category(ECategory.Abrechnung).build());
+        repository.save(createForm("Reisekosten", true,"Ich / Wir wollen wo hin.",Form.CategoryEnum.ANTRAG));
+        repository.save(createForm("Kulturelle Veranstaltung",true,"Eine Kulturelle Veranstaltung. Keine gewinnabsichten",Form.CategoryEnum.ANTRAG));
+        repository.save(createForm("Erstattung Reisekosten",true,"Wir sind nach Antrag mit Genehmigung wo hin. Gib geld",Form.CategoryEnum.ABRECHNUNG));
 
     }
 

@@ -8,6 +8,7 @@ info:
   version: 0.0.1
 servers:
   - url: https://backend.df.dk4max.com/api/v3
+  - url: http://localhost:8080/api/v3
 
 paths:
   /template/list:
@@ -17,8 +18,14 @@ paths:
       responses:
         '200':
           description: successful operation
-      
-  
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Form"
+
+
   /template/{templateId}:
     get:
       summary: Find Template by ID
@@ -29,11 +36,78 @@ paths:
           description: ID of Template to return
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         '200':
           description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Form"
         '404':
           description: Template not found
 
+components:
+  schemas:
+    FormElement:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+        Description:
+          type: "string"
+        help:
+          type: "string"
+        type:
+          type: "string"
+          enum:
+            - "text"
+            - "address"
+            - "iban"
+            - "date"
+            - "money"
+            - "TextMultiLine"
+            - "bool"
+    FormSection:
+      type: "object"
+      properties:
+        order:
+          type: "integer"
+          format: "int32"
+        section:
+          type: "string"
+        items:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/FormElement"
+    Attachment:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+        description:
+          type: "string"
+    Form:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+        template:
+          type: "boolean"
+        titel:
+          type: "string"
+        description:
+          type: "string"
+        category:
+          type: "string"
+          enum:
+            - "Antrag"
+            - "Abrechnung"
+        form:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/FormSection"
+        attachments:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Attachment"
