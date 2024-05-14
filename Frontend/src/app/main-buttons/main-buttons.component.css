@@ -1,0 +1,13 @@
+.auswahlbutton {
+    width: 31vw;
+    height: 31vh;
+    background-color: chocolate;
+    margin: 20px;
+    border-radius: 20px;
+    
+}
+
+.auswahlbutton:hover {
+    cursor: pointer;
+}
+

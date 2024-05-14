@@ -1,14 +1,18 @@
 import { Component } from '@angular/core';
-import { RouterModule} from '@angular/router';
+import { RouterModule, RouterOutlet} from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {OAuthService} from "angular-oauth2-oidc";
 import {authConfig} from "./auth.config";
 import { AppService } from './app.service';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { CollapsableBottomComponent } from './collapsable-bottom/collapsable-bottom.component';
+import { MainButtonsComponent } from './main-buttons/main-buttons.component';
 
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, RouterModule],
+  standalone: true,
+  imports: [RouterOutlet, CommonModule, RouterModule, NavBarComponent, CollapsableBottomComponent, MainButtonsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   standalone:true,

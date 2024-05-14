@@ -1,33 +1,20 @@
-diff --git a/Auth/initEnv.sh b/Auth/initEnv.sh
-index 36c19e9..7fb427b 100644
---- a/Auth/initEnv.sh
-+++ b/Auth/initEnv.sh
-@@ -5,4 +5,4 @@ do
- 	export ${i}=$(cat /run/secrets/${i})
- done
- 
--/opt/keycloak/bin/kc.sh start-dev
-\ No newline at end of file
-+/opt/keycloak/bin/kc.sh start
-\ No newline at end of file
 diff --git a/docker-compose.yaml b/docker-compose.yaml
-index 0347810..747ccee 100644
+index 586e103..7f5ec4c 100644
 --- a/docker-compose.yaml
 +++ b/docker-compose.yaml
-@@ -28,10 +28,9 @@ services:
-     secrets:
-       - mongo-user
+@@ -31,9 +31,9 @@ services:
        - mongo-pw
+     networks:
+       - mongodb
 -    ports:
 +    #ports:
        # Development ONLY
 -      - 27017:27017
--    
 +      #- 27017:27017
    
    frontend:
      build:
-@@ -43,13 +42,33 @@ services:
+@@ -45,20 +45,39 @@ services:
      secrets:
        - Backend_URL
        - KC_HOSTNAME
@@ -35,6 +22,7 @@ index 0347810..747ccee 100644
 -      - 4200:4200
 +    #ports:
 +    #  - 4200:4200
+     restart: unless-stopped
 +    networks:
 +      - proxy
 +    labels:
@@ -52,8 +40,13 @@ index 0347810..747ccee 100644
 -      - 8080:8080
 +    #ports:
 +    #  - 8080:8080
-+    networks:
+     restart: unless-stopped
+     secrets:
+       - mongo-user
+       - mongo-pw
+     networks:
 +      - proxy
+       - mongodb
 +    labels:
 +      - 'traefik.enable=true'
 +      - 'traefik.http.routers.backend_df.rule=Host(`{BACKEND_DOMAIN}`)'
@@ -65,7 +58,7 @@ index 0347810..747ccee 100644
    
    # may requier a proxy
    auth: 
-@@ -61,7 +80,7 @@ services:
+@@ -70,7 +89,7 @@ services:
        - KC_DB_USERNAME=postgres
        - KC_DB_URL_HOST=auth-db
        # In case of Proxy Setup
@@ -74,7 +67,7 @@ index 0347810..747ccee 100644
      secrets:
        - KC_HOSTNAME
        - KC_DB_PASSWORD
-@@ -69,8 +88,18 @@ services:
+@@ -78,11 +97,19 @@ services:
        - KEYCLOAK_ADMIN
      depends_on:
        - auth-db
@@ -82,9 +75,10 @@ index 0347810..747ccee 100644
 -      - 8081:8080
 +    #ports:
 +    #  - 8081:8080
-+    networks:
+     restart: unless-stopped
+     networks:
 +      - proxy
-+      - kcdb
+       - kcdb
 +    labels:
 +      - 'traefik.enable=true'
 +      - 'traefik.http.routers.auth_df.rule=Host(`{AUTH_DOMAIN}`)'
@@ -95,27 +89,18 @@ index 0347810..747ccee 100644
  
    auth-db:
      image: postgres:15
-@@ -83,4 +112,15 @@ services:
-     environment:
-       - POSTGRES_PASSWORD_FILE=/run/secrets/KC_DB_PASSWORD
-     secrets:
--      - KC_DB_PASSWORD
+@@ -106,4 +133,6 @@ networks:
+   kcdb:
+     driver: bridge
+   mongodb:
+-    driver: bridge
 \ No newline at end of file
-+      - KC_DB_PASSWORD
-+    networks:
-+      - kcdb
-+
-+
-+
-+
-+networks:
-+  kcdb:
 +    driver: bridge
 +  proxy:
 +    external: true
 \ No newline at end of file
 diff --git a/init_secrets.sh b/init_secrets.sh
-index 1c770ca..a607ba1 100755
+index 1c770ca..1a7cb92 100755
 --- a/init_secrets.sh
 +++ b/init_secrets.sh
 @@ -9,5 +9,5 @@ openssl rand -base64 40 > ./secrets/KEYCLOAK_ADMIN_PASSWORD
