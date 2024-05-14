@@ -15,25 +15,34 @@ import { AppService } from './app.service';
 })
 export class AppComponent {
   title = 'DigitalForms';
-  text = '';
+
+  token ='Affe';
   service1;
+  private configure() {
+    this.oauthService.configure(authConfig);
+    this.oauthService.loadDiscoveryDocumentAndTryLogin().then(() => {
+    this.updateToken();
+  
+    });
+ 
+  }
+  private updateToken() {
+    this.token = this.oauthService.getAccessToken();
+    this.service1.start(this.token).subscribe(response => {
+      this.token = response;
+    });
+  }
   constructor(private oauthService: OAuthService, private appService: AppService ) {
   this.configure();
   this.service1=appService;
-  appService.start().subscribe(response => {
-  this.text = response;
- });
   }
  
   testbackend(){
 
-  this.service1.start();
+
   console.log("startet");
   }
-  private configure() {
-    this.oauthService.configure(authConfig);
-    this.oauthService.loadDiscoveryDocumentAndTryLogin();
-  }
+
 
   login() {
     this.oauthService.initCodeFlow();

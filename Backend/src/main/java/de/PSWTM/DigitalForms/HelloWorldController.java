@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin(origins = "*")
+@RequestMapping("/greeting")
 public class HelloWorldController {
 
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
-    @RequestMapping("/home")
-    @CrossOrigin(origins = "*")
-    @GetMapping("/greeting")
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
         return new Greeting(counter.incrementAndGet(), String.format(template, name));

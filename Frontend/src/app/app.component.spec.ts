@@ -10,7 +10,7 @@ describe('AppComponent', () => {
     await TestBed.configureTestingModule({
       imports: [AppComponent,BrowserModule, AppRoutingModule, HttpClientModule,OAuthModule.forRoot({
         resourceServer: {
-          allowedUrls: ['https://auth.df.dk4max.com/realms/DigitalForms/.well-known/openid-configuration'],
+          allowedUrls: ['http://localhost:8080/*'],
           sendAccessToken: true
         }
       })],
