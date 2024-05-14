@@ -16,8 +16,8 @@ import { AppService } from './app.service';
 export class AppComponent {
   title = 'DigitalForms';
 
-  token ='Affe';
-  service1;
+  token ='';
+  service;
   private configure() {
     this.oauthService.configure(authConfig);
     this.oauthService.loadDiscoveryDocumentAndTryLogin().then(() => {
@@ -28,22 +28,15 @@ export class AppComponent {
   }
   private updateToken() {
     this.token = this.oauthService.getAccessToken();
-    this.service1.start(this.token).subscribe(response => {
+    this.service.start(this.token).subscribe(response => {
       this.token = response;
     });
   }
   constructor(private oauthService: OAuthService, private appService: AppService ) {
   this.configure();
-  this.service1=appService;
+  this.service=appService;
   }
  
-  testbackend(){
-
-
-  console.log("startet");
-  }
-
-
   login() {
     this.oauthService.initCodeFlow();
   }
