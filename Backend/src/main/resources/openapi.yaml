@@ -11,7 +11,7 @@ servers:
   - url: http://localhost:8080/api/v3
 
 paths:
-  /template/list:
+  /templates:
     get:
       summary: Get all Templats
       description: Returns all templates
@@ -26,7 +26,7 @@ paths:
                   $ref: "#/components/schemas/Form"
 
 
-  /template/{templateId}:
+  /templates/{templateId}:
     get:
       summary: Find Template by ID
       description: Returns a single Template
