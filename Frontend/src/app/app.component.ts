@@ -11,7 +11,6 @@ import { MainButtonsComponent } from './main-buttons/main-buttons.component';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
   imports: [RouterOutlet, CommonModule, RouterModule, NavBarComponent, CollapsableBottomComponent, MainButtonsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
@@ -26,9 +25,9 @@ export class AppComponent {
     this.oauthService.configure(authConfig);
     this.oauthService.loadDiscoveryDocumentAndTryLogin().then(() => {
     this.updateToken();
-  
+
     });
- 
+
   }
   private updateToken() {
     this.token = this.oauthService.getAccessToken();
@@ -40,11 +39,11 @@ export class AppComponent {
   this.configure();
   this.service=appService;
   }
- 
+
   login() {
     this.oauthService.initCodeFlow();
   }
- 
+
 
 
   logout() {
