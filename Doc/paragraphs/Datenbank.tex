@@ -44,21 +44,84 @@ Der genaue Inhalt wird angefügt, sobald dieser bekannt wird.
 
 \end{lstlisting}
 
-\section{Document}
-\begin{lstlisting}[label={lst:lstlistingdoc}]
-    // Document Document
-    {
-    Userid: ref
-    status: string
-    data:   [
-                {
-                    ref: string
-                    val: object
-                },
-                {
-                ...
-                }
-            ]
-    }
+\section{Form}\label{sec:form}
+Das Form-Dokument definiert die Struktur, in welcher Formulare gespeichert werden.
+Hierbei werden verschiedene \gls{enum}s verwendet, welche im Folgenden näher beschrieben werden.
 
+
+'EFormElement' beschreibt die verschiedenen Feldtypen, welche dargestellt werden sollen.
+\begin{lstlisting}[label={lst:EFormElement}]
+    public enum EFormElement {
+        text,
+        address,
+        iban,
+        date,
+        money,
+        TextMultiLine,
+        bool
+    }
+\end{lstlisting}
+
+
+'ECategory' ermöglicht die Unterteilung eines Formulars in fest definierte Kategorien
+\begin{lstlisting}[label={lst:ECategory}]
+    public enum ECategory {
+        Antrag,
+        Abrechnung
+    }
+\end{lstlisting}
+
+Das Form-Dokument selbst ist im Folgenden beschrieben.
+Der Boolean "Template" dient hierbei zur Unterscheidung zwischen
+Form-Dokumenten, welche beschrieben, wie das Formular dem Nutzer
+dargestellt werden soll, sowie jenen, welche Daten enthalten.
+
+Sollte es sich nicht um eine Vorlage zum Ausfüllen handeln, so werden nur die notwendigen Informationen erfasst.
+\begin{lstlisting}[label={lst:lstlistingdoc}]
+    {
+        "id": string,
+        "Title": string,
+        "Template": bool,
+        "Description": string,
+        "Category": ECategory
+        "form":[
+            {
+                "order": integer,
+                "section": string,
+                "items": [
+                    {
+                        "Description": string,
+                        "type": EFormElement,
+                        "id": string
+                    },
+                    {
+                        "Description": string,
+                        "type": EFormElement,
+                        "id": string
+                    }
+                ]
+            },
+            {
+                "order": integer,
+                "section": string,
+                "items": [
+                    {
+                        "Description": string,
+                        "type": EFormElement,
+                        "id": string
+                    },
+                    ...
+                ]
+            },
+            {
+                ...
+            }
+        ],
+        "Attachments":[
+            {
+                "id": string,
+                "Description": string
+            }
+        ]
+    }
 \end{lstlisting}
