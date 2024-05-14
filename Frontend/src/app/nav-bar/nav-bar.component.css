@@ -1,0 +1,55 @@
+.c-orange {
+    background-color: orange;
+}
+
+.AStA-Logo {
+    float: left;
+    display: block;
+    width: 6%;
+    margin: 0;
+}
+
+.AStA-Logo:hover {
+    cursor: pointer;
+}
+
+.Searchbar {
+    vertical-align: auto;
+    border-radius: 20px;
+    width: 60%;
+    height: 40px;
+}
+
+.navbar {
+    text-align: right;
+    justify-content: flex-start;
+}
+
+.navbar > * {
+    margin-right: 3%;
+}
+
+.Account-holder {
+    height: 40px;
+    border-radius: 20px;
+    background-color: coral;
+    width: 12%;
+}
+
+.Account-holder:hover {
+    cursor: pointer;
+}
+
+.User-Logo {
+    float: left;
+    width: 36px;
+    margin-right: 15px;
+    margin-left: 5px;
+    border-radius: 18px;
+    padding: 2px 0;
+}
+
+.Account-Text-Holder {
+    float: left;
+    font-size: 24px;
+}

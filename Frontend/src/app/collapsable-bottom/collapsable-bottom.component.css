@@ -1,0 +1,18 @@
+#accordion {
+    position: absolute;
+    bottom: 0px;
+}
+
+.card-header {
+    background-color: chocolate;
+    border-radius: 0;
+}
+
+.card-body {
+    background-color: orange;
+}
+
+.card {
+    width: 100vw;
+    border-width: 0;
+}
