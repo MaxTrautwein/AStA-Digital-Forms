@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormElement, FormSection } from '../api-client';
-import { FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,12 +9,12 @@ import { Router } from '@angular/router';
   templateUrl: './main-buttons.component.html',
   styleUrl: './main-buttons.component.css'
 })
-export class MainButtonsComponent {
+export class MainButtonsComponent implements OnInit{
   Forms: FormElement[] | undefined;
 
   constructor(private router: Router, private formSection: FormSection) {}
 
-  async onPageLoad(): Promise<any> {
+  ngOnInit(): void {
     this.Forms = this.formSection.items;
-  }
+  } 
 }
