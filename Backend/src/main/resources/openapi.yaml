@@ -24,6 +24,9 @@ paths:
                 type: "array"
                 items:
                   $ref: "#/components/schemas/Form"
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/Access-Control-Allow-Origin'
 
 
   /templates/{templateId}:
@@ -44,10 +47,25 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Form"
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/Access-Control-Allow-Origin'
         '404':
           description: Template not found
 
 components:
+  headers:
+    Access-Control-Allow-Origin:
+      description: Specifies which origins are allowed to access the resource.
+      schema:
+        type: string
+      examples:
+        localhost:
+          summary: Local development environment
+          value: http://localhost:4200
+        production:
+          summary: Production environment
+          value: https://df.dk4max.com
   schemas:
     FormElement:
       type: "object"
