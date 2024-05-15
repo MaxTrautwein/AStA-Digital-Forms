@@ -7,11 +7,13 @@ import { AppService } from './app.service';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { CollapsableBottomComponent } from './collapsable-bottom/collapsable-bottom.component';
 import { MainButtonsComponent } from './main-buttons/main-buttons.component';
+import { ApiModule } from './api-client';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CommonModule, RouterModule, NavBarComponent, CollapsableBottomComponent, MainButtonsComponent],
+  imports: [RouterOutlet, CommonModule, RouterModule, NavBarComponent, CollapsableBottomComponent, MainButtonsComponent, ApiModule, HttpClientModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   standalone:true,
