@@ -1,9 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { DefaultService, FormElement, FormSection } from '../api-client';
-import { OAuthService } from 'angular-oauth2-oidc';
-import { AppComponent } from '../app.component';
-import { Token } from '@angular/compiler';
-import { HttpHeaders } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { DefaultService} from '../api-client';
 
 @Component({
   selector: 'app-main-buttons',
@@ -15,17 +11,11 @@ import { HttpHeaders } from '@angular/common/http';
 export class MainButtonsComponent{
   
   
-  constructor(private defaultservice: DefaultService, private oauthservice: OAuthService) {
-
-  };
+  constructor(private defaultservice: DefaultService) {};
   
   async getTemplates() {
-    //this.defaultservice.configuration.accessToken = this.oauthservice.getAccessToken();
-    alert(this.defaultservice.configuration.accessToken);
     this.defaultservice.templatesGet().subscribe(Response => {
       alert('It worked');
     });
-    
-   
   }
 }

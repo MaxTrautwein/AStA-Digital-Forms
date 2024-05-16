@@ -35,12 +35,7 @@ export class AppComponent {
   }
   private updateToken() {
     this.defaultservice.configuration.accessToken = this.oauthService.getAccessToken();
-    this.token = this.oauthService.getAccessToken();
-    this.service.start(this.token).subscribe(response => {
-      this.token = response;
-    });
-    
-
+    this.service.start(this.oauthService.getAccessToken()).subscribe(response => {});
   }
   constructor(private oauthService: OAuthService, private appService: AppService, private defaultservice: DefaultService ) {
   this.configure();
