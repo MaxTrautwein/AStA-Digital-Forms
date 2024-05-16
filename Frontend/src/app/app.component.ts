@@ -10,6 +10,7 @@ import { MainButtonsComponent } from './main-buttons/main-buttons.component';
 import { ApiModule } from './api-client';
 import { HttpClientModule } from '@angular/common/http';
 import { Configuration } from './api-client';
+import { DefaultService } from './api-client';
 
 
 @Component({
@@ -33,6 +34,7 @@ export class AppComponent {
 
   }
   private updateToken() {
+    this.defaultservice.configuration.accessToken = this.oauthService.getAccessToken();
     this.token = this.oauthService.getAccessToken();
     this.service.start(this.token).subscribe(response => {
       this.token = response;
@@ -40,7 +42,7 @@ export class AppComponent {
     
 
   }
-  constructor(private oauthService: OAuthService, private appService: AppService ) {
+  constructor(private oauthService: OAuthService, private appService: AppService, private defaultservice: DefaultService ) {
   this.configure();
   this.service=appService;
   }
