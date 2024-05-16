@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormElement, FormSection } from '../api-client';
-import { Router } from '@angular/router';
+import { DefaultService, FormElement, FormSection } from '../api-client';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
   selector: 'app-main-buttons',
@@ -9,12 +9,18 @@ import { Router } from '@angular/router';
   templateUrl: './main-buttons.component.html',
   styleUrl: './main-buttons.component.css'
 })
-export class MainButtonsComponent implements OnInit{
-  Forms: FormElement[] | undefined;
+export class MainButtonsComponent{
 
-  constructor(private router: Router, private formSection: FormSection) {}
 
-  ngOnInit(): void {
-    this.Forms = this.formSection.items;
-  } 
+
+  constructor(private oathservice: OAuthService, private defaultservice: DefaultService) {
+    //defaultservice.defaultHeaders.append('Test', 'Bitte lass das im Browser stehen!');
+    defaultservice.configuration.credentials
+  };
+
+  async getTemplates() {
+    this.defaultservice.templatesGet().subscribe(Response => {
+      alert('It worked');
+    });
+  }
 }

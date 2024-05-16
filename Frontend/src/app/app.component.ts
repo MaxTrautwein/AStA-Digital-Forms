@@ -9,6 +9,7 @@ import { CollapsableBottomComponent } from './collapsable-bottom/collapsable-bot
 import { MainButtonsComponent } from './main-buttons/main-buttons.component';
 import { ApiModule } from './api-client';
 import { HttpClientModule } from '@angular/common/http';
+import { Configuration } from './api-client';
 
 
 @Component({
@@ -36,6 +37,8 @@ export class AppComponent {
     this.service.start(this.token).subscribe(response => {
       this.token = response;
     });
+    
+
   }
   constructor(private oauthService: OAuthService, private appService: AppService ) {
   this.configure();
