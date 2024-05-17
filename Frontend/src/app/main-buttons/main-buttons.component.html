@@ -1,34 +1,9 @@
 <div class="Button-wrapper">
 
-
-    <button type="button" class="auswahlbutton">
-        <h1>FS Wochenende</h1>
-        Hallo wie gehts?
-    </button>
-
-    <button type="button" class="auswahlbutton">
-        <h1>Anschaffungen</h1>
-        Hallo wie gehts?
-    </button>
-
-    <button type="button" class="auswahlbutton">
-        <h1>Wirtschaftliche Veranstalltung</h1>
-        Hallo wie gehts?
-    </button>
-
-    <button type="button" class="auswahlbutton">
-        <h1>Reisekosten</h1>
-        Hallo wie gehts?
-    </button>
-
-    <button type="button" class="auswahlbutton">
-        <h1>Kulturelle Veranstalltung</h1>
-        Hallo wie gehts?
-    </button>
-
-    <button type="button" class="auswahlbutton">
-        <h1>Sonstiges</h1>
-        Hallo wie gehts?
-    </button>
-
+    <div *ngFor="let t of templates;">
+        <button type="button" class="auswahlbutton">
+            <h1>{{t.titel}}</h1>
+            <h2>{{t.description}}</h2>
+        </button>
+    </div>
 </div>
