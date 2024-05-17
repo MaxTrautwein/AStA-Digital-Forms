@@ -15,6 +15,8 @@ paths:
     get:
       summary: Get all Templats
       description: Returns all templates
+      security:
+        - BearerAuth: []
       responses:
         '200':
           description: successful operation
@@ -33,6 +35,8 @@ paths:
     get:
       summary: Find Template by ID
       description: Returns a single Template
+      security:
+        - BearerAuth: []
       parameters:
         - name: templateId
           in: path
@@ -54,6 +58,11 @@ paths:
           description: Template not found
 
 components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT  # Optional, but useful for documentation
   headers:
     Access-Control-Allow-Origin:
       description: Specifies which origins are allowed to access the resource.
@@ -129,3 +138,5 @@ components:
           type: "array"
           items:
             $ref: "#/components/schemas/Attachment"
+security:
+  - BearerAuth: []

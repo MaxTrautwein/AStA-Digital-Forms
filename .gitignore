@@ -310,3 +310,6 @@ secrets/*
 
 # Database Contents
 DB/data/*
+
+#OpenApi Client
+Frontend/src/app/api-client/*

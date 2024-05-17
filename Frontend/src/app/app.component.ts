@@ -7,11 +7,15 @@ import { AppService } from './app.service';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { CollapsableBottomComponent } from './collapsable-bottom/collapsable-bottom.component';
 import { MainButtonsComponent } from './main-buttons/main-buttons.component';
+import { ApiModule } from './api-client';
+import { HttpClientModule } from '@angular/common/http';
+import { Configuration } from './api-client';
+import { DefaultService } from './api-client';
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CommonModule, RouterModule, NavBarComponent, CollapsableBottomComponent, MainButtonsComponent],
+  imports: [RouterOutlet, CommonModule, RouterModule, NavBarComponent, CollapsableBottomComponent, MainButtonsComponent, ApiModule, HttpClientModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   standalone:true,
@@ -30,12 +34,10 @@ export class AppComponent {
 
   }
   private updateToken() {
-    this.token = this.oauthService.getAccessToken();
-    this.service.start(this.token).subscribe(response => {
-      this.token = response;
-    });
+    this.defaultservice.configuration.accessToken = this.oauthService.getAccessToken();
+    this.service.start(this.oauthService.getAccessToken()).subscribe(response => {});
   }
-  constructor(private oauthService: OAuthService, private appService: AppService ) {
+  constructor(private oauthService: OAuthService, private appService: AppService, private defaultservice: DefaultService ) {
   this.configure();
   this.service=appService;
   }

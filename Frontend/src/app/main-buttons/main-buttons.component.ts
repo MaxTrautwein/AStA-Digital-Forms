@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DefaultService} from '../api-client';
 
 @Component({
   selector: 'app-main-buttons',
@@ -7,6 +8,14 @@ import { Component } from '@angular/core';
   templateUrl: './main-buttons.component.html',
   styleUrl: './main-buttons.component.css'
 })
-export class MainButtonsComponent {
-
+export class MainButtonsComponent{
+  
+  
+  constructor(private defaultservice: DefaultService) {};
+  
+  async getTemplates() {
+    this.defaultservice.templatesGet().subscribe(Response => {
+      alert('It worked');
+    });
+  }
 }
