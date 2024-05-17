@@ -1,10 +1,24 @@
+.Button-wrapper {
+    margin-left: 5vw;
+    margin-right: 5vw;
+    margin-top: 10vh;
+    height: fit-content;
+    height: 60vh;
+}
+
+
+
 .auswahlbutton {
-    width: 31vw;
-    height: 31vh;
+    display: block;
+    width: 20%;
+    height: 20vh;
+    position: relative;
     background-color: chocolate;
-    margin: 20px;
     border-radius: 20px;
-    
+    margin-left: 5%;
+    margin-right: 5%;
+    float: inline-start;
+    margin-bottom: 5%;
 }
 
 .auswahlbutton:hover {
