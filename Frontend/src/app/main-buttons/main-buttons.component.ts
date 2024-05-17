@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DefaultService, Form} from '../api-client';
+import { DefaultService } from '../api-client';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { NgFor } from '@angular/common';
 
@@ -19,7 +19,6 @@ export class MainButtonsComponent implements OnInit{
 
   async getTemplates() {
     this.defaultservice.templatesGet().subscribe((Response) => {
-      alert('It worked');
       this.templates = Response;
     });
   }
