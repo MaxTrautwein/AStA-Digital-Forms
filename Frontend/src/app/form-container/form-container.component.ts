@@ -4,13 +4,17 @@ import {ActivatedRoute, ParamMap, RouterOutlet} from "@angular/router";
 import {Form} from "../api-client";
 import {TemplateService} from "../template.service";
 import {Subscription} from "rxjs";
+import {ProgressDisplayComponent} from "./progress-display/progress-display.component";
+import {ProgressContollsComponent} from "./progress-controls/progress-contolls.component";
 
 @Component({
   selector: 'app-form-container',
   standalone: true,
   imports: [
     NavBarComponent,
-    RouterOutlet
+    RouterOutlet,
+    ProgressDisplayComponent,
+    ProgressContollsComponent
   ],
   templateUrl: './form-container.component.html',
   styleUrl: './form-container.component.css'
@@ -27,7 +31,6 @@ export class FormContainerComponent {
     this.routeSub = this.route.params.subscribe(params => {
       this.templateForm = this.templateService.getTemplate(params['id'])
     });
-    //this.Form$ = this.templateService.getTemplate(this.route.params.get('id'));
   }
 
   ngOnDestroy() {

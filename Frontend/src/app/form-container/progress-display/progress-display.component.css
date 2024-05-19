@@ -1,0 +1,14 @@
+.progress-Item{
+  border: solid black 1px;
+  margin: 1em;
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  align-content: center;
+  text-align: center;
+  font-weight: bold;
+}
+
+.progress-container{
+  display: flex;
+}
