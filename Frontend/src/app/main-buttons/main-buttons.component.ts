@@ -3,6 +3,8 @@ import { DefaultService } from '../api-client';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { NgFor } from '@angular/common';
 import {RouterLink} from "@angular/router";
+import {TemplateService} from "../template.service";
+
 
 @Component({
   selector: 'app-main-buttons',
@@ -14,18 +16,10 @@ import {RouterLink} from "@angular/router";
 export class MainButtonsComponent implements OnInit{
 
 
-  constructor(private defaultservice: DefaultService, private oauthService: OAuthService) {
+  constructor(protected templateService: TemplateService) {
   };
-  templates: any = [];
-
-  async getTemplates() {
-    this.defaultservice.templatesGet().subscribe((Response) => {
-      this.templates = Response;
-    });
-  }
 
   ngOnInit(): void {
-    this.defaultservice.configuration.accessToken = this.oauthService.getAccessToken();
-    this.getTemplates();
+    this.templateService.fetchTemplates()
   }
 }

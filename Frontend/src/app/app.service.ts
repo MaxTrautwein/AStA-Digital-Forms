@@ -10,11 +10,4 @@ export class AppService {
   constructor(private httpClient: HttpClient) {
   }
 
-  start(authToken: string): Observable<string> {
-    const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8').set('Authorization', `Bearer ${authToken}`);
-  
-    return this.httpClient.get("http://localhost:8080/greeting",
-      {headers, responseType: 'text'});
-  }
-
 }
