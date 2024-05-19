@@ -6,7 +6,7 @@ import {FormContainerComponent} from "./form-container/form-container.component"
 export const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'Form', component: FormContainerComponent }
+  { path: 'Form/:id', component: FormContainerComponent }
 ];
 
 @NgModule({
