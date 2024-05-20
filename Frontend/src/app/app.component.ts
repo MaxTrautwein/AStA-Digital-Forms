@@ -34,8 +34,7 @@ export class AppComponent {
 
   }
   private updateToken() {
-    this.defaultservice.configuration.accessToken = this.oauthService.getAccessToken();
-    this.service.start(this.oauthService.getAccessToken()).subscribe(response => {});
+    this.defaultservice.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
   }
   constructor(private oauthService: OAuthService, private appService: AppService, private defaultservice: DefaultService ) {
   this.configure();
