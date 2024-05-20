@@ -7,6 +7,7 @@ import {Observable, Subscription, switchMap} from "rxjs";
 import {ProgressDisplayComponent} from "./progress-display/progress-display.component";
 import {ProgressContollsComponent} from "./progress-controls/progress-contolls.component";
 import {AsyncPipe, NgIf} from "@angular/common";
+import {FormContentComponent} from "./form-content/form-content.component";
 
 @Component({
   selector: 'app-form-container',
@@ -17,7 +18,8 @@ import {AsyncPipe, NgIf} from "@angular/common";
     ProgressDisplayComponent,
     ProgressContollsComponent,
     AsyncPipe,
-    NgIf
+    NgIf,
+    FormContentComponent
   ],
   templateUrl: './form-container.component.html',
   styleUrl: './form-container.component.css'
