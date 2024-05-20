@@ -2,7 +2,7 @@
 <!-- TODO Better Style-->
 <div class="progress-container">
   <span  *ngFor="let i of sections">
-    <div class="progress-Item">{{i.order}}</div>
+    <div class="progress-Item"  routerLink="." [queryParams]="{page: i.order}" >{{i.order}}</div>
   </span>
 </div>
 

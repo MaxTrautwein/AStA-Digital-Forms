@@ -36,6 +36,11 @@ export class FormContainerComponent {
   }
 
   ngOnInit() {
+   let queryPage = this.route.snapshot.queryParamMap.get('page');
+   if (queryPage !== null){
+      this.currentSection = Number(queryPage)
+   }
+
     this.formdetails = this.route.paramMap.pipe(
       switchMap((params: ParamMap) => this.templateService.getTemplateDetails(params.get('id')!)));
   }
