@@ -1,8 +1,14 @@
 
-<app-progress-display></app-progress-display>
+<div *ngIf="(formdetails | async) as FormDetail" >
 
-<h1>{{this.templateForm?.titel}}</h1>
+<app-progress-display [sections]="FormDetail.form" ></app-progress-display>
 
-<p>Show current Section Config</p>
+
+  <h1>{{FormDetail.titel }}</h1>
+
+
+  <p>{{FormDetail.form?.[this.currentSection]?.toString() }}</p>
+
 
 <app-progress-controls></app-progress-controls>
+</div>

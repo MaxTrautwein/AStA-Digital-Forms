@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import {NavBarComponent} from "../nav-bar/nav-bar.component";
 import {ActivatedRoute, ParamMap, RouterOutlet} from "@angular/router";
-import {Form} from "../api-client";
+import {Form, FormSection} from "../api-client";
 import {TemplateService} from "../template.service";
-import {Subscription} from "rxjs";
+import {Observable, Subscription, switchMap} from "rxjs";
 import {ProgressDisplayComponent} from "./progress-display/progress-display.component";
 import {ProgressContollsComponent} from "./progress-controls/progress-contolls.component";
+import {AsyncPipe, NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-form-container',
@@ -14,27 +15,34 @@ import {ProgressContollsComponent} from "./progress-controls/progress-contolls.c
     NavBarComponent,
     RouterOutlet,
     ProgressDisplayComponent,
-    ProgressContollsComponent
+    ProgressContollsComponent,
+    AsyncPipe,
+    NgIf
   ],
   templateUrl: './form-container.component.html',
   styleUrl: './form-container.component.css'
 })
 export class FormContainerComponent {
 
-  protected templateForm : Form | undefined;
+  protected currentSection : number = 0;
 
-  private routeSub: Subscription | undefined;
+  protected formdetails!: Observable<Form>;
+
+  protected section: FormSection | undefined;
+
   constructor(private route: ActivatedRoute, private templateService: TemplateService) {
   }
 
   ngOnInit() {
-    this.routeSub = this.route.params.subscribe(params => {
-      this.templateForm = this.templateService.getTemplate(params['id'])
-    });
+    this.formdetails = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => this.templateService.getTemplateDetails(params.get('id')!)));
   }
 
-  ngOnDestroy() {
-    this.routeSub?.unsubscribe();
-  }
+  getCurrentSection(){
+    return  this.formdetails?.subscribe(form => {
+      console.log(form.form ? undefined : form.form?.[this.currentSection])
+      return form.form ? undefined : form.form?.[this.currentSection];
+    })
 
+  }
 }

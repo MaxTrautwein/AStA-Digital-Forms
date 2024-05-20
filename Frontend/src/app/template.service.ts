@@ -25,5 +25,10 @@ export class TemplateService {
     return this.templates.find((f) => f.id === id)
   }
 
+  getTemplateDetails(id: string){
+    this.api.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
+    return  this.api.templatesTemplateIdGet(id)
+  }
+
   constructor(private api: DefaultService, private oauthService: OAuthService) { }
 }
