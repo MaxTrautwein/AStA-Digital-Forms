@@ -3,7 +3,7 @@ import {NavBarComponent} from "../nav-bar/nav-bar.component";
 import {ActivatedRoute, ParamMap, RouterOutlet} from "@angular/router";
 import {Form, FormSection} from "../api-client";
 import {TemplateService} from "../template.service";
-import {Observable, Subscription, switchMap} from "rxjs";
+import {map, Observable, Subscription, switchMap} from "rxjs";
 import {ProgressDisplayComponent} from "./progress-display/progress-display.component";
 import {ProgressContollsComponent} from "./progress-controls/progress-contolls.component";
 import {AsyncPipe, NgIf} from "@angular/common";
@@ -36,10 +36,14 @@ export class FormContainerComponent {
   }
 
   ngOnInit() {
-   let queryPage = this.route.snapshot.queryParamMap.get('page');
-   if (queryPage !== null){
-      this.currentSection = Number(queryPage)
-   }
+    this.route.queryParamMap.pipe(
+      map((params: ParamMap) => params.get('page'))).subscribe(
+        page => {
+          if (page !== null){
+            this.currentSection = Number(page)
+          }
+        }
+    )
 
     this.formdetails = this.route.paramMap.pipe(
       switchMap((params: ParamMap) => this.templateService.getTemplateDetails(params.get('id')!)));
