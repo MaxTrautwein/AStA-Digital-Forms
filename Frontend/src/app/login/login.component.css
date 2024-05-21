@@ -1,0 +1,78 @@
+.login_52-52 {
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: #ffffff;
+  width: 1920px;
+  height: 1080px;
+}
+
+.rectangle-25_52-102 {
+  top: 302px;
+  left: 361px;
+  position: absolute;
+  display: flex;
+}
+
+.rectangle-26_52-103 {
+  top: 578px;
+  left: 780px;
+  position: absolute;
+  display: flex;
+}
+
+.frame-6_52-106 {
+  padding: 10px;
+  top: 592px;
+  left: 887px;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 10px;
+  box-sizing: border-box;
+}
+
+.text-login_52-105 {
+  color: #ffffff;
+  font-size: 48px;
+  font-family: Inter;
+  letter-spacing: 0%;
+  text-decoration: none;
+  font-weight: 400;
+  text-align: left;
+  text-wrap: nowrap;
+}
+
+.frame-10_74-18 {
+  padding: 10px;
+  top: 326px;
+  left: 825px;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 10px;
+  box-sizing: border-box;
+}
+
+.text-bitte-loggen-sie-sich-ein_74-17 {
+  top: 397px;
+  left: 682px;
+  position: absolute;
+  display: flex;
+  color: #ffffff;
+  font-size: 48px;
+  font-family: Inter;
+  letter-spacing: 0%;
+  text-decoration: none;
+  font-weight: 400;
+  text-align: left;
+  text-wrap: nowrap;
+  width: 559px;
+  height: 58px;
+}
