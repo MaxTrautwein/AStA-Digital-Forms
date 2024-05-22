@@ -20,6 +20,7 @@ import { LoginComponent } from './login/login.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   standalone:true,
+  
 })
 export class AppComponent {
   title = 'DigitalForms';
@@ -28,6 +29,8 @@ export class AppComponent {
   service;
   private configure() {
     this.oauthService.configure(authConfig);
+    this.oauthService.setupAutomaticSilentRefresh();
+    this.checkLoginStatus();
     this.oauthService.loadDiscoveryDocumentAndTryLogin().then(() => {
     this.updateToken();
     
@@ -46,7 +49,7 @@ export class AppComponent {
   constructor(private oauthService: OAuthService, private appService: AppService, private defaultservice: DefaultService) {
   this.configure();
   this.service=appService;
-  this.checkLoginStatus();
+  
 
   }
 
@@ -58,6 +61,6 @@ export class AppComponent {
 
   logout() {
     this.oauthService.logOut();
-    this.loggedIn = false;
+  
   }
 }

@@ -10,7 +10,8 @@ import { CollapsableBottomComponent } from "../collapsable-bottom/collapsable-bo
     styleUrls: ["./login.component.css"],
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [FormsModule, CommonModule, AppComponent, CollapsableBottomComponent]
+    imports: [FormsModule, CommonModule, AppComponent, CollapsableBottomComponent],
+
 })
 export class LoginComponent {
   loggedIn: boolean;
