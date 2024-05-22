@@ -1,78 +1,74 @@
-.login_52-52 {
-  position: relative;
-  box-sizing: border-box;
-  overflow: hidden;
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: #ffffff;
-  width: 1920px;
-  height: 1080px;
 }
 
-.rectangle-25_52-102 {
-  top: 302px;
-  left: 361px;
-  position: absolute;
+.login {
+  width: 100%;
+  height: 100%;
   display: flex;
-}
-
-.rectangle-26_52-103 {
-  top: 578px;
-  left: 780px;
-  position: absolute;
-  display: flex;
-}
-
-.frame-6_52-106 {
-  padding: 10px;
-  top: 592px;
-  left: 887px;
-  position: absolute;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: nowrap;
   align-items: center;
-  gap: 10px;
-  box-sizing: border-box;
+  justify-content: center;
+  background: #ffffff;
 }
 
-.text-login_52-105 {
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 1204px;
+  height: 502px;
+  margin-top: 125px;
+}
+
+.rectangle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  background: #152f56;
+}
+
+.frame {
+  z-index: 1;
+}
+
+.text-login {
   color: #ffffff;
   font-size: 48px;
-  font-family: Inter;
+  font-family: 'Inter', sans-serif;
   letter-spacing: 0%;
   text-decoration: none;
   font-weight: 400;
-  text-align: left;
-  text-wrap: nowrap;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  background: #1a73e8;
+  border: 2px solid #1a73e8;
+  border-radius: 12px;
+  padding: 10px 40px;
+  z-index: 1;
 }
 
-.frame-10_74-18 {
-  padding: 10px;
-  top: 326px;
-  left: 825px;
-  position: absolute;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: nowrap;
-  align-items: center;
-  gap: 10px;
-  box-sizing: border-box;
-}
-
-.text-bitte-loggen-sie-sich-ein_74-17 {
-  top: 397px;
-  left: 682px;
-  position: absolute;
-  display: flex;
+.text-bitte-loggen-sie-sich-ein {
   color: #ffffff;
   font-size: 48px;
-  font-family: Inter;
+  font-family: 'Inter', sans-serif;
   letter-spacing: 0%;
   text-decoration: none;
   font-weight: 400;
-  text-align: left;
-  text-wrap: nowrap;
-  width: 559px;
-  height: 58px;
+  text-align: center;
+  white-space: nowrap;
+  margin-bottom: 50px;
+  z-index: 1;
 }

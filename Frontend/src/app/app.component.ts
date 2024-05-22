@@ -11,26 +11,33 @@ import { ApiModule } from './api-client';
 import { HttpClientModule } from '@angular/common/http';
 import { Configuration } from './api-client';
 import { DefaultService } from './api-client';
+import { LoginComponent } from './login/login.component';
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CommonModule, RouterModule, NavBarComponent, CollapsableBottomComponent, MainButtonsComponent, ApiModule, HttpClientModule],
+  imports: [RouterOutlet, CommonModule, RouterModule,LoginComponent, NavBarComponent, CollapsableBottomComponent, MainButtonsComponent, ApiModule, HttpClientModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   standalone:true,
 })
 export class AppComponent {
   title = 'DigitalForms';
-
+  loggedIn: boolean = false;
   token ='';
   service;
   private configure() {
     this.oauthService.configure(authConfig);
     this.oauthService.loadDiscoveryDocumentAndTryLogin().then(() => {
     this.updateToken();
+    
 
     });
+
+  }
+  checkLoginStatus() {
+    this.loggedIn = this.oauthService.hasValidAccessToken();
+    return this.loggedIn;
 
   }
   private updateToken() {
@@ -39,6 +46,7 @@ export class AppComponent {
   constructor(private oauthService: OAuthService, private appService: AppService, private defaultservice: DefaultService ) {
   this.configure();
   this.service=appService;
+  this.checkLoginStatus();
   }
 
   login() {
@@ -49,5 +57,6 @@ export class AppComponent {
 
   logout() {
     this.oauthService.logOut();
+    this.loggedIn = false;
   }
 }

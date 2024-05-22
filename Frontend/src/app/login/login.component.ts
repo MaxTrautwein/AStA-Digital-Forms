@@ -10,4 +10,14 @@ import { AppComponent } from "../app.component";
   imports: [FormsModule, CommonModule,AppComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginComponent {}
+export class LoginComponent {
+  loggedIn: boolean;
+  constructor(private appComponent: AppComponent) { this.loggedIn= this.appComponent.checkLoginStatus();}
+
+  login() {
+    this.appComponent.login();
+    
+  }
+ 
+
+}
