@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule, RouterOutlet} from '@angular/router';
+import { Router, RouterModule, RouterOutlet} from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {OAuthService} from "angular-oauth2-oidc";
 import {authConfig} from "./auth.config";
@@ -43,10 +43,11 @@ export class AppComponent {
   private updateToken() {
     this.defaultservice.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
   }
-  constructor(private oauthService: OAuthService, private appService: AppService, private defaultservice: DefaultService ) {
+  constructor(private oauthService: OAuthService, private appService: AppService, private defaultservice: DefaultService) {
   this.configure();
   this.service=appService;
   this.checkLoginStatus();
+
   }
 
   login() {
