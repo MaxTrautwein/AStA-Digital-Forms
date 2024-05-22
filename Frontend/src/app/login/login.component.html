@@ -11,14 +11,12 @@
       <rect width="1204" height="502" rx="30" fill="#152F56" />
     </svg>
   </div>
-  @if(!loggedIn){
+  
     <span class="text-bitte-loggen-sie-sich-ein">Bitte loggen Sie sich ein</span>
   <div class="frame">
     <button class="text-login" (click)="login()">Login</button>
   </div>
-  }
-  @if(loggedIn) {
-    <span class="text-bitte-loggen-sie-sich-ein">Sie sind bereits eingeloggt</span>
-  }
+  
+
 </div>
 </div>

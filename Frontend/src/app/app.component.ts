@@ -24,32 +24,27 @@ import { LoginComponent } from './login/login.component';
 })
 export class AppComponent {
   title = 'DigitalForms';
-  loggedIn: boolean = false;
   token ='';
   service;
+  
   private configure() {
     this.oauthService.configure(authConfig);
     this.oauthService.setupAutomaticSilentRefresh();
-    this.checkLoginStatus();
     this.oauthService.loadDiscoveryDocumentAndTryLogin().then(() => {
     this.updateToken();
-    
+
 
     });
 
   }
-  checkLoginStatus() {
-    this.loggedIn = this.oauthService.hasValidAccessToken();
-    return this.loggedIn;
 
-  }
   private updateToken() {
     this.defaultservice.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
   }
-  constructor(private oauthService: OAuthService, private appService: AppService, private defaultservice: DefaultService) {
+  constructor(private oauthService: OAuthService, private appService: AppService, private defaultservice: DefaultService, router: Router) {
   this.configure();
   this.service=appService;
-  
+
 
   }
 
