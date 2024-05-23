@@ -84,6 +84,12 @@ paths:
       description: Save a new Form for the requesting User
       security:
         - BearerAuth: []
+      requestBody:
+        description: Save a new Form for the requesting User
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Form"
       responses:
         '201':
           description: successful Creation with ID
@@ -136,6 +142,12 @@ paths:
           required: true
           schema:
             type: string
+      requestBody:
+        description: Update a Form by ID for the requesting User
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Form"
       responses:
         '200':
           description: successful operation
