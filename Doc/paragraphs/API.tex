@@ -10,15 +10,36 @@ berücksichtigt.
 In unserem Projekt finden vollgende \ac{API}s, mit den jeweiligen Endpunkten anwendung:
 
 \section{Endpoints}
-Folgende Endpunkte sind in der verwendeten API ansprechbar.
+Folgende Endpunkte sind in der verwendeten \ac{API} ansprechbar.
 
 \subsection{GET /templates}
 
-Dieser API Endpunkt liefert alle in der Datenbank gespeicherten Templates zurück. Diese
- werden genutzt, um die Buttons auf der Main Page dynamisch zu generieren.
+Dieser \ac{API} Endpunkt liefert alle in der Datenbank gespeicherten Templates zurück. Diese
+ werden genutzt, um die Buttons auf der Main Page dynamisch zu generieren. Da hierfür nicht 
+ alle Informationen über die Templates benötigt werden, sind in der Antwort nicht alle 
+ Informationen über die einzelnen Templates enthalten, da sie hier nicht benötigt werden.
+
+ \subsection{GET /templates/{templateId}}
+ Dieser Endpunkt gibt ein bestimmtes Template zurück. Im Vergleich zum Ergebnis des vorherigen 
+ Endpunkts werden jedoch deutlich mehr Details zurückgegeben.
 %Dieser Abschnitt wird weiter ergänzt, wenn die Implementierung der Applikation voranschreitet.
 
 \section{Schemata}
-Die Schemata, die die API verwendet, sehen wie folgt aus.
+Im Folgenden werden die verwendeten Schemata grob beschrieben. Für Detailiertere Informationen 
+wird auf den folgenden Anhang verwiesen.
 
 \subsection{FormElement}
+Das FormElement Schema beinhaltet alle Daten, die für ein einzelnes, dynamisch generiertes 
+Eingabeelement benötigt wird.
+
+\subsection{FormSection}
+Das Schema der FormSection beinhaltet Daten, die für die dynamische Generierung einer Sektion
+für das Ausfüllen eines Antrags, benötigt werden. Dazu zählt eine Liste der FormElements in 
+dieser Section, sowie eine Reihenfolge, um die Sections ordnen zu können.
+
+\subsection{Attachment}
+Das Attachment Schema dient der Organisation und Orrdnung der dem Antrag beigefügten Dateien.
+
+\subsection{Form}
+Das Form Schema entspricht in seinen Daten, einem komplettenn Antrag und besteht aus mehreren 
+FormSections, die wiederrum aus mehreren FormElements bestehen, sowie potentiellen Attachments.
