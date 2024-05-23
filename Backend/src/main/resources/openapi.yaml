@@ -5,7 +5,7 @@ info:
     API For...
   license:
     name: GPL v3
-  version: 0.0.1
+  version: 0.0.2
 servers:
   - url: https://backend.df.dk4max.com/api/v3
   - url: http://localhost:8080/api/v3
@@ -56,6 +56,119 @@ paths:
               $ref: '#/components/headers/Access-Control-Allow-Origin'
         '404':
           description: Template not found
+  
+  /forms:
+    get:
+      tags:
+        - forms
+      summary: Get all Forms
+      description: Returns all Forms for the requesting User
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Form"
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/Access-Control-Allow-Origin'
+    post:
+      tags:
+        - forms
+      summary: Save a new Form
+      description: Save a new Form for the requesting User
+      security:
+        - BearerAuth: []
+      responses:
+        '201':
+          description: successful Creation with ID
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Form"
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/Access-Control-Allow-Origin'
+        '400':
+          description: Invalid Data
+  
+  /forms/{formID}:
+    get:
+      tags:
+        - forms
+      summary: Get the formdata by ID
+      description: Get the Data for a Form by ID for the requesting User
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: formID
+          in: path
+          description: ID of form to return
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Form"
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/Access-Control-Allow-Origin'
+        '404':
+          description: Form not found
+    put:
+      tags:
+        - forms
+      summary: Update a Form by ID
+      description: Update a Form by ID for the requesting User
+      parameters:
+        - name: formID
+          in: path
+          description: ID of form to return
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Form"
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/Access-Control-Allow-Origin'
+        '400':
+          description: Invalid Data
+    delete:
+      tags:
+        - forms
+      summary: delete a Form by ID
+      description: delete a Form by ID for the requesting User
+      parameters:
+        - name: formID
+          in: path
+          description: ID of form to return
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+        '404':
+          description: Can't find ID
+
+
+
+
 
 components:
   securitySchemes:
@@ -95,6 +208,8 @@ components:
             - "money"
             - "TextMultiLine"
             - "bool"
+        value:
+          type: "string"
     FormSection:
       type: "object"
       properties:
