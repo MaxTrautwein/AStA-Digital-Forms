@@ -26,13 +26,16 @@ export class AppComponent {
   title = 'DigitalForms';
   token ='';
   service;
-  
+
   private configure() {
     this.oauthService.configure(authConfig);
     this.oauthService.setupAutomaticSilentRefresh();
     this.oauthService.loadDiscoveryDocumentAndTryLogin().then(() => {
     this.updateToken();
-
+    if(!this.oauthService.hasValidAccessToken()) {
+      this.router.navigateByUrl('/login');
+    }
+    
 
     });
 
@@ -41,7 +44,7 @@ export class AppComponent {
   private updateToken() {
     this.defaultservice.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
   }
-  constructor(private oauthService: OAuthService, private appService: AppService, private defaultservice: DefaultService, router: Router) {
+  constructor(private oauthService: OAuthService, private appService: AppService, private defaultservice: DefaultService, private router :Router) {
   this.configure();
   this.service=appService;
 

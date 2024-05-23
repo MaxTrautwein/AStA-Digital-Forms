@@ -5,7 +5,7 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
 import {FormContainerComponent} from "./form-container/form-container.component";
 import { LoginComponent } from './login/login.component';
 export const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   {path: 'login', component: LoginComponent},
   { path: 'Form/:id', component: FormContainerComponent }
