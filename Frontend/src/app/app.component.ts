@@ -7,7 +7,7 @@ import { AppService } from './app.service';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { CollapsableBottomComponent } from './collapsable-bottom/collapsable-bottom.component';
 import { MainButtonsComponent } from './main-buttons/main-buttons.component';
-import { ApiModule } from './api-client';
+import {ApiModule, FormsService} from './api-client';
 import { HttpClientModule } from '@angular/common/http';
 import { Configuration } from './api-client';
 import { DefaultService } from './api-client';
@@ -35,8 +35,10 @@ export class AppComponent {
   }
   private updateToken() {
     this.defaultservice.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
+    //this.formsService.configuration.basePath = "http://localhost:8080/api/v3";
+    this.formsService.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
   }
-  constructor(private oauthService: OAuthService, private appService: AppService, private defaultservice: DefaultService ) {
+  constructor(private oauthService: OAuthService, private appService: AppService, private defaultservice: DefaultService, private formsService: FormsService) {
   this.configure();
   this.service=appService;
   }

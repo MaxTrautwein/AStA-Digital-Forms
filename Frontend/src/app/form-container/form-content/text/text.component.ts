@@ -1,4 +1,5 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {FormSection} from "../../../api-client";
 
 @Component({
   selector: 'app-text',
@@ -10,4 +11,11 @@ import {Component, Input} from '@angular/core';
 export class TextComponent {
 @Input() description: string | undefined = "";
 @Input() help: string | undefined = "";
+
+@Output() valueChanged = new EventEmitter<string>();
+
+  onValueChange(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    this.valueChanged.emit(inputElement.value);
+  }
 }
