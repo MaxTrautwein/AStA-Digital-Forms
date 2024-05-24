@@ -2,7 +2,8 @@
 <div  *ngFor="let formElement of this.section?.items">
   <span [ngSwitch]="formElement.type">
     <span *ngSwitchCase="'text'">
-      <app-text [description]="formElement.Description"  [help]="formElement.help" ></app-text>
+      <app-text [description]="formElement.Description"
+                [help]="formElement.help" (valueChanged)="updateFormSection({'val': $event, 'id': formElement.id } )" ></app-text>
     </span>
     <!-- TODO Add more Cases for the Different Types -->
 
