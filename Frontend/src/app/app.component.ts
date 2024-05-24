@@ -35,7 +35,6 @@ export class AppComponent {
   }
   private updateToken() {
     this.defaultservice.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
-    //this.formsService.configuration.basePath = "http://localhost:8080/api/v3";
     this.formsService.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
   }
   constructor(private oauthService: OAuthService, private appService: AppService, private defaultservice: DefaultService, private formsService: FormsService) {

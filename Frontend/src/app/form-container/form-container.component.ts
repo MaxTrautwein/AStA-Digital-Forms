@@ -76,19 +76,13 @@ export class FormContainerComponent {
       }
     }else {
       //We have a Document
-      //const tmp = this.form;
+      const tmp = this.form;
+      
 
-      // I would want to use PUT here, but it fails with CORS
-      // Not sure why
-      this.api.formsPost(this.form).subscribe(r => {
-        console.log("Updated to");
-        console.log(r);
-      })
-      /*
       this.api.formsFormIDPut(tmp.id!, tmp).subscribe(r =>{
           console.log("Updated to");
           console.log(r);
-      })*/
+      })
     }
 
 

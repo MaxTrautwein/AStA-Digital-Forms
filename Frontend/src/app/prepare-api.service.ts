@@ -12,7 +12,7 @@ export class PrepareAPIService {
   }
 
   prepare(){
-    this.api.configuration.basePath = "http://localhost:8080/api/v3"; // Testing Only
+    //this.api.configuration.basePath = "http://localhost:8080/api/v3"; // Testing Only
     this.api.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
   }
 }
