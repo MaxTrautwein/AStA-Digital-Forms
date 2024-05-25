@@ -85,7 +85,7 @@ public class FormsController implements FormsApiDelegate {
         if (form == null) {
             return ResponseEntity.badRequest().build();
         }
-        if(repository.existsById(form.getId())){
+        if(repository.existsById(form.getId()) && !form.getTemplate()){
             // ID exists Already Check if we can Update
             if(!Objects.equals(repository.findById(form.getId()).get().getOwner(), getUserID())){
                 return ResponseEntity.badRequest().build(); // Not ours

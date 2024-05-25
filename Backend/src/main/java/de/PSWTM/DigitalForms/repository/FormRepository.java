@@ -14,9 +14,9 @@ public interface FormRepository extends MongoRepository<Form ,String> {
     @Query(value = "{ 'template' : true }", fields = "{ '_id' : 1, 'titel' : 1 , 'description':  1, 'template':  1}")
     ArrayList<Form> findAllTemplates_IdNameDescription();
 
-    @Query(value = "{'template' : false, 'owner':  ?1}")
+    @Query(value = "{'template' : false, 'owner':  ?0}")
     ArrayList<Form> findAllOwnedForm(String user);
 
-    @Query(value = "{'template' : false, 'owner':  ?1, '_id': ?2}")
+    @Query(value = "{'template' : false, 'owner':  ?0, '_id': ?1}")
     Form findOwnedFormById(String user, String id);
 }
