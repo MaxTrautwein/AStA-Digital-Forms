@@ -3,7 +3,7 @@
   <span [ngSwitch]="formElement.type">
     <span *ngSwitchCase="'text'">
       <app-text [description]="formElement.Description"
-                [help]="formElement.help" (valueChanged)="updateFormSection({'val': $event, 'id': formElement.id } )" ></app-text>
+                [help]="formElement.help" [value]="formElement.value" (valueChanged)="updateFormSection({'val': $event, 'id': formElement.id } )" ></app-text>
     </span>
     <!-- TODO Add more Cases for the Different Types -->
 
