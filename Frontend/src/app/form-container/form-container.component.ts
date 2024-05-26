@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {NavBarComponent} from "../nav-bar/nav-bar.component";
-import {ActivatedRoute, ParamMap, RouterOutlet} from "@angular/router";
+import {ActivatedRoute, ParamMap, Router, RouterOutlet} from "@angular/router";
 import {Form, FormSection, FormsService} from "../api-client";
 import {TemplateService} from "../template.service";
 import {map, Observable, Subscription, switchMap} from "rxjs";
@@ -35,7 +35,9 @@ export class FormContainerComponent {
 
   protected section: FormSection | undefined;
 
-  constructor(private route: ActivatedRoute, private templateService: TemplateService, private api: FormsService, private prep: PrepareAPIService) {
+  constructor(private route: ActivatedRoute, private templateService: TemplateService,
+              private api: FormsService, private prep: PrepareAPIService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -77,11 +79,16 @@ export class FormContainerComponent {
     }else {
       //We have a Document
       const tmp = this.form;
-      
+
 
       this.api.formsFormIDPut(tmp.id!, tmp).subscribe(r =>{
-          console.log("Updated to");
-          console.log(r);
+        // Go to the new URL so that we can Reload the current State
+        this.route.paramMap.pipe(
+          switchMap((params: ParamMap) => params.get('id')!)).subscribe(i => {
+          if (i != r.id){
+            this.router.navigateByUrl("/Form/" + r.id)
+          }
+        })
       })
     }
 
