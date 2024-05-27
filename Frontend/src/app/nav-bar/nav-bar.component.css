@@ -1,5 +1,5 @@
 .c-blue {  
-    background-color:#1a73e8;
+    background-color:var(--asta-bluelight);
 }
 
 .AStA-Logo {
@@ -32,7 +32,7 @@
 .Account-holder {
     height: 40px;
     border-radius: 20px;
-    background-color:#152f56;
+    background-color:var(--asta-blue);
     width: 12%;
 }
 
@@ -52,13 +52,13 @@
 .Account-Text-Holder {
     float: left;
     font-size: 24px;
-    color: #ffffff;
+    color: white;
 }
 .navbar{
     padding-left:0.5em;
 }
 .navbar-toggler{
-    background-color: #152f56;
+    background-color: var(--asta-blue);
     color: white;
     font-size:2.25em;
     border-radius: 12%;

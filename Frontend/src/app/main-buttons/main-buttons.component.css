@@ -13,7 +13,7 @@
     width: 20%;
     height: 20vh;
     position: relative;
-    background-color: #152f56;
+    background-color: var(--asta-blue);
     border-radius: 20px;
     margin-left: 5%;
     margin-right: 5%;

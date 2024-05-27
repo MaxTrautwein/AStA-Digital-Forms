@@ -4,12 +4,12 @@
 }
 
 .card-header {
-    background-color:#152f56;
+    background-color:var(--asta-blue);
     border-radius: 0;
 }
 
 .card-body {
-    background-color:#1a73e8;
+    background-color:var(--asta-bluelight);
 }
 
 .card {
@@ -17,5 +17,5 @@
     border-width: 0;
 }
 .text {
-    color: #ffffff;
+    color: white;
   }
