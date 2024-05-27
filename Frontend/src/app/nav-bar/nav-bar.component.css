@@ -1,4 +1,4 @@
-.c-blue {
+.c-blue {  
     background-color:#1a73e8;
 }
 
@@ -53,4 +53,16 @@
     float: left;
     font-size: 24px;
     color: #ffffff;
+}
+.navbar{
+    padding-left:0.5em;
+}
+.navbar-toggler{
+    background-color: #152f56;
+    color: white;
+    font-size:2.25em;
+    border-radius: 12%;
+}
+.navbar-toggler-icon{
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-linecap='round' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
