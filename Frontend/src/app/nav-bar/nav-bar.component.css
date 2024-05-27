@@ -52,14 +52,14 @@
 .Account-Text-Holder {
     float: left;
     font-size: 24px;
-    color: white;
+    color: var(--asta-white);
 }
 .navbar{
     padding-left:0.5em;
 }
 .navbar-toggler{
     background-color: var(--asta-blue);
-    color: white;
+    color: var(--asta-white);
     font-size:2.25em;
     border-radius: 12%;
 }

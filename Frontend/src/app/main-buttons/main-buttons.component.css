@@ -28,10 +28,10 @@
 h1 {
     font-size: 3vmin;
     text-decoration: underline;
-    color:white;
+    color:var(--asta-white);
 }
 
 h2 {
     font-size: 2vmin;
-    color:white;
+    color:var(--asta-white);
 }

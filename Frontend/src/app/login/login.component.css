@@ -6,7 +6,7 @@ body, html {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: white;
+  background: var(--asta-white);
 }
 
 .login {
@@ -15,7 +15,7 @@ body, html {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: white;
+  background: var(--asta-white);
 }
 
 .container {
@@ -44,7 +44,7 @@ body, html {
 }
 
 .text-login {
-  color: white;
+  color: var(--asta-white);
   font-size: 48px;
   font-family: 'Inter', sans-serif;
   text-decoration: none;
@@ -60,7 +60,7 @@ body, html {
 }
 
 .text-bitte-loggen-sie-sich-ein {
-  color: white;
+  color: var(--asta-white);
   font-size: 48px;
   font-family: 'Inter', sans-serif;
   text-decoration: none;
