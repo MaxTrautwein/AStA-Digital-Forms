@@ -1,5 +1,5 @@
-.c-orange {
-    background-color: orange;
+.c-blue {
+    background-color:#1a73e8;
 }
 
 .AStA-Logo {
@@ -32,7 +32,7 @@
 .Account-holder {
     height: 40px;
     border-radius: 20px;
-    background-color: coral;
+    background-color:#152f56;
     width: 12%;
 }
 
@@ -52,4 +52,5 @@
 .Account-Text-Holder {
     float: left;
     font-size: 24px;
+    color: #ffffff;
 }
