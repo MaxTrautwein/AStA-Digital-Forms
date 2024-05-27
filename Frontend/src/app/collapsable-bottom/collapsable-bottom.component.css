@@ -4,15 +4,18 @@
 }
 
 .card-header {
-    background-color: chocolate;
+    background-color:#152f56;
     border-radius: 0;
 }
 
 .card-body {
-    background-color: orange;
+    background-color:#1a73e8;
 }
 
 .card {
     width: 100vw;
     border-width: 0;
 }
+.text {
+    color: #ffffff;
+  }
