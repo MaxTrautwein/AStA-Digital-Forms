@@ -36,7 +36,7 @@ Die Objektmodelle werden durch die OpenAPI Spezifikation automatisch generiert.
     \caption{Backend Datenbank Init und Factorys}\label{fig:backend-gen-class-diagram}
 \end{figure}
 
-Um die Datenbank mit Elementen zu initialisieren, wird der "DatabaseLoader" aus \refa{fig:backend-gen-class-diagram}.
+Um die Datenbank mit Elementen zu initialisieren, wird der "DatabaseLoader" aus \refa{fig:backend-gen-class-diagram} ausgeführt.
 Dieser generiert mithilfe von Factories Elemente für die Datenbank.
 
 \begin{figure}[H]
@@ -58,7 +58,7 @@ Im Folgenden wird das Verhalten der Applikation bei verschiedenen Usecases besch
 \newpage
 \section{Verteilungsschicht}\label{sec:verteilungsschicht}
 Die Applikation verteilt sich, wie \refa{fig:Netzwerksuebersicht} zeigt, auf drei frei verfügbare Komponenten.
-Ein Nutzer kann demnach über die Subdomains "df." für das Frontend, "backend.df." für das Backend und "auth.df."
+Ein Nutzer kann über die Subdomains "df." für das Frontend, "backend.df." für das Backend und "auth.df."
 auf die Komponenten zugreifen.
 Das Backend sowie der Authentifizierungsdienst verfügen jeweils zusätzlich um eine lokal verfügbare Datenbank.
 
