@@ -13,7 +13,7 @@
     width: 20%;
     height: 20vh;
     position: relative;
-    background-color: chocolate;
+    background-color: var(--asta-blue);
     border-radius: 20px;
     margin-left: 5%;
     margin-right: 5%;
@@ -28,8 +28,10 @@
 h1 {
     font-size: 3vmin;
     text-decoration: underline;
+    color:var(--asta-white);
 }
 
 h2 {
     font-size: 2vmin;
+    color:var(--asta-white);
 }

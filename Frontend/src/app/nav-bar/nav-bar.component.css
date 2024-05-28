@@ -1,5 +1,5 @@
-.c-orange {
-    background-color: orange;
+.c-color {  
+    background-color:var(--asta-bluelight);
 }
 
 .AStA-Logo {
@@ -32,7 +32,7 @@
 .Account-holder {
     height: 40px;
     border-radius: 20px;
-    background-color: coral;
+    background-color:var(--asta-blue);
     width: 12%;
 }
 
@@ -52,4 +52,17 @@
 .Account-Text-Holder {
     float: left;
     font-size: 24px;
+    color: var(--asta-white);
+}
+.navbar{
+    padding-left:0.5em;
+}
+.navbar-toggler{
+    background-color: var(--asta-blue);
+    color: var(--asta-white);
+    font-size:2.25em;
+    border-radius: 12%;
+}
+.navbar-toggler-icon{
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-linecap='round' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
