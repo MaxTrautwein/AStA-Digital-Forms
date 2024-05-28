@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import {NavBarComponent} from "../nav-bar/nav-bar.component";
-import {ActivatedRoute, ParamMap, Router, RouterOutlet} from "@angular/router";
+import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {Form, FormSection, FormsService} from "../api-client";
 import {TemplateService} from "../template.service";
 import {map, Observable, switchMap} from "rxjs";
@@ -14,8 +13,6 @@ import {PrepareAPIService} from "../prepare-api.service";
   selector: 'app-form-container',
   standalone: true,
   imports: [
-    NavBarComponent,
-    RouterOutlet,
     ProgressDisplayComponent,
     ProgressContollsComponent,
     AsyncPipe,
