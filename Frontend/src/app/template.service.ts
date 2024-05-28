@@ -8,6 +8,9 @@ import {OAuthService} from "angular-oauth2-oidc";
 export class TemplateService {
 
   templates: Form[] = [];
+  abrechnungen: Form[] = [];
+  anträge: Form[] = [];
+
 
   fetchTemplates() {
     this.api.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
@@ -20,6 +23,30 @@ export class TemplateService {
   getTemplates(){
     return this.templates;
   }
+
+  getAbrechnungsTemplates() {
+    for (var element of this.templates) {
+      if (element.category == Form.CategoryEnum.Abrechnung) {
+        this.abrechnungen.push(element);
+        alert("We have a abrechnung");
+      } else {
+        alert("Somethings wrong, I can feel it!");
+      }
+    }
+    return this.abrechnungen;
+  }
+
+  getAntragsTemplates() {
+    for (var element of this.templates) {
+      if (element.category == Form.CategoryEnum.Antrag) {
+        this.anträge.push(element);
+      }
+    }
+    return this.anträge;
+  }
+
+
+
 
   getTemplate(id: string){
     return this.templates.find((f) => f.id === id)
