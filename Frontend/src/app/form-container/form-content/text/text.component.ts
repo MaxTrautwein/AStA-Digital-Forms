@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {FormSection} from "../../../api-client";
 
 @Component({
@@ -11,8 +11,18 @@ import {FormSection} from "../../../api-client";
 export class TextComponent {
 @Input() description: string | undefined = "";
 @Input() help: string | undefined = "";
+@Input() value: string | undefined = "";
 
 @Output() valueChanged = new EventEmitter<string>();
+
+@ViewChild('input') input: any;
+
+  ngAfterViewInit(){
+    if (this.value === undefined){
+      this.value = ""
+    }
+    this.input.nativeElement.value = this.value;
+  }
 
   onValueChange(event: Event) {
     const inputElement = event.target as HTMLInputElement;

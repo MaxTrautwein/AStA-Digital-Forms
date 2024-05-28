@@ -7,7 +7,7 @@
           </button>
         </h5>
       </div>
-  
+
       <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordion">
         <div class="card-body">
           <span class="text">Hier findest Du deine Favoriten.</span>
@@ -24,12 +24,14 @@
       </div>
       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion">
         <div class="card-body">
-          <span class="text"> Hier findest Du deine fertigen Anträge.</span>
+          <span *ngFor="let ownedForms of forms | async">
+            <app-marked-item [form]="ownedForms" ></app-marked-item>
+          </span>
         </div>
       </div>
     </div>
   </div>
 
-  
+
 
 <!--Bootrstrap Source: https://getbootstrap.com/docs/4.0/components/collapse/         "Accordion example"-->
