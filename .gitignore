@@ -313,3 +313,6 @@ DB/data/*
 
 #OpenApi Client
 Frontend/src/app/api-client/*
+
+#API Spec Doku
+!Doc/images/API_Spec.pdf
