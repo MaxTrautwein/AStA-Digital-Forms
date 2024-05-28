@@ -26,11 +26,10 @@ export class TemplateService {
 
   getAbrechnungsTemplates() {
     for (var element of this.templates) {
+      console.log(element);
+      console.log(Form.CategoryEnum.Abrechnung);
       if (element.category == Form.CategoryEnum.Abrechnung) {
         this.abrechnungen.push(element);
-        alert("We have a abrechnung");
-      } else {
-        alert("Somethings wrong, I can feel it!");
       }
     }
     return this.abrechnungen;

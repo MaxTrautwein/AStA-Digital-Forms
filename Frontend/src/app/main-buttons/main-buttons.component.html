@@ -1,6 +1,6 @@
 <div class="Button-wrapper">
 
-    <div *ngFor="let t of this.templateService.getTemplates();">
+    <div *ngFor="let t of this.templateService.getAbrechnungsTemplates();">
         <div class="subbutton-wrapper">
             <button type="button" class="auswahlbutton" routerLink="/Form/{{t.id}}">
                 <h1>{{t.titel}}</h1>
