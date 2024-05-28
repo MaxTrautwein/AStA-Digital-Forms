@@ -3,7 +3,7 @@ import {NavBarComponent} from "../nav-bar/nav-bar.component";
 import {ActivatedRoute, ParamMap, Router, RouterOutlet} from "@angular/router";
 import {Form, FormSection, FormsService} from "../api-client";
 import {TemplateService} from "../template.service";
-import {map, Observable, Subscription, switchMap} from "rxjs";
+import {map, Observable, switchMap} from "rxjs";
 import {ProgressDisplayComponent} from "./progress-display/progress-display.component";
 import {ProgressContollsComponent} from "./progress-controls/progress-contolls.component";
 import {AsyncPipe, NgIf} from "@angular/common";
@@ -41,59 +41,45 @@ export class FormContainerComponent {
   }
 
   ngOnInit() {
-    this.route.queryParamMap.pipe(
-      map((params: ParamMap) => params.get('page'))).subscribe(
+    // Get the current Page Section
+    this.route.queryParamMap.pipe(map((params: ParamMap) => params.get('page'))).subscribe(
         page => {
           if (page !== null){
             this.currentSection = Number(page)
           }
-        }
-    )
+        })
 
+    // Request The Form
     this.formdetails = this.route.paramMap.pipe(
       switchMap((params: ParamMap) => this.templateService.getTemplateDetails(params.get('id')!)));
-    this.formdetails.subscribe(e => this.form = e);
+
+    // Await Form Load
+    this.formdetails.subscribe(e => {
+      this.form = e;
+
+      this.prep.prepare()
+      if(this.form.template){
+        // We need to Create the User form
+        this.api.formsPost(this.form).subscribe(r =>{
+            // After the Creation Move to that new Form URL
+            this.router.navigateByUrl("/Form/" + r.id)
+        })
+      }
+    });
   }
 
-  private awaitSave: boolean = false
-
   UpdateFormSectionData(s: FormSection){
-    var index = this.form.form!.findIndex(fs => fs.order == s.order)!
+    const index = this.form.form!.findIndex(fs => fs.order == s.order)!
     if (index !== -1){
       this.form.form![index] = s;
     }
 
-    console.log(this.form)
-    //now we can auto-save it
-
-    this.prep.prepare()
-    if(this.form.template){
-      //we need to await the first save
-      if(!this.awaitSave){
-        this.awaitSave = true;
-        this.api.formsPost(this.form).subscribe(r =>{
-          this.form = r;
-          this.awaitSave = false
-        })
-      }
-    }else {
-      //We have a Document
-      const tmp = this.form;
-
-
-      this.api.formsFormIDPut(tmp.id!, tmp).subscribe(r =>{
-        // Go to the new URL so that we can Reload the current State
-        this.route.paramMap.pipe(
-          switchMap((params: ParamMap) => params.get('id')!)).subscribe(i => {
-          if (i != r.id){
-            this.router.navigateByUrl("/Form/" + r.id)
-          }
-        })
-      })
-    }
-
-
-
-
+    this.SendUpdate()
   }
+
+  private SendUpdate(){
+    this.prep.prepare()
+    this.api.formsFormIDPut(this.form.id!, this.form).subscribe()
+  }
+
 }
