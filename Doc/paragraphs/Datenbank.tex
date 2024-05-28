@@ -12,10 +12,10 @@ Dennoch gibt es einige Punkte die zu beachten sind:
 Es folgt die vorläufige Struktur für die verschiedenen Dokumente.
 Der genaue Inhalt wird angefügt, sobald dieser bekannt wird.
 
-\section{User}
+\section{Settings}
 
 \begin{lstlisting}[label={lst:lstlistingusers}]
-    // Users Document
+    // Settings Document
     {
     id: string
     settings:
@@ -80,6 +80,7 @@ Sollte es sich nicht um eine Vorlage zum Ausfüllen handeln, so werden nur die n
 \begin{lstlisting}[label={lst:lstlistingdoc}]
     {
         "id": string,
+        "owner": string,
         "Title": string,
         "Template": bool,
         "Description": string,
@@ -92,12 +93,14 @@ Sollte es sich nicht um eine Vorlage zum Ausfüllen handeln, so werden nur die n
                     {
                         "Description": string,
                         "type": EFormElement,
-                        "id": string
+                        "id": string,
+                        "value" string
                     },
                     {
                         "Description": string,
                         "type": EFormElement,
-                        "id": string
+                        "id": string,
+                        "value" string
                     }
                 ]
             },
@@ -108,7 +111,8 @@ Sollte es sich nicht um eine Vorlage zum Ausfüllen handeln, so werden nur die n
                     {
                         "Description": string,
                         "type": EFormElement,
-                        "id": string
+                        "id": string,
+                        "value" string
                     },
                     ...
                 ]
