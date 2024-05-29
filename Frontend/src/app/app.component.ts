@@ -20,7 +20,7 @@ import { LoginComponent } from './login/login.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   standalone:true,
-  
+
 })
 export class AppComponent {
   title = 'DigitalForms';
@@ -35,7 +35,7 @@ export class AppComponent {
     if(!this.oauthService.hasValidAccessToken()) {
       this.router.navigateByUrl('/login');
     }
-    
+
 
     });
 
@@ -53,6 +53,17 @@ export class AppComponent {
 
   }
 
+  testDL(){
+    this.formsService.formsFormIDDownloadGet("BLA").subscribe((response) => {
+      const downloadLink = document.createElement('a');
+      downloadLink.href = URL.createObjectURL(response);
+
+      const fileName = "test"
+      downloadLink.download = fileName;
+      downloadLink.click();
+    })
+  }
+
   login() {
     this.oauthService.initCodeFlow();
   }
@@ -61,6 +72,6 @@ export class AppComponent {
 
   logout() {
     this.oauthService.logOut();
-  
+
   }
 }

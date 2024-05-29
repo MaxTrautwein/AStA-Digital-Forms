@@ -178,7 +178,27 @@ paths:
         '404':
           description: Can't find ID
 
-
+  /forms/{formID}/download:
+    get:
+      tags:
+        - forms
+      summary: Download as a PDF file
+      description: Returns a PDF file of the Form.
+      parameters:
+        - name: formID
+          in: path
+          description: ID of form to return
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A PDF file.
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
 
 
 

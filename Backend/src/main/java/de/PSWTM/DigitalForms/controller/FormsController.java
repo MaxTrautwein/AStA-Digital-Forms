@@ -1,19 +1,18 @@
 package de.PSWTM.DigitalForms.controller;
 
+import de.PSWTM.DigitalForms.Services.PdfService;
 import de.PSWTM.DigitalForms.api.FormsApiDelegate;
 import de.PSWTM.DigitalForms.model.Form;
 import de.PSWTM.DigitalForms.repository.FormRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 import java.util.Objects;
 
@@ -21,10 +20,16 @@ import java.util.Objects;
 public class FormsController implements FormsApiDelegate {
     private static final Logger log = LoggerFactory.getLogger(FormsController.class);
 
+    private final PdfService pdfService;
+
     @Autowired
     private FormRepository repository;
 
     Logger logger = LoggerFactory.getLogger(FormsController.class);
+
+    public FormsController(PdfService pdfService) {
+        this.pdfService = pdfService;
+    }
 
     // Gets the KeyCloak UserID from the Token
     private String getUserID(){
@@ -40,6 +45,24 @@ public class FormsController implements FormsApiDelegate {
             repository.delete(form);
             return ResponseEntity.ok().build();
         }
+    }
+
+    @Override
+    public ResponseEntity<Resource> formsFormIDDownloadGet(String formID) {
+        try {
+            byte[] pdfBytes = pdfService.generatePdf("title", "content");
+            ByteArrayResource resource = new ByteArrayResource(pdfBytes);
+
+            return ResponseEntity
+                    .ok()
+                    .contentLength(pdfBytes.length)
+                    .body(resource);
+        } catch (Exception e) {
+            return ResponseEntity
+                    .status(500)
+                    .body(null);
+        }
+
     }
 
     @Override
