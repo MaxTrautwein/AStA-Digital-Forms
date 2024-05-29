@@ -82,17 +82,19 @@ public class DatabaseLoader {
         repository.save(gen_Genehmigung_von_Ausgaben_und_Anschaffungen());
 
         repository.save(createForm("FS-Wochenende",true,"Ein wochenende für die FS", Form.CategoryEnum.ANTRAG));
-        repository.save(createForm("Wirtschaftliche Veranstaltung",true,"Ne Veranstaltung wo geld eingenommen werden soll", Form.CategoryEnum.ANTRAG));
-
-        repository.save(createForm("Reisekosten", true,"Ich / Wir wollen wo hin.",Form.CategoryEnum.ANTRAG));
         repository.save(createForm("Kulturelle Veranstaltung",true,"Eine Kulturelle Veranstaltung. Keine gewinnabsichten",Form.CategoryEnum.ANTRAG));
-        /*repository.save(createForm("Erstattung Reisekosten",true,"Wir sind nach Antrag mit Genehmigung wo hin. Gib geld",Form.CategoryEnum.ABRECHNUNG));
+        repository.save(createForm("Reisekosten", true,"Ich / Wir wollen wo hin.",Form.CategoryEnum.ANTRAG));
+        //Reisekosten mit Fahrgemeindschaften?
+        repository.save(createForm("Wirtschaftliche Veranstaltung",true,"Ne Veranstaltung wo geld eingenommen werden soll", Form.CategoryEnum.ANTRAG));
+        
 
-        /* Neue Abrechnungen zum testen */
+        
+        
+        //sauber generiert
+        repository.save(createForm("Vorschuss",true,"Abrechnung eines Vorschusses",Form.CategoryEnum.ABRECHNUNG));
         repository.save(createForm("FS-Wochenende",true,"Ein wochenende für die FS", Form.CategoryEnum.ABRECHNUNG));
-        repository.save(createForm("Wirtschaftliche Veranstaltung",true,"Eine Kulturelle Veranstaltung. Keine gewinnabsichten", Form.CategoryEnum.ABRECHNUNG));
-        repository.save(createForm("Reisekosten",true,"Ich / Wir wollen wo hin.", Form.CategoryEnum.ABRECHNUNG));
-        repository.save(createForm("Kulturelle Veranstaltung",true,"Eine Kulturelle Veranstaltung. Keine gewinnabsichten",Form.CategoryEnum.ABRECHNUNG));
+        repository.save(createForm("Auslagen und Rechnungen",true,"Erstattung von Auslagen und Rechnungen", Form.CategoryEnum.ABRECHNUNG));
+        repository.save(createForm("Reisekosten",true,"Erstattung von Reisekosten", Form.CategoryEnum.ABRECHNUNG));
 
     }
 

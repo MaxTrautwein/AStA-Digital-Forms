@@ -24,6 +24,14 @@ export class TemplateService {
     return this.templates;
   }
 
+  isAntrag(f: Form): boolean {
+    return f.category == Form.CategoryEnum.Antrag;
+  }
+
+  isAbrechnung(f: Form): boolean {
+    return f.category == Form.CategoryEnum.Abrechnung;
+  }
+
   getAbrechnungsTemplates() {
     this.abrechnungen = [];
     for (var element of this.templates) {
