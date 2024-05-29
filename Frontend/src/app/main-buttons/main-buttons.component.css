@@ -1,9 +1,5 @@
 .Button-wrapper {
-    margin-left: 5vw;
-    margin-right: 5vw;
-    margin-top: 10vh;
-    height: fit-content;
-    height: 60vh;
+
 }
 
 
@@ -11,11 +7,13 @@
 .auswahlbutton {
     display: block;
     width: 100%;
-    height: 20vh;
+    height: 14vh;
     position: relative;
     background-color: var(--asta-blue);
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
+    padding: 0%;
+    border-width: 0;
 }
 
 .subbutton {
@@ -27,6 +25,8 @@
     color: var(--asta-white);
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+    text-align: center;
+    position: relative;
 }
 
 .sbright {
@@ -40,12 +40,13 @@
 .subbutton-wrapper {
     display: block;
     position: relative;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
     float: inline-start;
-    margin-bottom: 5%;
     height: fit-content;
     width: 20%;
+    margin-top: 1%;
+    margin-bottom: 1%;
 }
 
 .auswahlbutton:hover {
@@ -64,5 +65,7 @@ h2 {
 }
 
 .subbutton > h2 {
-    padding-left: 40%;
+    padding-top: 3%;
+    font-size: 3vmin;
+    color: var(--asta-white);
 }
