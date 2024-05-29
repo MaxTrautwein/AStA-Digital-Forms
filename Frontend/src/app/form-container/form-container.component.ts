@@ -5,7 +5,7 @@ import {TemplateService} from "../template.service";
 import {map, Observable, switchMap} from "rxjs";
 import {ProgressDisplayComponent} from "./progress-display/progress-display.component";
 import {ProgressContollsComponent} from "./progress-controls/progress-contolls.component";
-import {AsyncPipe, NgIf} from "@angular/common";
+import {AsyncPipe} from "@angular/common";
 import {FormContentComponent} from "./form-content/form-content.component";
 import {PrepareAPIService} from "../prepare-api.service";
 
@@ -16,7 +16,6 @@ import {PrepareAPIService} from "../prepare-api.service";
     ProgressDisplayComponent,
     ProgressContollsComponent,
     AsyncPipe,
-    NgIf,
     FormContentComponent
   ],
   templateUrl: './form-container.component.html',
