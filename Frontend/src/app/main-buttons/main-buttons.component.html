@@ -1,13 +1,17 @@
 <div class="Button-wrapper">
 
-    <div *ngFor="let t of this.templateService.getAbrechnungsTemplates();">
+    <div *ngFor="let t of this.templateService.getAntragsTemplates();">
         <div class="subbutton-wrapper">
             <button type="button" class="auswahlbutton" routerLink="/Form/{{t.id}}">
                 <h1>{{t.titel}}</h1>
                 <h2>{{t.description}}</h2>
             </button>
             <button type="button" class="subbutton sbleft" routerLink="/Form/{{t.id}}">Antrag</button>
-            <button type="button" class="subbutton sbright" routerLink="/Form/{{t.id}}">Abrechnung</button>
+            <div *ngFor="let a of this.templateService.getAbrechnungsTemplates();">
+                <div *ngIf="a.titel==t.titel">
+                    <button type="button" class="subbutton sbright" routerLink="/Form/{{a.id}}">Abrechnung</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

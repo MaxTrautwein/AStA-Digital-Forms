@@ -25,9 +25,8 @@ export class TemplateService {
   }
 
   getAbrechnungsTemplates() {
+    this.abrechnungen = [];
     for (var element of this.templates) {
-      console.log(element);
-      console.log(Form.CategoryEnum.Abrechnung);
       if (element.category == Form.CategoryEnum.Abrechnung) {
         this.abrechnungen.push(element);
       }
@@ -36,6 +35,7 @@ export class TemplateService {
   }
 
   getAntragsTemplates() {
+    this.anträge = [];
     for (var element of this.templates) {
       if (element.category == Form.CategoryEnum.Antrag) {
         this.anträge.push(element);

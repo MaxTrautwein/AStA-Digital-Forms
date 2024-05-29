@@ -86,13 +86,13 @@ public class DatabaseLoader {
 
         repository.save(createForm("Reisekosten", true,"Ich / Wir wollen wo hin.",Form.CategoryEnum.ANTRAG));
         repository.save(createForm("Kulturelle Veranstaltung",true,"Eine Kulturelle Veranstaltung. Keine gewinnabsichten",Form.CategoryEnum.ANTRAG));
-        repository.save(createForm("Erstattung Reisekosten",true,"Wir sind nach Antrag mit Genehmigung wo hin. Gib geld",Form.CategoryEnum.ABRECHNUNG));
+        /*repository.save(createForm("Erstattung Reisekosten",true,"Wir sind nach Antrag mit Genehmigung wo hin. Gib geld",Form.CategoryEnum.ABRECHNUNG));
 
         /* Neue Abrechnungen zum testen */
         repository.save(createForm("FS-Wochenende",true,"Ein wochenende für die FS", Form.CategoryEnum.ABRECHNUNG));
         repository.save(createForm("Wirtschaftliche Veranstaltung",true,"Eine Kulturelle Veranstaltung. Keine gewinnabsichten", Form.CategoryEnum.ABRECHNUNG));
         repository.save(createForm("Reisekosten",true,"Ich / Wir wollen wo hin.", Form.CategoryEnum.ABRECHNUNG));
-
+        repository.save(createForm("Kulturelle Veranstaltung",true,"Eine Kulturelle Veranstaltung. Keine gewinnabsichten",Form.CategoryEnum.ABRECHNUNG));
 
     }
 
