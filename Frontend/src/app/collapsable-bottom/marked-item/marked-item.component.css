@@ -1,8 +1,6 @@
 .fav-wrapper {
     width: fit-content;
     height: 10vh;
-    display: block;
-    position: relative;
     float: inline-start;
 }
 
@@ -15,6 +13,7 @@
     border: 0;
     top: 0;
     position: relative;
+    margin-right: 1vw;
 }
 
 .fav {
