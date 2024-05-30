@@ -92,6 +92,7 @@ public class FormsController implements FormsApiDelegate {
             }
         }else {
             // New Form
+            form.setParent(form.getId());
             form.setId(null); // ID is created by the DB
             form.setOwner(getUserID());
         }

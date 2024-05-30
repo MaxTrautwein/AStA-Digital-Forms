@@ -22,6 +22,17 @@ public class FavouriteController implements FavouritesApiDelegate {
     }
 
     @Override
+    public ResponseEntity<Void> favouritesFavIdDelete(String favId) {
+        repository.deleteById(favId);
+        return ResponseEntity.ok().build();
+    }
+
+    @Override
+    public ResponseEntity<Favourite> favouritesFavIdGet(String favId) {
+        return FavouritesApiDelegate.super.favouritesFavIdGet(favId);
+    }
+
+    @Override
     public ResponseEntity<List<Favourite>> favouritesGet() {
         List<Favourite> favList = repository.findAllOwnedFavouritess(getUserID());
         return ResponseEntity.ok(favList);
