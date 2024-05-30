@@ -10,8 +10,9 @@
 
       <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordion">
         <div class="card-body">
-          <app-marked-item></app-marked-item>
-          <app-marked-item></app-marked-item>
+          @for(f of this.templateService.getFav(); track f) {
+            <app-marked-item></app-marked-item>
+          }
         </div>
       </div>
     </div>

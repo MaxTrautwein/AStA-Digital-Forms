@@ -10,6 +10,7 @@ import {AsyncPipe, NgIf} from "@angular/common";
 import {FormContentComponent} from "./form-content/form-content.component";
 import {PrepareAPIService} from "../prepare-api.service";
 
+
 @Component({
   selector: 'app-form-container',
   standalone: true,
@@ -35,7 +36,7 @@ export class FormContainerComponent {
 
   protected section: FormSection | undefined;
 
-  constructor(private route: ActivatedRoute, private templateService: TemplateService,
+  constructor(private route: ActivatedRoute, protected templateService: TemplateService,
               private api: FormsService, private prep: PrepareAPIService,
               private router: Router) {
   }

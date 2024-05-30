@@ -5,6 +5,7 @@ import {Form, FormsService} from "../api-client";
 import {Observable} from "rxjs";
 import {AsyncPipe, NgForOf} from "@angular/common";
 import {PrepareAPIService} from "../prepare-api.service";
+import { TemplateService } from '../template.service';
 
 @Component({
   selector: 'app-collapsable-bottom',
@@ -17,9 +18,8 @@ export class CollapsableBottomComponent {
 
   protected forms: Observable<Form[]>
 
-  constructor(private api: FormsService, private prep: PrepareAPIService) {
+  constructor(private api: FormsService, private prep: PrepareAPIService, protected templateService: TemplateService) {
     prep.prepare();
     this.forms = api.formsGet()
   }
-
 }
