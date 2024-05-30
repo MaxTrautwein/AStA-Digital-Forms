@@ -79,8 +79,8 @@ public class DatabaseLoader {
     }
 
     public static void initFormRepository(FormRepository repository){
-        repository.save(gen_Genehmigung_von_Ausgaben_und_Anschaffungen());
-
+        //repository.save(gen_Genehmigung_von_Ausgaben_und_Anschaffungen());
+        /* 
         repository.save(createForm("FS-Wochenende",true,"Ein wochenende für die FS", Form.CategoryEnum.ANTRAG));
         repository.save(createForm("Kulturelle Veranstaltung",true,"Eine Kulturelle Veranstaltung. Keine gewinnabsichten",Form.CategoryEnum.ANTRAG));
         repository.save(createForm("Reisekosten", true,"Ich / Wir wollen wo hin.",Form.CategoryEnum.ANTRAG));
@@ -95,6 +95,28 @@ public class DatabaseLoader {
         repository.save(createForm("FS-Wochenende",true,"Ein wochenende für die FS", Form.CategoryEnum.ABRECHNUNG));
         repository.save(createForm("Auslagen und Rechnungen",true,"Erstattung von Auslagen und Rechnungen", Form.CategoryEnum.ABRECHNUNG));
         repository.save(createForm("Reisekosten",true,"Erstattung von Reisekosten", Form.CategoryEnum.ABRECHNUNG));
+        */
+
+
+
+        //wir machen das komplett neu!
+        repository.save(createForm("Ausgaben und Anschaffungen",true,"Ausgaben und Anschaffungen",Form.CategoryEnum.ANTRAG));
+        repository.save(createForm("Ausgaben und Anschaffungen",true,"Erstattung von Auslagen und Rechnungen",Form.CategoryEnum.ABRECHNUNG));
+
+        repository.save(createForm("Fachschaftswochenende",true,"Wir wollen wo hin fahren",Form.CategoryEnum.ANTRAG));
+        repository.save(createForm("Fachschaftswochenende",true,"Abrechnung des FS-Wochenendes",Form.CategoryEnum.ABRECHNUNG));
+
+        repository.save(createForm("Kulturelle Veranstalltung",true,"wir veranstallten was kulturelles",Form.CategoryEnum.ANTRAG));
+        repository.save(createForm("Kulturelle Veranstalltung",true,"Erstattung von Auslagen/Zuschüssen",Form.CategoryEnum.ABRECHNUNG));
+
+        repository.save(createForm("Reisen",true,"wir gehen wo hin",Form.CategoryEnum.ANTRAG));
+        repository.save(createForm("Reisen",true,"Erstattung von Reisekosten",Form.CategoryEnum.ABRECHNUNG));
+
+        repository.save(createForm("Reisen mit Fahrgemeindschaft",true,"wir gehen zusammen wo hin",Form.CategoryEnum.ANTRAG));
+        repository.save(createForm("Reisen mit Fahrgemeindschaft",true,"Erstattung von Reisekosten",Form.CategoryEnum.ABRECHNUNG));
+
+        repository.save(createForm("Wirtschaftliche Veranstalltung",true,"Veranstalltung mit Gewinnabsicht",Form.CategoryEnum.ANTRAG));
+        repository.save(createForm("Wirtschaftliche Veranstalltung",true,"Erstattung von Auslagen/Zuschüssen",Form.CategoryEnum.ABRECHNUNG));
 
     }
 
