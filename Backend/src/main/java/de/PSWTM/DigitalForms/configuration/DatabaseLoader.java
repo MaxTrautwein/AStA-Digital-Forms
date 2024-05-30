@@ -5,10 +5,8 @@ import de.PSWTM.DigitalForms.repository.FormRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static de.PSWTM.DigitalForms.Factory.AttachmentFactory.createAttachment;
 import static de.PSWTM.DigitalForms.Factory.FormElementFactory.createFormElement;
 import static de.PSWTM.DigitalForms.Factory.FormFactory.createForm;
