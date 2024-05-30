@@ -80,51 +80,6 @@
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 
-		<!-- Note: Use of openhtmltopdf is not ideal as it's not Maintained, but I was
-				   Unable to locate any Maintained Option that is available for free-->
-		<dependency>
-			<groupId>com.itextpdf</groupId>
-			<artifactId>itext-core</artifactId>
-			<version>8.0.4</version>
-			<type>pom</type>
-		</dependency>
-
-		<dependency>
-			<groupId>com.itextpdf</groupId>
-			<artifactId>kernel</artifactId>
-			<version>8.0.4</version>
-		</dependency>
-		<!-- always needed -->
-		<dependency>
-			<groupId>com.itextpdf</groupId>
-			<artifactId>io</artifactId>
-			<version>8.0.4</version>
-		</dependency>
-		<!-- always needed -->
-		<dependency>
-			<groupId>com.itextpdf</groupId>
-			<artifactId>layout</artifactId>
-			<version>8.0.4</version>
-		</dependency>
-		<!-- only needed for forms -->
-		<dependency>
-			<groupId>com.itextpdf</groupId>
-			<artifactId>forms</artifactId>
-			<version>8.0.4</version>
-		</dependency>
-		<!-- only needed for PDF/A -->
-		<dependency>
-			<groupId>com.itextpdf</groupId>
-			<artifactId>pdfa</artifactId>
-			<version>8.0.4</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.itextpdf</groupId>
-			<artifactId>html2pdf</artifactId>
-			<version>5.0.4</version>
-		</dependency>
-
 	</dependencies>
 
 	<build>
