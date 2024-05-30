@@ -1,18 +1,17 @@
-@for (t of this.templateService.getTemplates(); track t) {
-    <div class="subbutton-wrapper">
-        @if(this.templateService.isAbrechnung(t)) {
-            <div class="subbutton">
-                <h2>Abrechnung</h2>
+<div class="Button-wrapper">
+
+    <div *ngFor="let t of this.templateService.getAntragsTemplates();">
+        <div class="subbutton-wrapper">
+            <button type="button" class="auswahlbutton" routerLink="/Form/{{t.id}}">
+                <h1>{{t.titel}}</h1>
+                <h2>{{t.description}}</h2>
+            </button>
+            <button type="button" class="subbutton sbleft" routerLink="/Form/{{t.id}}">Antrag</button>
+            <div *ngFor="let a of this.templateService.getAbrechnungsTemplates();">
+                <div *ngIf="a.titel==t.titel">
+                    <button type="button" class="subbutton sbright" routerLink="/Form/{{a.id}}">Abrechnung</button>
+                </div>
             </div>
-        }
-        @if(this.templateService.isAntrag(t)) {
-            <div class="subbutton">
-                <h2>Antrag</h2>
-            </div>
-        }
-        <button type="button" class="auswahlbutton" routerLink="/Form/{{t.id}}">
-            <h1>{{t.titel}}</h1>
-            <h2>{{t.description}}</h2>
-        </button>
+        </div>
     </div>
-}
+</div>
