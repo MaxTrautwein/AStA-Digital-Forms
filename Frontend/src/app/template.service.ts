@@ -9,25 +9,6 @@ export class TemplateService {
 
   templates: Form[] = [];
 
-
-
-  favoriten: Form[] = [];
-  id: string = "";
-  getFav() {
-    return this.favoriten;
-  }
-
-  putFav() {
-    this.favoriten = this.templates
-  }
-
-  delFav() {
-    //for now
-    this.favoriten = [];
-  }
-
-
-
   fetchTemplates() {
     this.api.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
     this.api.templatesGet().subscribe((Response) => {

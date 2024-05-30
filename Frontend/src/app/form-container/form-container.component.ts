@@ -9,6 +9,7 @@ import {ProgressContollsComponent} from "./progress-controls/progress-contolls.c
 import {AsyncPipe, NgIf} from "@angular/common";
 import {FormContentComponent} from "./form-content/form-content.component";
 import {PrepareAPIService} from "../prepare-api.service";
+import { FavouriteService } from '../favourite.service';
 
 
 @Component({
@@ -38,7 +39,7 @@ export class FormContainerComponent {
 
   constructor(private route: ActivatedRoute, protected templateService: TemplateService,
               private api: FormsService, private prep: PrepareAPIService,
-              private router: Router) {
+              private router: Router, protected FavService: FavouriteService) {
   }
 
   ngOnInit() {
