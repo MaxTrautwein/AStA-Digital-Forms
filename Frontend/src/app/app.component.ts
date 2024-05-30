@@ -53,16 +53,7 @@ export class AppComponent {
 
   }
 
-  testDL(){
-    this.formsService.formsFormIDDownloadGet("BLA").subscribe((response) => {
-      const downloadLink = document.createElement('a');
-      downloadLink.href = URL.createObjectURL(response);
 
-      const fileName = "test"
-      downloadLink.download = fileName;
-      downloadLink.click();
-    })
-  }
 
   login() {
     this.oauthService.initCodeFlow();

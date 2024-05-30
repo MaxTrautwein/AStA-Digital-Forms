@@ -96,4 +96,17 @@ export class FormContainerComponent {
 
 
   }
+
+  testDL(id: string){
+    this.api.formsFormIDDownloadGet(id).subscribe((response) => {
+      const downloadLink = document.createElement('a');
+      downloadLink.href = URL.createObjectURL(response);
+
+      const fileName = "test"
+      downloadLink.download = fileName;
+      downloadLink.click();
+    })
+  }
+
+
 }

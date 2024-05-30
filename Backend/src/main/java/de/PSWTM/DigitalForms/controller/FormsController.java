@@ -49,8 +49,13 @@ public class FormsController implements FormsApiDelegate {
 
     @Override
     public ResponseEntity<Resource> formsFormIDDownloadGet(String formID) {
+        Form form = repository.findOwnedFormById(getUserID(), formID);
+        if (form == null) {
+            // TODO Check OpenAPI Spec
+            return ResponseEntity.notFound().build();
+        }
         try {
-            byte[] pdfBytes = pdfService.generatePdf("title", "content");
+            byte[] pdfBytes = pdfService.generatePdf(form);
             ByteArrayResource resource = new ByteArrayResource(pdfBytes);
 
             return ResponseEntity
@@ -115,6 +120,7 @@ public class FormsController implements FormsApiDelegate {
             }
         }else {
             // New Form
+            form.setParent(form.getId());
             form.setId(null); // ID is created by the DB
             form.setOwner(getUserID());
         }

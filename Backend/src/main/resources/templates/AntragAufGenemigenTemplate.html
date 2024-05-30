@@ -164,10 +164,10 @@ size: A4;
   <h1>Genehmigung von Ausgaben und Anschaffungen</h1>
   <p>(Bitte unbedingt Antragsfrist beachten! Siehe dazu „Richtlinie zur Genehmigung und Abrechnung von Haushaltsmitteln“. Zu spät eingegangene Anträge werden abgelehnt. Bitte alle Seiten einreichen!)</p>
   <br>
-  <p class="pgeneral"><strong>Kurzbezeichnung des Antrages:</strong> <input class="FirstPageGeneral" type="text"></p>
-  <p class="pgeneral"><strong>Fachschaft/Referat/Arbeitskreis:</strong> <input class="FirstPageGeneral" type="text"></p>
-  <p class="pgeneral"><strong>Kontaktdaten </strong>(Handy-Nr. E-mail): <input class="FirstPageGeneral" type="text"></p>
-  <p class="pgeneral"><strong>Antragsteller*in:</strong> (Name Vorname) <input class="FirstPageGeneral" type="text"></p>
+  <p class="pgeneral"><strong>Kurzbezeichnung des Antrages:</strong> <input class="FirstPageGeneral" type="text" th:value="${bez}"></p>
+  <p class="pgeneral"><strong>Fachschaft/Referat/Arbeitskreis:</strong> <input class="FirstPageGeneral" type="text" th:value="${fs_ref_ar}"></p>
+  <p class="pgeneral"><strong>Kontaktdaten </strong>(Handy-Nr. E-mail): <input class="FirstPageGeneral" type="text" th:value="${contact}"></p>
+  <p class="pgeneral"><strong>Antragsteller*in:</strong> (Name Vorname) <input class="FirstPageGeneral" type="text" th:value="${user}"></p>
   <p><strong>Verwendungszweck:</strong> (Bitte ausführlich beschreiben! Evtl. Beiblatt nutzen. - Was? Warum? Welcher Preis?)</p>
   <textarea>
 

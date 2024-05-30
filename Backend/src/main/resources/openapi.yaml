@@ -268,6 +268,8 @@ components:
           type: "string"
         owner:
           type: "string"
+        parent:
+          type: "string"
         template:
           type: "boolean"
         titel:

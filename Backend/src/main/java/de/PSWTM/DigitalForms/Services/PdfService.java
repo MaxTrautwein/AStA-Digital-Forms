@@ -1,6 +1,9 @@
 package de.PSWTM.DigitalForms.Services;
 
 import de.PSWTM.DigitalForms.controller.FormsController;
+import de.PSWTM.DigitalForms.model.Form;
+import de.PSWTM.DigitalForms.model.FormElement;
+import de.PSWTM.DigitalForms.model.FormSection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -22,10 +25,19 @@ public class PdfService {
         this.templateEngine = templateEngine;
     }
 
-    public byte[] generatePdf(String title, String content) throws IOException {
+    private Context LoadContextVariables(Form form) {
         Context context = new Context();
-        context.setVariable("title", title);
-        context.setVariable("content", content);
+        for (FormSection fs : form.getForm()){
+            for (FormElement fe: fs.getItems()){
+                context.setVariable(fe.getId(),fe.getValue());
+            }
+        }
+        return context;
+    }
+
+    synchronized public byte[] generatePdf(Form form) throws IOException {
+        Context context = LoadContextVariables(form);
+
 
         String htmlContent = templateEngine.process("AntragAufGenemigenTemplate", context);
 
