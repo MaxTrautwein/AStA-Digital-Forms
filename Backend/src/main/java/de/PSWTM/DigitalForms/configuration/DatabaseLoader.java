@@ -1,7 +1,11 @@
 package de.PSWTM.DigitalForms.configuration;
 
+import de.PSWTM.DigitalForms.Factory.FormElementFactory;
+import de.PSWTM.DigitalForms.Model.TemplatePDF;
 import de.PSWTM.DigitalForms.model.*;
 import de.PSWTM.DigitalForms.repository.FormRepository;
+import de.PSWTM.DigitalForms.repository.TemplatePDFRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,11 +41,8 @@ public class DatabaseLoader {
                 ,null,"prepay_bank");
     }
 
-
-    private static Form gen_Genehmigung_von_Ausgaben_und_Anschaffungen(){
-        List<FormSection> sections = new ArrayList<>();
-
-        sections.add(createFormSection(0,"Generell"));
+    private static void AddGeneralContactSection(List<FormSection> sections, int orderIndex){
+        sections.add(createFormSection(orderIndex,"Generell"));
         addFormElement(sections,FormElement.TypeEnum.TEXT,"Kurzbezeichnung des Antrages"
                 ,null,"bez");
         addFormElement(sections,FormElement.TypeEnum.TEXT,"Fachschaft/Referat/Arbeitskreis"
@@ -50,6 +51,13 @@ public class DatabaseLoader {
                 ,"(Handy-Nr., E-mail)","contact");
         addFormElement(sections,FormElement.TypeEnum.TEXT,"Antragsteller*in"
                 ,"(Name, Vorname)","user");
+    }
+
+
+    private static Form gen_Genehmigung_von_Ausgaben_und_Anschaffungen(){
+        List<FormSection> sections = new ArrayList<>();
+
+        AddGeneralContactSection(sections,0);
         sections.add(createFormSection(1,"Hauptteil"));
         addFormElement(sections,FormElement.TypeEnum.TEXTMULTILINE,"Verwendungszweck: (Bitte ausführlich beschreiben! Evtl. Beiblatt nutzen)"
                 ,"Was? Warum? Welcher Preis?","reason");
@@ -68,9 +76,9 @@ public class DatabaseLoader {
         attachments.add(createAttachment("Protokoll","Unterschriebenes Protokoll der FS-Sitzung\nEnthält detailarten beschluss,..."));
 
         Form f1 = new Form();
-        f1.setTitel("Genehmigung von Ausgaben und Anschaffungen");
+        f1.setTitel("Ausgaben und Anschaffungen");
         f1.template(true);
-        f1.setDescription("bla Genehmigung von zeugs");
+        f1.setDescription("Genehmigung von Ausgaben und Anschaffungen");
         f1.setCategory(Form.CategoryEnum.ANTRAG);
         f1.setForm(sections);
         f1.attachments(attachments);
@@ -78,24 +86,48 @@ public class DatabaseLoader {
         return f1;
     }
 
-    public static void initFormRepository(FormRepository repository){
-        repository.save(gen_Genehmigung_von_Ausgaben_und_Anschaffungen());
+    private static Form gen_Erstattung_von_Auslagen_und_Rechnungen(){
+        Form form = new Form();
+        form.setTemplate(true);
+        form.setTitel("Ausgaben und Anschaffungen");
+        form.setDescription("Erstattung von Auslagen und Rechnungen");
+        form.setCategory(Form.CategoryEnum.ABRECHNUNG);
+
+        List<FormSection> sections = new ArrayList<>();
+
+        AddGeneralContactSection(sections,0);
+
+        addPaymentSection(sections,1);
+
+        sections.getLast().getItems().addFirst(
+                FormElementFactory.createFormElement("sum",
+                        FormElement.TypeEnum.MONEY,"Gesamtbetrag in Euro:",null));
+
+        form.setForm(sections);
+
+        return form;
+    }
+
+    public static void initFormRepository(FormRepository repository, TemplatePDFRepository pdfRepository){
+        Form newForm = repository.save(gen_Genehmigung_von_Ausgaben_und_Anschaffungen());
+        pdfRepository.save(new TemplatePDF(newForm.getId(), "AntragAufGenehmigenTemplate"));
+
+        newForm = repository.save(gen_Erstattung_von_Auslagen_und_Rechnungen());
+        pdfRepository.save(new TemplatePDF(newForm.getId(), "ErstattungvonAuslagenundRechnungen"));
 
         repository.save(createForm("FS-Wochenende",true,"Ein wochenende für die FS", Form.CategoryEnum.ANTRAG));
-        repository.save(createForm("Wirtschaftliche Veranstaltung",true,"Ne Veranstaltung wo geld eingenommen werden soll", Form.CategoryEnum.ANTRAG));
 
-        repository.save(createForm("Reisekosten", true,"Ich / Wir wollen wo hin.",Form.CategoryEnum.ANTRAG));
         repository.save(createForm("Kulturelle Veranstaltung",true,"Eine Kulturelle Veranstaltung. Keine gewinnabsichten",Form.CategoryEnum.ANTRAG));
-        repository.save(createForm("Erstattung Reisekosten",true,"Wir sind nach Antrag mit Genehmigung wo hin. Gib geld",Form.CategoryEnum.ABRECHNUNG));
-
+        repository.save(createForm("Reisekosten", true,"Ich / Wir wollen wo hin.",Form.CategoryEnum.ANTRAG));
+        repository.save(createForm("Wirtschaftliche Veranstaltung",true,"Ne Veranstaltung wo geld eingenommen werden soll", Form.CategoryEnum.ANTRAG));
     }
 
 
     @Bean
-    CommandLineRunner initDatabase(FormRepository formRepository) {
+    CommandLineRunner initDatabase(FormRepository formRepository,TemplatePDFRepository pdfRepository) {
         return args -> {
             if(formRepository.findAll().isEmpty()) {
-                initFormRepository(formRepository);
+                initFormRepository(formRepository, pdfRepository);
 
             }
         };

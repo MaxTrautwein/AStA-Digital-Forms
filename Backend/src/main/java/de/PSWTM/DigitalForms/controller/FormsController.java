@@ -1,9 +1,11 @@
 package de.PSWTM.DigitalForms.controller;
 
+import de.PSWTM.DigitalForms.Model.TemplatePDF;
 import de.PSWTM.DigitalForms.Services.PdfService;
 import de.PSWTM.DigitalForms.api.FormsApiDelegate;
 import de.PSWTM.DigitalForms.model.Form;
 import de.PSWTM.DigitalForms.repository.FormRepository;
+import de.PSWTM.DigitalForms.repository.TemplatePDFRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class FormsController implements FormsApiDelegate {
 
     @Autowired
     private FormRepository repository;
+
+    @Autowired
+    private TemplatePDFRepository pdfRepository;
 
     Logger logger = LoggerFactory.getLogger(FormsController.class);
 
@@ -51,11 +56,15 @@ public class FormsController implements FormsApiDelegate {
     public ResponseEntity<Resource> formsFormIDDownloadGet(String formID) {
         Form form = repository.findOwnedFormById(getUserID(), formID);
         if (form == null) {
-            // TODO Check OpenAPI Spec
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.badRequest().build();
         }
+        TemplatePDF templatePDF = pdfRepository.findByFormId(form.getParent());
+        if (templatePDF == null){
+            return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build();
+        }
+
         try {
-            byte[] pdfBytes = pdfService.generatePdf(form);
+            byte[] pdfBytes = pdfService.generatePdf(form,templatePDF.getTemplatePdf());
             ByteArrayResource resource = new ByteArrayResource(pdfBytes);
 
             return ResponseEntity
@@ -120,7 +129,7 @@ public class FormsController implements FormsApiDelegate {
             }
         }else {
             // New Form
-            form.setParent(form.getId());
+            form.parent(form.getId());
             form.setId(null); // ID is created by the DB
             form.setOwner(getUserID());
         }

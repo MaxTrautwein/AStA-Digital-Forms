@@ -199,6 +199,12 @@ paths:
               schema:
                 type: string
                 format: binary
+        '400':
+          description: Bad Request.
+        '500':
+          description: Exception During PDF Generation
+        '501':
+          description: The Provided Form does not Support the PDF Export
 
 
 
@@ -269,6 +275,8 @@ components:
         owner:
           type: "string"
         parent:
+          type: "string"
+        templatePdf:
           type: "string"
         template:
           type: "boolean"

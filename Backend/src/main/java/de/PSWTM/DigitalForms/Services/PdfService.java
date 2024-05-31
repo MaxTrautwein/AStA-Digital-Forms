@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import java.io.*;
-import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 @Service
@@ -35,28 +35,23 @@ public class PdfService {
         return context;
     }
 
-    synchronized public byte[] generatePdf(Form form) throws IOException {
+    synchronized public byte[] generatePdf(Form form, String Template) throws IOException {
         Context context = LoadContextVariables(form);
 
-
-        String htmlContent = templateEngine.process("AntragAufGenemigenTemplate", context);
+        String htmlContent = templateEngine.process(Template, context);
 
         try {
             // Paths to resources and output files
             String htmlFilePath = "./test.html";
-            String imageFilePath = "./AstaRgb.png";
             String pdfFilePath = "./out.pdf";
 
 
             // Save HTML content to file
             saveHtmlFile(htmlContent, htmlFilePath);
 
-            // Copy the AStA Logo from resources to the destination folder
-            try{
-                copyImageFile("/templates/AstaRgb.png", imageFilePath);
-            }catch (FileAlreadyExistsException e){
-                logger.error("File already exists");
-            }
+            // Copy the AStA Logo & Styles from resources to the destination folder
+            copyFile("/templates/AstaRgb.png", "./AstaRgb.png");
+            copyFile("/templates/Styles.css", "./Styles.css");
 
 
             // Generate PDF from HTML using Chromium
@@ -77,12 +72,16 @@ public class PdfService {
         }
     }
 
-    private static void copyImageFile(String resourcePath, String destinationPath) throws IOException {
+    private static void copyFile(String resourcePath, String destinationPath) throws IOException {
         try (InputStream is = PdfService.class.getResourceAsStream(resourcePath)) {
             if (is == null) {
                 throw new FileNotFoundException("Resource not found: " + resourcePath);
             }
-            Files.copy(is, Paths.get(destinationPath));
+            final Path path = Paths.get(destinationPath);
+            if (!Files.exists(path)){
+                Files.copy(is, path);
+            }
+
         }
     }
 
