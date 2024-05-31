@@ -1,12 +1,17 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormSection} from "../../api-client";
 import {TextComponent} from "./text/text.component";
+import { IbanComponent } from './iban/iban.component';
+import { MoneyComponent } from './money/money.component';
+import { AddressComponent } from './address/address.component';
+import { DateComponent } from './date/date.component';
+import { TextMultiLineComponent } from './text-multi-line/text-multi-line.component';
 
 @Component({
   selector: 'app-form-content',
   standalone: true,
   imports: [
-    TextComponent,
+    TextComponent,IbanComponent,MoneyComponent,AddressComponent,DateComponent,TextMultiLineComponent,
   ],
   templateUrl: './form-content.component.html',
   styleUrl: './form-content.component.css'

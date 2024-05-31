@@ -5,7 +5,36 @@
                 [help]="formElement.help" [value]="formElement.value"
                 (valueChanged)="updateFormSection({'val': $event, 'id': formElement.id } )" />
     }
+@case ('iban') {
+  <app-iban>
 
+  </app-iban>
+
+}
+@case ('money') {
+  <app-money>
+    
+  </app-money>
+
+}
+@case ('address') {
+  <app-address>
+    
+  </app-address>
+
+}
+@case ('date') {
+  <app-date>
+    
+  </app-date>
+
+}
+@case ('TextMultiLine') {
+  <app-text-multi-line>
+    
+  </app-text-multi-line>
+
+}
     <!-- TODO Add more Cases for the Different Types -->
 
 
