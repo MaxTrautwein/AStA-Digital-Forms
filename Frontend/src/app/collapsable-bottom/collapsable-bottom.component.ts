@@ -19,9 +19,19 @@ export class CollapsableBottomComponent {
 
   protected forms: Observable<Form[]>
 
+  protected isPopupOpen: boolean = false;
+
   constructor(private api: FormsService, private prep: PrepareAPIService, protected templateService: TemplateService, protected favService: FavouriteService) {
     prep.prepare();
     this.forms = api.formsGet()
     favService.fetchFav();
+  }
+
+  openPopup() {
+    this.isPopupOpen = true;
+  }
+
+  closePopup() {
+    this.isPopupOpen = false;
   }
 }

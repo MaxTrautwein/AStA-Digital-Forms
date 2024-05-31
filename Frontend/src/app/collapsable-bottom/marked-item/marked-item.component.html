@@ -1,4 +1,14 @@
 <div class="fav-wrapper">
     <button type="button" class="fav" routerLink="/Form/{{this.FormId()}}">{{this.getTemplateName()}}</button>
-    <button type="button" class="delete" (click)="this.FavService.delFav(this.FavId());">d</button>
+    <button type="button" class="delete" (click)="this.openPopup()">d</button>
 </div> 
+
+@if(this.isPopupOpen) {
+    <div class="background">
+      <div class="popup">
+        <h1>Wirklich aus favoriten entfernen?</h1>
+        <button class="agree" (click)="this.FavService.delFav(this.FavId());" (click)="this.closePopup()">Entfernen</button>
+        <button class="cancel" (click)="this.closePopup()">Abbrechen</button>
+      </div>
+    </div>
+   }

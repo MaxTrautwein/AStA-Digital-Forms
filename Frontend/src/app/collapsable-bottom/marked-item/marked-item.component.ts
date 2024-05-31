@@ -17,6 +17,16 @@ import { Favourite } from '../../api-client';
 export class MarkedItemComponent {
   @Input() fav!: Favourite;
 
+  protected isPopupOpen: boolean = false;
+
+  openPopup() {
+    this.isPopupOpen = true;
+  }
+
+  closePopup() {
+    this.isPopupOpen = false;
+  }
+
   /*
   displayName(): string{
     let ret = this.form.titel!;
