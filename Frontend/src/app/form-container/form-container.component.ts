@@ -42,6 +42,16 @@ export class FormContainerComponent {
               private router: Router, protected FavService: FavouriteService) {
   }
 
+  isInFav() {
+    let Favourites = this.FavService.getFav();
+    for(let favs of Favourites) {
+      if(favs.formId == this.form.id) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   ngOnInit() {
     this.route.queryParamMap.pipe(
       map((params: ParamMap) => params.get('page'))).subscribe(
