@@ -68,7 +68,7 @@ public class DatabaseLoader {
         attachments.add(createAttachment("Protokoll","Unterschriebenes Protokoll der FS-Sitzung\nEnthält detailarten beschluss,..."));
 
         Form f1 = new Form();
-        f1.setTitel("Genehmigung von Ausgaben und Anschaffungen");
+        f1.setTitel("Ausgaben und Anschaffungen");
         f1.template(true);
         f1.setDescription("bla Genehmigung von zeugs");
         f1.setCategory(Form.CategoryEnum.ANTRAG);
@@ -79,7 +79,7 @@ public class DatabaseLoader {
     }
 
     public static void initFormRepository(FormRepository repository){
-        //repository.save(gen_Genehmigung_von_Ausgaben_und_Anschaffungen());
+        repository.save(gen_Genehmigung_von_Ausgaben_und_Anschaffungen());
         /* 
         repository.save(createForm("FS-Wochenende",true,"Ein wochenende für die FS", Form.CategoryEnum.ANTRAG));
         repository.save(createForm("Kulturelle Veranstaltung",true,"Eine Kulturelle Veranstaltung. Keine gewinnabsichten",Form.CategoryEnum.ANTRAG));
@@ -100,7 +100,7 @@ public class DatabaseLoader {
 
 
         //wir machen das komplett neu!
-        repository.save(createForm("Ausgaben und Anschaffungen",true,"Ausgaben und Anschaffungen",Form.CategoryEnum.ANTRAG));
+        //repository.save(createForm("Ausgaben und Anschaffungen",true,"Ausgaben und Anschaffungen",Form.CategoryEnum.ANTRAG));
         repository.save(createForm("Ausgaben und Anschaffungen",true,"Erstattung von Auslagen und Rechnungen",Form.CategoryEnum.ABRECHNUNG));
 
         repository.save(createForm("Fachschaftswochenende",true,"Wir wollen wo hin fahren",Form.CategoryEnum.ANTRAG));

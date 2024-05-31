@@ -16,6 +16,7 @@
     background-color: var(--asta-blue);
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+    text-align: center;
     /*border-radius: 20px;
     margin-left: 5%;
     margin-right: 5%;
@@ -50,10 +51,6 @@
     height: fit-content;
     width: 20%;
     height: 20vh;
-}
-
-.auswahlbutton:hover {
-    cursor: pointer;
 }
 
 h1 {
