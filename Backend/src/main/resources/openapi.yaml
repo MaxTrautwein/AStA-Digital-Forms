@@ -276,8 +276,6 @@ components:
           type: "string"
         parent:
           type: "string"
-        templatePdf:
-          type: "string"
         template:
           type: "boolean"
         titel:
