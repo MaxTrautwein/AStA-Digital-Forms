@@ -2,6 +2,8 @@ import {Component, Input} from '@angular/core';
 import {Form} from "../../api-client";
 import {RouterLink} from "@angular/router";
 import { FavouriteService } from '../../favourite.service';
+import { TemplateService } from '../../template.service';
+import { Favourite } from '../../api-client';
 
 @Component({
   selector: 'app-marked-item',
@@ -13,8 +15,9 @@ import { FavouriteService } from '../../favourite.service';
   styleUrl: './marked-item.component.css'
 })
 export class MarkedItemComponent {
-  @Input() form!: Form;
+  @Input() fav!: Favourite;
 
+  /*
   displayName(): string{
     let ret = this.form.titel!;
 
@@ -24,14 +27,21 @@ export class MarkedItemComponent {
         ret = shortName;
       }
     })
-
     return ret;
   }
-
+*/
   FavId() {
-    return this.form.id!;
+    return this.fav.id!;
   }
 
-  constructor(protected FavService: FavouriteService) {};
+  FormId() {
+    return this.fav.formId;
+  }
+
+  getTemplateName() {
+    return this.templateService.getTemplate(this.FormId()!)?.titel;
+  }
+
+  constructor(protected FavService: FavouriteService, protected templateService: TemplateService) {};
 
 }

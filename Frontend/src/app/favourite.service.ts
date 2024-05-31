@@ -25,7 +25,6 @@ export class FavouriteService {
     this.api.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
     let fav: Favourite = {};
     fav.formId = Formid;
-    console.log(Formid);
     this.api.favouritesPost(fav).subscribe();
   }
 
