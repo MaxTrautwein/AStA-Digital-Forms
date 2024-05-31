@@ -4,50 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Genehmigung von Ausgaben und Anschaffungen Dez 23</title>
+  <link rel="stylesheet" href="Styles.css">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-    }
-    p {
-      font-size: 15px;
-      margin: 4px 0px;
-    }
-    .page {
-      width: 21cm;
-      height: 29.7cm;
-      margin: 1cm auto;
-      padding: 1cm;
-      border: 1px solid #000;
-      box-sizing: border-box;
-      page-break-after: always;
-    }
-    .page:last-child {
-      page-break-after: auto;
-    }
-    .signature {
-      display: flex;
-      justify-content: space-between;
-    }
-    .signature div {
-      margin-top: 20px;
-      width: 45%;
-    }
-    .HeaderLine{
-      display: flex;
-      font-size: 10.75px;
-    }
-    .HeaderLine img {
-      align-self: end;
-      width: 200px;
-      padding-left: 200px;
-    }
-    h1{
-      font-size: 21.69px;
-      margin-bottom: 5px;
-    }
-    .FirstPageGeneral{
-      width: 30em;
-    }
+
+
     textarea {
       margin-top: 0;
       width: 100%;
@@ -56,31 +16,11 @@
     .dataText{
       width: 120px;
     }
-    .ichBestaetige{
-      font-size: 13.28px;
-      font-style: italic;
-      margin-bottom: 15px;
-    }
-    .ibanwide{
-      width: 70px;
-      margin-right: 10px;
-    }
-    .ibanslim{
-      width: 40px;
-    }
-    .pgeneral{
-      height: 30px;
-    }
+
     .terminhoe{
       margin-top: 15px;
     }
-    .UnterschriftSteller{
-      height: 25px;
-      width: 70%;
-    }
-    .strongsize{
-      font-size: 15px;
-    }
+
     .vorschussLine{
       margin-top: 20px;
     }
@@ -92,51 +32,19 @@
       width: 120px;
       height: 20px;
     }
-    h2{
-      font-size: 15px;
-      margin-bottom: 0;
+    .VomAstaAusfüllenSpacer{
       margin-top: 100px;
     }
-    hr {
-      margin-top: 2px;
-      background-color: black;
-      height: 2px;
-      margin-bottom: 25px;
-    }
-    .vorschussReciver{
-      height: 30px;
-    }
-    p.vorschussReciver{
-      margin-bottom: 15px;
-    }
 
-    .alignRight{
-      float: right;
-      /*Breaks the Line Logic*/
-    }
-    .vorschussFullLen{
-      width: 80%;
-    }
     .AntragGeprueft{
-      text-decoration: underline;
       margin-top: 25px;
       margin-bottom: 60px;
     }
     .ProtokollAnheften{
       margin-top: 25px;
     }
-    .ReciverBlock{
-      margin-top: 30px;
-      margin-bottom: 60px;
-    }
-    .ibanfirst{
-      margin-left: 12.5px;
-    }
 
 
-      body, .page {
-        margin: 0;
-      }
 
 @page{
 margin: 0;
@@ -164,10 +72,14 @@ size: A4;
   <h1>Genehmigung von Ausgaben und Anschaffungen</h1>
   <p>(Bitte unbedingt Antragsfrist beachten! Siehe dazu „Richtlinie zur Genehmigung und Abrechnung von Haushaltsmitteln“. Zu spät eingegangene Anträge werden abgelehnt. Bitte alle Seiten einreichen!)</p>
   <br>
-  <p class="pgeneral"><strong>Kurzbezeichnung des Antrages:</strong> <input class="FirstPageGeneral" type="text" th:value="${bez}"></p>
-  <p class="pgeneral"><strong>Fachschaft/Referat/Arbeitskreis:</strong> <input class="FirstPageGeneral" type="text" th:value="${fs_ref_ar}"></p>
-  <p class="pgeneral"><strong>Kontaktdaten </strong>(Handy-Nr. E-mail): <input class="FirstPageGeneral" type="text" th:value="${contact}"></p>
-  <p class="pgeneral"><strong>Antragsteller*in:</strong> (Name Vorname) <input class="FirstPageGeneral" type="text" th:value="${user}"></p>
+
+  <div class="GeneralInformationBox">
+    <p class="pgeneral"><strong>Kurzbezeichnung des Antrages:</strong> <input class="FirstPageGeneral" type="text" th:value="${bez}"></p>
+    <p class="pgeneral"><strong>Fachschaft/Referat/Arbeitskreis:</strong> <input class="FirstPageGeneral" type="text" th:value="${fs_ref_ar}"></p>
+    <p class="pgeneral"><strong>Kontaktdaten </strong>(Handy-Nr. E-mail): <input class="FirstPageGeneral" type="text" th:value="${contact}"></p>
+    <p class="pgeneral"><strong>Antragsteller*in:</strong> (Name Vorname) <input class="FirstPageGeneral" type="text" th:value="${user}"></p>
+  </div>
+
   <p><strong>Verwendungszweck:</strong> (Bitte ausführlich beschreiben! Evtl. Beiblatt nutzen. - Was? Warum? Welcher Preis?)</p>
   <textarea>
 
@@ -192,7 +104,7 @@ size: A4;
 
   <input type="text" class="UnterschriftSteller">
   <p><strong>Datum/Unterschrift Antragsteller*in:</strong></p>
-  <p class="ichBestaetige">* Ich bestätige die Vollständigkeit und Richtigkeit der oben gemachten Angaben.</p>
+  <p class="ichBestaetige Italic">* Ich bestätige die Vollständigkeit und Richtigkeit der oben gemachten Angaben.</p>
 
   <div>
     <p>Anmerkung Antrag vom AStA genehmigt: <input class="AstAGenemigt" type="text"></p>
@@ -238,6 +150,7 @@ size: A4;
     <p  class="vorschussReciver" ><strong>IBAN:</strong> (22 Stellen)<input class="ibanfirst ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanslim vorschussReciver" type="text"></p>
     <p class="vorschussReciver" ><strong>Kreditinstitut:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
   </div>
+
   <ul>
     <li><strong class="strongsize">Ich bestätige die Richtigkeit der gemachten Angaben.</strong></li>
     <li><strong class="strongsize">Ich bestätige, dass mir der Vorschussbetrag in Rechnung gestellt wird, sollte die Abrechnung der angemeldeten Ausgaben nicht zeitnah nach dem Kauf im AStA eingereicht werden.</strong></li>
@@ -248,14 +161,14 @@ size: A4;
   <input type="text" class="UnterschriftSteller">
   <p><strong>Datum/Unterschrift Antragsteller*in:</strong></p>
 
-  <h2>Vom AStA auszufüllen!</h2>
+  <h2 class="VomAstaAusfüllenSpacer">Vom AStA auszufüllen!</h2>
   <hr>
 
   <p><strong>Beschluss AStA vorhanden? (>1000€)</strong> <input type="checkbox"> <span class="alignRight"> <strong>Datum der Sitzung:</strong> _______________</span></p>
   <p><strong>Beschluss FaRat vorhanden? (>5000€)</strong> <input type="checkbox"> <span class="alignRight"> <strong>Datum der Sitzung:</strong> _______________</span></p>
   <p class="ProtokollAnheften"><strong>(Protokoll mit Beschluss bitte anheften!)</strong></p>
 
-  <p class="AntragGeprueft"><strong>Antrag geprüft:</strong></p>
+  <p class="AntragGeprueft UnderLine"><strong>Antrag geprüft:</strong></p>
   <p>__________________________________________</p>
   <p>Datum/Unterschrift Haushaltsbeauftragte</p>
 
