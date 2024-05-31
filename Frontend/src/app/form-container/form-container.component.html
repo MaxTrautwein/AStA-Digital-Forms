@@ -1,6 +1,6 @@
 <div *ngIf="(formdetails | async) as FormDetail" >
   <h1>{{FormDetail.titel }}</h1>
-  <button type="button" (click)="this.FavService.putFav(FormDetail.parent!);">Fav</button>
+  <button type="button" (click)="this.FavService.putFav(this.form.id!);">Fav</button>
 
   <app-progress-display [sections]="FormDetail.form" ></app-progress-display>
   <app-form-content [section]="FormDetail.form?.[this.currentSection]" (formSectionEventEmitter)="UpdateFormSectionData($event)" > > ></app-form-content>

@@ -33,7 +33,7 @@ export class FormContainerComponent {
 
   protected formdetails!: Observable<Form>;
 
-  private form!: Form;
+  protected form!: Form;
 
   protected section: FormSection | undefined;
 
@@ -93,7 +93,6 @@ export class FormContainerComponent {
         })
       })
     }
-
 
 
   }
