@@ -58,7 +58,7 @@ export class FormContainerComponent {
         return fav.id;
       }
     }
-    return null;
+    return null;                                //not clean, but it works!
   }
 
   ngOnInit() {
