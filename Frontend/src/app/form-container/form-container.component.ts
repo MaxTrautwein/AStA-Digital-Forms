@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {NavBarComponent} from "../nav-bar/nav-bar.component";
 import {ActivatedRoute, ParamMap, Router, RouterOutlet} from "@angular/router";
-import {Form, FormSection, FormsService} from "../api-client";
+import {Favourite, Form, FormSection, FormsService} from "../api-client";
 import {TemplateService} from "../template.service";
 import {map, Observable, Subscription, switchMap} from "rxjs";
 import {ProgressDisplayComponent} from "./progress-display/progress-display.component";
@@ -50,6 +50,15 @@ export class FormContainerComponent {
       }
     }
     return false;
+  }
+
+  getFavId() {
+    for(let fav of this.FavService.getFav()) {
+      if(this.form.id == fav.formId) {
+        return fav.id;
+      }
+    }
+    return null;
   }
 
   ngOnInit() {
