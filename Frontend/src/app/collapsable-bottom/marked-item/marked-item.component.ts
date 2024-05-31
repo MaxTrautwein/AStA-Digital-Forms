@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {Form} from "../../api-client";
 import {RouterLink} from "@angular/router";
+import { FavouriteService } from '../../favourite.service';
 
 @Component({
   selector: 'app-marked-item',
@@ -26,5 +27,11 @@ export class MarkedItemComponent {
 
     return ret;
   }
+
+  FavId() {
+    return this.form.id!;
+  }
+
+  constructor(protected FavService: FavouriteService) {};
 
 }

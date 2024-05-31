@@ -11,7 +11,7 @@
       <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordion">
         <div class="card-body">
           @for(f of this.favService.getFav(); track f) {
-            <app-marked-item></app-marked-item>
+            <app-marked-item [form]="f"></app-marked-item>
           }
         </div>
       </div>
