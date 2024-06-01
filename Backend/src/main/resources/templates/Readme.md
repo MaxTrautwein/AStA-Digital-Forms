@@ -76,3 +76,30 @@ Those will be required for the Common Blocks
         <li><strong class="strongsizeSmaller"></strong></li>
     </ul>
 ```
+
+### Vom Asta Auszufüllen
+The following Style must be user defined
+```css
+.VomAstaSpacer{
+      
+    }
+    .QuittungenSpacer{
+      
+    }
+    .AntragGeprueftSpacer{
+      
+    }
+    .UnterschriftHaushaltSpacer{
+      
+    }
+```
+
+```html
+<h2 class="VomAstaSpacer">Vom AStA auszufüllen!</h2>
+    <hr>
+
+    <p class="QuittungenSpacer"><strong>Quittungen/Rechnungen im Original angehängt?</strong> <input type="checkbox"></p>
+    <p><strong>Haushalts-Titel:</strong> __________________________</p>
+    <p class="AntragGeprueftSpacer"><strong class="UnderLine">Antrag geprüft:</strong></p>
+    <p class="UnterschriftHaushaltSpacer">__________________________________________<br>Datum/Unterschrift Haushaltsbeauftragte</p>
+```
