@@ -1,6 +1,9 @@
-import {Component, Input} from '@angular/core';
-import {Form} from "../../api-client";
-import {RouterLink} from "@angular/router";
+import { FavouriteService } from '../../favourite.service';
+import { TemplateService } from '../../template.service';
+import { Favourite } from '../../api-client';
+import { Component, Input } from '@angular/core';
+import { Form } from "../../api-client";
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-marked-item',
@@ -14,6 +17,7 @@ import {RouterLink} from "@angular/router";
 export class MarkedItemComponent {
   @Input() form!: Form;
 
+  
   displayName(): string{
     let ret = this.form.titel!;
 
@@ -23,8 +27,8 @@ export class MarkedItemComponent {
         ret = shortName;
       }
     })
-
     return ret;
   }
+
 
 }

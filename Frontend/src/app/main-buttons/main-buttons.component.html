@@ -1,9 +1,16 @@
 <div class="Button-wrapper">
-
-    <div *ngFor="let t of this.templateService.getTemplates();">
-        <button type="button" class="auswahlbutton" routerLink="/Form/{{t.id}}">
-            <h1>{{t.titel}}</h1>
-            <h2>{{t.description}}</h2>
-        </button>
-    </div>
+    @for(t of this.templateService.getAntragsTemplates(); track t) {
+        <div class="subbutton-wrapper">
+            <div class="auswahlbutton">
+                <h1>{{t.titel}}</h1>
+                <h2>{{t.description}}</h2>
+            </div>
+            <button type="button" class="subbutton sbleft" routerLink="/Form/{{t.id}}">Antrag</button>
+            @for(a of this.templateService.getAbrechnungsTemplates(); track a) {
+                @if(a.titel == t.titel) {
+                    <button type="button" class="subbutton sbright" routerLink="/Form/{{a.id}}">Abrechnung</button>
+                }
+            }
+        </div>
+    }
 </div>

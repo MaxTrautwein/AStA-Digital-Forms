@@ -10,19 +10,42 @@
 
 .auswahlbutton {
     display: block;
-    width: 20%;
+    width: 100%;
     height: 20vh;
     position: relative;
     background-color: var(--asta-blue);
-    border-radius: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    text-align: center;
+}
+
+.subbutton {
+    display: block;
+    width: 50%;
+    height: 3vw;
+    float: inline-start;
+    background-color: var(--asta-bluelight);
+    color: var(--asta-white);
+}
+
+.sbright {
+    border-bottom-right-radius: 20px;
+}
+
+.sbleft {
+    border-bottom-left-radius: 20px;
+}
+
+.subbutton-wrapper {
+    display: block;
+    position: relative;
     margin-left: 5%;
     margin-right: 5%;
     float: inline-start;
     margin-bottom: 5%;
-}
-
-.auswahlbutton:hover {
-    cursor: pointer;
+    height: fit-content;
+    width: 20%;
+    height: 20vh;
 }
 
 h1 {

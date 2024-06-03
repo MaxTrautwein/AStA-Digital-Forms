@@ -1,17 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ProgressDisplayComponent } from './progress-display.component';
 
-describe('ProgressDisplayComponent', () => {
-  let component: ProgressDisplayComponent;
-  let fixture: ComponentFixture<ProgressDisplayComponent>;
+import { FavoritenComponent } from './favoriten.component';
+
+describe('FavoritenComponent', () => {
+  let component: FavoritenComponent;
+  let fixture: ComponentFixture<FavoritenComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProgressDisplayComponent]
+      imports: [FavoritenComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(ProgressDisplayComponent);
+    fixture = TestBed.createComponent(FavoritenComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -7,10 +7,8 @@ import { AppService } from './app.service';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { CollapsableBottomComponent } from './collapsable-bottom/collapsable-bottom.component';
 import { MainButtonsComponent } from './main-buttons/main-buttons.component';
-import {ApiModule, FormsService} from './api-client';
+import {ApiModule, FormsService, DefaultService} from './api-client';
 import { HttpClientModule } from '@angular/common/http';
-import { Configuration } from './api-client';
-import { DefaultService } from './api-client';
 import { LoginComponent } from './login/login.component';
 
 
