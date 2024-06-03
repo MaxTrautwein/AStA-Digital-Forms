@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {DefaultService, Form} from "./api-client";
-import {OAuthService} from "angular-oauth2-oidc";
+import { DefaultService, Form } from "./api-client";
+import { OAuthService } from "angular-oauth2-oidc";
 
 @Injectable({
   providedIn: 'root'

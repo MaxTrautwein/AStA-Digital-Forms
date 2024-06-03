@@ -1,6 +1,6 @@
-import {Component, Input} from '@angular/core';
-import {Form} from "../../api-client";
-import {RouterLink} from "@angular/router";
+import { Component, Input } from '@angular/core';
+import { Form } from "../../api-client";
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-marked-item',
