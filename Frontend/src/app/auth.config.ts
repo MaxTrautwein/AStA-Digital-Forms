@@ -1,4 +1,4 @@
-import {AuthConfig} from 'angular-oauth2-oidc';
+import { AuthConfig } from 'angular-oauth2-oidc';
 
 export const authConfig: AuthConfig = {
   issuer: 'https://auth.df.dk4max.com/realms/DigitalForms',

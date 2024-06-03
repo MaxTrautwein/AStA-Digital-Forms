@@ -1,5 +1,4 @@
 import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
-import {FormSection} from "../../../api-client";
 
 @Component({
   selector: 'app-text',
@@ -9,9 +8,9 @@ import {FormSection} from "../../../api-client";
   styleUrl: './text.component.css'
 })
 export class TextComponent {
-@Input() description: string | undefined = "";
-@Input() help: string | undefined = "";
-@Input() value: string | undefined = "";
+@Input() description: string | undefined;
+@Input() help: string | undefined;
+@Input() value: string | undefined;
 
 @Output() valueChanged = new EventEmitter<string>();
 
