@@ -1,8 +1,8 @@
 <!-- TODO add Function-->
 <!-- TODO Better Style-->
 <div class="progress-container">
-  <span  *ngFor="let i of sections">
+  @for (i of sections; track i.order){
     <div class="progress-Item"  routerLink="." [queryParams]="{page: i.order}" >{{i.order}}</div>
-  </span>
+  }
 </div>
 

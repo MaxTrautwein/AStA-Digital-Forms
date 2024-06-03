@@ -26,9 +26,9 @@
       </div>
       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion">
         <div class="card-body">
-          <span *ngFor="let ownedForms of forms | async">
+          @for (ownedForms of forms | async; track ownedForms) {
             <app-marked-item [form]="ownedForms" ></app-marked-item>
-          </span>
+          }
         </div>
       </div>
     </div>

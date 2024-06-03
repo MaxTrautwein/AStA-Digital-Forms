@@ -6,12 +6,11 @@ import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @Repository
 public interface FormRepository extends MongoRepository<Form ,String> {
 
-    @Query(value = "{ 'template' : true }", fields = "{ '_id' : 1, 'titel' : 1 , 'description':  1, 'template':  1}")
+    @Query(value = "{ 'template' : true }", fields = "{ '_id' : 1, 'category' : 1, 'titel' : 1 , 'description':  1, 'template':  1}")
     ArrayList<Form> findAllTemplates_IdNameDescription();
 
     @Query(value = "{'template' : false, 'owner':  ?0}")
@@ -19,4 +18,8 @@ public interface FormRepository extends MongoRepository<Form ,String> {
 
     @Query(value = "{'template' : false, 'owner':  ?0, '_id': ?1}")
     Form findOwnedFormById(String user, String id);
+
+    @Query(value = "{'template' : false}")
+    ArrayList<Form> findAllUserForms();
+
 }

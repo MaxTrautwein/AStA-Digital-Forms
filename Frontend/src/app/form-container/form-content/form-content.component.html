@@ -1,18 +1,17 @@
-
-<div  *ngFor="let formElement of this.section?.items">
-  <span [ngSwitch]="formElement.type">
-    <span *ngSwitchCase="'text'">
+@for (formElement of this.section?.items; track $index){
+  @switch (formElement.type){
+    @case ('text'){
       <app-text [description]="formElement.Description"
-                [help]="formElement.help" [value]="formElement.value" (valueChanged)="updateFormSection({'val': $event, 'id': formElement.id } )" ></app-text>
-    </span>
+                [help]="formElement.help" [value]="formElement.value"
+                (valueChanged)="updateFormSection({'val': $event, 'id': formElement.id } )" />
+    }
+
     <!-- TODO Add more Cases for the Different Types -->
 
-    <span *ngSwitchDefault>
+
+    @default {
       <p>Unsupported Type {{formElement.type}}</p>
-    </span>
-  </span>
-
-
-
-</div>
+    }
+  }
+}
 

@@ -5,10 +5,8 @@ import de.PSWTM.DigitalForms.repository.FormRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static de.PSWTM.DigitalForms.Factory.AttachmentFactory.createAttachment;
 import static de.PSWTM.DigitalForms.Factory.FormElementFactory.createFormElement;
 import static de.PSWTM.DigitalForms.Factory.FormFactory.createForm;
@@ -68,7 +66,7 @@ public class DatabaseLoader {
         attachments.add(createAttachment("Protokoll","Unterschriebenes Protokoll der FS-Sitzung\nEnthält detailarten beschluss,..."));
 
         Form f1 = new Form();
-        f1.setTitel("Genehmigung von Ausgaben und Anschaffungen");
+        f1.setTitel("Ausgaben und Anschaffungen");
         f1.template(true);
         f1.setDescription("bla Genehmigung von zeugs");
         f1.setCategory(Form.CategoryEnum.ANTRAG);
@@ -80,13 +78,43 @@ public class DatabaseLoader {
 
     public static void initFormRepository(FormRepository repository){
         repository.save(gen_Genehmigung_von_Ausgaben_und_Anschaffungen());
-
+        /* 
         repository.save(createForm("FS-Wochenende",true,"Ein wochenende für die FS", Form.CategoryEnum.ANTRAG));
-        repository.save(createForm("Wirtschaftliche Veranstaltung",true,"Ne Veranstaltung wo geld eingenommen werden soll", Form.CategoryEnum.ANTRAG));
-
-        repository.save(createForm("Reisekosten", true,"Ich / Wir wollen wo hin.",Form.CategoryEnum.ANTRAG));
         repository.save(createForm("Kulturelle Veranstaltung",true,"Eine Kulturelle Veranstaltung. Keine gewinnabsichten",Form.CategoryEnum.ANTRAG));
-        repository.save(createForm("Erstattung Reisekosten",true,"Wir sind nach Antrag mit Genehmigung wo hin. Gib geld",Form.CategoryEnum.ABRECHNUNG));
+        repository.save(createForm("Reisekosten", true,"Ich / Wir wollen wo hin.",Form.CategoryEnum.ANTRAG));
+        //Reisekosten mit Fahrgemeindschaften?
+        repository.save(createForm("Wirtschaftliche Veranstaltung",true,"Ne Veranstaltung wo geld eingenommen werden soll", Form.CategoryEnum.ANTRAG));
+        
+
+        
+        
+        //sauber generiert
+        repository.save(createForm("Vorschuss",true,"Abrechnung eines Vorschusses",Form.CategoryEnum.ABRECHNUNG));
+        repository.save(createForm("FS-Wochenende",true,"Ein wochenende für die FS", Form.CategoryEnum.ABRECHNUNG));
+        repository.save(createForm("Auslagen und Rechnungen",true,"Erstattung von Auslagen und Rechnungen", Form.CategoryEnum.ABRECHNUNG));
+        repository.save(createForm("Reisekosten",true,"Erstattung von Reisekosten", Form.CategoryEnum.ABRECHNUNG));
+        */
+
+
+
+        //wir machen das komplett neu!
+        //repository.save(createForm("Ausgaben und Anschaffungen",true,"Ausgaben und Anschaffungen",Form.CategoryEnum.ANTRAG));
+        repository.save(createForm("Ausgaben und Anschaffungen",true,"Erstattung von Auslagen und Rechnungen",Form.CategoryEnum.ABRECHNUNG));
+
+        repository.save(createForm("Fachschaftswochenende",true,"Wir wollen wo hin fahren",Form.CategoryEnum.ANTRAG));
+        repository.save(createForm("Fachschaftswochenende",true,"Abrechnung des FS-Wochenendes",Form.CategoryEnum.ABRECHNUNG));
+
+        repository.save(createForm("Kulturelle Veranstalltung",true,"wir veranstallten was kulturelles",Form.CategoryEnum.ANTRAG));
+        repository.save(createForm("Kulturelle Veranstalltung",true,"Erstattung von Auslagen/Zuschüssen",Form.CategoryEnum.ABRECHNUNG));
+
+        repository.save(createForm("Reisen",true,"wir gehen wo hin",Form.CategoryEnum.ANTRAG));
+        repository.save(createForm("Reisen",true,"Erstattung von Reisekosten",Form.CategoryEnum.ABRECHNUNG));
+
+        repository.save(createForm("Reisen mit Fahrgemeindschaft",true,"wir gehen zusammen wo hin",Form.CategoryEnum.ANTRAG));
+        repository.save(createForm("Reisen mit Fahrgemeindschaft",true,"Erstattung von Reisekosten",Form.CategoryEnum.ABRECHNUNG));
+
+        repository.save(createForm("Wirtschaftliche Veranstalltung",true,"Veranstalltung mit Gewinnabsicht",Form.CategoryEnum.ANTRAG));
+        repository.save(createForm("Wirtschaftliche Veranstalltung",true,"Erstattung von Auslagen/Zuschüssen",Form.CategoryEnum.ABRECHNUNG));
 
     }
 
