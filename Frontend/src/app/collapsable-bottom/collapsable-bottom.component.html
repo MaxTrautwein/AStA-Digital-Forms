@@ -7,12 +7,28 @@
           </button>
         </h5>
       </div>
-
       <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordion">
         <div class="card-body">
           @for(f of this.favService.getFav(); track f) {
-            <app-marked-item [fav]="f"></app-marked-item>
+            <app-favoriten [fav]="f"></app-favoriten>
           }
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="headingTwo">
+        <h5 class="mb-0">
+          <button class="btn collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <span class="text">Fertige Anträge</span>
+          </button>
+        </h5>
+      </div>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion">
+        <div class="card-body">
+          <span *ngFor="let ownedForms of forms | async">
+            <app-marked-item [form]="ownedForms" ></app-marked-item>
+          </span>
         </div>
       </div>
     </div>

@@ -7,11 +7,12 @@ import {AsyncPipe, NgForOf} from "@angular/common";
 import {PrepareAPIService} from "../prepare-api.service";
 import { TemplateService } from '../template.service';
 import { FavouriteService } from '../favourite.service';
+import { FavoritenComponent } from './favoriten/favoriten.component';
 
 @Component({
   selector: 'app-collapsable-bottom',
   standalone: true,
-  imports: [ReactiveFormsModule, MarkedItemComponent, AsyncPipe, NgForOf],
+  imports: [ReactiveFormsModule, MarkedItemComponent, AsyncPipe, NgForOf, FavoritenComponent],
   templateUrl: './collapsable-bottom.component.html',
   styleUrl: './collapsable-bottom.component.css'
 })
@@ -19,19 +20,9 @@ export class CollapsableBottomComponent {
 
   protected forms: Observable<Form[]>
 
-  protected isPopupOpen: boolean = false;
-
   constructor(private api: FormsService, private prep: PrepareAPIService, protected templateService: TemplateService, protected favService: FavouriteService) {
     prep.prepare();
     this.forms = api.formsGet()
     favService.fetchFav();
-  }
-
-  openPopup() {
-    this.isPopupOpen = true;
-  }
-
-  closePopup() {
-    this.isPopupOpen = false;
   }
 }

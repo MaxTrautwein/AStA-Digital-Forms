@@ -15,19 +15,9 @@ import { Favourite } from '../../api-client';
   styleUrl: './marked-item.component.css'
 })
 export class MarkedItemComponent {
-  @Input() fav!: Favourite;
+  @Input() form!: Form;
 
-  protected isPopupOpen: boolean = false;
-
-  openPopup() {
-    this.isPopupOpen = true;
-  }
-
-  closePopup() {
-    this.isPopupOpen = false;
-  }
-
-  /*
+  
   displayName(): string{
     let ret = this.form.titel!;
 
@@ -39,19 +29,6 @@ export class MarkedItemComponent {
     })
     return ret;
   }
-*/
-  FavId() {
-    return this.fav.id!;
-  }
 
-  FormId() {
-    return this.fav.formId;
-  }
-
-  getTemplateName() {
-    return this.templateService.getTemplate(this.FormId()!)?.titel;
-  }
-
-  constructor(protected FavService: FavouriteService, protected templateService: TemplateService) {};
 
 }

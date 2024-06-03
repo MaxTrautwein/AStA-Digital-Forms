@@ -37,9 +37,13 @@ export class FormContainerComponent {
 
   protected section: FormSection | undefined;
 
-  constructor(private route: ActivatedRoute, protected templateService: TemplateService,
+  constructor(private route: ActivatedRoute, private templateService: TemplateService,
               private api: FormsService, private prep: PrepareAPIService,
               private router: Router, protected FavService: FavouriteService) {
+  }
+
+  getFormId() {
+    return this.formdetails.subscribe(responce => responce.id);
   }
 
   isInFav() {
