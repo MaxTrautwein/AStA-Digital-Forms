@@ -1,0 +1,152 @@
+/*Header*/
+
+.HeaderLine{
+    display: flex;
+    font-size: 10.75px;
+}
+.HeaderLine img {
+    align-self: end;
+    width: 200px;
+    padding-left: 200px;
+}
+
+/*General Information*/
+
+.FirstPageGeneral{
+    width: 30em;
+}
+.pgeneral{
+    height: 30px;
+}
+/*Signature*/
+.signature {
+    display: flex;
+    justify-content: space-between;
+}
+.signature div {
+    margin-top: 20px;
+    width: 45%;
+}
+
+/*Payment Receiver Block */
+.ibanwide{
+    width: 70px;
+    margin-right: 10px;
+}
+.ibanslim{
+    width: 40px;
+}
+.vorschussReciver{
+    height: 30px;
+}
+p.vorschussReciver{
+    margin-bottom: 15px;
+}
+.vorschussFullLen{
+    width: 80%;
+}
+.ibanfirst{
+    margin-left: 12.5px;
+}
+.ReciverBlock{
+    margin-top: 30px;
+    margin-bottom: 60px;
+}
+
+/*Unterschrift Antrags Steller*/
+.UnterschriftSteller{
+    height: 25px;
+    width: 70%;
+}
+.ichBestaetige{
+    font-size: 13.28px;
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+/*Vom AStA Ausfüllen Line*/
+h2{
+    font-size: 15px;
+    margin-bottom: 0;
+}
+hr {
+    margin-top: 2px;
+    background-color: black;
+    height: 2px;
+    margin-bottom: 25px;
+}
+
+
+
+
+
+.noTopMargin{
+    margin-top: 0;
+}
+
+.pt11{
+    font-size: 11pt;
+}
+.pt10{
+    font-size: 10pt;
+}
+.pt12{
+    font-size: 12pt;
+}
+
+
+/* General Styling */
+.InputHeightNormal{
+    height: 30px;
+}
+.strongsize{
+    font-size: 15px;
+}
+.strongsizeSmaller{
+    font-size: 14px;
+}
+.Italic{
+    font-style: italic;
+}
+.UnderLine{
+    text-decoration: underline;
+}
+.alignRight{
+    float: right;
+    /*Breaks the Line Logic*/
+}
+h1{
+    font-size: 21.69px;
+    margin-bottom: 5px;
+}
+p {
+    font-size: 11pt;
+    margin: 4px 0px;
+}
+.page {
+    width: 21cm;
+    height: 29.7cm;
+    margin: 1cm auto;
+    padding: 1cm;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    page-break-after: always;
+}
+.page:last-child {
+    page-break-after: auto;
+}
+body {
+    font-family: Arial, sans-serif;
+}
+
+/*Print To PDF Styling*/
+body, .page {
+    margin: 0;
+}
+
+@page{
+    margin: 0;
+    size: A4;
+}
+
+

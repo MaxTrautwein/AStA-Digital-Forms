@@ -18,7 +18,7 @@ import { LoginComponent } from './login/login.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   standalone:true,
-  
+
 })
 export class AppComponent {
   title = 'DigitalForms';
@@ -33,7 +33,7 @@ export class AppComponent {
     if(!this.oauthService.hasValidAccessToken()) {
       this.router.navigateByUrl('/login');
     }
-    
+
 
     });
 
@@ -51,6 +51,8 @@ export class AppComponent {
 
   }
 
+
+
   login() {
     this.oauthService.initCodeFlow();
   }
@@ -59,6 +61,6 @@ export class AppComponent {
 
   logout() {
     this.oauthService.logOut();
-  
+
   }
 }

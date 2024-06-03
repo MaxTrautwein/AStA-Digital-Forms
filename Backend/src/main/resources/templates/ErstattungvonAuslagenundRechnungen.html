@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Erstattung von Auslagen und Rechnungen Dez 23</title>
+    <link rel="stylesheet" href="Styles.css">
+    <style>
+        .trLarge{
+            height: 70px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #000;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        .ErstattungGenehmigtSpacer{
+            margin-top: 40px;
+        }
+        .UnterschriftHaushaltSpacer{
+            margin-top: 60px;
+        }
+        .AntragGeprueftSpacer{
+            margin-top: 50px;
+        }
+        .QuittungenSpacer{
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+        .VomAstaSpacer{
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="page">
+    <div class="HeaderLine">
+        <address>
+            Studierendenschaft der Hochschule Esslingen<br>
+            Allgemeiner Studierendenausschuss<br>
+            Kanalstr. 33<br>
+            73728 Esslingen<br>
+            <br>
+            E-Mail: asta@hs-esslingen.de
+        </address>
+
+        <img src="AstaRgb.png">
+    </div>
+
+    <h1>Erstattung von Auslagen oder Rechnungen (1/2)</h1>
+    <p>(Nur verwenden wenn kein Vorschuss beantragt wurde! Sonst Abrechnung Vorschuss verwenden! Bitte Rechnungen/Quittungen dem Antrag im Original beilegen! Es sind alle Seiten einzureichen!)</p>
+
+    <div class="GeneralInformationBox">
+        <p class="pgeneral"><strong>Kurzbezeichnung des Antrages:</strong> <input class="FirstPageGeneral" type="text" th:value="${bez}"></p>
+        <p class="pgeneral"><strong>Fachschaft/Referat/Arbeitskreis:</strong> <input class="FirstPageGeneral" type="text" th:value="${fs_ref_ar}"></p>
+        <p class="pgeneral"><strong>Kontaktdaten </strong>(Handy-Nr. E-mail): <input class="FirstPageGeneral" type="text" th:value="${contact}"></p>
+        <p class="pgeneral"><strong>Antragsteller*in:</strong> (Name Vorname) <input class="FirstPageGeneral" type="text" th:value="${user}"></p>
+    </div>
+
+    <table>
+        <tr>
+            <th class="strongsizeSmaller">Nr:</th>
+            <th class="strongsizeSmaller">Wo gekauft?</th>
+            <th class="strongsizeSmaller">Was gekauft?</th>
+            <th class="strongsizeSmaller">Betrag:</th>
+        </tr>
+        <tr class="trLarge">
+            <td>1</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="trLarge">
+            <td>2</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="trLarge">
+            <td>3</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="trLarge">
+            <td>4</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="trLarge">
+            <td>5</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td><strong class="strongsizeSmaller">Zu erstattende Gesamtsumme:</strong></td>
+            <td></td>
+        </tr>
+    </table>
+    <ul>
+        <li><strong class="strongsizeSmaller">Falls Tabelle nicht ausreicht bitte eigene Tabelle anheften! Wenn nötig Ausgaben erläutern!</strong></li>
+        <li><strong class="strongsizeSmaller">Bitte beachten, dass kein Pfandgeld erstattet werden kann! Deshalb bitte vom Betrag abziehen.</strong></li>
+    </ul>
+
+    <input type="text" class="UnterschriftSteller">
+    <p><strong>Datum/Unterschrift Antragsteller*in:</strong></p>
+    <p class="ichBestaetige Italic">* Ich bestätige die Vollständigkeit und Richtigkeit der oben gemachten Angaben.</p>
+
+
+    <p class="UnderLine ErstattungGenehmigtSpacer"><strong>Erstattung genehmigt:</strong></p>
+    <div class="signature">
+        <div>
+            <p>_____________________________________</p>
+            <p>Datum/Unterschrift AStA-Vorsitz</p>
+        </div>
+        <div>
+            <p>_____________________________________</p>
+            <p>Datum/Unterschrift Finanzreferat</p>
+        </div>
+    </div>
+</div>
+
+<div class="page">
+    <div class="HeaderLine">
+        <address>
+            Studierendenschaft der Hochschule Esslingen<br>
+            Allgemeiner Studierendenausschuss<br>
+            Kanalstr. 33<br>
+            73728 Esslingen<br>
+            <br>
+            E-Mail: asta@hs-esslingen.de
+        </address>
+
+        <img src="AstaRgb.png">
+    </div>
+
+    <h1>Erstattung bereits getätigter Ausgaben (2/2)</h1>
+    <p>(Bitte alle Rechnungen/Quittungen im Original anheften! Es sind alle Seiten einzureichen!)</p>
+    <p><strong>Gesamtbetrag: in Euro:</strong> <input class="InputHeightNormal" type="text"> </p>
+    <div class="ReciverBlock">
+        <p class="vorschussReciver" ><strong>Empfänger*in:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
+        <p class="vorschussReciver" ><strong>Anschrift:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
+
+        <p  class="vorschussReciver" ><strong>IBAN:</strong> (22 Stellen)<input class="ibanfirst ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanslim vorschussReciver" type="text"></p>
+        <p class="vorschussReciver" ><strong>Kreditinstitut:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
+    </div>
+
+
+    <ul>
+        <li><strong class="strongsizeSmaller">Ich bestätige die Richtigkeit der gemachten Angaben.</strong></li>
+        <li><strong class="strongsizeSmaller">Ich verpflichte mich alle Quittungen in der Abrechnung im Original beizulegen.</strong></li>
+    </ul>
+
+    <input type="text" class="UnterschriftSteller">
+    <p><strong>Datum/Unterschrift Antragsteller*in:</strong></p>
+
+    <h2 class="VomAstaSpacer">Vom AStA auszufüllen!</h2>
+    <hr>
+
+
+    <p class="QuittungenSpacer"><strong>Quittungen/Rechnungen im Original angehängt?</strong> <input type="checkbox"></p>
+    <p><strong>Haushalts-Titel:</strong> __________________________</p>
+    <p class="AntragGeprueftSpacer"><strong class="UnderLine">Antrag geprüft:</strong></p>
+    <p class="UnterschriftHaushaltSpacer">__________________________________________<br>Datum/Unterschrift Haushaltsbeauftragte</p>
+</div>
+
+</body>
+</html>

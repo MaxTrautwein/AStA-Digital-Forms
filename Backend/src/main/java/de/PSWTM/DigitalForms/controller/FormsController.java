@@ -1,13 +1,18 @@
 package de.PSWTM.DigitalForms.controller;
 
+import de.PSWTM.DigitalForms.Model.TemplatePDF;
+import de.PSWTM.DigitalForms.Services.PdfService;
 import de.PSWTM.DigitalForms.api.FormsApiDelegate;
 import de.PSWTM.DigitalForms.model.Form;
 import de.PSWTM.DigitalForms.repository.FormRepository;
+import de.PSWTM.DigitalForms.repository.TemplatePDFRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import java.util.List;
@@ -17,10 +22,19 @@ import java.util.Objects;
 public class FormsController implements FormsApiDelegate {
     private static final Logger log = LoggerFactory.getLogger(FormsController.class);
 
+    private final PdfService pdfService;
+
     @Autowired
     private FormRepository repository;
 
+    @Autowired
+    private TemplatePDFRepository pdfRepository;
+
     Logger logger = LoggerFactory.getLogger(FormsController.class);
+
+    public FormsController(PdfService pdfService) {
+        this.pdfService = pdfService;
+    }
 
     // Gets the KeyCloak UserID from the Token
     private String getUserID(){
@@ -36,6 +50,33 @@ public class FormsController implements FormsApiDelegate {
             repository.delete(form);
             return ResponseEntity.ok().build();
         }
+    }
+
+    @Override
+    public ResponseEntity<Resource> formsFormIDDownloadGet(String formID) {
+        Form form = repository.findOwnedFormById(getUserID(), formID);
+        if (form == null) {
+            return ResponseEntity.badRequest().build();
+        }
+        TemplatePDF templatePDF = pdfRepository.findByFormId(form.getParent());
+        if (templatePDF == null){
+            return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build();
+        }
+
+        try {
+            byte[] pdfBytes = pdfService.generatePdf(form,templatePDF.getTemplatePdf());
+            ByteArrayResource resource = new ByteArrayResource(pdfBytes);
+
+            return ResponseEntity
+                    .ok()
+                    .contentLength(pdfBytes.length)
+                    .body(resource);
+        } catch (Exception e) {
+            return ResponseEntity
+                    .status(500)
+                    .body(null);
+        }
+
     }
 
     @Override

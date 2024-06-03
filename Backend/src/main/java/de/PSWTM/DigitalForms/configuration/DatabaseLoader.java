@@ -1,7 +1,10 @@
 package de.PSWTM.DigitalForms.configuration;
 
+import de.PSWTM.DigitalForms.Factory.FormElementFactory;
+import de.PSWTM.DigitalForms.Model.TemplatePDF;
 import de.PSWTM.DigitalForms.model.*;
 import de.PSWTM.DigitalForms.repository.FormRepository;
+import de.PSWTM.DigitalForms.repository.TemplatePDFRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,26 +23,96 @@ public class DatabaseLoader {
     }
 
     private static void addFormElement(List<FormSection> sections, FormElement.TypeEnum type, String dec, String help, String id, String ref){
-        sections.get(sections.size() - 1).addItemsItem(createFormElement(id,type,dec,help));
+        addFormElement(sections.get(sections.size() - 1),type,dec,help,id,ref);
     }
 
-    private static void addPaymentSection(List<FormSection> sections, int orderIndex){
-        sections.add(createFormSection(orderIndex,"Zahlung"));
-        addFormElement(sections,FormElement.TypeEnum.TEXT,"Empfänger*in"
+    private static void addFormElement(FormSection section,FormElement.TypeEnum type, String dec, String help, String id){
+        addFormElement(section,type,dec,help,id,null);
+    }
+
+    private static void addFormElement(FormSection section,FormElement.TypeEnum type, String dec, String help, String id, String ref){
+        section.addItemsItem(createFormElement(id,type,dec,help));
+    }
+
+
+    private static void addGeneralPaymentInfoElements(FormSection section){
+        addFormElement(section,FormElement.TypeEnum.TEXT,"Empfänger*in"
                 ,null,"prepay_empf");
-        addFormElement(sections,FormElement.TypeEnum.ADDRESS,"Anschrift"
+        addFormElement(section,FormElement.TypeEnum.ADDRESS,"Anschrift"
                 ,null,"prepay_adress");
-        addFormElement(sections,FormElement.TypeEnum.IBAN,"IBAN"
+        addFormElement(section,FormElement.TypeEnum.IBAN,"IBAN"
                 ,null,"prepay_iban");
-        addFormElement(sections,FormElement.TypeEnum.TEXT,"Kreditinstitut"
+        addFormElement(section,FormElement.TypeEnum.TEXT,"Kreditinstitut"
                 ,null,"prepay_bank");
     }
+    private static void addPaymentSum(FormSection section){
+        addPaymentTotal(section,"Gesamtbetrag in Euro",null);
+    }
+    private static void addPaymentDiff(FormSection section){
+        addPaymentTotal(section,"Differenzbetrag in Euro",null);
+    }
+    private static void addPaymentTotal(FormSection section, String desc, String help){
+        addFormElement(section,FormElement.TypeEnum.MONEY,desc
+                ,help,"prepay_sum");
+    }
+
+    private static void addPaymentVorschussDates(FormSection section){
+        addFormElement(section,FormElement.TypeEnum.DATE,"Der Vorschuss wird bis zum folgenden Datum benötigt"
+                ,null,"prepay_req_till");
+        addFormElement(section,FormElement.TypeEnum.DATE,"Spätester Termin für die Rückzahlung"
+                ,"(Muss unmittelbar nach dem Kauf erfolgen!)","prepay_payback_till");
+    }
 
 
-    private static Form gen_Genehmigung_von_Ausgaben_und_Anschaffungen(){
-        List<FormSection> sections = new ArrayList<>();
+    private static void gen_Vorschuss_Genehmigung_von_Ausgaben_und_Anschaffungen(List<FormSection> sections, int orderIndex ){
+        sections.add(createFormSection(orderIndex,"Vorschuss"));
+        FormSection section = sections.get(sections.size() - 1);
 
-        sections.add(createFormSection(0,"Generell"));
+        addPaymentSum(section);
+        addPaymentVorschussDates(section);
+        addGeneralPaymentInfoElements(section);
+    }
+    private static void gen_Erstattung_bereits_getaetigter_Ausgaben__Erstattung_von_Auslagen_und_Rechnungen(List<FormSection> sections, int orderIndex ){
+        sections.add(createFormSection(orderIndex,"Erstattung bereits getätigter Ausgaben"));
+        FormSection section = sections.get(sections.size() - 1);
+
+        addPaymentSum(section);
+        addGeneralPaymentInfoElements(section);
+    }
+    private static void gen_VorschussAbrechFSWE_Abrechnung_von_Fachschafts_wochenenden(List<FormSection> sections, int orderIndex ){
+        sections.add(createFormSection(orderIndex,"Abrechnung Vorschuss für Fachschaftswochenenden"));
+        FormSection section = sections.get(sections.size() - 1);
+
+        addFormElement(section,FormElement.TypeEnum.MONEY,"Vorschuss erhalten?"
+                ,"(Betrag in Euro)","vorschuss_sum");
+        addFormElement(section,FormElement.TypeEnum.MONEY,"Vorschuss zurückgezahlt?"
+                ,"(Betrag in Euro)","vorschuss_payback_sum");
+        addFormElement(section,FormElement.TypeEnum.DATE,"Datum"
+                ,null,"vorschuss_payback_date");
+
+        addFormElement(section,FormElement.TypeEnum.BOOL,"Rückerstattung Differenzbetrag notwendig?"
+                ,null,"erstatt_req");
+        addFormElement(section,FormElement.TypeEnum.MONEY,"Betrag"
+                ,"(Betrag in Euro)","erstatt_sum");
+
+        addGeneralPaymentInfoElements(section);
+    }
+    private static void gen_ErstattungReisekosten_Erstattung_von_Reisekosten(List<FormSection> sections, int orderIndex){
+        sections.add(createFormSection(orderIndex,"Erstattung von Reisekosten"));
+        FormSection section = sections.get(sections.size() - 1);
+
+        addPaymentSum(section);
+        addGeneralPaymentInfoElements(section);
+        addFormElement(section,FormElement.TypeEnum.BOOL,"Vorschuss gezahlt?"
+                ,null,"vorschuss_exists");
+        addFormElement(section,FormElement.TypeEnum.MONEY,"Höhe"
+                ,"(Betrag in Euro)","vorschuss_sum");
+        addFormElement(section,FormElement.TypeEnum.MONEY,"Restbetrag"
+                ,"(Betrag in Euro)","vorschuss_sum_diff");
+    }
+
+    private static void AddGeneralContactSection(List<FormSection> sections, int orderIndex){
+        sections.add(createFormSection(orderIndex,"Generell"));
         addFormElement(sections,FormElement.TypeEnum.TEXT,"Kurzbezeichnung des Antrages"
                 ,null,"bez");
         addFormElement(sections,FormElement.TypeEnum.TEXT,"Fachschaft/Referat/Arbeitskreis"
@@ -48,6 +121,13 @@ public class DatabaseLoader {
                 ,"(Handy-Nr., E-mail)","contact");
         addFormElement(sections,FormElement.TypeEnum.TEXT,"Antragsteller*in"
                 ,"(Name, Vorname)","user");
+    }
+
+    // TODO: Check for Attachments
+    private static Form gen_Genehmigung_von_Ausgaben_und_Anschaffungen(){
+        List<FormSection> sections = new ArrayList<>();
+
+        AddGeneralContactSection(sections,0);
         sections.add(createFormSection(1,"Hauptteil"));
         addFormElement(sections,FormElement.TypeEnum.TEXTMULTILINE,"Verwendungszweck: (Bitte ausführlich beschreiben! Evtl. Beiblatt nutzen)"
                 ,"Was? Warum? Welcher Preis?","reason");
@@ -59,7 +139,18 @@ public class DatabaseLoader {
         addFormElement(sections,FormElement.TypeEnum.MONEY,"Höhe der Ausgaben (ca.):"
                 ,"(voraussichtliche Höhe angeben, falls nicht genau bekannt)","money");
 
-        addPaymentSection(sections,2);
+        addFormElement(sections,FormElement.TypeEnum.BOOL,"3 Vergleichsangebote vorhanden?:"
+                ,"(Ab einem Bestellwert von 150 € sind drei Angebote beizufügen!)\n(Begründung, welches Angebot ausgewählt wurde und warum, bitte erläutern! Muss auch ins FS-Protokoll!) "
+                ,"vergelichAnge");
+
+        addFormElement(sections,FormElement.TypeEnum.BOOL,"Vorschuss nötig?"
+                ,null
+                ,"req_Vorschuss");
+
+        // Note: Auf dem Export wird auch auf seite 1 Nach der Höhe gefragt.
+        // Kann von Seite 2 Übernommen werden
+
+        gen_Vorschuss_Genehmigung_von_Ausgaben_und_Anschaffungen(sections,2);
 
         List<Attachment> attachments = new ArrayList<>();
 
@@ -68,7 +159,7 @@ public class DatabaseLoader {
         Form f1 = new Form();
         f1.setTitel("Ausgaben und Anschaffungen");
         f1.template(true);
-        f1.setDescription("bla Genehmigung von zeugs");
+        f1.setDescription("Genehmigung von Ausgaben und Anschaffungen");
         f1.setCategory(Form.CategoryEnum.ANTRAG);
         f1.setForm(sections);
         f1.attachments(attachments);
@@ -76,54 +167,352 @@ public class DatabaseLoader {
         return f1;
     }
 
-    public static void initFormRepository(FormRepository repository){
-        repository.save(gen_Genehmigung_von_Ausgaben_und_Anschaffungen());
-        /* 
-        repository.save(createForm("FS-Wochenende",true,"Ein wochenende für die FS", Form.CategoryEnum.ANTRAG));
-        repository.save(createForm("Kulturelle Veranstaltung",true,"Eine Kulturelle Veranstaltung. Keine gewinnabsichten",Form.CategoryEnum.ANTRAG));
-        repository.save(createForm("Reisekosten", true,"Ich / Wir wollen wo hin.",Form.CategoryEnum.ANTRAG));
-        //Reisekosten mit Fahrgemeindschaften?
-        repository.save(createForm("Wirtschaftliche Veranstaltung",true,"Ne Veranstaltung wo geld eingenommen werden soll", Form.CategoryEnum.ANTRAG));
-        
 
-        
-        
-        //sauber generiert
-        repository.save(createForm("Vorschuss",true,"Abrechnung eines Vorschusses",Form.CategoryEnum.ABRECHNUNG));
-        repository.save(createForm("FS-Wochenende",true,"Ein wochenende für die FS", Form.CategoryEnum.ABRECHNUNG));
-        repository.save(createForm("Auslagen und Rechnungen",true,"Erstattung von Auslagen und Rechnungen", Form.CategoryEnum.ABRECHNUNG));
-        repository.save(createForm("Reisekosten",true,"Erstattung von Reisekosten", Form.CategoryEnum.ABRECHNUNG));
-        */
+    // TODO: Check for Attachments & Rechnungs Liste
+    private static Form gen_Erstattung_von_Auslagen_und_Rechnungen(){
+        Form form = new Form();
+        form.setTemplate(true);
+        form.setTitel("Ausgaben und Anschaffungen");
+        form.setDescription("Erstattung von Auslagen und Rechnungen");
+        form.setCategory(Form.CategoryEnum.ABRECHNUNG);
+
+        List<FormSection> sections = new ArrayList<>();
+
+        AddGeneralContactSection(sections,0);
+
+        sections.add(createFormSection(1,"Rechnungs Liste"));
+        // TODO: Add List of Wo, Was & Betrag
+
+        gen_Erstattung_bereits_getaetigter_Ausgaben__Erstattung_von_Auslagen_und_Rechnungen(sections,2);
+
+        form.setForm(sections);
+
+        return form;
+    }
+    // TODO: Check for Attachments & Table Details
+    private static Form gen_Abrechnung_von_Fachschafts_wochenenden(){
+        Form form = new Form();
+        form.setTemplate(true);
+        form.setTitel("Fachschafts-Wochenende");
+        form.setDescription("Abrechnung eines Fachschafts-Wochenendes");
+        form.setCategory(Form.CategoryEnum.ABRECHNUNG);
+
+        List<FormSection> sections = new ArrayList<>();
+
+        sections.add(createFormSection(0,"Generell"));
+        addFormElement(sections,FormElement.TypeEnum.TEXT,"Bezeichnung der Veranstaltung"
+                ,null,"bez");
+        addFormElement(sections,FormElement.TypeEnum.TEXT,"Fachschaft/Referat/Arbeitskreis"
+                ,null,"fs_ref_ar");
+        addFormElement(sections,FormElement.TypeEnum.TEXT,"Kontaktdaten"
+                ,"(Handy-Nr., E-mail)","contact");
+        addFormElement(sections,FormElement.TypeEnum.TEXT,"Antragsteller*in"
+                ,"(Name, Vorname)","user");
+        addFormElement(sections,FormElement.TypeEnum.ADDRESS,"Veranstaltungsort"
+                ,null,"loc");
+
+        addFormElement(sections,FormElement.TypeEnum.DATE,"Veranstaltungsdauer"
+                ,null,"dur-from");
+        addFormElement(sections,FormElement.TypeEnum.DATE,"Veranstaltungsdauer"
+                ,null,"dur-till");
+
+        sections.add(createFormSection(1,"Details"));
+        // TODO Add Table Details
+
+        gen_VorschussAbrechFSWE_Abrechnung_von_Fachschafts_wochenenden(sections,2);
+
+        sections.add(createFormSection(3,"Tatsächliche TeilnehmerInnenliste"));
+        addFormElement(sections,FormElement.TypeEnum.DATE,"Termin"
+                ,null,"date_actual");
+        addFormElement(sections,FormElement.TypeEnum.ADDRESS,"Anschrift"
+                ,null,"loc_actual");
+
+        // TODO Add Table
+
+        form.setForm(sections);
+
+        return form;
+    }
+    // TODO: Check for Attachments
+    private static Form gen_Genehmigung_von_Reisen(){
+        Form form = new Form();
+        form.setTemplate(true);
+        form.setTitel("Reise");
+        form.setDescription("Antrag auf Genehmigung einer Reise");
+        form.setCategory(Form.CategoryEnum.ANTRAG);
+
+        List<FormSection> sections = new ArrayList<>();
+
+        AddGeneralContactSection(sections,0);
+
+        sections.add(createFormSection(1,"Beschreibung"));
+        addFormElement(sections,FormElement.TypeEnum.TEXTMULTILINE,"Beschreibung der geplanten Reise"
+                ,"(Zweck der Reise + Begründung Unterkunft / geplantes Transportmittel)","reason");
+        addFormElement(sections,FormElement.TypeEnum.DATE,"Termin"
+                ,null,"date");
+        addFormElement(sections,FormElement.TypeEnum.TEXT,"Mitfahrer*innen"
+                ,null,"persons");
+        addFormElement(sections,FormElement.TypeEnum.MONEY,"Geschätzte Höhe der Ausgaben:"
+                ,null,"cost");
+
+        sections.add(createFormSection(2,"Details"));
+        addFormElement(sections,FormElement.TypeEnum.ADDRESS,"Genaue Anschrift Reisebeginn"
+                ,"(PLZ, Ort, Straße, Hausnummer)","start");
+        addFormElement(sections,FormElement.TypeEnum.ADDRESS,"Genaue Anschrift Reiseziel"
+                ,"(PLZ, Ort, Straße, Hausnummer)","end");
+
+        sections.add(createFormSection(3,"Wird ein Vorschuss benötigt? "));
+        FormSection section = sections.get(sections.size() - 1);
+
+        addPaymentSum(section);
+        addPaymentVorschussDates(section);
+        addGeneralPaymentInfoElements(section);
+
+        form.setForm(sections);
+
+        return form;
+    }
+    // TODO: Check for Attachments & Table with Teilnehmer*innenliste
+    private static Form gen_Genehmigung_von_Reisen_mit_Fahrgemeinschaften(){
+        Form form = new Form();
+        form.setTemplate(true);
+        form.setTitel("Reisen mit Fahrgemeinschaften");
+        form.setDescription("Antrag auf Genehmigung von Reisen mit Fahrgemeinschaften");
+        form.setCategory(Form.CategoryEnum.ANTRAG);
+
+        List<FormSection> sections = new ArrayList<>();
+
+        sections.add(createFormSection(0,"Generell"));
+        addFormElement(sections,FormElement.TypeEnum.TEXT,"Antragsteller*in"
+                ,"(Name, Vorname)","user");
+        addFormElement(sections,FormElement.TypeEnum.TEXT,"Fachschaft/Referat/Arbeitskreis"
+                ,null,"fs_ref_ar");
+        addFormElement(sections,FormElement.TypeEnum.TEXT,"Kontaktdaten"
+                ,"(Handy-Nr., E-mail)","contact");
+
+        sections.add(createFormSection(1,"Details"));
+        addFormElement(sections,FormElement.TypeEnum.TEXT,"Reise-Grund"
+                ,null,"reason");
+        addFormElement(sections,FormElement.TypeEnum.ADDRESS,"Reise-Ziel"
+                ,null,"target");
+
+        addFormElement(sections,FormElement.TypeEnum.DATE,"Reise-Beginn"
+                ,"(Dat./Uhrzeit)","start_time");
+        addFormElement(sections,FormElement.TypeEnum.ADDRESS,"Ort"
+                ,null,"start_loc");
+        addFormElement(sections,FormElement.TypeEnum.DATE,"Reise-Ende"
+                ,"(Dat./Uhrzeit)","end_time");
+        addFormElement(sections,FormElement.TypeEnum.ADDRESS,"Ort"
+                ,null,"end_loc");
+
+        addFormElement(sections,FormElement.TypeEnum.TEXT,"Mitreisende"
+                ,null,"persons");
+        addFormElement(sections,FormElement.TypeEnum.ADDRESS,"Zustieg"
+                ,null,"zustieg");
+
+        sections.add(createFormSection(2,"Reason"));
+        addFormElement(sections,FormElement.TypeEnum.TEXT,"Beförderungsmittel"
+                ,null,"vehicle");
+        addFormElement(sections,FormElement.TypeEnum.MONEY,"Voraussichtlich anfallende Kosten"
+                ,null,"cost");
+        addFormElement(sections,FormElement.TypeEnum.TEXT,"Begründung"
+                ,null,"explReason");
+
+        sections.add(createFormSection(2,"Teilnehmer*innenliste der Reise"));
+        addFormElement(sections,FormElement.TypeEnum.TEXT,"Veranstaltung"
+                ,null,"A_event");
+        addFormElement(sections,FormElement.TypeEnum.DATE,"Termin"
+                ,null,"A_date");
+        addFormElement(sections,FormElement.TypeEnum.ADDRESS,"Ort"
+                ,null,"A_loc");
+
+        // TODO: Add Table with Teilnehmer*innenliste
+
+        form.setForm(sections);
+
+        return form;
+    }
+    // TODO: Check for Attachments
+    private static Form gen_Genehmigung_von_wirtschaftlichen_Veranstaltungen(){
+        Form form = new Form();
+        form.setTemplate(true);
+        form.setTitel("wirtschaftlichen Veranstaltung");
+        form.setDescription("Veranstaltungen mit geplanten Einnahmen");
+        form.setCategory(Form.CategoryEnum.ANTRAG);
+
+        List<FormSection> sections = new ArrayList<>();
+
+        sections.add(createFormSection(0,"Generell"));
+        addFormElement(sections,FormElement.TypeEnum.TEXT,"Name der Veranstaltung"
+                ,null,"bez");
+        // Note: in the Formular there are 2 fields for this very same info
+        addFormElement(sections,FormElement.TypeEnum.DATE,"Datum der Veranstaltung"
+                ,null,"date");
+        addFormElement(sections,FormElement.TypeEnum.TEXT,"Fachschaft/Referat/Arbeitskreis"
+                ,null,"fs_ref_ar");
+        addFormElement(sections,FormElement.TypeEnum.TEXT,"Name Verantwortliche*r"
+                ,null,"responsible");
+        addFormElement(sections,FormElement.TypeEnum.TEXT,"Kontaktdaten"
+                ,"(Handy-Nr., E-mail)","contact");
+
+
+        sections.add(createFormSection(1,"Details"));
+        addFormElement(sections,FormElement.TypeEnum.TEXTMULTILINE,"Verwendungszweck"
+                ,"(Bitte ausführlich beschreiben! Evtl. Beiblatt nutzen. -  Was? Warum? Welcher Preis?)","reason");
+        addFormElement(sections,FormElement.TypeEnum.BOOL,"Unterschriebenes Protokoll der FS-Sitzung mit genau erläutertem Beschluss angehängt? "
+                ,null,"protocoll");
+        addFormElement(sections,FormElement.TypeEnum.BOOL,"Veranstaltungsplanung (Finanzplanung, Einnahmen/Ausgaben) incl. Preislisten angehängt?"
+                ,null,"planning");
+        addFormElement(sections,FormElement.TypeEnum.BOOL,"Veranstaltung bei Facilitymanagement / Ordnungsamt / Gema angemeldet? Kopie angehängt?"
+                ,null,"fm_gema");
+        addFormElement(sections,FormElement.TypeEnum.BOOL,"Zutatenliste erstellt und Aushänge für den Stand vorbereitet? (bei Verkauf von Speisen)"
+                ,null,"ingredients");
+
+        sections.add(createFormSection(2,"Date/Cost"));
+        addFormElement(sections,FormElement.TypeEnum.TEXT,"Anzahl der Gäste"
+                ,"(geplant)","guests");
+        addFormElement(sections,FormElement.TypeEnum.MONEY,"Höhe der Ausgaben(ca.)"
+                ,null,"cost");
+
+        addFormElement(sections,FormElement.TypeEnum.BOOL,"Vorschuss notwendig?"
+                ,null,"req_vorschuss");
+        // Note: there is a Vorschuss Field, but we don't need dups in the online tool
+        addFormElement(sections,FormElement.TypeEnum.BOOL,"Wechselgeld notwendig?"
+                ,null,"req_wechsel");
+
+        sections.add(createFormSection(3,"Vorschuss"));
+        FormSection section = sections.get(sections.size() - 1);
+
+        addPaymentSum(section);
+        addPaymentVorschussDates(section);
+        addGeneralPaymentInfoElements(section);
+
+        form.setForm(sections);
+
+        return form;
+    }
+
+    private static Form gen_Abrechnung_eines_Vorschusses(){
+        Form form = new Form();
+        form.setTemplate(true);
+        form.setTitel("Abrechnung erhaltener Vorschüsse");
+        form.setDescription("Abrechnung erhaltener Vorschüsse");
+        form.setCategory(Form.CategoryEnum.ABRECHNUNG);
+        List<FormSection> sections = new ArrayList<>();
+
+        sections.add(createFormSection(0,"Generell"));
+        addFormElement(sections,FormElement.TypeEnum.DATE,"Datum der Veranstaltung"
+                ,null,"date");
+        addFormElement(sections,FormElement.TypeEnum.TEXT,"Name der Veranstaltung"
+                ,null,"bez");
 
 
 
-        //wir machen das komplett neu!
-        //repository.save(createForm("Ausgaben und Anschaffungen",true,"Ausgaben und Anschaffungen",Form.CategoryEnum.ANTRAG));
-        repository.save(createForm("Ausgaben und Anschaffungen",true,"Erstattung von Auslagen und Rechnungen",Form.CategoryEnum.ABRECHNUNG));
 
-        repository.save(createForm("Fachschaftswochenende",true,"Wir wollen wo hin fahren",Form.CategoryEnum.ANTRAG));
-        repository.save(createForm("Fachschaftswochenende",true,"Abrechnung des FS-Wochenendes",Form.CategoryEnum.ABRECHNUNG));
+        form.setForm(sections);
+        return form;
+    }
 
-        repository.save(createForm("Kulturelle Veranstalltung",true,"wir veranstallten was kulturelles",Form.CategoryEnum.ANTRAG));
-        repository.save(createForm("Kulturelle Veranstalltung",true,"Erstattung von Auslagen/Zuschüssen",Form.CategoryEnum.ABRECHNUNG));
+    private static Form gen_Erstattung_von_Reisekosten(){
+        Form form = new Form();
+        form.setTemplate(true);
+        form.setTitel("Erstattung von Reisekosten");
+        form.setDescription("Antrag auf Erstattung von Reisekosten");
+        form.setCategory(Form.CategoryEnum.ABRECHNUNG);
+        List<FormSection> sections = new ArrayList<>();
 
-        repository.save(createForm("Reisen",true,"wir gehen wo hin",Form.CategoryEnum.ANTRAG));
-        repository.save(createForm("Reisen",true,"Erstattung von Reisekosten",Form.CategoryEnum.ABRECHNUNG));
+        gen_ErstattungReisekosten_Erstattung_von_Reisekosten(sections,1);
 
-        repository.save(createForm("Reisen mit Fahrgemeindschaft",true,"wir gehen zusammen wo hin",Form.CategoryEnum.ANTRAG));
-        repository.save(createForm("Reisen mit Fahrgemeindschaft",true,"Erstattung von Reisekosten",Form.CategoryEnum.ABRECHNUNG));
+        form.setForm(sections);
+        return form;
+    }
 
-        repository.save(createForm("Wirtschaftliche Veranstalltung",true,"Veranstalltung mit Gewinnabsicht",Form.CategoryEnum.ANTRAG));
-        repository.save(createForm("Wirtschaftliche Veranstalltung",true,"Erstattung von Auslagen/Zuschüssen",Form.CategoryEnum.ABRECHNUNG));
+    private static Form gen_Genehmigung_von_Fachschafts_wochenenden(){
+        Form form = new Form();
+        form.setTemplate(true);
+        form.setTitel("Fachschafts-Wochenenden");
+        form.setDescription("Wir wollen mit der FS auf ein Wochenende");
+        form.setCategory(Form.CategoryEnum.ANTRAG);
+        List<FormSection> sections = new ArrayList<>();
+
+
+        form.setForm(sections);
+        return form;
+    }
+
+    private static Form gen_Genehmigung_von_kulturellen_Veranstaltungen(){
+        Form form = new Form();
+        form.setTemplate(true);
+        form.setTitel("kulturellen Veranstaltungen");
+        form.setDescription("Teambuilding, Ersti-Tage, Absolventenverabschiedung, Mitgliederwerbung, Vorträge, ... (ohne geplante Einnahmen)");
+        form.setCategory(Form.CategoryEnum.ANTRAG);
+        List<FormSection> sections = new ArrayList<>();
+
+
+        form.setForm(sections);
+        return form;
+    }
+
+    public static void initFormRepository(FormRepository repository, TemplatePDFRepository pdfRepository){
+        Form newForm = repository.save(gen_Genehmigung_von_Ausgaben_und_Anschaffungen());
+        pdfRepository.save(new TemplatePDF(newForm.getId(), "AntragAufGenehmigenTemplate"));
+        // TODO: Sollte eigentlich Wahl zwischen gen_Abrechnung_eines_Vorschusses & gen_Erstattung_von_Auslagen_und_Rechnungen
+        Form tmp = gen_Erstattung_von_Auslagen_und_Rechnungen();
+        tmp.setTitel(newForm.getTitel());  // TODO: needed for #90 Needs to be improved
+        newForm = repository.save(tmp);
+        pdfRepository.save(new TemplatePDF(newForm.getId(), "ErstattungvonAuslagenundRechnungen"));
+
+
+        newForm = repository.save(gen_Genehmigung_von_Fachschafts_wochenenden());
+        pdfRepository.save(new TemplatePDF(newForm.getId(), "GenehmigungvonFachschaftswochenenden"));
+        tmp = gen_Abrechnung_von_Fachschafts_wochenenden();
+        tmp.setTitel(newForm.getTitel());  // TODO: needed for #90 Needs to be improved
+        newForm = repository.save(tmp);
+        pdfRepository.save(new TemplatePDF(newForm.getId(), "AbrechnungvonFachschaftswochenenden"));
+
+
+        newForm = repository.save(gen_Genehmigung_von_kulturellen_Veranstaltungen());
+        pdfRepository.save(new TemplatePDF(newForm.getId(), "GenehmigungvonkulturellenVeranstaltungen"));
+        // TODO: Sollte eigentlich Wahl zwischen gen_Abrechnung_eines_Vorschusses & gen_Erstattung_von_Auslagen_und_Rechnungen
+        tmp = gen_Abrechnung_eines_Vorschusses();
+        tmp.setTitel(newForm.getTitel());  // TODO: needed for #90 Needs to be improved
+        newForm = repository.save(tmp);
+        pdfRepository.save(new TemplatePDF(newForm.getId(), "AbrechnungeinesVorschusses"));
+
+
+        newForm = repository.save(gen_Genehmigung_von_Reisen());
+        pdfRepository.save(new TemplatePDF(newForm.getId(), "GenehmigungvonReisen"));
+        tmp = gen_Erstattung_von_Reisekosten();
+        tmp.setTitel(newForm.getTitel());  // TODO: needed for #90 Needs to be improved
+        newForm = repository.save(tmp);
+        pdfRepository.save(new TemplatePDF(newForm.getId(), "ErstattungvonReisekosten"));
+
+
+        newForm = repository.save(gen_Genehmigung_von_Reisen_mit_Fahrgemeinschaften());
+        pdfRepository.save(new TemplatePDF(newForm.getId(), "GenehmigungvonReisenmitFahrgemeinschaften"));
+        // TODO: Das gen_Erstattung_von_Reisekosten ist ein Dupe -> Muss später besser gelöst werden
+        tmp = gen_Erstattung_von_Reisekosten();
+        tmp.setTitel(newForm.getTitel());  // TODO: needed for #90 Needs to be improved
+        newForm = repository.save(tmp);
+        pdfRepository.save(new TemplatePDF(newForm.getId(), "ErstattungvonReisekosten"));
+
+        newForm = repository.save(gen_Genehmigung_von_wirtschaftlichen_Veranstaltungen());
+        pdfRepository.save(new TemplatePDF(newForm.getId(), "GenehmigungvonwirtschaftlichenVeranstaltungen"));
+        // TODO: Sollte eigentlich Wahl zwischen gen_Abrechnung_eines_Vorschusses & gen_Erstattung_von_Auslagen_und_Rechnungen
+        // TODO: Das gen_Erstattung_von_Auslagen_und_Rechnungen ist ein Dupe -> Muss später besser gelöst werden
+        tmp = gen_Erstattung_von_Auslagen_und_Rechnungen();
+        tmp.setTitel(newForm.getTitel());  // TODO: needed for #90 Needs to be improved
+        newForm = repository.save(tmp);
+        pdfRepository.save(new TemplatePDF(newForm.getId(), "ErstattungvonAuslagenundRechnungen"));
 
     }
 
 
     @Bean
-    CommandLineRunner initDatabase(FormRepository formRepository) {
+    CommandLineRunner initDatabase(FormRepository formRepository,TemplatePDFRepository pdfRepository) {
         return args -> {
             if(formRepository.findAll().isEmpty()) {
-                initFormRepository(formRepository);
+                initFormRepository(formRepository, pdfRepository);
 
             }
         };
