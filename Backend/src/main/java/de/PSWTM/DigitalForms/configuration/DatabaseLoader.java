@@ -393,24 +393,108 @@ public class DatabaseLoader {
         return form;
     }
 
+    private static Form gen_Abrechnung_eines_Vorschusses(){
+        Form form = new Form();
+        form.setTemplate(true);
+        form.setTitel("Abrechnung erhaltener Vorschüsse");
+        form.setDescription("Abrechnung erhaltener Vorschüsse");
+        form.setCategory(Form.CategoryEnum.ABRECHNUNG);
+        List<FormSection> sections = new ArrayList<>();
+
+        sections.add(createFormSection(0,"Generell"));
+        addFormElement(sections,FormElement.TypeEnum.DATE,"Datum der Veranstaltung"
+                ,null,"date");
+        addFormElement(sections,FormElement.TypeEnum.TEXT,"Name der Veranstaltung"
+                ,null,"bez");
+
+
+
+
+        form.setForm(sections);
+        return form;
+    }
+
+    private static Form gen_Erstattung_von_Reisekosten(){
+        Form form = new Form();
+        form.setTemplate(true);
+        form.setTitel("Erstattung von Reisekosten");
+        form.setDescription("Antrag auf Erstattung von Reisekosten");
+        form.setCategory(Form.CategoryEnum.ABRECHNUNG);
+        List<FormSection> sections = new ArrayList<>();
+
+        gen_ErstattungReisekosten_Erstattung_von_Reisekosten(sections,1);
+
+        form.setForm(sections);
+        return form;
+    }
+
+    private static Form gen_Genehmigung_von_Fachschafts_wochenenden(){
+        Form form = new Form();
+        form.setTemplate(true);
+        form.setTitel("Fachschafts-Wochenenden");
+        form.setDescription("Wir wollen mit der FS auf ein Wochenende");
+        form.setCategory(Form.CategoryEnum.ANTRAG);
+        List<FormSection> sections = new ArrayList<>();
+
+
+        form.setForm(sections);
+        return form;
+    }
+
+    private static Form gen_Genehmigung_von_kulturellen_Veranstaltungen(){
+        Form form = new Form();
+        form.setTemplate(true);
+        form.setTitel("kulturellen Veranstaltungen");
+        form.setDescription("Teambuilding, Ersti-Tage, Absolventenverabschiedung, Mitgliederwerbung, Vorträge, ... (ohne geplante Einnahmen)");
+        form.setCategory(Form.CategoryEnum.ANTRAG);
+        List<FormSection> sections = new ArrayList<>();
+
+
+        form.setForm(sections);
+        return form;
+    }
+
     public static void initFormRepository(FormRepository repository, TemplatePDFRepository pdfRepository){
         Form newForm = repository.save(gen_Genehmigung_von_Ausgaben_und_Anschaffungen());
         pdfRepository.save(new TemplatePDF(newForm.getId(), "AntragAufGenehmigenTemplate"));
-
+        // TODO: Sollte eigentlich Wahl zwischen gen_Abrechnung_eines_Vorschusses & gen_Erstattung_von_Auslagen_und_Rechnungen
         newForm = repository.save(gen_Erstattung_von_Auslagen_und_Rechnungen());
         pdfRepository.save(new TemplatePDF(newForm.getId(), "ErstattungvonAuslagenundRechnungen"));
+
+
+        newForm = repository.save(gen_Genehmigung_von_Fachschafts_wochenenden());
+        pdfRepository.save(new TemplatePDF(newForm.getId(), "GenehmigungvonFachschaftswochenenden"));
 
         newForm = repository.save(gen_Abrechnung_von_Fachschafts_wochenenden());
         pdfRepository.save(new TemplatePDF(newForm.getId(), "AbrechnungvonFachschaftswochenenden"));
 
+
+        newForm = repository.save(gen_Genehmigung_von_kulturellen_Veranstaltungen());
+        pdfRepository.save(new TemplatePDF(newForm.getId(), "GenehmigungvonkulturellenVeranstaltungen"));
+        // TODO: Sollte eigentlich Wahl zwischen gen_Abrechnung_eines_Vorschusses & gen_Erstattung_von_Auslagen_und_Rechnungen
+        newForm = repository.save(gen_Abrechnung_eines_Vorschusses());
+        pdfRepository.save(new TemplatePDF(newForm.getId(), "AbrechnungeinesVorschusses"));
+
+
         newForm = repository.save(gen_Genehmigung_von_Reisen());
         pdfRepository.save(new TemplatePDF(newForm.getId(), "GenehmigungvonReisen"));
 
+        newForm = repository.save(gen_Erstattung_von_Reisekosten());
+        pdfRepository.save(new TemplatePDF(newForm.getId(), "ErstattungvonReisekosten"));
+
+
         newForm = repository.save(gen_Genehmigung_von_Reisen_mit_Fahrgemeinschaften());
         pdfRepository.save(new TemplatePDF(newForm.getId(), "GenehmigungvonReisenmitFahrgemeinschaften"));
+        // TODO: Das gen_Erstattung_von_Reisekosten ist ein Dupe -> Muss später besser gelöst werden
+        newForm = repository.save(gen_Erstattung_von_Reisekosten());
+        pdfRepository.save(new TemplatePDF(newForm.getId(), "ErstattungvonReisekosten"));
 
         newForm = repository.save(gen_Genehmigung_von_wirtschaftlichen_Veranstaltungen());
         pdfRepository.save(new TemplatePDF(newForm.getId(), "GenehmigungvonwirtschaftlichenVeranstaltungen"));
+        // TODO: Sollte eigentlich Wahl zwischen gen_Abrechnung_eines_Vorschusses & gen_Erstattung_von_Auslagen_und_Rechnungen
+        // TODO: Das gen_Erstattung_von_Auslagen_und_Rechnungen ist ein Dupe -> Muss später besser gelöst werden
+        newForm = repository.save(gen_Erstattung_von_Auslagen_und_Rechnungen());
+        pdfRepository.save(new TemplatePDF(newForm.getId(), "ErstattungvonAuslagenundRechnungen"));
 
     }
 
