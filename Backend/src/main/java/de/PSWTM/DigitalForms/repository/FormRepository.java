@@ -10,7 +10,7 @@ import java.util.ArrayList;
 @Repository
 public interface FormRepository extends MongoRepository<Form ,String> {
 
-    @Query(value = "{ 'template' : true }", fields = "{ '_id' : 1, 'titel' : 1 , 'description':  1, 'template':  1}")
+    @Query(value = "{ 'template' : true }", fields = "{ '_id' : 1, 'category' : 1, 'titel' : 1 , 'description':  1, 'template':  1}")
     ArrayList<Form> findAllTemplates_IdNameDescription();
 
     @Query(value = "{'template' : false, 'owner':  ?0}")
