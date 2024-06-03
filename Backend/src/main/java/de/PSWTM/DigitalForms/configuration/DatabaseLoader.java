@@ -457,42 +457,52 @@ public class DatabaseLoader {
         Form newForm = repository.save(gen_Genehmigung_von_Ausgaben_und_Anschaffungen());
         pdfRepository.save(new TemplatePDF(newForm.getId(), "AntragAufGenehmigenTemplate"));
         // TODO: Sollte eigentlich Wahl zwischen gen_Abrechnung_eines_Vorschusses & gen_Erstattung_von_Auslagen_und_Rechnungen
-        newForm = repository.save(gen_Erstattung_von_Auslagen_und_Rechnungen());
+        Form tmp = gen_Erstattung_von_Auslagen_und_Rechnungen();
+        tmp.setTitel(newForm.getTitel());  // TODO: needed for #90 Needs to be improved
+        newForm = repository.save(tmp);
         pdfRepository.save(new TemplatePDF(newForm.getId(), "ErstattungvonAuslagenundRechnungen"));
 
 
         newForm = repository.save(gen_Genehmigung_von_Fachschafts_wochenenden());
         pdfRepository.save(new TemplatePDF(newForm.getId(), "GenehmigungvonFachschaftswochenenden"));
-
-        newForm = repository.save(gen_Abrechnung_von_Fachschafts_wochenenden());
+        tmp = gen_Abrechnung_von_Fachschafts_wochenenden();
+        tmp.setTitel(newForm.getTitel());  // TODO: needed for #90 Needs to be improved
+        newForm = repository.save(tmp);
         pdfRepository.save(new TemplatePDF(newForm.getId(), "AbrechnungvonFachschaftswochenenden"));
 
 
         newForm = repository.save(gen_Genehmigung_von_kulturellen_Veranstaltungen());
         pdfRepository.save(new TemplatePDF(newForm.getId(), "GenehmigungvonkulturellenVeranstaltungen"));
         // TODO: Sollte eigentlich Wahl zwischen gen_Abrechnung_eines_Vorschusses & gen_Erstattung_von_Auslagen_und_Rechnungen
-        newForm = repository.save(gen_Abrechnung_eines_Vorschusses());
+        tmp = gen_Abrechnung_eines_Vorschusses();
+        tmp.setTitel(newForm.getTitel());  // TODO: needed for #90 Needs to be improved
+        newForm = repository.save(tmp);
         pdfRepository.save(new TemplatePDF(newForm.getId(), "AbrechnungeinesVorschusses"));
 
 
         newForm = repository.save(gen_Genehmigung_von_Reisen());
         pdfRepository.save(new TemplatePDF(newForm.getId(), "GenehmigungvonReisen"));
-
-        newForm = repository.save(gen_Erstattung_von_Reisekosten());
+        tmp = gen_Erstattung_von_Reisekosten();
+        tmp.setTitel(newForm.getTitel());  // TODO: needed for #90 Needs to be improved
+        newForm = repository.save(tmp);
         pdfRepository.save(new TemplatePDF(newForm.getId(), "ErstattungvonReisekosten"));
 
 
         newForm = repository.save(gen_Genehmigung_von_Reisen_mit_Fahrgemeinschaften());
         pdfRepository.save(new TemplatePDF(newForm.getId(), "GenehmigungvonReisenmitFahrgemeinschaften"));
         // TODO: Das gen_Erstattung_von_Reisekosten ist ein Dupe -> Muss später besser gelöst werden
-        newForm = repository.save(gen_Erstattung_von_Reisekosten());
+        tmp = gen_Erstattung_von_Reisekosten();
+        tmp.setTitel(newForm.getTitel());  // TODO: needed for #90 Needs to be improved
+        newForm = repository.save(tmp);
         pdfRepository.save(new TemplatePDF(newForm.getId(), "ErstattungvonReisekosten"));
 
         newForm = repository.save(gen_Genehmigung_von_wirtschaftlichen_Veranstaltungen());
         pdfRepository.save(new TemplatePDF(newForm.getId(), "GenehmigungvonwirtschaftlichenVeranstaltungen"));
         // TODO: Sollte eigentlich Wahl zwischen gen_Abrechnung_eines_Vorschusses & gen_Erstattung_von_Auslagen_und_Rechnungen
         // TODO: Das gen_Erstattung_von_Auslagen_und_Rechnungen ist ein Dupe -> Muss später besser gelöst werden
-        newForm = repository.save(gen_Erstattung_von_Auslagen_und_Rechnungen());
+        tmp = gen_Erstattung_von_Auslagen_und_Rechnungen();
+        tmp.setTitel(newForm.getTitel());  // TODO: needed for #90 Needs to be improved
+        newForm = repository.save(tmp);
         pdfRepository.save(new TemplatePDF(newForm.getId(), "ErstattungvonAuslagenundRechnungen"));
 
     }
