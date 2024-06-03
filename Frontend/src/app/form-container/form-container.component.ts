@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import {NavBarComponent} from "../nav-bar/nav-bar.component";
+import {Favourite, Form, FormSection, FormsService} from "../api-client";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
-import {Form, FormSection, FormsService} from "../api-client";
 import {TemplateService} from "../template.service";
 import {map, Observable, switchMap} from "rxjs";
 import {ProgressDisplayComponent} from "./progress-display/progress-display.component";
@@ -8,6 +9,8 @@ import {ProgressContollsComponent} from "./progress-controls/progress-contolls.c
 import {AsyncPipe} from "@angular/common";
 import {FormContentComponent} from "./form-content/form-content.component";
 import {PrepareAPIService} from "../prepare-api.service";
+import { FavouriteService } from '../favourite.service';
+
 
 @Component({
   selector: 'app-form-container',
@@ -27,13 +30,36 @@ export class FormContainerComponent {
 
   protected formdetails!: Observable<Form>;
 
-  private form!: Form;
+  protected form!: Form;
 
   protected section: FormSection | undefined;
 
   constructor(private route: ActivatedRoute, private templateService: TemplateService,
               private api: FormsService, private prep: PrepareAPIService,
-              private router: Router) {
+              private router: Router, protected FavService: FavouriteService) {
+  }
+
+  getFormId() {
+    return this.formdetails.subscribe(responce => responce.id);
+  }
+
+  isInFav() {
+    let Favourites = this.FavService.getFav();
+    for(let favs of Favourites) {
+      if(favs.formId == this.form.id) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  getFavId() {
+    for(let fav of this.FavService.getFav()) {
+      if(this.form.id == fav.formId) {
+        return fav.id;
+      }
+    }
+    return null;                                //not clean, but it works!
   }
 
   ngOnInit() {
