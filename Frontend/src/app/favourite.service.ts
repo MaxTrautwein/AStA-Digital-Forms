@@ -21,10 +21,14 @@ export class FavouriteService {
     return this.favoriten;
   }
 
-  putFav(Formid: string) {
-    this.api.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
-    let fav: Favourite = {};
-    fav.formId = Formid;
+  putFav(Formid: string, id: string) {
+      this.api.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
+      let fav: Favourite = {};
+    if(Formid == null) {
+      fav.formId = id;
+    } else {
+      fav.formId = Formid;
+    }
     this.api.favouritesPost(fav).subscribe();
   }
 
