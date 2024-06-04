@@ -7,7 +7,7 @@ import { Component, EventEmitter, Input, Output, ViewChild, AfterViewInit } from
   styleUrls: ['./date.component.css']
 })
 export class DateComponent implements AfterViewInit {
-  @Input() description: string | undefined = "";
+  @Input() description: string | undefined = "Datum:";
   @Input() help: string | undefined = "";
   @Input() value: string | undefined = "";
 
@@ -33,7 +33,7 @@ export class DateComponent implements AfterViewInit {
   validateDate(dateString: string): boolean {
     const date = new Date(dateString);
     const minDate = new Date('1900-01-01');
-    const maxDate = new Date();
+    const maxDate = new Date('2100-01-01');
     if (isNaN(date.getTime())) {
       return false;
     }

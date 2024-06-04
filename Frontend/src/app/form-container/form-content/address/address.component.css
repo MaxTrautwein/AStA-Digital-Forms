@@ -1,0 +1,23 @@
+.container {
+    max-width: 900px;
+    margin: inherit;
+  }
+  
+  .form-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+
+  
+  .form-control {
+    flex: 1;
+  }
+  
+  .form-text {
+    font-size: 0.8rem;
+  }
+  .col{
+    padding-left: 0rem;
+  }
