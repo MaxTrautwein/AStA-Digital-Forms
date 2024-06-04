@@ -13,9 +13,13 @@
 </nav>
 
 @if(this.isOpen) {
-  <div class="burger-open">open</div>
-} @else {
-  <div class="burger-open">closed</div>
+  <div class="burger-background" (click)="this.onClick();">
+    <div class="burger-open">
+      <button class="item">Item1</button>
+      <button class="item">Item2</button>
+    </div>
+  </div>
+   
 }
 
 
