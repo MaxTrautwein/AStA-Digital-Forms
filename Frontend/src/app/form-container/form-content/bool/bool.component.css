@@ -1,0 +1,16 @@
+:host {
+    display: block;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+}
+
+.input-group-text {
+    flex: 0 0 auto;
+}
+
+.form-check-input {
+    margin-right: 8px;
+}

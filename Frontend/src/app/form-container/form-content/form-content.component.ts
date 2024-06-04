@@ -6,12 +6,13 @@ import { MoneyComponent } from './money/money.component';
 import { AddressComponent } from './address/address.component';
 import { DateComponent } from './date/date.component';
 import { TextMultiLineComponent } from './text-multi-line/text-multi-line.component';
+import { BoolComponent } from './bool/bool.component';
 
 @Component({
   selector: 'app-form-content',
   standalone: true,
   imports: [
-    TextComponent,IbanComponent,MoneyComponent,AddressComponent,DateComponent,TextMultiLineComponent,
+    TextComponent,IbanComponent,MoneyComponent,AddressComponent,DateComponent,BoolComponent,TextMultiLineComponent,
   ],
   templateUrl: './form-content.component.html',
   styleUrl: './form-content.component.css'
