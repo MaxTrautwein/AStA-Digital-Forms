@@ -76,6 +76,15 @@
     left: 0;
 }
 
+@keyframes open {
+    0%  {width: 0vw;}
+    25% {width: 5vw;}
+    50% {width: 10vw;}
+    75% {width: 15vw;}
+    100%{width: 20vw;}
+}
+
+
 .burger-open {
     width: 20vw;
     height: 100vh;
@@ -86,6 +95,10 @@
     top: 0;
     left: 0;
     z-index: 2;
+    animation-name: open;
+    animation-duration: 200ms;
+    animation-timing-function: linear;
+    animation-direction: alternate;
 }
 
 .burger-background {
