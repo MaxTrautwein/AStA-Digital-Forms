@@ -1,1 +1,7 @@
-<p>text-multi-line works!</p>
+<div class="mb-3">
+    <div class="input-group">
+      <span class="input-group-text" id="basic-addon3">{{description}}</span>
+      <textarea #input class="form-control" aria-describedby="text-multi-line" (input)="onValueChange($event)">{{ value }}</textarea>
+    </div>
+    <div class="form-text" id="text-multi-line">{{ help }}</div>
+</div>
