@@ -1,16 +1,22 @@
 <div class="Button-wrapper">
-    @for(t of this.templateService.getAntragsTemplates(); track t) {
+
+  @if ( this.templateService.Forms | async; as templates){
+
+    @for(t of templates ; track t) {
+      @if (t.category === Form.CategoryEnum.Antrag ){
         <div class="subbutton-wrapper">
-            <div class="auswahlbutton">
-                <h1>{{t.titel}}</h1>
-                <h2>{{t.description}}</h2>
-            </div>
-            <button type="button" class="subbutton sbleft" routerLink="/Form/{{t.id}}">Antrag</button>
-            @for(a of this.templateService.getAbrechnungsTemplates(); track a) {
-                @if(a.titel == t.titel) {
-                    <button type="button" class="subbutton sbright" routerLink="/Form/{{a.id}}">Abrechnung</button>
-                }
+          <div class="auswahlbutton">
+            <h1>{{t.titel}}</h1>
+            <h2>{{t.description}}</h2>
+          </div>
+          <button type="button" class="subbutton sbleft" routerLink="/Form/{{t.id}}">Antrag</button>
+          @for(a of templates ; track a){
+            @if(a.category === Form.CategoryEnum.Abrechnung && a.titel == t.titel) {
+              <button type="button" class="subbutton sbright" routerLink="/Form/{{a.id}}">Abrechnung</button>
             }
+          }
         </div>
+      }
     }
+  }
 </div>
