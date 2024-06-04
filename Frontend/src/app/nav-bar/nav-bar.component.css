@@ -78,12 +78,12 @@
 
 .burger-open {
     width: 20vw;
-    height: 100vh;
+    height: 91vh;
     background-color: white;
     position: absolute;
     border-color: black;
     border: 50px;
-    top: 0;
+    bottom: 0;
     left: 0;
     z-index: 2;
 }
