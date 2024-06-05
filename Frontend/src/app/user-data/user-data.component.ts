@@ -29,6 +29,8 @@ export class UserDataComponent implements OnInit{
   public kreditinstitut: string | undefined;
 
   private ud: UserData = {};
+
+
   
 
   constructor(private userservice: UserDataService, private oauthService: OAuthService) {}
@@ -43,6 +45,7 @@ export class UserDataComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.oauthService.loadUserProfile().then(o => console.log(o));
     this.userservice.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
     this.userservice.userDataGet().subscribe(Response => {
       this.ud = Response;
@@ -54,7 +57,7 @@ export class UserDataComponent implements OnInit{
   save() {
     this.sync();
     this.userservice.userDataPost(this.ud);
-
+    console.log(this.ud);
   }
 
   
