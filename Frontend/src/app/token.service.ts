@@ -13,6 +13,23 @@ export class TokenService {
   // Notify That a Token is ready
   public tokenReady:  Observable<Boolean>;
 
+  public hasValidToken(): Boolean{
+    let tokenStatus: Boolean = this.oauthService.hasValidAccessToken();
+
+    if (tokenStatus){
+      this.setBearerAuth();
+    }
+
+    return tokenStatus
+  }
+
+  private setBearerAuth(){
+    this.defaultService.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
+    this.formService.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
+    this.groupService.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
+    this.favoritesService.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
+  }
+
   constructor(private oauthService: OAuthService, private defaultService: DefaultService, private formService: FormsService,
               private groupService: GroupsService, private favoritesService: FavouritesService) {
     this.tokenReady = new Observable(e => this.emitter = e);
@@ -22,10 +39,7 @@ export class TokenService {
 
       if (e.type === "token_received" || (e.type === "discovery_document_loaded" && this.oauthService.hasValidAccessToken())){
 
-        this.defaultService.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
-        this.formService.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
-        this.groupService.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
-        this.favoritesService.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
+        this.setBearerAuth();
 
         if(!this.emitter.closed){
           this.emitter.next(true);

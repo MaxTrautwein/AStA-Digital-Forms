@@ -13,7 +13,6 @@ export class TemplateService {
 
 
   fetchTemplates() {
-    this.api.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
     this.api.templatesGet().subscribe((Response) => {
       this.templates = Response;
       console.log(Response)
@@ -60,7 +59,6 @@ export class TemplateService {
   }
 
   getTemplateDetails(id: string){
-    this.api.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
     return  this.api.templatesTemplateIdGet(id)
   }
 

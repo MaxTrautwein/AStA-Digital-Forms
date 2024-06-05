@@ -7,8 +7,6 @@ import { MarkedItemComponent } from "./marked-item/marked-item.component";
 import { Form, FormsService } from "../api-client";
 import { Observable } from "rxjs";
 import { AsyncPipe } from "@angular/common";
-import { PrepareAPIService } from "../prepare-api.service";
-
 @Component({
   selector: 'app-collapsable-bottom',
   standalone: true,
@@ -20,8 +18,7 @@ export class CollapsableBottomComponent {
 
   protected forms: Observable<Form[]>
 
-  constructor(private api: FormsService, private prep: PrepareAPIService, protected templateService: TemplateService, protected favService: FavouriteService) {
-    prep.prepare();
+  constructor(private api: FormsService, protected templateService: TemplateService, protected favService: FavouriteService) {
     this.forms = api.formsGet()
     favService.fetchFav();
   }

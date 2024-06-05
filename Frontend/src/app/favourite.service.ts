@@ -11,7 +11,6 @@ export class FavouriteService {
   id: string = "";
 
   fetchFav() {
-    this.api.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
     this.api.favouritesGet().subscribe((Response) => {
         this.favoriten = Response;
       });
@@ -22,7 +21,6 @@ export class FavouriteService {
   }
 
   putFav(Formid: string, id: string) {
-      this.api.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
       let fav: Favourite = {};
     if(Formid == null) {
       fav.formId = id;
@@ -33,7 +31,6 @@ export class FavouriteService {
   }
 
   delFav(FavId: string) {
-    this.api.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
     this.api.favouritesFavIdDelete(FavId).subscribe();
   }
 

@@ -8,7 +8,6 @@ import {ProgressDisplayComponent} from "./progress-display/progress-display.comp
 import {ProgressContollsComponent} from "./progress-controls/progress-contolls.component";
 import {AsyncPipe} from "@angular/common";
 import {FormContentComponent} from "./form-content/form-content.component";
-import {PrepareAPIService} from "../prepare-api.service";
 import { FavouriteService } from '../favourite.service';
 
 
@@ -35,7 +34,7 @@ export class FormContainerComponent {
   protected section: FormSection | undefined;
 
   constructor(private route: ActivatedRoute, private templateService: TemplateService,
-              private api: FormsService, private prep: PrepareAPIService,
+              private api: FormsService,
               private router: Router, protected FavService: FavouriteService) {
   }
 
@@ -79,7 +78,6 @@ export class FormContainerComponent {
     this.formdetails.subscribe(e => {
       this.form = e;
 
-      this.prep.prepare()
       if(this.form.template){
         // We need to Create the User form
         this.api.formsPost(this.form).subscribe(r =>{
@@ -100,7 +98,6 @@ export class FormContainerComponent {
   }
 
   private SendUpdate(){
-    this.prep.prepare()
     this.api.formsFormIDPut(this.form.id!, this.form).subscribe()
   }
 
