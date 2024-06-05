@@ -7,10 +7,56 @@ info:
     name: GPL v3
   version: 0.0.2
 servers:
-  - url: https://backend.df.dk4max.com/api/v3
+  #- url: https://backend.df.dk4max.com/api/v3
   - url: http://localhost:8080/api/v3
 
 paths:
+  /userData/{UserID}:
+    get:
+      tags:
+        - userData
+      summary: Get userdata of a user
+      description: Returns the userdata of the user
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/UserData"
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/Access-Control-Allow-Origin'
+    post:
+      tags:
+        - userData
+      summary: Save new Userdata of a user
+      description: Save new Userdata for specific user
+      security:
+        - BearerAuth: []
+      requestBody:
+        description: Save new Userdata of the requesting User
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserData"
+      responses:
+        '201':
+          description: successful Creation with ID
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserData"
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/Access-Control-Allow-Origin'
+        '400':
+          description: Invalid Data
+              
   /favourites:
     get:
       tags: 
@@ -269,33 +315,7 @@ paths:
         '404':
           description: Can't find ID
 
-  /forms/{formID}/download:
-    get:
-      tags:
-        - forms
-      summary: Download as a PDF file
-      description: Returns a PDF file of the Form.
-      parameters:
-        - name: formID
-          in: path
-          description: ID of form to return
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: A PDF file.
-          content:
-            application/pdf:
-              schema:
-                type: string
-                format: binary
-        '400':
-          description: Bad Request.
-        '500':
-          description: Exception During PDF Generation
-        '501':
-          description: The Provided Form does not Support the PDF Export
+
 
 
 
@@ -318,6 +338,24 @@ components:
           summary: Production environment
           value: https://df.dk4max.com
   schemas:
+    UserData:
+      type: "object"
+      properties:
+        userId:
+          type: "string"
+        email:
+          type: "string"
+        name:
+          type: "string"
+        firstName:
+          type: "string"
+        adress: 
+          type: "string"
+        IBAN:
+          type: "string"
+        CreditInstitute:
+          type: "string"
+        
     Favourite:
       type: "object"
       properties:
