@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { DefaultService } from '../api-client';
 import { OnInit } from '@angular/core';
 import { UserData } from '../api-client';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 
 @Component({
@@ -30,7 +31,7 @@ export class UserDataComponent implements OnInit{
   private ud: UserData = {};
   
 
-  constructor(private userservice: UserDataService, private def: DefaultService) {}
+  constructor(private userservice: UserDataService, private oauthService: OAuthService) {}
 
   sync() {
     this.ud.name = this.name;
@@ -42,7 +43,10 @@ export class UserDataComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    //this.ud = this.userservice.userDataGet();
+    this.userservice.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
+    this.userservice.userDataGet().subscribe(Response => {
+      this.ud = Response;
+    })
       
     
   }
