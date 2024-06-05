@@ -23,5 +23,6 @@ export class UserDataComponent {
   onSubmit() {
     console.log(this.inputWert);
 
+    
   }
 }
