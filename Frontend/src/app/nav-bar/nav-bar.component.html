@@ -1,23 +1,31 @@
-<div class="pos-f-t">
-    <div class="collapse" id="navbarToggleExternalContent">
-      <div class="bg-dark p-4">
-        <h4 class="text-white">Collapsed content</h4>
-        <span class="text-muted">Toggleable via the navbar brand.</span>
-      </div>
+<nav class="navbar navbar-dark c-color">
+  <button class="navbar-toggler" type="button" (click)="this.onClick();">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <img src="assets/image/AstaRgb.png" alt="AStA-Logo" class="AStA-Logo" routerLink="">
+  <input type="text" placeholder="Suche..." class="Searchbar">
+  <div class="Account-holder">
+    <img src="assets/image/useraccount.png" alt="useraccount" class="User-Logo">
+    <div class="Account-Text-Holder">
+        Account
     </div>
-    <nav class="navbar navbar-dark c-color">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <img src="assets/image/AstaRgb.png" alt="AStA-Logo" class="AStA-Logo" routerLink="">
-      <input type="text" placeholder="Suche..." class="Searchbar">
-      <div class="Account-holder">
-        <img src="assets/image/useraccount.png" alt="useraccount" class="User-Logo">
-        <div class="Account-Text-Holder">
-            Account
-        </div>
-      </div>
-    </nav>
   </div>
+</nav>
+
+@if(this.isOpen) {
+  <div class="burger-background" (click)="this.onClick();">
+    <div class="burger-open">
+      <button class="item">Eigene Daten</button>
+      <button class="item">Eigene Anträge</button>
+    </div>
+  </div>
+   
+}
+
+
+
+  
+
 
   <!--Bootrstrap Source: https://getbootstrap.com/docs/4.0/components/navbar/        "External Content" -->
+
