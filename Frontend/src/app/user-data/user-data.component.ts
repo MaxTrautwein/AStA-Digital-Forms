@@ -45,7 +45,6 @@ export class UserDataComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.oauthService.loadUserProfile().then(o => console.log(o));
     this.userservice.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
     this.userservice.userDataGet().subscribe(Response => {
       this.ud = Response;
