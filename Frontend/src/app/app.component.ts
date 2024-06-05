@@ -6,10 +6,11 @@ import {authConfig} from "./auth.config";
 import { AppService } from './app.service';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { CollapsableBottomComponent } from './collapsable-bottom/collapsable-bottom.component';
-import { MainButtonsComponent } from './main-buttons/main-buttons.component';
+import { MainButtonsComponent } from './dashboard/main-buttons/main-buttons.component';
 import {ApiModule, FormsService, DefaultService} from './api-client';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
+import {TokenService} from "./token.service";
 
 
 @Component({
@@ -44,13 +45,12 @@ export class AppComponent {
     this.formsService.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
   }
 
-  constructor(private oauthService: OAuthService, private appService: AppService, private defaultservice: DefaultService, private formsService: FormsService, private router :Router) {
+  constructor(private oauthService: OAuthService, private appService: AppService, private defaultservice: DefaultService,
+              private formsService: FormsService, private router :Router, private tokenService: TokenService) {
   this.configure();
   this.service=appService;
-
-
+   // oauthService
   }
-
 
 
   login() {

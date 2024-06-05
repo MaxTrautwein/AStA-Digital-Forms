@@ -1,16 +1,46 @@
 <div class="Button-wrapper">
-    @for(t of this.templateService.getAntragsTemplates(); track t) {
-        <div class="subbutton-wrapper">
-            <div class="auswahlbutton">
-                <h1>{{t.titel}}</h1>
-                <h2>{{t.description}}</h2>
-            </div>
-            <button type="button" class="subbutton sbleft" routerLink="/Form/{{t.id}}">Antrag</button>
-            @for(a of this.templateService.getAbrechnungsTemplates(); track a) {
-                @if(a.titel == t.titel) {
-                    <button type="button" class="subbutton sbright" routerLink="/Form/{{a.id}}">Abrechnung</button>
-                }
-            }
+
+  @if ( groups | async; as templateGroups){
+    @for (g of templateGroups; track $index){
+      <div class="subbutton-wrapper">
+        <div class="auswahlbutton">
+          <h1>{{g.titel}}</h1>
+          <h2>{{g.description}}</h2>
         </div>
+        <button type="button" class="subbutton sbleft" routerLink="/Form/{{g.antragId}}">Antrag</button>
+        @if (g.rechnungen?.length! == 1){
+          <button type="button" class="subbutton sbright" routerLink="/Form/{{g.rechnungen![0]}}">Abrechnung</button>
+        } @else if (g.rechnungen?.length! > 1){
+          <!-- Logic for more then 1 Option -->
+          <button type="button" class="subbutton sbright" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Abrechnung
+          </button>
+
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" style="color: black" id="exampleModalLabel">Option</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-footer">
+                  @for (option of g.rechnungen; track $index){
+                    <button type="button" class="btn btn-secondary"
+                            data-bs-dismiss="modal" routerLink="/Form/{{option}}">{{ g.reasons![$index] }}</button>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+        }
+
+      </div>
     }
+  }
+
 </div>
+

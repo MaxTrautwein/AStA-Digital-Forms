@@ -1,23 +1,40 @@
 import { Component, OnInit } from '@angular/core';
-import { NgFor, NgIf } from '@angular/common';
+import {AsyncPipe, NgFor, NgIf} from '@angular/common';
 import {RouterLink} from "@angular/router";
-import {TemplateService} from "../template.service";
+import {TemplateService} from "../../template.service";
+import {GroupsService, TemplateGroup} from "../../api-client";
+import {OAuthService} from "angular-oauth2-oidc";
+import {TokenService} from "../../token.service";
+import {Observable, Subscriber} from "rxjs";
+import {OptionPopupComponent} from "./option-popup/option-popup.component";
 
 
 @Component({
   selector: 'app-main-buttons',
   standalone: true,
-  imports: [NgFor, RouterLink, NgIf],
+  imports: [NgFor, RouterLink, NgIf, AsyncPipe, OptionPopupComponent],
   templateUrl: './main-buttons.component.html',
   styleUrl: './main-buttons.component.css'
 })
 export class MainButtonsComponent implements OnInit{
 
 
-  constructor(protected templateService: TemplateService) {
+  constructor(protected templateService: TemplateService, protected groupApi: GroupsService,
+              private oauthService: OAuthService, protected tokenService: TokenService) {
+    this.groups = new Observable(e => this.groupEmitter = e);
+
   };
 
+  private TokenReady = false
+  protected groups: Observable<TemplateGroup[]>;
+  private groupEmitter: Subscriber<TemplateGroup[]> = new Subscriber<TemplateGroup[]>();
+
   ngOnInit(): void {
-    this.templateService.fetchTemplates()
+
+    this.tokenService.tokenReady.subscribe(s => {
+      if (s){
+        this.groupApi.groupsGet().subscribe(r => this.groupEmitter.next(r))
+      }
+    })
   }
 }
