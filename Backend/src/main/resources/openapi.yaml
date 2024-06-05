@@ -365,6 +365,8 @@ components:
     UserData:
       type: "object"
       properties:
+        id:
+          type: "string"
         userId:
           type: "string"
         email:

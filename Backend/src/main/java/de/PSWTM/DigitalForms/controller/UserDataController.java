@@ -29,12 +29,13 @@ public class UserDataController implements UserDataApiDelegate {
 
     @Override
     public ResponseEntity<UserData> userDataPost(UserData userData) {
-        if(!repository.findDuplicates(userData.getUserId()).isEmpty()) {
+        UserData test = repository.findDuplicates(getUserID());
+        if(repository.findDuplicates(getUserID()) == null) {
             userData.setUserId(getUserID());
             repository.save(userData);
             return ResponseEntity.status(HttpStatus.CREATED).body(userData);
         } else {
-            repository.deleteById(getUserID());
+            repository.delete(test);
             userData.setUserId(getUserID());
             repository.save(userData);
             return ResponseEntity.status(HttpStatus.CREATED).body(userData);

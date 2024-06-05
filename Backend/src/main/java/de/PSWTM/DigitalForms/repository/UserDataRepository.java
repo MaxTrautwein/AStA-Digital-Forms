@@ -15,6 +15,6 @@ public interface UserDataRepository extends MongoRepository<UserData ,String> {
         UserData findOwnUserData(String user);
 
         @Query(value = "{'userId':  ?0}")
-        ArrayList<UserData> findDuplicates(String user);
+        UserData findDuplicates(String user);
     
 }
