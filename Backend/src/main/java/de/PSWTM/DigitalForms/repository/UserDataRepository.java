@@ -1,9 +1,8 @@
 package de.PSWTM.DigitalForms.repository;
 
-
 import de.PSWTM.DigitalForms.model.UserData;
 
-
+import java.util.ArrayList;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
@@ -16,6 +15,6 @@ public interface UserDataRepository extends MongoRepository<UserData ,String> {
         UserData findOwnUserData(String user);
 
         @Query(value = "{'userId':  ?0}")
-        UserData findDuplicates(String user);
+        ArrayList<UserData> findDuplicates(String user);
     
 }

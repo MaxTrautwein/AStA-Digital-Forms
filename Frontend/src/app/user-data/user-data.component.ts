@@ -1,7 +1,6 @@
 import { Component} from '@angular/core';
 import { UserDataService } from '../api-client';
 import { FormsModule } from '@angular/forms';
-import { DefaultService } from '../api-client';
 import { OnInit } from '@angular/core';
 import { UserData } from '../api-client';
 import { OAuthService } from 'angular-oauth2-oidc';
@@ -28,7 +27,7 @@ export class UserDataComponent implements OnInit{
   public iban: string | undefined;
   public kreditinstitut: string | undefined;
 
-  private ud: UserData = {};
+  protected ud: UserData = {};
 
 
   
@@ -36,27 +35,33 @@ export class UserDataComponent implements OnInit{
   constructor(private userservice: UserDataService, private oauthService: OAuthService) {}
 
   sync() {
-    this.ud.name = this.name;
-    this.ud.firstName = this.vorname;
-    this.ud.adress = this.adresse;
-    this.ud.email = this.email;
-    this.ud.IBAN = this.iban;
-    this.ud.CreditInstitute = this.kreditinstitut;
+    let userdata: UserData = {}
+    userdata.name = this.name;
+    userdata.firstName = this.vorname;
+    userdata.adress = this.adresse;
+    userdata.email = this.email;
+    userdata.IBAN = this.iban;
+    userdata.CreditInstitute = this.kreditinstitut;
+    return userdata;
   }
 
   ngOnInit(): void {
     this.userservice.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
     this.userservice.userDataGet().subscribe(Response => {
-      this.ud = Response;
+      this.name = Response.name;
+      this.vorname = Response.firstName;
+      this.adresse = Response.adress;
+      this.email = Response.email;
+      this.iban = Response.IBAN;
+      this.kreditinstitut = Response.CreditInstitute;
     })
       
     
   }
 
   save() {
-    this.sync();
-    this.userservice.userDataPost(this.ud);
-    console.log(this.ud);
+    this.userservice.userDataPost(this.sync()).subscribe();
+    console.log(this.sync());
   }
 
   

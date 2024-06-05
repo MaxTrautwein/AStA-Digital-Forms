@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserDataController implements UserDataApiDelegate {
 
     @Autowired
@@ -27,12 +29,13 @@ public class UserDataController implements UserDataApiDelegate {
 
     @Override
     public ResponseEntity<UserData> userDataPost(UserData userData) {
-        if(!repository.existsById(getUserID())) {
+        if(!repository.findDuplicates(userData.getUserId()).isEmpty()) {
             userData.setUserId(getUserID());
             repository.save(userData);
             return ResponseEntity.status(HttpStatus.CREATED).body(userData);
         } else {
             repository.deleteById(getUserID());
+            userData.setUserId(getUserID());
             repository.save(userData);
             return ResponseEntity.status(HttpStatus.CREATED).body(userData);
         }
