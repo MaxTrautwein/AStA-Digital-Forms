@@ -17,7 +17,9 @@ export class FormContentComponent {
 
   @Output() formSectionEventEmitter = new EventEmitter<FormSection>();
 
-  protected Kontaktdaten: string = "test";
+  protected Kontaktdaten: string = "test1";
+  protected Name: string = "test2";
+  protected default: string = "def";
 
   constructor(protected userdataservice: UserDataService, private oauthService: OAuthService) {}
 
@@ -28,18 +30,10 @@ export class FormContentComponent {
   }
 
   fillData() {
-    let userdata: UserData = {};
     this.userdataservice.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
     this.userdataservice.userDataGet().subscribe(Response => {
       this.Kontaktdaten = Response.adress!;
-      //console.log(Response.CreditInstitute);
-      //console.log(this.Kontaktdaten);
-
+      this.Name = Response.name! + Response.firstName!;
     });
   }
-
-  putDataInFields(ud: UserData) {
-    this.section!.items!.find(i => i.Description == "Kontaktdaten")!.value = ud.adress;
-  }
-
 }
