@@ -1,9 +1,10 @@
 @for (formElement of this.section?.items; track $index){
   @switch (formElement.type){
     @case ('text'){
-      <app-text [description]="formElement.Description"
-                [help]="formElement.help" [value]="formElement.value"
-                (valueChanged)="updateFormSection({'val': $event, 'id': formElement.id } )" />
+      <app-text id="fieldID-{{formElement.id}}" [description]="formElement.Description"
+                [help]="formElement.help" [value]="this.Kontaktdaten"
+                (valueChanged)="updateFormSection({'val': $event, 'id': formElement.id } ) " [ngModel]="formElement.Description"/>
+                <p>{{this.Kontaktdaten}}</p>
     }
 
     <!-- TODO Add more Cases for the Different Types -->
@@ -15,3 +16,4 @@
   }
 }
 
+<button class="fill" (click)="fillData()">Use own Data</button>

@@ -27,8 +27,6 @@ export class UserDataComponent implements OnInit{
   public iban: string | undefined;
   public kreditinstitut: string | undefined;
 
-  protected ud: UserData = {};
-
 
   
 
