@@ -9,7 +9,7 @@ import {FormSection} from "../../../api-client";
   styleUrl: './money.component.css'
 })
 export class MoneyComponent {
-@Input() description: string | undefined = "Betrag";
+@Input() description: string | undefined = "";
 @Input() help: string | undefined = "";
 @Input() value: string | undefined = "";
 
@@ -32,10 +32,7 @@ isValidValue: boolean = true;
   }
 
   validateValue(value: string): boolean {
-    const numberValue = parseFloat(value);
-    if (isNaN(numberValue) || numberValue < 0) {
-      return false;
-    }
-    return true;
+    const regex = /^[0-9]+$/;
+    return regex.test(value);
   }
 }
