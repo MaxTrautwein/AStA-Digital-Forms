@@ -17,7 +17,6 @@ export class TextComponent implements OnChanges{
 @Output() valueChanged = new EventEmitter<string>();
 
 @ViewChild('input') input: any;
-  public isChangeWanted: boolean = false;
 
   ngAfterViewInit(){
     if (this.value === undefined){
@@ -32,12 +31,12 @@ export class TextComponent implements OnChanges{
     this.valueChanged.emit(inputElement.value);
   }
 
-  ngOnChanges(): void {
+  ngOnChanges(): void {/*
     console.log("change");
     if (this.value === undefined){
       this.value = ""
     }
-    //this.input.nativeElement.value = this.value;
+    //this.input.nativeElement.value = this.value;*/
   }
-  
+
 }
