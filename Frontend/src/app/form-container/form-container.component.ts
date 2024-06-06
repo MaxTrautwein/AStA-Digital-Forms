@@ -8,6 +8,7 @@ import {ProgressDisplayComponent} from "./progress-display/progress-display.comp
 import {ProgressContollsComponent} from "./progress-controls/progress-contolls.component";
 import {AsyncPipe} from "@angular/common";
 import {FormContentComponent} from "./form-content/form-content.component";
+import {TokenService} from "../token.service";
 
 
 @Component({
@@ -36,7 +37,7 @@ export class FormContainerComponent {
   protected isFav: Observable<Favourite>;
 
   constructor(private route: ActivatedRoute, private templateService: TemplateService,
-              private api: FormsService,
+              private api: FormsService, private tokenService: TokenService,
               private router: Router, protected FavService: FavouritesService) {
     this.isFav = new Observable<Favourite>(e => this.isFavEmitter = e)
 
@@ -72,14 +73,15 @@ export class FormContainerComponent {
     )
   }
 
-  ngOnInit() {
+
+  private Initialize(){
     // Get the current Page Section
     this.route.queryParamMap.pipe(map((params: ParamMap) => params.get('page'))).subscribe(
-        page => {
-          if (page !== null){
-            this.currentSection = Number(page)
-          }
-        })
+      page => {
+        if (page !== null){
+          this.currentSection = Number(page)
+        }
+      })
 
     // Request The Form
     this.formdetails = this.route.paramMap.pipe(
@@ -92,21 +94,27 @@ export class FormContainerComponent {
       if(this.form.template){
         // We need to Create the User form
         this.api.formsPost(this.form).subscribe(r =>{
-            // After the Creation Move to that new Form URL
-            this.router.navigateByUrl("/Form/" + r.id)
+          // After the Creation Move to that new Form URL
+          this.router.navigateByUrl("/Form/" + r.id)
         })
       }else {
         // Check for Fav
         this.requestFavStatus(e.parent!);
-
       }
-
-
     });
+  }
 
+  ngOnInit() {
 
-
-
+    if (!this.tokenService.hasValidToken()){
+      this.tokenService.tokenReady.subscribe(s => {
+        if (s){
+          this.Initialize();
+        }
+      })
+    }else {
+      this.Initialize();
+    }
   }
 
   UpdateFormSectionData(s: FormSection){
