@@ -6,6 +6,7 @@ import {GroupsService, TemplateGroup} from "../../api-client";
 import {OAuthService} from "angular-oauth2-oidc";
 import {TokenService} from "../../token.service";
 import {Observable, Subscriber} from "rxjs";
+import {SearchService} from "../../search.service";
 
 
 @Component({
@@ -18,8 +19,8 @@ import {Observable, Subscriber} from "rxjs";
 export class MainButtonsComponent implements OnInit{
 
 
-  constructor(protected templateService: TemplateService, protected groupApi: GroupsService,
-              private oauthService: OAuthService, protected tokenService: TokenService) {
+  constructor(protected search: SearchService, protected groupApi: GroupsService,
+              protected tokenService: TokenService) {
     this.groups = new Observable(e => this.groupEmitter = e);
 
   };

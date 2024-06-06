@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from "@angular/router";
+import {SearchService} from "../search.service";
 
 @Component({
   selector: 'app-nav-bar',
@@ -11,5 +12,11 @@ import { RouterLink } from "@angular/router";
   styleUrl: './nav-bar.component.css'
 })
 export class NavBarComponent {
+
+  constructor(protected search: SearchService) {
+
+  }
+
+
 
 }

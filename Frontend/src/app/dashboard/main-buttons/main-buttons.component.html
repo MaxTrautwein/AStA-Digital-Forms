@@ -1,7 +1,10 @@
+<script src="main-buttons.component.ts"></script>
 <div class="Button-wrapper">
 
   @if ( groups | async; as templateGroups){
     @for (g of templateGroups; track $index){
+     @if ( this.search.isMatch(g.titel!)){
+
       <div class="subbutton-wrapper">
         <div class="auswahlbutton">
           <h1>{{g.titel}}</h1>
@@ -32,13 +35,10 @@
               </div>
             </div>
           </div>
-
-
-
-
         }
-
       </div>
+     }
+
     }
   }
 
