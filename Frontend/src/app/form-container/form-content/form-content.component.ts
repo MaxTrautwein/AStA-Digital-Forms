@@ -19,7 +19,6 @@ export class FormContentComponent {
 
   protected Kontaktdaten: string = "test1";
   protected Name: string = "test2";
-  protected default: string = "def";
 
   constructor(protected userdataservice: UserDataService, private oauthService: OAuthService) {}
 
@@ -34,6 +33,21 @@ export class FormContentComponent {
     this.userdataservice.userDataGet().subscribe(Response => {
       this.Kontaktdaten = Response.adress!;
       this.Name = Response.name! + Response.firstName!;
+
+      //try shit
+      for(let formElements of this.section?.items!) {
+        switch(formElements.Description) {
+          case("Kontaktdaten"): {
+            formElements.value = Response.adress;
+            break;
+          }
+          default: {
+            formElements.value = "default";
+          }
+        }
+      }
     });
+    
+    
   }
 }

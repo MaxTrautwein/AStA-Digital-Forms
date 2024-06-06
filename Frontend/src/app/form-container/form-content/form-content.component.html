@@ -8,23 +8,22 @@
       @switch(formElement.Description) {
         @case ('Antragsteller*in') {
           <app-text [description]="formElement.Description"
-                    [help]="formElement.help" [value]="this.Name"
+                    [help]="formElement.help" [value]="formElement.value"
                     (valueChanged)="updateFormSection({'val': $event, 'id': formElement.id } ) " />
         }
         @case ('Kontaktdaten') {
           <app-text [description]="formElement.Description"
-                    [help]="formElement.help" [value]="this.Kontaktdaten"
+                    [help]="formElement.help" [value]="formElement.value"
                     (valueChanged)="updateFormSection({'val': $event, 'id': formElement.id } ) " />
         }
         @default {
           <app-text [description]="formElement.Description"
-                    [help]="formElement.help" [value]="this.default"
+                    [help]="formElement.help" [value]="formElement.value"
                     (valueChanged)="updateFormSection({'val': $event, 'id': formElement.id } ) " />
         }
       }
     
     }
-
     <!-- TODO Add more Cases for the Different Types -->
 
 
@@ -32,6 +31,7 @@
       <p>Unsupported Type {{formElement.type}}</p>
     }
   }
+  <p>{{formElement.value}}</p>
 }
 
 <button class="fill" (click)="fillData()">Use own Data</button>

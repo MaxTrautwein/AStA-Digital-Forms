@@ -35,7 +35,7 @@ export class TextComponent implements OnChanges{
   ngOnChanges(): void {
     console.log("change");
     if (this.value === undefined){
-      //this.value = ""
+      this.value = ""
     }
     //this.input.nativeElement.value = this.value;
   }
