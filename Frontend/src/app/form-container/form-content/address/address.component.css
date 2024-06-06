@@ -7,17 +7,22 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    
   }
   
-
-  
-  .form-control {
-    flex: 1;
+  .form-group input.form-control {
+    flex-grow: 1;
+    min-width: 0;
   }
-  
   .form-text {
     font-size: 0.8rem;
   }
   .col{
     padding-left: 0rem;
+  }
+  .error-message {
+    display: block;
+    color: red;
+    font-size: 0.875em;
+    margin-top: 0.25em;
   }
