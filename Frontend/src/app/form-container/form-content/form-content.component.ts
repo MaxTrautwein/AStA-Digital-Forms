@@ -33,16 +33,16 @@ export class FormContentComponent {
       this.userdataservice.userDataGet().subscribe(Response => {
         //try shit
         for(let formElements of sec.items!) {
-          switch(formElements.Description) {
-            case("Kontaktdaten"): {
+          switch(formElements.id) {
+            case("contact"): {
               formElements.value = Response.adress;
               break;
             }
-            case("Antragsteller*in"): {
+            case("user"): {
               formElements.value = Response.firstName + " " + Response.name;
               break;
             }
-            case("Kreditinstitut"): {
+            case("prepay_bank"): {
               formElements.value = Response.CreditInstitute;
               break;
             }
