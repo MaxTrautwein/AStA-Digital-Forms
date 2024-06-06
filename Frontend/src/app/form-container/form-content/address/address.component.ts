@@ -18,7 +18,7 @@ export class AddressComponent implements AfterViewInit {
   @ViewChild('streetInput') streetInput: any;
   @ViewChild('cityInput') cityInput: any;
   @ViewChild('postalCodeInput') postalCodeInput: any;
-
+  isValidPostalCode: boolean = true;
   ngAfterViewInit() {
     if (this.value === undefined) {
       this.value = { street: "", city: "", postalCode: "" };
@@ -34,6 +34,16 @@ export class AddressComponent implements AfterViewInit {
       city: this.cityInput.nativeElement.value,
       postalCode: this.postalCodeInput.nativeElement.value
     };
+    if (this.value.postalCode === "") {
+      this.isValidPostalCode = true;
+    } else {
+      this.isValidPostalCode = this.validatePostalCode(this.value.postalCode);
+    }
     this.valueChanged.emit(this.value);
+  }
+
+  validatePostalCode(value: string): boolean {
+    const regex = /^[0-9]+$/;
+    return regex.test(value);
   }
 }

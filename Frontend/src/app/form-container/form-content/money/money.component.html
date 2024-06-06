@@ -2,9 +2,10 @@
 <div class="mb-3">
     <div class="input-group">
         <span class="input-group-text" id="money">{{description}}</span>
-        <input #input type="text" class="form-control" aria-describedby="Betrag" (change)="onValueChange($event)" >
+        <input #input type="money" class="form-control" aria-describedby="Betrag" (change)="onValueChange($event)" >
         <span class="input-group-text">€</span>
     </div>
-    <div class="form-text" id="Betrag">{{help}}</div>
+    @if (!isValidValue) {<div class="error-message">Ungültiger Betrag</div>}
+    <div class="form-money" id="Betrag">{{help}}</div>
 </div>
 </div>

@@ -1,6 +1,6 @@
 
 textarea {
-    resize: none;
+    resize: auto;
     max-height: 8em;
     overflow-y: auto;
   }

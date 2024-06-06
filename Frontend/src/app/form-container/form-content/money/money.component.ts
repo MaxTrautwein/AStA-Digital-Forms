@@ -16,7 +16,7 @@ export class MoneyComponent {
 @Output() valueChanged = new EventEmitter<string>();
 
 @ViewChild('input') input: any;
-
+isValidValue: boolean = true;
   ngAfterViewInit(){
     if (this.value === undefined){
       this.value = ""
@@ -26,6 +26,16 @@ export class MoneyComponent {
 
   onValueChange(event: Event) {
     const inputElement = event.target as HTMLInputElement;
+    this.value = inputElement.value;
+    this.isValidValue = this.validateValue(this.value);
     this.valueChanged.emit(inputElement.value);
+  }
+
+  validateValue(value: string): boolean {
+    const numberValue = parseFloat(value);
+    if (isNaN(numberValue) || numberValue < 0) {
+      return false;
+    }
+    return true;
   }
 }
