@@ -1,27 +1,10 @@
 @for (formElement of this.section?.items; track $index){
   @switch (formElement.type){
     @case ('text'){
-      <!--<app-text [description]="formElement.Description"
-                    [help]="formElement.help" [value]="this.Fachschaft"
-                    (valueChanged)="updateFormSection({'val': $event, 'id': formElement.id } ) " />-->
-
-      @switch(formElement.Description) {
-        @case ('Antragsteller*in') {
-          <app-text [description]="formElement.Description"
-                    [help]="formElement.help" [value]="formElement.value"
-                    (valueChanged)="updateFormSection({'val': $event, 'id': formElement.id } ) " />
-        }
-        @case ('Kontaktdaten') {
-          <app-text [description]="formElement.Description"
-                    [help]="formElement.help" [value]="formElement.value"
-                    (valueChanged)="updateFormSection({'val': $event, 'id': formElement.id } ) " />
-        }
-        @default {
-          <app-text [description]="formElement.Description"
-                    [help]="formElement.help" [value]="formElement.value"
-                    (valueChanged)="updateFormSection({'val': $event, 'id': formElement.id } ) " />
-        }
-      }
+      <app-text [description]="formElement.Description"
+              [help]="formElement.help" [value]="formElement.value"
+              (valueChanged)="updateFormSection({'val': $event, 'id': formElement.id } ) " />
+ 
     }
     <!-- TODO Add more Cases for the Different Types -->
 
@@ -30,7 +13,6 @@
       <p>Unsupported Type {{formElement.type}}</p>
     }
   }
-  <p>{{formElement.value}}</p>
 }
 
-<button class="fill" (click)="fillData()">Use own Data</button>
+<button (click)="fillData()">Use own Data</button>

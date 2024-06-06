@@ -15,6 +15,8 @@ import { OAuthService } from 'angular-oauth2-oidc';
 export class FormContentComponent {
   @Input() section!: FormSection | undefined;
 
+  @Input() sections!: Array<FormSection> | undefined;
+
   @Output() formSectionEventEmitter = new EventEmitter<FormSection>();
 
   constructor(protected userdataservice: UserDataService, private oauthService: OAuthService) {}
@@ -26,28 +28,30 @@ export class FormContentComponent {
   }
 
   fillData() {
-    this.userdataservice.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
-    this.userdataservice.userDataGet().subscribe(Response => {
-      //try shit
-      for(let formElements of this.section?.items!) {
-        switch(formElements.Description) {
-          case("Kontaktdaten"): {
-            formElements.value = Response.adress;
-            break;
-          }
-          case("Antragsteller*in"): {
-            formElements.value = Response.firstName + " " + Response.name;
-            break;
-          }
-          case("Kreditinstitut"): {
-            formElements.value = Response.CreditInstitute;
-            break;
-          }
-          default: {
-            formElements.value = "";
+    for(let sec of this.sections!) {
+      this.userdataservice.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
+      this.userdataservice.userDataGet().subscribe(Response => {
+        //try shit
+        for(let formElements of sec.items!) {
+          switch(formElements.Description) {
+            case("Kontaktdaten"): {
+              formElements.value = Response.adress;
+              break;
+            }
+            case("Antragsteller*in"): {
+              formElements.value = Response.firstName + " " + Response.name;
+              break;
+            }
+            case("Kreditinstitut"): {
+              formElements.value = Response.CreditInstitute;
+              break;
+            }
+            default: {
+              formElements.value = "";
+            }
           }
         }
-      }
-    });
+      });
+    }
   }
 }

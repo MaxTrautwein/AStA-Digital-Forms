@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild, OnChanges, SimpleChanges, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MaybeAsync } from '@angular/router';
 
 
 @Component({
@@ -31,12 +32,14 @@ export class TextComponent implements OnChanges{
     this.valueChanged.emit(inputElement.value);
   }
 
-  ngOnChanges(): void {/*
+  ngOnChanges(): void {
     console.log("change");
     if (this.value === undefined){
       this.value = ""
     }
-    //this.input.nativeElement.value = this.value;*/
+    if(this.input != undefined) {
+      this.input.nativeElement.value = this.value;
+    }
   }
 
 }
