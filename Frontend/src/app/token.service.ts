@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {OAuthService} from "angular-oauth2-oidc";
-import {Observable, Subscriber} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import {DefaultService, FavouritesService, FormsService, GroupsService} from "./api-client";
 
 @Injectable({
@@ -8,7 +8,7 @@ import {DefaultService, FavouritesService, FormsService, GroupsService} from "./
 })
 export class TokenService {
 
-  private emitter: Subscriber<Boolean> = new Subscriber<Boolean>();
+  private emitter: Subject<Boolean> = new Subject<Boolean>();
 
   // Notify That a Token is ready
   public tokenReady:  Observable<Boolean>;
@@ -32,13 +32,12 @@ export class TokenService {
 
   constructor(private oauthService: OAuthService, private defaultService: DefaultService, private formService: FormsService,
               private groupService: GroupsService, private favoritesService: FavouritesService) {
-    this.tokenReady = new Observable(e => this.emitter = e);
+    this.tokenReady = this.emitter.asObservable();
     //this.emitter.next(false);
 
     this.oauthService.events.subscribe(e => {
 
       if (e.type === "token_received" || (e.type === "discovery_document_loaded" && this.oauthService.hasValidAccessToken())){
-
         this.setBearerAuth();
 
         if(!this.emitter.closed){
@@ -47,8 +46,6 @@ export class TokenService {
         }
 
       }
-
-
     })
 
 
