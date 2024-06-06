@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { TemplateService } from '../template.service';
-import { FavouriteService } from '../favourite.service';
 import { FavoritenComponent } from './favoriten/favoriten.component';
 import { MarkedItemComponent } from "./marked-item/marked-item.component";
 import {Favourite, FavouritesService, Form, FormsService, TemplateGroup} from "../api-client";

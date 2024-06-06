@@ -31,7 +31,7 @@ export class FavoritenComponent {
   }
 
   protected deleteFavId(id: string){
-    this.favService.favouritesFavIdDelete(id).subscribe(e => {
+    this.favService.favouritesIdDelete(id).subscribe(e => {
       this.deletedFav.next(true);
     })
     this.closePopup()

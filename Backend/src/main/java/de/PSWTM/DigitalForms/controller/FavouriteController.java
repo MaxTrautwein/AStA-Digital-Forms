@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -22,9 +23,15 @@ public class FavouriteController implements FavouritesApiDelegate {
     }
 
     @Override
-    public ResponseEntity<Void> favouritesFavIdDelete(String favId) {
-        if(repository.existsById(favId) && repository.findById(favId).get().getOwner().equals(getUserID())) {
-            repository.deleteById(favId);
+    public ResponseEntity<List<Favourite>> favouritesGet() {
+        List<Favourite> favList = repository.findAllOwnedFavouritess(getUserID());
+        return ResponseEntity.ok(favList);
+    }
+
+    @Override
+    public ResponseEntity<Void> favouritesIdDelete(String id) {
+        if(repository.existsById(id) && repository.findById(id).get().getOwner().equals(getUserID())) {
+            repository.deleteById(id);
             return ResponseEntity.ok().build();
         } else {
             return ResponseEntity.notFound().build();
@@ -32,14 +39,15 @@ public class FavouriteController implements FavouritesApiDelegate {
     }
 
     @Override
-    public ResponseEntity<Favourite> favouritesFavIdGet(String favId) {
-        return FavouritesApiDelegate.super.favouritesFavIdGet(favId);
-    }
-
-    @Override
-    public ResponseEntity<List<Favourite>> favouritesGet() {
-        List<Favourite> favList = repository.findAllOwnedFavouritess(getUserID());
-        return ResponseEntity.ok(favList);
+    public ResponseEntity<Favourite> favouritesIdGet(String id) {
+        ArrayList<Favourite> favourites = repository.findAllOwnedFavouritess(this.getUserID());
+        for (Favourite favourite : favourites) {
+            if (favourite.getFormId().equals(id)) {
+                //We have a Match
+                return ResponseEntity.ok(favourite);
+            }
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @Override
