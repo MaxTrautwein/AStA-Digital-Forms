@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import {NavBarComponent} from "../nav-bar/nav-bar.component";
-import {Favourite, Form, FormElement, FormSection, FormsService} from "../api-client";
+import {Form, FormSection, FormsService} from "../api-client";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {TemplateService} from "../template.service";
 import {map, Observable, switchMap} from "rxjs";
@@ -10,8 +9,6 @@ import {AsyncPipe} from "@angular/common";
 import {FormContentComponent} from "./form-content/form-content.component";
 import {PrepareAPIService} from "../prepare-api.service";
 import { FavouriteService } from '../favourite.service';
-import { UserDataService } from '../api-client';
-import { OAuthService } from 'angular-oauth2-oidc';
 
 
 @Component({
@@ -38,46 +35,9 @@ export class FormContainerComponent {
 
   constructor(private route: ActivatedRoute, private templateService: TemplateService,
               private api: FormsService, private prep: PrepareAPIService,
-              private router: Router, protected FavService: FavouriteService, private userdataservice: UserDataService, private oauthService: OAuthService) {
-  }
-/*
-  loadData() {
-    this.form.form?.forEach(section => {
-      section.items?.forEach(item => {
-        item.value = "test";
-      })
-    })
+              private router: Router, protected FavService: FavouriteService) {
   }
 
-  fillData(item: FormElement[] | undefined) {
-    this.userdataservice.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
-    this.userdataservice.userDataGet().subscribe(Response => {
-      //try shit
-      for(let formElements of item!) {
-        switch(formElements.Description) {
-          case("Kontaktdaten"): {
-            formElements.value = Response.adress;
-            console.log(formElements.value);
-            break;
-          }
-          case("Antragsteller*in"): {
-            formElements.value = Response.firstName + " " + Response.name;
-            break;
-          }
-          case("Kreditinstitut"): {
-            formElements.value = Response.CreditInstitute;
-            break;
-          }
-          default: {
-            formElements.value = "";
-          }
-        }
-        console.log(formElements.value);
-      }
-    });
-  }
-*/
-  //new Stuff
 
   getFormId() {
     return this.formdetails.subscribe(responce => responce.id);
@@ -99,7 +59,7 @@ export class FormContainerComponent {
         return fav.id;
       }
     }
-    return null;                                //not clean, but it works!
+    return null;
   }
 
   ngOnInit() {

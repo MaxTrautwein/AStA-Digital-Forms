@@ -2,8 +2,8 @@
   @switch (formElement.type){
     @case ('text'){
       <app-text [description]="formElement.Description"
-              [help]="formElement.help" [value]="formElement.value"
-              (valueChanged)="updateFormSection({'val': $event, 'id': formElement.id } ) " />
+                [help]="formElement.help" [value]="formElement.value"
+                (valueChanged)="updateFormSection({'val': $event, 'id': formElement.id } ) " />
  
     }
     <!-- TODO Add more Cases for the Different Types -->
@@ -13,7 +13,6 @@
       <p>Unsupported Type {{formElement.type}}</p>
     }
   }
-  <!--<p>{{formElement.id}}</p>-->
 }
 
 <button (click)="fillData()">Use Own Data</button>

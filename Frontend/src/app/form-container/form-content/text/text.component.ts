@@ -1,6 +1,5 @@
-import { Component, EventEmitter, Input, Output, ViewChild, OnChanges, SimpleChanges, input } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild, OnChanges} from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MaybeAsync } from '@angular/router';
 
 
 @Component({
@@ -24,7 +23,6 @@ export class TextComponent implements OnChanges{
       this.value = ""
     }
     this.input.nativeElement.value = this.value;
-    console.log("init");
   }
 
   onValueChange(event: Event) {
@@ -33,7 +31,6 @@ export class TextComponent implements OnChanges{
   }
 
   ngOnChanges(): void {
-    console.log("change");
     if (this.value === undefined){
       this.value = ""
     }

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {FormElement, FormSection, UserData} from "../../api-client";
+import { FormSection } from "../../api-client";
 import {TextComponent} from "./text/text.component";
 import { UserDataService } from '../../api-client';
 import { FormsModule } from '@angular/forms';
@@ -31,7 +31,6 @@ export class FormContentComponent {
     for(let sec of this.sections!) {
       this.userdataservice.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
       this.userdataservice.userDataGet().subscribe(Response => {
-        //try shit
         for(let formElements of sec.items!) {
           switch(formElements.id) {
             case("contact"): {
