@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import {FormSection} from "../../../api-client";
 
 @Component({
     selector: 'app-bool',
@@ -9,22 +10,24 @@ import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core
 export class BoolComponent {
     @Input() description: string | undefined = "Bezahlt?";
     @Input() help: string | undefined = "";
-    @Input() value: boolean | undefined = false;
+    @Input() value: string | undefined = "falsch";
 
-    @Output() valueChanged = new EventEmitter<boolean>();
+    @Output() valueChanged = new EventEmitter<string>();
 
     @ViewChild('input') input: any;
 
     ngAfterViewInit() {
         if (this.value === undefined) {
-            this.value = false;
+            this.value = "falsch";
         }
-        this.input.nativeElement.checked = this.value;
+        this.input.nativeElement.checked = this.value="wahr";
     }
 
     onValueChange(event: Event) {
         const inputElement = event.target as HTMLInputElement;
-        this.value = inputElement.checked;
+        if(inputElement.checked){
+          this.value = "wahr";
+        }
         this.valueChanged.emit(this.value);
     }
 }
