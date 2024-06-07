@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {CollapsableBottomComponent} from "../collapsable-bottom/collapsable-bottom.component";
-import {MainButtonsComponent} from "../main-buttons/main-buttons.component";
+import {MainButtonsComponent} from "./main-buttons/main-buttons.component";
 
 
 @Component({
