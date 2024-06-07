@@ -12,6 +12,16 @@ import {SearchService} from "../search.service";
   styleUrl: './nav-bar.component.css'
 })
 export class NavBarComponent {
+  protected isOpen: boolean = false;
+
+  onClick() {
+    if(this.isOpen) {
+      this.isOpen=false;
+    } else {
+      this.isOpen=true;
+    }
+    console.log(this.isOpen);
+  }
 
   constructor(protected search: SearchService) {
 
