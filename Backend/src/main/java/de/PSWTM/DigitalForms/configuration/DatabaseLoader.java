@@ -4,6 +4,7 @@ import de.PSWTM.DigitalForms.Factory.FormElementFactory;
 import de.PSWTM.DigitalForms.Model.TemplatePDF;
 import de.PSWTM.DigitalForms.model.*;
 import de.PSWTM.DigitalForms.repository.FormRepository;
+import de.PSWTM.DigitalForms.repository.TemplateGroupRepository;
 import de.PSWTM.DigitalForms.repository.TemplatePDFRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +15,7 @@ import static de.PSWTM.DigitalForms.Factory.AttachmentFactory.createAttachment;
 import static de.PSWTM.DigitalForms.Factory.FormElementFactory.createFormElement;
 import static de.PSWTM.DigitalForms.Factory.FormFactory.createForm;
 import static de.PSWTM.DigitalForms.Factory.FormSectionFactory.createFormSection;
+import static de.PSWTM.DigitalForms.Factory.TemplateGroupFactory.createTemplateGroup;
 
 @Configuration
 public class DatabaseLoader {
@@ -453,66 +455,90 @@ public class DatabaseLoader {
         return form;
     }
 
-    public static void initFormRepository(FormRepository repository, TemplatePDFRepository pdfRepository){
+    public static void initFormRepository(FormRepository repository, TemplatePDFRepository pdfRepository,
+                                          TemplateGroupRepository tgRepository){
+        String Id_Erstattung_von_Auslagen_und_Rechnungen = "";
+        String Id_Abrechnung_eines_Vorschusses = "";
+        String Id_Erstattung_von_Reisekosten = "";
+
         Form newForm = repository.save(gen_Genehmigung_von_Ausgaben_und_Anschaffungen());
         pdfRepository.save(new TemplatePDF(newForm.getId(), "AntragAufGenehmigenTemplate"));
-        // TODO: Sollte eigentlich Wahl zwischen gen_Abrechnung_eines_Vorschusses & gen_Erstattung_von_Auslagen_und_Rechnungen
-        Form tmp = gen_Erstattung_von_Auslagen_und_Rechnungen();
-        tmp.setTitel(newForm.getTitel());  // TODO: needed for #90 Needs to be improved
-        newForm = repository.save(tmp);
-        pdfRepository.save(new TemplatePDF(newForm.getId(), "ErstattungvonAuslagenundRechnungen"));
 
+        Id_Erstattung_von_Auslagen_und_Rechnungen = repository.save(gen_Erstattung_von_Auslagen_und_Rechnungen()).getId();
+        pdfRepository.save(new TemplatePDF(Id_Erstattung_von_Auslagen_und_Rechnungen, "ErstattungvonAuslagenundRechnungen"));
+
+        Id_Abrechnung_eines_Vorschusses = repository.save(gen_Abrechnung_eines_Vorschusses()).getId();
+        pdfRepository.save(new TemplatePDF(Id_Abrechnung_eines_Vorschusses, "AbrechnungeinesVorschusses"));
+
+        TemplateGroup tg = createTemplateGroup("Ausgaben und Anschaffungen", "Geld für dinge", newForm.getId());
+        tg.getRechnungen().add(Id_Erstattung_von_Auslagen_und_Rechnungen);
+        tg.getReasons().add("Gab keinen Vorschuss");
+        tg.getRechnungen().add(Id_Abrechnung_eines_Vorschusses);
+        tg.getReasons().add("hatten einen Vorschuss");
+        tgRepository.save(tg);
 
         newForm = repository.save(gen_Genehmigung_von_Fachschafts_wochenenden());
         pdfRepository.save(new TemplatePDF(newForm.getId(), "GenehmigungvonFachschaftswochenenden"));
-        tmp = gen_Abrechnung_von_Fachschafts_wochenenden();
-        tmp.setTitel(newForm.getTitel());  // TODO: needed for #90 Needs to be improved
-        newForm = repository.save(tmp);
+
+        tg = createTemplateGroup("FS - WE", "Wir gehen mit der FS wor hin", newForm.getId());
+
+        newForm = repository.save(gen_Abrechnung_von_Fachschafts_wochenenden());
         pdfRepository.save(new TemplatePDF(newForm.getId(), "AbrechnungvonFachschaftswochenenden"));
+        tg.getRechnungen().add(newForm.getId());
+        tgRepository.save(tg);
 
 
         newForm = repository.save(gen_Genehmigung_von_kulturellen_Veranstaltungen());
         pdfRepository.save(new TemplatePDF(newForm.getId(), "GenehmigungvonkulturellenVeranstaltungen"));
-        // TODO: Sollte eigentlich Wahl zwischen gen_Abrechnung_eines_Vorschusses & gen_Erstattung_von_Auslagen_und_Rechnungen
-        tmp = gen_Abrechnung_eines_Vorschusses();
-        tmp.setTitel(newForm.getTitel());  // TODO: needed for #90 Needs to be improved
-        newForm = repository.save(tmp);
-        pdfRepository.save(new TemplatePDF(newForm.getId(), "AbrechnungeinesVorschusses"));
+
+        tg = createTemplateGroup("Kulturelle Veranstaltung", "Ne Veranstaltung ohne Gewinn absicht", newForm.getId());
+        tg.getRechnungen().add(Id_Erstattung_von_Auslagen_und_Rechnungen);
+        tg.getReasons().add("Gab keinen Vorschuss");
+        tg.getRechnungen().add(Id_Abrechnung_eines_Vorschusses);
+        tg.getReasons().add("hatten einen Vorschuss");
+        tgRepository.save(tg);
+
 
 
         newForm = repository.save(gen_Genehmigung_von_Reisen());
         pdfRepository.save(new TemplatePDF(newForm.getId(), "GenehmigungvonReisen"));
-        tmp = gen_Erstattung_von_Reisekosten();
-        tmp.setTitel(newForm.getTitel());  // TODO: needed for #90 Needs to be improved
-        newForm = repository.save(tmp);
-        pdfRepository.save(new TemplatePDF(newForm.getId(), "ErstattungvonReisekosten"));
+
+        tg = createTemplateGroup("Reise", "Ich will wo hin", newForm.getId());
+
+
+        Id_Erstattung_von_Reisekosten = repository.save(gen_Erstattung_von_Reisekosten()).getId();
+        pdfRepository.save(new TemplatePDF(Id_Erstattung_von_Reisekosten, "ErstattungvonReisekosten"));
+        tg.getRechnungen().add(Id_Erstattung_von_Reisekosten);
+        tgRepository.save(tg);
 
 
         newForm = repository.save(gen_Genehmigung_von_Reisen_mit_Fahrgemeinschaften());
         pdfRepository.save(new TemplatePDF(newForm.getId(), "GenehmigungvonReisenmitFahrgemeinschaften"));
-        // TODO: Das gen_Erstattung_von_Reisekosten ist ein Dupe -> Muss später besser gelöst werden
-        tmp = gen_Erstattung_von_Reisekosten();
-        tmp.setTitel(newForm.getTitel());  // TODO: needed for #90 Needs to be improved
-        newForm = repository.save(tmp);
-        pdfRepository.save(new TemplatePDF(newForm.getId(), "ErstattungvonReisekosten"));
+
+        tg = createTemplateGroup("Reise mit Fahrgemeinschaft", "Ich will mit anderen wo hin", newForm.getId());
+        tg.getRechnungen().add(Id_Erstattung_von_Reisekosten);
+        tgRepository.save(tg);
+
 
         newForm = repository.save(gen_Genehmigung_von_wirtschaftlichen_Veranstaltungen());
         pdfRepository.save(new TemplatePDF(newForm.getId(), "GenehmigungvonwirtschaftlichenVeranstaltungen"));
-        // TODO: Sollte eigentlich Wahl zwischen gen_Abrechnung_eines_Vorschusses & gen_Erstattung_von_Auslagen_und_Rechnungen
-        // TODO: Das gen_Erstattung_von_Auslagen_und_Rechnungen ist ein Dupe -> Muss später besser gelöst werden
-        tmp = gen_Erstattung_von_Auslagen_und_Rechnungen();
-        tmp.setTitel(newForm.getTitel());  // TODO: needed for #90 Needs to be improved
-        newForm = repository.save(tmp);
-        pdfRepository.save(new TemplatePDF(newForm.getId(), "ErstattungvonAuslagenundRechnungen"));
+
+        tg = createTemplateGroup("Wirtschaftliche Veranstaltung", "Ne Veranstaltung mit Gewinn absicht", newForm.getId());
+        tg.getRechnungen().add(Id_Erstattung_von_Auslagen_und_Rechnungen);
+        tg.getReasons().add("Gab keinen Vorschuss");
+        tg.getRechnungen().add(Id_Abrechnung_eines_Vorschusses);
+        tg.getReasons().add("hatten einen Vorschuss");
+        tgRepository.save(tg);
 
     }
 
 
     @Bean
-    CommandLineRunner initDatabase(FormRepository formRepository,TemplatePDFRepository pdfRepository) {
+    CommandLineRunner initDatabase(FormRepository formRepository, TemplatePDFRepository pdfRepository,
+                                   TemplateGroupRepository tgRepository) {
         return args -> {
             if(formRepository.findAll().isEmpty()) {
-                initFormRepository(formRepository, pdfRepository);
+                initFormRepository(formRepository, pdfRepository, tgRepository);
 
             }
         };

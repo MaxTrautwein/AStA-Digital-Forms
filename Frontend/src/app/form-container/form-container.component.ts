@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import {Form, FormSection, FormsService} from "../api-client";
+import {NavBarComponent} from "../nav-bar/nav-bar.component";
+import {Favourite, FavouritesService, Form, FormSection, FormsService} from "../api-client";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {TemplateService} from "../template.service";
-import {map, Observable, switchMap} from "rxjs";
+import {map, Observable, Subscriber, switchMap} from "rxjs";
 import {ProgressDisplayComponent} from "./progress-display/progress-display.component";
 import {ProgressContollsComponent} from "./progress-controls/progress-contolls.component";
 import {AsyncPipe} from "@angular/common";
 import {FormContentComponent} from "./form-content/form-content.component";
-import {PrepareAPIService} from "../prepare-api.service";
-import { FavouriteService } from '../favourite.service';
+import {TokenService} from "../token.service";
 
 
 @Component({
@@ -33,43 +33,55 @@ export class FormContainerComponent {
 
   protected section: FormSection | undefined;
 
+  private isFavEmitter: Subscriber<Favourite> = new Subscriber<Favourite>();
+  protected isFav: Observable<Favourite>;
+
   constructor(private route: ActivatedRoute, private templateService: TemplateService,
-              private api: FormsService, private prep: PrepareAPIService,
-              private router: Router, protected FavService: FavouriteService) {
+              private api: FormsService, private tokenService: TokenService,
+              private router: Router, protected FavService: FavouritesService) {
+    this.isFav = new Observable<Favourite>(e => this.isFavEmitter = e)
+
   }
-
-
-  getFormId() {
-    return this.formdetails.subscribe(responce => responce.id);
-  }
-
-  isInFav() {
-    let Favourites = this.FavService.getFav();
-    for(let favs of Favourites) {
-      if(favs.formId == this.form.id) {
-        return true;
-      }
+  protected addFav(form: Form){
+    let myFav: Favourite = {};
+    myFav.formId = form.parent;
+    if (myFav.formId == undefined){
+      myFav.formId = form.id;
     }
-    return false;
+
+
+    this.FavService.favouritesPost(myFav).subscribe(e => {
+      this.requestFavStatus(e.formId!);
+    })
+  }
+  protected rmFav(FavId: string, formId: string) {
+    this.FavService.favouritesIdDelete(FavId).subscribe(e => {
+        this.requestFavStatus(formId);
+    })
   }
 
-  getFavId() {
-    for(let fav of this.FavService.getFav()) {
-      if(this.form.id == fav.formId) {
-        return fav.id;
+  private requestFavStatus(id: string){
+    this.FavService.favouritesIdGet(id).subscribe(
+      {
+        next: ((f: Favourite) => this.isFavEmitter.next(f)),
+        error: ((e:any) => {
+          const fav: Favourite = {};
+          this.isFavEmitter.next(fav)}
+        )
       }
-    }
-    return null;
+
+    )
   }
 
-  ngOnInit() {
+
+  private Initialize(){
     // Get the current Page Section
     this.route.queryParamMap.pipe(map((params: ParamMap) => params.get('page'))).subscribe(
-        page => {
-          if (page !== null){
-            this.currentSection = Number(page)
-          }
-        })
+      page => {
+        if (page !== null){
+          this.currentSection = Number(page)
+        }
+      })
 
     // Request The Form
     this.formdetails = this.route.paramMap.pipe(
@@ -79,15 +91,30 @@ export class FormContainerComponent {
     this.formdetails.subscribe(e => {
       this.form = e;
 
-      this.prep.prepare()
       if(this.form.template){
         // We need to Create the User form
         this.api.formsPost(this.form).subscribe(r =>{
-            // After the Creation Move to that new Form URL
-            this.router.navigateByUrl("/Form/" + r.id)
+          // After the Creation Move to that new Form URL
+          this.router.navigateByUrl("/Form/" + r.id)
         })
+      }else {
+        // Check for Fav
+        this.requestFavStatus(e.parent!);
       }
     });
+  }
+
+  ngOnInit() {
+
+    if (!this.tokenService.hasValidToken()){
+      this.tokenService.tokenReady.subscribe(s => {
+        if (s){
+          this.Initialize();
+        }
+      })
+    }else {
+      this.Initialize();
+    }
   }
 
   UpdateFormSectionData(s: FormSection){
@@ -100,7 +127,6 @@ export class FormContainerComponent {
   }
 
   private SendUpdate(){
-    this.prep.prepare()
     this.api.formsFormIDPut(this.form.id!, this.form).subscribe()
   }
 

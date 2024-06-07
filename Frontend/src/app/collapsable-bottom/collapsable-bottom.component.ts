@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { TemplateService } from '../template.service';
-import { FavouriteService } from '../favourite.service';
 import { FavoritenComponent } from './favoriten/favoriten.component';
 import { MarkedItemComponent } from "./marked-item/marked-item.component";
-import { Form, FormsService } from "../api-client";
-import { Observable } from "rxjs";
+import {Favourite, FavouritesService, Form, FormsService, TemplateGroup} from "../api-client";
+import {Observable, Subscriber} from "rxjs";
 import { AsyncPipe } from "@angular/common";
-import { PrepareAPIService } from "../prepare-api.service";
-
+import {TokenService} from "../token.service";
 @Component({
   selector: 'app-collapsable-bottom',
   standalone: true,
@@ -20,9 +18,33 @@ export class CollapsableBottomComponent {
 
   protected forms: Observable<Form[]>
 
-  constructor(private api: FormsService, private prep: PrepareAPIService, protected templateService: TemplateService, protected favService: FavouriteService) {
-    prep.prepare();
+  constructor(private tokenService: TokenService, private api: FormsService,
+              protected templateService: TemplateService, protected favService: FavouritesService) {
     this.forms = api.formsGet()
-    favService.fetchFav();
+    this.favourites = new Observable(e => this.favEmitter = e);
   }
+
+  protected favourites: Observable<Favourite[]>;
+  private favEmitter: Subscriber<Favourite[]> = new Subscriber<Favourite[]>();
+
+
+  protected LoadFav(){
+    console.log("loaded Fav");
+    this.favService.favouritesGet().subscribe(r => this.favEmitter.next(r))
+  }
+
+  ngOnInit(): void {
+    if (!this.tokenService.hasValidToken()){
+      this.tokenService.tokenReady.subscribe(s => {
+        if (s){
+          this.LoadFav();
+        }
+      })
+    }else {
+      this.LoadFav();
+    }
+
+  }
+
+
 }
