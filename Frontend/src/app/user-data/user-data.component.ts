@@ -45,21 +45,20 @@ export class UserDataComponent implements OnInit{
 
   ngOnInit(): void {
     this.userservice.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
-    this.userservice.userDataGet().subscribe(Response => {
-      this.name = Response.name;
-      this.vorname = Response.firstName;
-      this.adresse = Response.adress;
-      this.email = Response.email;
-      this.iban = Response.IBAN;
-      this.kreditinstitut = Response.CreditInstitute;
-    })
-      
-    
+    if(Response) {
+      this.userservice.userDataGet().subscribe(Response => {
+        this.name = Response.name;
+        this.vorname = Response.firstName;
+        this.adresse = Response.adress;
+        this.email = Response.email;
+        this.iban = Response.IBAN;
+        this.kreditinstitut = Response.CreditInstitute;
+      })
+    }
   }
 
   save() {
     this.userservice.userDataPost(this.sync()).subscribe();
-    console.log(this.sync());
   }
 
   
