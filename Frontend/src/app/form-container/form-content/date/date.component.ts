@@ -7,7 +7,7 @@ import {FormSection} from "../../../api-client";
   styleUrls: ['./date.component.css']
 })
 export class DateComponent implements AfterViewInit {
-  @Input() description: string | undefined = "Datum:";
+  @Input() description: string | undefined = "";
   @Input() help: string | undefined = "";
   @Input() value: string | undefined = "";
 
