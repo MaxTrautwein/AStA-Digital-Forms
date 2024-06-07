@@ -24,7 +24,7 @@ export class AddressComponent implements AfterViewInit {
       this.value = this.splitConcatenatedString(this.value);
     }
 
-    if (this.value === undefined) {
+    if (this.value === undefined || this.value === null) {
       this.value = { street: "", city: "", postalCode: "" };
     }
 

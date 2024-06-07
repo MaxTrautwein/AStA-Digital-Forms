@@ -20,7 +20,7 @@ export class IbanComponent implements AfterViewInit {
   //constructor(private validatorService: ValidatorService) {}
 
   ngAfterViewInit() {
-    if (this.value === undefined) {
+    if (this.value === undefined || this.value === null) {
       this.value = "";
     }
     this.input.nativeElement.value = this.value;
