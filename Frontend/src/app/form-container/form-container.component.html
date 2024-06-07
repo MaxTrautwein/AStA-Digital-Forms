@@ -21,7 +21,7 @@
   }
 
   <app-progress-display [sections]="FormDetail.form" ></app-progress-display>
-  <app-form-content [section]="FormDetail.form?.[this.currentSection]" (formSectionEventEmitter)="UpdateFormSectionData($event)" > > ></app-form-content>
+  <app-form-content [section]="FormDetail.form?.[this.currentSection]" [sections]="FormDetail.form" (formSectionEventEmitter)="UpdateFormSectionData($event)" > > ></app-form-content>
   <app-progress-controls [sectionsCnt]="FormDetail.form?.length" [currentSection]="this.currentSection" ></app-progress-controls>
 
   <button (click)="testDL(FormDetail.id!)">DownLoad Test</button>

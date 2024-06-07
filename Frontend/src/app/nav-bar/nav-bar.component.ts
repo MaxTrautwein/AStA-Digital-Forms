@@ -20,7 +20,6 @@ export class NavBarComponent {
     } else {
       this.isOpen=true;
     }
-    console.log(this.isOpen);
   }
 
   constructor(protected search: SearchService) {
