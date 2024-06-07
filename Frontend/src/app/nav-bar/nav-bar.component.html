@@ -3,25 +3,13 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <img src="assets/image/AstaRgb.png" alt="AStA-Logo" class="AStA-Logo" routerLink="">
-  <input type="text" placeholder="Suche..." class="Searchbar">
+  <input (input)="this.search.updateSearch($event)" type="text" placeholder="Suche..." class="Searchbar">
   <div class="Account-holder">
     <img src="assets/image/useraccount.png" alt="useraccount" class="User-Logo">
     <div class="Account-Text-Holder">
-        Account
+      Account
     </div>
-    <nav class="navbar navbar-dark c-color">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <img src="assets/image/AstaRgb.png" alt="AStA-Logo" class="AStA-Logo" routerLink="">
-      <input (input)="this.search.updateSearch($event)" type="text" placeholder="Suche..." class="Searchbar">
-      <div class="Account-holder">
-        <img src="assets/image/useraccount.png" alt="useraccount" class="User-Logo">
-        <div class="Account-Text-Holder">
-            Account
-        </div>
-      </div>
-    </nav>
+
   </div>
 </nav>
 
@@ -32,13 +20,12 @@
       <button class="item">Eigene Anträge</button>
     </div>
   </div>
-   
+
 }
 
 
 
-  
 
 
-  <!--Bootrstrap Source: https://getbootstrap.com/docs/4.0/components/navbar/        "External Content" -->
 
+<!--Bootrstrap Source: https://getbootstrap.com/docs/4.0/components/navbar/        "External Content" -->
