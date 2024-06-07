@@ -8,9 +8,9 @@ import {FormSection} from "../../../api-client";
     standalone:true
 })
 export class BoolComponent {
-    @Input() description: string | undefined = "Bezahlt?";
+    @Input() description: string | undefined = "";
     @Input() help: string | undefined = "";
-    @Input() value: string | undefined = "falsch";
+    @Input() value: string | undefined = "";
 
     @Output() valueChanged = new EventEmitter<string>();
 
