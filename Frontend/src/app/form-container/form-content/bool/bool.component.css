@@ -14,5 +14,8 @@
 
 .form-check-input {
     opacity: 1;
-    margin-left: 4em;
+    border: var(--asta-orange) solid 3px;
+}
+.input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback){
+  border-radius: 0.25em;
 }
