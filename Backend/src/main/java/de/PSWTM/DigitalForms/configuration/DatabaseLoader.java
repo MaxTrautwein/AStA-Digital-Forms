@@ -503,7 +503,7 @@ public class DatabaseLoader {
         return form;
     }
 
-    // TODO: Conditional Sections & Add Checklist in Anlage zur Reisekostenabrechnung (ALSO HTML)
+    // TODO: Conditional Sections & Might want some Grouping Option
     private static Form gen_Erstattung_von_Reisekosten(){
         Form form = new Form();
         form.setTemplate(true);
@@ -584,7 +584,32 @@ public class DatabaseLoader {
         sections.add(createFormSection(6,"Anlage zur Reisekostenabrechnung "));
         // First 4 Fields are Dupes that we don't need again
 
-        // TODO Add Checklist
+
+        addFormElement(sections,FormElement.TypeEnum.BOOL,"Begründung Hotelkosten:"
+                ,"Anreise mit öffentlichen Verkehrsmitteln, dadurch geringere Flexibilität, aber dadurch Einsparung von zusätzlichen Fahrtkosten"
+                , "hotel1");
+        addFormElement(sections,FormElement.TypeEnum.BOOL,"Begründung Hotelkosten:"
+                ,"Tagungshotel, gemeinsame Abendveranstaltung, keine zusätzlichen Fahrtkosten"
+                , "hotel2");
+        addFormElement(sections,FormElement.TypeEnum.BOOL,"Begründung Hotelkosten:"
+                ,"keine günstigere Unterkunft verfügbar (Ausdruck von HRS, hotel.de o.ä. liegt bei)"
+                , "hotel3");
+        addFormElement(sections,FormElement.TypeEnum.BOOL,"Begründung Hotelkosten:"
+                ,"Messezeit", "hotel4");
+
+        addFormElement(sections,FormElement.TypeEnum.BOOL,"Begründung Taxibenutzung/Sonstige:"
+                ,"Keine öffentlichen Verkehrsmittel vorhanden (frühe/späte Abfahrt/Ankunft, Sonn-/Feiertag)"
+                ,"taxi1");
+        addFormElement(sections,FormElement.TypeEnum.BOOL,"Begründung Taxibenutzung/Sonstige:"
+                ,"Unhandliches und schweres Gepäck/Unterlagen"
+                , "taxi2");
+        addFormElement(sections,FormElement.TypeEnum.BOOL,"Begründung Taxibenutzung/Sonstige:"
+                ,"Taxi mit anderen Mitreisenden geteilt"
+                , "taxi3");
+        addFormElement(sections,FormElement.TypeEnum.BOOL,"Begründung Taxibenutzung/Sonstige:"
+                ,"Im Ausland: sichere und relativ günstige Alternative zu öffentlichen Verkehrsmitteln"
+                , "taxi4");
+
 
         addFormElement(sections,FormElement.TypeEnum.TEXTMULTILINE,"Sonstige Bemerkungen:"
                 ,null, "AdditionalReason");
@@ -609,7 +634,7 @@ public class DatabaseLoader {
         return form;
     }
 
-    // TODO Add Sections
+    // TODO Check TeilnehmerList
     private static Form gen_Genehmigung_von_Fachschafts_wochenenden(){
         Form form = new Form();
         form.setTemplate(true);
@@ -618,8 +643,37 @@ public class DatabaseLoader {
         form.setCategory(Form.CategoryEnum.ANTRAG);
         List<FormSection> sections = new ArrayList<>();
 
-        // TODO Add Sections
+        AddGeneralContactSection(sections,0);
 
+        sections.add(createFormSection(1,"Reason"));
+        addFormElement(sections,FormElement.TypeEnum.TEXTMULTILINE,"Beschreibung des geplanten Fachschafts-Wochenendes"
+                ,"Thema, Zweck, Ablaufplan, Dozent*innen, etc"
+                ,"reason");
+        addFormElement(sections,FormElement.TypeEnum.BOOL,"Teilnehmer*innenliste"
+                ,"vorläufig", "personList");
+        addFormElement(sections,FormElement.TypeEnum.BOOL,"Unterschriebenes Protokoll der FS-Sitzung"
+                ,"mit genau erläutertem Beschluss", "protocol");
+        addFormElement(sections,FormElement.TypeEnum.BOOL,"Ablaufplan, Angebot Unterkunft und genaue Kostenaufstellung"
+                ,"Für die Unterkünfte müssen 3 Vergleichsangebote eingeholt werden", "detailPlanningDocs");
+
+        sections.add(createFormSection(2,"Details"));
+        addFormElement(sections,FormElement.TypeEnum.DATE,"Termin"
+                ,null, "date");
+        addFormElement(sections,FormElement.TypeEnum.TEXT,"Teilnehmer*innenzahl"
+                ,"Angabe ist wichtig für Versicherung!", "personCnt");
+        addFormElement(sections,FormElement.TypeEnum.MONEY,"Geschätzte Höhe der Ausgaben"
+                ,null, "cost");
+        addFormElement(sections,FormElement.TypeEnum.ADDRESS,"Genaue Anschrift der Unterkunft"
+                ,"Adresse, Ort", "loc");
+
+        sections.add(createFormSection(3,"Vorschuss"));
+        FormSection section = sections.get(sections.size() - 1);
+
+        addPaymentSum(section);
+        addPaymentVorschussDates(section);
+        addGeneralPaymentInfoElements(section);
+
+        // Check if TeilnehmerList should be an Element
 
         form.setForm(sections);
 
@@ -647,7 +701,7 @@ public class DatabaseLoader {
         return form;
     }
 
-    // TODO Add Sections
+
     private static Form gen_Genehmigung_von_kulturellen_Veranstaltungen(){
         Form form = new Form();
         form.setTemplate(true);
@@ -656,9 +710,32 @@ public class DatabaseLoader {
         form.setCategory(Form.CategoryEnum.ANTRAG);
         List<FormSection> sections = new ArrayList<>();
 
-        form.setForm(sections);
+        AddGeneralContactSection(sections,0);
 
-        // TODO Add Sections
+        sections.add(createFormSection(1,"Details"));
+        addFormElement(sections,FormElement.TypeEnum.TEXTMULTILINE,"Verwendungszweck"
+                ,"(Bitte ausführlich beschreiben! Evtl. Beiblatt nutzen. -  Was? Warum? Welcher Preis?)"
+                ,"reason");
+        addFormElement(sections,FormElement.TypeEnum.BOOL,"Unterschriebenes Protokoll der FS-Sitzung"
+                ,"mit genau erläutertem Beschluss", "protocol");
+        addFormElement(sections,FormElement.TypeEnum.DATE,"Termin"
+                ,"geplant", "date");
+        addFormElement(sections,FormElement.TypeEnum.TEXT,"Teilnehmer*innenzahl"
+                ,"geplant", "persons");
+        addFormElement(sections,FormElement.TypeEnum.MONEY,"Höhe der Ausgaben"
+                ,"voraussichtliche Höhe angeben, falls nicht genau bekannt", "cost");
+
+        // there are some checkboxes for Vorschuss, we should be able to infer that from the following page
+
+
+        sections.add(createFormSection(3,"Vorschuss"));
+        FormSection section = sections.get(sections.size() - 1);
+
+        addPaymentSum(section);
+        addPaymentVorschussDates(section);
+        addGeneralPaymentInfoElements(section);
+
+        form.setForm(sections);
 
         List<Attachment> attachments = new ArrayList<>();
         attachments.add(createRequierdAttachment("Protokoll",

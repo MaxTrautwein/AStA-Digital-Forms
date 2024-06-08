@@ -212,19 +212,19 @@
     <br><br> <br><br>
     <strong>Begründung Hotelkosten:</strong>
     <ul>
-        <li>Anreise mit öffentlichen Verkehrsmitteln, dadurch geringere Flexibilität, aber dadurch Einsparung von zusätzlichen Fahrtkosten</li>
-        <li>Tagungshotel, gemeinsame Abendveranstaltung, keine zusätzlichen Fahrtkosten</li>
-        <li>keine günstigere Unterkunft verfügbar (Ausdruck von HRS, hotel.de o.ä. liegt bei)</li>
-        <li>Messezeit</li>
+        <li><input type="checkbox" th:checked="${hotel1}" > Anreise mit öffentlichen Verkehrsmitteln, dadurch geringere Flexibilität, aber dadurch Einsparung von zusätzlichen Fahrtkosten</li>
+        <li><input type="checkbox" th:checked="${hotel2}" >Tagungshotel, gemeinsame Abendveranstaltung, keine zusätzlichen Fahrtkosten</li>
+        <li><input type="checkbox" th:checked="${hotel3}" >keine günstigere Unterkunft verfügbar (Ausdruck von HRS, hotel.de o.ä. liegt bei)</li>
+        <li><input type="checkbox" th:checked="${hotel4}" >Messezeit</li>
     </ul>
     <br>
 
     <strong>Begründung Taxibenutzung/Sonstige:</strong>
     <ul>
-        <li>Keine öffentlichen Verkehrsmittel vorhanden (frühe/späte Abfahrt/Ankunft, Sonn-/Feiertag)</li>
-        <li>Unhandliches und schweres Gepäck/Unterlagen</li>
-        <li>Taxi mit anderen Mitreisenden geteilt</li>
-        <li>Im Ausland: sichere und relativ günstige Alternative zu öffentlichen Verkehrsmitteln</li>
+        <li><input type="checkbox" th:checked="${taxi1}" >Keine öffentlichen Verkehrsmittel vorhanden (frühe/späte Abfahrt/Ankunft, Sonn-/Feiertag)</li>
+        <li><input type="checkbox" th:checked="${taxi2}" >Unhandliches und schweres Gepäck/Unterlagen</li>
+        <li><input type="checkbox" th:checked="${taxi3}" >Taxi mit anderen Mitreisenden geteilt</li>
+        <li><input type="checkbox" th:checked="${taxi4}" >Im Ausland: sichere und relativ günstige Alternative zu öffentlichen Verkehrsmitteln</li>
     </ul>
     <br>
     <strong>Sonstige Bemerkungen:</strong>
