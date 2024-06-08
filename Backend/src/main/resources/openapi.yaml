@@ -450,6 +450,24 @@ components:
           type: "string"
         description:
           type: "string"
+          description: "describeds the Attachment"
+        required:
+          type: "string"
+          enum:
+            - "always"
+            - "user"
+            - "conditional" 
+          description: "When is it Requiered / When should it be shown"
+        conditionRef:
+          type: "string"
+          description: "Only needed if required==conditional. Refrences an FormElement id"
+        conditionRefVal:
+          type: "string"
+          description: "Used for a value check with conditionRef"
+        help:
+          type: "string"
+          description: "Additional help text regarding the Attachment"
+          
     
     TemplateGroup :
       type: "object"
