@@ -1,1 +1,26 @@
-<p>overview works!</p>
+<div class="OverviewContainer">
+  <h2>Überblick</h2>
+
+  <h3>Attachments</h3>
+
+  @for (attachment of form.attachments; track $index){
+    @if (attachment.required === Attachment.RequiredEnum.Conditional){
+      <div>Conditional: {{attachment.description}}</div>
+    } @else {
+      <app-attachment [attachment]="attachment" ></app-attachment>
+
+    }
+
+
+
+
+  }
+
+
+
+  <br>
+  <button (click)="DownloadPDF(form.id!)">DownLoad PDF</button>
+
+
+</div>
+
