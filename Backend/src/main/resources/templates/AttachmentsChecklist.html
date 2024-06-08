@@ -1,0 +1,44 @@
+<div class="page">
+    <div class="HeaderLine">
+        <address>
+            Studierendenschaft der Hochschule Esslingen<br>
+            Allgemeiner Studierendenausschuss<br>
+            Kanalstr. 33<br>
+            73728 Esslingen<br>
+            <br>
+            E-Mail: asta@hs-esslingen.de
+        </address>
+
+        <img src="AstaRgb.png">
+    </div>
+
+    <h1 style="text-align: center;font-size: 2em;">Anhang - Checkliste</h1>
+
+    <tr th:if="${ReqAttachment!=null and !ReqAttachment.empty}" >
+        <h2 style="font-size: 1.4em;padding-left: 6%;">Verpflichten</h2>
+        <span class="Italic" style="padding-left: 6%;">Die nachfolgenden Anhänge, sind unbedingt mit Anzuhängen.</span>
+
+        <tr th:each="attachment: ${ReqAttachment}">
+            <div class="attachmentItem" style="width: 80%;padding-left: 10%;font-size: 1.2em;padding-top: 20px;">
+                <input type="checkbox" style="-webkit-transform: scale(2);margin-right: 10px;"> <span th:text="${attachment.description}">FS - Protokoll</span><br>
+                <span class="Italic help" style="margin-left: 33px;font-size: 1em;color: #393939;" th:text="${attachment.help}" >mit Details</span>
+            </div>
+        </tr>
+    </tr>
+
+
+    <tr th:if="${UserAttachment!=null and !UserAttachment.empty}" >
+
+        <h2 style="font-size: 1.4em;padding-left: 6%;">Je nachdem - Verpflichten</h2>
+        <span class="Italic" style="padding-left: 6%;">Die nachfolgenden Anhänge können Erforderlich sein.</span>
+
+        <tr th:each="attachment: ${UserAttachment}">
+            <div class="attachmentItem" style="width: 80%;padding-left: 10%;font-size: 1.2em;padding-top: 20px;">
+                <input type="checkbox" style="-webkit-transform: scale(2);margin-right: 10px;"> <span th:text="${attachment.description}">FS - Protokoll</span><br>
+                <span class="Italic help" style="margin-left: 33px;font-size: 1em;color: #393939;" th:text="${attachment.help}" >mit Details</span>
+            </div>
+        </tr>
+    </tr>
+
+
+</div>

@@ -1,5 +1,6 @@
 package de.PSWTM.DigitalForms.Services;
 
+import de.PSWTM.DigitalForms.Attchments.AttachmentUtil;
 import de.PSWTM.DigitalForms.controller.FormsController;
 import de.PSWTM.DigitalForms.model.Form;
 import de.PSWTM.DigitalForms.model.FormElement;
@@ -25,6 +26,7 @@ public class PdfService {
         this.templateEngine = templateEngine;
     }
 
+    // Match up Form Values with Template Placeholders
     private Context LoadContextVariables(Form form) {
         Context context = new Context();
         for (FormSection fs : form.getForm()){
@@ -35,10 +37,29 @@ public class PdfService {
         return context;
     }
 
+
+
+
     synchronized public byte[] generatePdf(Form form, String Template) throws IOException {
         Context context = LoadContextVariables(form);
 
+        AttachmentUtil attachmentUtil = new AttachmentUtil(form);
+        if (!attachmentUtil.getAttachmentsReq().isEmpty() || !attachmentUtil.getAttachmentsUser().isEmpty()){
+            // We Have at least one Attachment -> Append the Checklist
+            Context attachmentContext = new Context();
+
+            attachmentContext.setVariable("ReqAttachment",attachmentUtil.getAttachmentsReq());
+            attachmentContext.setVariable("UserAttachment",attachmentUtil.getAttachmentsUser());
+            //TODO: Link up attachment Context
+
+            String Checklist = templateEngine.process("AttachmentsChecklist", attachmentContext);
+
+            context.setVariable("Anhang",Checklist);
+        }
+
+
         String htmlContent = templateEngine.process(Template, context);
+
 
         try {
             // Paths to resources and output files
