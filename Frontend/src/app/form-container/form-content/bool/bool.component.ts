@@ -17,10 +17,10 @@ export class BoolComponent {
     @ViewChild('input') input: any;
 
     ngAfterViewInit() {
-        if (this.value === undefined && this.value!== "true") {
+        if (this.value === undefined || this.value == null) {
             this.value = "false";
         }
-      this.input.nativeElement.checked = (this.value === "false");
+      this.input.nativeElement.checked = (this.value === "true");
     }
 
     onValueChange(event: Event) {

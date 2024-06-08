@@ -1,5 +1,4 @@
 .container {
-    max-width: 250px;
     margin: inherit;
   }
   .error-message {
@@ -7,3 +6,12 @@
     font-size: 0.9em;
     margin-top: 5px;
   }
+.input-group {
+  display: flex;
+  align-items: stretch;
+}
+
+.input-group-text {
+  flex: 0 0 auto;
+  margin-right: 1em;
+}
