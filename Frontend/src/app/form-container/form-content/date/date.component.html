@@ -1,9 +1,9 @@
 <div class="mb-3">
     <div class="input-group">
-      <span class="input-group-date" id="basic-addon3">{{ description }}</span>
+      <span class="input-group-text" id="basic-addon3">{{ description }}</span>
       <input #input type="date" class="form-control" aria-describedby="basic-addon3 basic-addon4" (change)="onValueChange($event)">
     </div>
     @if (!isValidDate) {<div class="error-message">Ungültiges Datum</div>
     <div class="form-date" id="basic-addon4">{{ help }}</div>
 }</div>
-  
+

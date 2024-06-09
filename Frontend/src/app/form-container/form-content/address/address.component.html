@@ -1,25 +1,14 @@
-<div class="container">
+
     <div class="row mb-3">
-      <div class="col">
         <div class="form-group">
           <span class="input-group-text" id="basic-addon3">{{this.description}}</span>
           <div id="streetHelp" class="form-text">{{ help }}</div>
             <span class="input-group-text" id="basic-addon4">Straße</span>
-          <input #streetInput type="text" class="form-control" id="street" aria-describedby="streetHelp" (change)="onValueChange()">
-        </div>
-      </div>
-      <div class="col">
-        <div class="form-group">
+          <input #streetInput type="text" class="form-control" id="street" aria-describedby="basic-addon3 basic-addon4" (change)="onValueChange()">
           <span class="input-group-text" id="basic-addon5">Stadt</span>
-          <input #cityInput type="text" class="form-control" id="city" aria-describedby="cityHelp" (change)="onValueChange()">
-        </div>
-      </div>
-      <div class="col">
-        <div class="form-group">
+          <input #cityInput type="text" class="form-control" id="city" aria-describedby="basic-addon3 basic-addon4" (change)="onValueChange()">
             <span class="input-group-text" id="basic-addon6">Postleitzahl</span>
-          <input #postalCodeInput type="text" class="form-control" id="postalCode" aria-describedby="postalCodeHelp" (change)="onValueChange()">
+          <input #postalCodeInput type="text" class="form-control" id="postalCode" aria-describedby="basic-addon3 basic-addon4" (change)="onValueChange()">
           @if (!isValidPostalCode) {<div class="error-message">Ungültige Postleitzahl</div>}
         </div>
-      </div>
     </div>
-  </div>
