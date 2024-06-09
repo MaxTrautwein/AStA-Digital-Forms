@@ -1,7 +1,29 @@
-
-textarea {
-    resize: auto;
-    max-height: 8em;
-    overflow-y: auto;
-  }
-  
+.form-text{
+  padding: .375rem .75rem;
+}
+.grow-wrap > textarea {
+  resize: none;
+  overflow: hidden;
+  max-width: 80vw;
+  min-width: 20vw;
+  min-height: 10vw;
+}
+.grow-wrap > textarea,
+.grow-wrap::after {
+  border: 1px solid black;
+  padding: 0.5rem;
+  font: inherit;
+  grid-area: 1 / 1 / 2 / 2;
+  max-width: 80vw;
+  min-width: 20vw;
+  min-height: 10vw;
+}
+.grow-wrap {
+  display: grid;
+  padding: .375rem .75rem;
+}
+.grow-wrap::after {
+  content: attr(data-replicated-value) " ";
+  white-space: pre-wrap;
+  visibility: hidden;
+}
