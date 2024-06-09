@@ -2,10 +2,10 @@
   padding: .375rem .75rem;
 }
 .grow-wrap > textarea {
-  resize: none;
+  resize: both;
   overflow: hidden;
   max-width: 80vw;
-  min-width: 20vw;
+  min-width: 25vw;
   min-height: 10vw;
 }
 .grow-wrap > textarea,
@@ -15,7 +15,7 @@
   font: inherit;
   grid-area: 1 / 1 / 2 / 2;
   max-width: 80vw;
-  min-width: 20vw;
+  min-width: 25vw;
   min-height: 10vw;
 }
 .grow-wrap {
