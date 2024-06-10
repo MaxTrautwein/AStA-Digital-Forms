@@ -3,14 +3,21 @@
 
   <h3>Attachments</h3>
 
-  @for (attachment of form.attachments; track $index){
-    @if (attachment.required === Attachment.RequiredEnum.Conditional){
-      <div>Conditional: {{attachment.description}}</div>
-    } @else {
-      <app-attachment [attachment]="attachment" ></app-attachment>
+  @if (attachments | async; as attach){
 
+    @if (filterRequired(attach).length > 0){
+      <h4>Zwingen Notwendig</h4>
+      @for (attachment of filterRequired(attach); track attachment.id){
+        <app-attachment [attachment]="attachment" ></app-attachment>
+      }
     }
 
+    @if (filterUser(attach).length > 0){
+      <h4>Eventuell Nötig</h4>
+      @for (attachment of filterUser(attach); track attachment.id){
+        <app-attachment [attachment]="attachment" ></app-attachment>
+      }
+    }
 
 
 
@@ -18,8 +25,9 @@
 
 
 
+
   <br>
-  <button (click)="DownloadPDF(form.id!)">DownLoad PDF</button>
+  <button (click)="DownloadPDF(this.formId)">DownLoad PDF</button>
 
 
 </div>
