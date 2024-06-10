@@ -96,10 +96,10 @@ class AttachmentUtilTest {
 
         // The reference is Missing we should only get the Required ones
         for (Attachment attachment : attachments) {
-            Assertions.assertEquals(attachment.getRequired(), Attachment.RequiredEnum.ALWAYS);
+            Assertions.assertEquals(Attachment.RequiredEnum.ALWAYS, attachment.getRequired());
         }
         // We have 2 Required Attachments
-        Assertions.assertEquals(attachments.size(), 2);
+        Assertions.assertEquals(2, attachments.size());
     }
     @Test
     void getAttachmentsReq_ExistingRefNoValue() {
@@ -107,10 +107,10 @@ class AttachmentUtilTest {
 
         // The reference is Set but without a Value; we should only get the Required ones
         for (Attachment attachment : attachments) {
-            Assertions.assertEquals(attachment.getRequired(), Attachment.RequiredEnum.ALWAYS);
+            Assertions.assertEquals(Attachment.RequiredEnum.ALWAYS, attachment.getRequired());
         }
         // We have 2 Required Attachments
-        Assertions.assertEquals(attachments.size(), 2);
+        Assertions.assertEquals(2, attachments.size());
     }
 
     @Test
@@ -121,20 +121,20 @@ class AttachmentUtilTest {
         for (Attachment attachment : attachments) {
             if (attachment.getRequired() == Attachment.RequiredEnum.CONDITIONAL) {
                 // Check the Conditional Ones:
-                Assertions.assertEquals(attachment.getDescription(),"cond-pass");
+                Assertions.assertEquals("cond-pass", attachment.getDescription());
             }
             // Can Only be ALWAYS or CONDITIONAL
             Assertions.assertTrue(attachment.getRequired() == Attachment.RequiredEnum.ALWAYS
                     || attachment.getRequired() == Attachment.RequiredEnum.CONDITIONAL);
         }
         // We have 2 Required Attachments
-        Assertions.assertEquals(attachments.stream()
+        Assertions.assertEquals(2, attachments.stream()
                 .filter( attachment -> attachment.getRequired() ==
-                        Attachment.RequiredEnum.ALWAYS ).toList().size(), 2);
+                        Attachment.RequiredEnum.ALWAYS ).toList().size());
         // We have 5 Passing Conditionals
-        Assertions.assertEquals(attachments.stream()
+        Assertions.assertEquals(5, attachments.stream()
                 .filter( attachment -> attachment.getRequired() ==
-                        Attachment.RequiredEnum.CONDITIONAL ).toList().size(), 5);
+                        Attachment.RequiredEnum.CONDITIONAL ).toList().size());
 
     }
 
@@ -142,10 +142,10 @@ class AttachmentUtilTest {
     // For The User Attachments there should be no difference between the options
     void SameAssertUser(AttachmentUtil util){
         List<Attachment> attachments = util.getAttachmentsUser();
-        Assertions.assertEquals(attachments.size(), 2);
+        Assertions.assertEquals(2, attachments.size());
 
         for (Attachment attachment : attachments) {
-            Assertions.assertEquals(attachment.getRequired(), Attachment.RequiredEnum.USER);
+            Assertions.assertEquals(Attachment.RequiredEnum.USER, attachment.getRequired());
         }
     }
 
