@@ -66,6 +66,9 @@ public class AttachmentUtil {
     // TODO: Add =< and => support
     // TODO: Then Update the ab 150 Logic Attachment
     private boolean isConditionMatch(String matchVal, FormElement target){
+        if (Objects.equals(target.getValue(), "") || target.getValue() == null){
+            return false; // can't compare against nothing
+        }
         String mathOperator = String.valueOf(matchVal.charAt(0));
         if (isMathOperator(mathOperator)){
             MathOperator operator = MathOperator.fromValue(mathOperator);

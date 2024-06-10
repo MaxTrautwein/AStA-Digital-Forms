@@ -1,8 +1,10 @@
 package de.PSWTM.DigitalForms.controller;
 
+import de.PSWTM.DigitalForms.Attchments.AttachmentUtil;
 import de.PSWTM.DigitalForms.Model.TemplatePDF;
 import de.PSWTM.DigitalForms.Services.PdfService;
 import de.PSWTM.DigitalForms.api.FormsApiDelegate;
+import de.PSWTM.DigitalForms.model.Attachment;
 import de.PSWTM.DigitalForms.model.Form;
 import de.PSWTM.DigitalForms.repository.FormRepository;
 import de.PSWTM.DigitalForms.repository.TemplatePDFRepository;
@@ -15,6 +17,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -39,6 +43,23 @@ public class FormsController implements FormsApiDelegate {
     // Gets the KeyCloak UserID from the Token
     private String getUserID(){
         return SecurityContextHolder.getContext().getAuthentication().getName();
+    }
+
+    @Override
+    public ResponseEntity<List<Attachment>> formsFormIDAttchmentsGet(String formID) {
+        if (!repository.existsById(formID)){
+            return ResponseEntity.notFound().build();
+        }
+        Form form = repository.findOwnedFormById(getUserID(), formID);
+        if (form == null){
+            return ResponseEntity.notFound().build();
+        }
+        AttachmentUtil attachmentUtil = new AttachmentUtil(form);
+        List<Attachment> attachments = new ArrayList<>();
+        attachments.addAll(attachmentUtil.getAttachmentsReq());
+        attachments.addAll(attachmentUtil.getAttachmentsUser());
+
+        return ResponseEntity.ok(attachments);
     }
 
     @Override
