@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, Output, SimpleChanges, ViewChild} from '@angular/core';
 import {FormSection} from "../../../api-client";
 @Component({
   selector: 'app-date',
@@ -17,12 +17,13 @@ export class DateComponent implements AfterViewInit {
   isValidDate: boolean = true;
 
   ngAfterViewInit() {
-    if (this.value === undefined) {
-      this.value = "";
-    }
-    this.input.nativeElement.value = this.value;
+    this.updateInputValue();
   }
-
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['value']) {
+      this.updateInputValue();
+    }
+  }
   onValueChange(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     this.value = inputElement.value;
@@ -38,5 +39,13 @@ export class DateComponent implements AfterViewInit {
       return false;
     }
     return date >= minDate && date <= maxDate;
+  }
+  private updateInputValue() {
+    if (this.value === undefined) {
+      this.value = "";
+    }
+    if (this.input && this.input.nativeElement) {
+      this.input.nativeElement.value = this.value;
+    }
   }
 }
