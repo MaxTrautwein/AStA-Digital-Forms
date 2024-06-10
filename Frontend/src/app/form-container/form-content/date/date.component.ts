@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ViewChild, AfterViewInit } from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {FormSection} from "../../../api-client";
 @Component({
   selector: 'app-date',

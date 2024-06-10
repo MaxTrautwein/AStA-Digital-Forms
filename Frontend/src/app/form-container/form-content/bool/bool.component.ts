@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {FormSection} from "../../../api-client";
 
 @Component({
@@ -7,7 +7,7 @@ import {FormSection} from "../../../api-client";
     styleUrls: ['./bool.component.css'],
     standalone:true
 })
-export class BoolComponent {
+export class BoolComponent implements AfterViewInit {
     @Input() description: string | undefined = "";
     @Input() help: string | undefined = "";
     @Input() value: string | undefined = "";

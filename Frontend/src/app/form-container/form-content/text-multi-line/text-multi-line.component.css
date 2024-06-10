@@ -5,7 +5,7 @@
   resize: both;
   overflow: hidden;
   max-width: 80vw;
-  min-width: 25vw;
+  min-width: 80vw;
   min-height: 10vw;
 }
 .grow-wrap > textarea,
@@ -15,7 +15,7 @@
   font: inherit;
   grid-area: 1 / 1 / 2 / 2;
   max-width: 80vw;
-  min-width: 25vw;
+  min-width: 80vw;
   min-height: 10vw;
 }
 .grow-wrap {

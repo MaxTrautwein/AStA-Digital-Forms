@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {FormSection} from "../../../api-client";
 
 @Component({
@@ -8,7 +8,7 @@ import {FormSection} from "../../../api-client";
   templateUrl: './text.component.html',
   styleUrl: './text.component.css'
 })
-export class TextComponent {
+export class TextComponent implements AfterViewInit {
 @Input() description: string | undefined = "";
 @Input() help: string | undefined = "";
 @Input() value: string | undefined = "";
