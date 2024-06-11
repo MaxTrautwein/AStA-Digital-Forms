@@ -2,10 +2,13 @@ openapi: 3.0.3
 info:
   title: Digital Forms
   description: |-
-    API For...
+    API for the Digital Forms Application
   license:
     name: GPL v3
-  version: 0.0.2
+  contact:
+    name: GitHub Page
+    url: https://github.com/MaxTrautwein/AStA-Digital-Forms
+  version: 0.0.3
 servers:
   - url: https://backend.df.dk4max.com/api/v3
   - url: http://localhost:8080/api/v3
@@ -54,10 +57,10 @@ paths:
               $ref: '#/components/headers/Access-Control-Allow-Origin'
         '400':
           description: Invalid Data
-              
+
   /favourites:
     get:
-      tags: 
+      tags:
         - favourites
       summary: Get all Favourites
       description: Returns all favourites
@@ -102,7 +105,7 @@ paths:
           description: Invalid Data
   /favourites/{id}:
     get:
-      tags: 
+      tags:
         - favourites
       summary: Find Favourite by Template ID
       description: Returns a single Favourite
@@ -143,7 +146,7 @@ paths:
         '200':
           description: successful operation
         '404':
-          description: Can't find ID      
+          description: Can't find ID
   /groups:
     get:
       tags:
@@ -164,7 +167,7 @@ paths:
           headers:
             Access-Control-Allow-Origin:
               $ref: '#/components/headers/Access-Control-Allow-Origin'
-          
+
   /templates:
     get:
       summary: Get all Templats
@@ -210,7 +213,7 @@ paths:
               $ref: '#/components/headers/Access-Control-Allow-Origin'
         '404':
           description: Template not found
-  
+
   /forms:
     get:
       tags:
@@ -256,7 +259,7 @@ paths:
               $ref: '#/components/headers/Access-Control-Allow-Origin'
         '400':
           description: Invalid Data
-  
+
   /forms/{formID}:
     get:
       tags:
@@ -289,6 +292,8 @@ paths:
         - forms
       summary: Update a Form by ID
       description: Update a Form by ID for the requesting User
+      security:
+        - BearerAuth: []
       parameters:
         - name: formID
           in: path
@@ -319,6 +324,8 @@ paths:
         - forms
       summary: delete a Form by ID
       description: delete a Form by ID for the requesting User
+      security:
+        - BearerAuth: []
       parameters:
         - name: formID
           in: path
@@ -337,6 +344,8 @@ paths:
         - forms
       summary: Download as a PDF file
       description: Returns a PDF file of the Form.
+      security:
+        - BearerAuth: []
       parameters:
         - name: formID
           in: path
@@ -352,13 +361,44 @@ paths:
               schema:
                 type: string
                 format: binary
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/Access-Control-Allow-Origin'
         '400':
           description: Bad Request.
         '500':
           description: Exception During PDF Generation
         '501':
           description: The Provided Form does not Support the PDF Export
-
+  /forms/{formID}/attchments:
+    get:
+      tags:
+        - forms
+      summary: Get All Requierd attchments
+      description: Returns All Requierd attchments for the Form
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: formID
+          in: path
+          description: ID of form
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Attachment"
+          headers:
+            Access-Control-Allow-Origin:
+              $ref: '#/components/headers/Access-Control-Allow-Origin'
+        '404':
+          description: Form not found
 
 
 
@@ -394,13 +434,13 @@ components:
           type: "string"
         firstName:
           type: "string"
-        adress: 
+        adress:
           type: "string"
         IBAN:
           type: "string"
         CreditInstitute:
           type: "string"
-        
+
     Favourite:
       type: "object"
       properties:
@@ -450,6 +490,24 @@ components:
           type: "string"
         description:
           type: "string"
+          description: "describeds the Attachment"
+        required:
+          type: "string"
+          enum:
+            - "always"
+            - "user"
+            - "conditional"
+          description: "When is it Requiered / When should it be shown"
+        conditionRef:
+          type: "string"
+          description: "Only needed if required==conditional. Refrences an FormElement id"
+        conditionRefVal:
+          type: "string"
+          description: "Used for a value check with conditionRef"
+        help:
+          type: "string"
+          description: "Additional help text regarding the Attachment"
+
     
     TemplateGroup :
       type: "object"

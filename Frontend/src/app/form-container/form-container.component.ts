@@ -9,6 +9,7 @@ import {ProgressContollsComponent} from "./progress-controls/progress-contolls.c
 import {AsyncPipe} from "@angular/common";
 import {FormContentComponent} from "./form-content/form-content.component";
 import {TokenService} from "../token.service";
+import {OverviewComponent} from "./overview/overview.component";
 
 
 @Component({
@@ -18,7 +19,8 @@ import {TokenService} from "../token.service";
     ProgressDisplayComponent,
     ProgressContollsComponent,
     AsyncPipe,
-    FormContentComponent
+    FormContentComponent,
+    OverviewComponent
   ],
   templateUrl: './form-container.component.html',
   styleUrl: './form-container.component.css'
@@ -129,16 +131,4 @@ export class FormContainerComponent {
   private SendUpdate(){
     this.api.formsFormIDPut(this.form.id!, this.form).subscribe()
   }
-
-  testDL(id: string){
-    this.api.formsFormIDDownloadGet(id).subscribe((response) => {
-      const downloadLink = document.createElement('a');
-      downloadLink.href = URL.createObjectURL(response);
-      const fileName = "test"
-      downloadLink.download = fileName;
-      downloadLink.click();
-    })
-  }
-
-
 }

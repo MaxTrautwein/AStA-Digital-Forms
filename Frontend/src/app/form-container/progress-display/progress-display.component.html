@@ -4,5 +4,6 @@
   @for (i of sections; track i.order){
     <div class="progress-Item"  routerLink="." [queryParams]="{page: i.order}" >{{i.order}}</div>
   }
+  <div class="progress-Item"  routerLink="." [queryParams]="{page: sections?.length}" >Ü</div>
 </div>
 

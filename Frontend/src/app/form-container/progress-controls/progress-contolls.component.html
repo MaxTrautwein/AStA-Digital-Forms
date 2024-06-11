@@ -1,7 +1,5 @@
-<!-- TODO enforce Limits -->
 <div>
-  <!-- TODO Only show back if that's possible -->
-  <button class="btn btn-primary" routerLink="." [queryParams]="{page: this.currentSection - 1 }" >Back</button>
+  <button [disabled]="this.currentSection === 0" class="btn btn-primary" routerLink="." [queryParams]="{page: this.currentSection - 1 }" >Back</button>
 
-  <button class="btn btn-success" routerLink="." [queryParams]="{page: this.currentSection + 1 }" >Next</button>
+  <button [disabled]="sectionsCnt! === this.currentSection" class="btn btn-success" routerLink="." [queryParams]="{page: this.currentSection + 1 }" >Next</button>
 </div>
