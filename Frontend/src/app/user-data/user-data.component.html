@@ -1,4 +1,4 @@
-
+<!--
 <div class="input-wrapper">
     <div class="label-wrapper">
         <label class="label">Nachname</label>
@@ -26,9 +26,54 @@
         <br>
         <input type="text" id="Kreditinstitut" class="inputfield" placeholder="Kreditinstitut" [(ngModel)]="kreditinstitut">
         <br>
+    
     </div>
 </div>
-<button class="sub" type="submit" (click)="save();">Bestätigen</button>
+-->
+<div class="i-wrapper">
+    <div class="mb-3">
+        <div class="input-group">
+            <span class="input-group-text" id="basic-addon3">Vorname</span>
+            <input #input type="text" class="form-control" aria-describedby="basic-addon3 basic-addon4" [(ngModel)]="name">
+        </div>
+    </div>
 
+    <div class="mb-3">
+        <div class="input-group">
+            <span class="input-group-text" id="basic-addon3">Nachname</span>
+            <input #input type="text" class="form-control" aria-describedby="basic-addon3 basic-addon4" [(ngModel)]="vorname">
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <div class="input-group">
+            <span class="input-group-text" id="basic-addon3">Email</span>
+            <input #input type="text" class="form-control" aria-describedby="basic-addon3 basic-addon4" [(ngModel)]="email">
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <div class="input-group">
+            <span class="input-group-text" id="basic-addon3">Adresse</span>
+            <input #input type="text" class="form-control" aria-describedby="basic-addon3 basic-addon4" [(ngModel)]="adresse">
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <div class="input-group">
+            <span class="input-group-text" id="basic-addon3">IBAN</span>
+            <input #input type="text" class="form-control" aria-describedby="basic-addon3 basic-addon4" [(ngModel)]="iban">
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <div class="input-group">
+            <span class="input-group-text" id="basic-addon3">Kreditinstitut</span>
+            <input #input type="text" class="form-control" aria-describedby="basic-addon3 basic-addon4" [(ngModel)]="kreditinstitut">
+        </div>
+    </div>
+
+    <button class="sub" type="submit" (click)="save();">Bestätigen</button>
+</div>
 
 

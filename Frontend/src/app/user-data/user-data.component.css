@@ -22,10 +22,22 @@
 }
 
 .sub {
-    margin-left: 5vh;
     background-color: var(--asta-bluelight);
     color: var(--asta-white);
     border-radius: 20px;
     height: 5vh;
     width: 20vw;
+}
+/* new stuff */
+.input-group-text {
+    width: 8vw;
+}
+.form-control {
+    width: 30vw;
+    flex: none;
+}
+
+.i-wrapper {
+    margin-left: 1rem;
+    margin-top: 1rem;
 }
