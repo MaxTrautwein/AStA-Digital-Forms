@@ -25,15 +25,15 @@
     background-color: var(--asta-bluelight);
     color: var(--asta-white);
     border-radius: 20px;
-    height: 5vh;
-    width: 20vw;
+    height: 3rem;
+    width: 24rem;
 }
 /* new stuff */
 .input-group-text {
-    width: 8vw;
+    width: 10rem;
 }
 .form-control {
-    width: 30vw;
+    width: 35rem;
     flex: none;
 }
 
