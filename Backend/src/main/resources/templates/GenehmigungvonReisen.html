@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genehmigung von Reisen Dez 23</title>
+    <link rel="stylesheet" href="Styles.css">
+    <style>
+    .BeschreibungArea{
+        width: 100%;
+        height: 120px;
+    }
+    .AnschriftArea{
+        width: 100%;
+        height: 60px;
+    }
+    .SpacerAntragsSteller{
+        margin-top: 20px;
+    }
+    .AntragGenehmSpacer{
+        margin-top: 40px;
+    }
+    .heigtdetails{
+        height: 20px;
+    }
+    .mitfahrerWidth{
+        width: 50px;
+        margin-left: 30px;
+    }
+    .vorschussUpperText{
+        height: 20px;
+        width: 150px;
+    }
+    .AntragGeprueft{
+        padding-bottom: 20px;
+        padding-top: 50px;
+    }
+    .VomAstaAusfüllenSpacer{
+        padding-top: 90px;
+    }
+    .ReciverBlockSpacer{
+        padding-top: 10px;
+    }
+    </style>
+</head>
+<body>
+
+<div class="page">
+    <div class="HeaderLine">
+        <address>
+            Studierendenschaft der Hochschule Esslingen<br>
+            Allgemeiner Studierendenausschuss<br>
+            Kanalstr. 33<br>
+            73728 Esslingen<br>
+            <br>
+            E-Mail: asta@hs-esslingen.de
+        </address>
+
+        <img src="AstaRgb.png">
+    </div>
+    <h1>Antrag auf Genehmigung einer Reise (1/2)</h1>
+    <p class="Italic pt10">(Bitte <strong>Antragsfrist beachten</strong>! Die Frist ist in der „Richtlinie zu Reisen“ angegeben.)
+        <br>(Es sind <strong class="">alle</strong> Seiten <strong class="">einzureichen</strong>! Bitte Kopie der Einladung bzw. Tagesordnung der Veranstaltung anhängen.)</p>
+    <br>
+
+    <div class="GeneralInformationBox">
+        <p class="pgeneral"><strong>Antragsteller*in:</strong> (Name Vorname) <input class="FirstPageGeneral alignRight" type="text" th:value="${user}"></p>
+        <p class="pgeneral"><strong>Fachschaft/Referat/Arbeitskreis:</strong> <input class="FirstPageGeneral alignRight" type="text" th:value="${fs_ref_ar}"></p>
+        <p class="pgeneral"><strong>Kontaktdaten </strong>(Handy-Nr. E-mail): <input class="FirstPageGeneral alignRight" type="text" th:value="${contact}"></p>
+        <p class="pgeneral"><strong>Kurzbezeichnung des Antrages:</strong> <input class="FirstPageGeneral alignRight" type="text" th:value="${bez}"></p>
+    </div>
+
+    <p><strong>Beschreibung der geplanten Reise:</strong> <span class="Italic">(Zweck der Reise + Begründung Unterkunft / geplantes Transportmittel)</span></p>
+<textarea class="BeschreibungArea">
+
+</textarea>
+
+
+    <p><strong>Termin:</strong> <input class="heigtdetails" type="text"> </p>
+    <p><strong>Mitfahrer*innen:</strong><input class="heigtdetails mitfahrerWidth" type="text"></p>
+    <p><strong>Geschätzte Höhe der Ausgaben:</strong><input class="heigtdetails" type="text"></p>
+    <p><strong>Genaue Anschrift Reisebeginn</strong> (PLZ Ort Straße Hausnummer):</p>
+    <textarea class="AnschriftArea">
+
+</textarea>
+    <p><strong>Genaue Anschrift Reiseziel</strong> (PLZ Ort Straße Hausnummer):</p>
+    <textarea class="AnschriftArea">
+
+</textarea>
+
+    <input type="text" class="UnterschriftSteller SpacerAntragsSteller">
+    <p><strong>Datum/Unterschrift Antragsteller*in:</strong></p>
+    <p class="ichBestaetige Italic">* Ich bestätige die Vollständigkeit und Richtigkeit der oben gemachten Angaben.</p>
+
+    <p class="UnderLine AntragGenehmSpacer"><strong>Antrag genehmigt:</strong></p>
+
+    <div class="signature">
+        <div>
+            <p>_____________________________________</p>
+            <p>Datum/Unterschrift AStA-Vorsitz</p>
+        </div>
+        <div>
+            <p>_____________________________________</p>
+            <p>Datum/Unterschrift Finanzreferat</p>
+        </div>
+    </div>
+</div>
+
+<div class="page">
+    <div class="HeaderLine">
+        <address>
+            Studierendenschaft der Hochschule Esslingen<br>
+            Allgemeiner Studierendenausschuss<br>
+            Kanalstr. 33<br>
+            73728 Esslingen<br>
+            <br>
+            E-Mail: asta@hs-esslingen.de
+        </address>
+
+        <img src="AstaRgb.png">
+    </div>
+
+    <h1>Wird ein Vorschuss benötigt?</h1>
+    <p>(Nur ausfüllen falls nötig! Es sind trotzdem alle Seiten einzureichen!)</p>
+
+    <p><strong>Betrag in Euro:</strong> <input class="vorschussUpperText" type="text"></p>
+    <p><strong>Der Vorschuss wird bis zum folgenden Datum benötigt:</strong><input class="vorschussUpperText" type="text"></p>
+    <p><strong>Spätester Termin für die Rückzahlung:</strong><input class="vorschussUpperText" type="text"> (muss zeitnah nach der Reise erfolgen)</p>
+
+    <div class="ReciverBlock ReciverBlockSpacer">
+        <p class="vorschussReciver" ><strong>Empfänger*in:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
+        <p class="vorschussReciver" ><strong>Anschrift:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
+
+        <p  class="vorschussReciver" ><strong>IBAN:</strong> (22 Stellen)<input class="ibanfirst ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanslim vorschussReciver" type="text"></p>
+        <p class="vorschussReciver" ><strong>Kreditinstitut:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
+    </div>
+
+    <ul>
+        <li><strong class="pt10">Ich bestätige die Richtigkeit der gemachten Angaben.</strong></li>
+        <li><strong class="pt10">Ich habe zur Kenntnis genommen, dass mir der Vorschussbetrag in Rechnung gestellt wird,
+            sollte die Abrechnung der angemeldeten Ausgaben nicht <span class="UnderLine">unmittelbar nach der Reise</span> abgerechnet werden.</strong></li>
+        <li><strong class="pt10">Ich verpflichte mich, alle Quittungen zusammen mit der Abrechnung im Original beizulegen.</strong></li>
+    </ul>
+
+
+    <input type="text" class="UnterschriftSteller">
+    <p><strong>Datum/Unterschrift Antragsteller*in:</strong></p>
+
+    <h2 class="VomAstaAusfüllenSpacer">Vom AStA auszufüllen!</h2>
+    <hr>
+
+    <p class=""><strong>Beschluss AStA vorhanden? (>1000€)</strong> <input type="checkbox"> <span class="alignRight"> <strong>Datum der Sitzung:</strong> _______________</span></p>
+    <p class="ProtokollAnheften"><strong>(Protokoll mit Beschluss bitte anheften!)</strong></p>
+
+    <p class="AntragGeprueft UnderLine"><strong>Antrag geprüft:</strong></p>
+    <p>__________________________________________</p>
+    <p>Datum/Unterschrift Haushaltsbeauftragte</p>
+
+
+
+</div>
+[(${Anhang})]
+</body>
+</html>

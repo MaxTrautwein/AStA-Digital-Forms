@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Genehmigung von Ausgaben und Anschaffungen Dez 23</title>
+  <link rel="stylesheet" href="Styles.css">
+  <style>
+
+
+    textarea {
+      margin-top: 0;
+      width: 100%;
+      height: 130px;
+    }
+    .dataText{
+      width: 120px;
+    }
+
+    .terminhoe{
+      margin-top: 15px;
+    }
+
+    .vorschussLine{
+      margin-top: 20px;
+    }
+    .AstAGenemigt{
+      height: 30px;
+      width: 50%;
+    }
+    .vorschussUpperText{
+      width: 120px;
+      height: 20px;
+    }
+    .VomAstaAusfüllenSpacer{
+      margin-top: 100px;
+    }
+
+    .AntragGeprueft{
+      margin-top: 25px;
+      margin-bottom: 60px;
+    }
+    .ProtokollAnheften{
+      margin-top: 25px;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="page">
+  <div class="HeaderLine">
+    <address>
+      Studierendenschaft der Hochschule Esslingen<br>
+      Allgemeiner Studierendenausschuss<br>
+      Kanalstr. 33<br>
+      73728 Esslingen<br>
+      <br>
+      E-Mail: asta@hs-esslingen.de
+    </address>
+
+    <img src="AstaRgb.png">
+  </div>
+
+  <h1>Genehmigung von Ausgaben und Anschaffungen</h1>
+  <p>(Bitte unbedingt Antragsfrist beachten! Siehe dazu „Richtlinie zur Genehmigung und Abrechnung von Haushaltsmitteln“. Zu spät eingegangene Anträge werden abgelehnt. Bitte alle Seiten einreichen!)</p>
+  <br>
+
+  <div class="GeneralInformationBox">
+    <p class="pgeneral"><strong>Kurzbezeichnung des Antrages:</strong> <input class="FirstPageGeneral" type="text" th:value="${bez}"></p>
+    <p class="pgeneral"><strong>Fachschaft/Referat/Arbeitskreis:</strong> <input class="FirstPageGeneral" type="text" th:value="${fs_ref_ar}"></p>
+    <p class="pgeneral"><strong>Kontaktdaten </strong>(Handy-Nr. E-mail): <input class="FirstPageGeneral" type="text" th:value="${contact}"></p>
+    <p class="pgeneral"><strong>Antragsteller*in:</strong> (Name Vorname) <input class="FirstPageGeneral" type="text" th:value="${user}"></p>
+  </div>
+
+  <p><strong>Verwendungszweck:</strong> (Bitte ausführlich beschreiben! Evtl. Beiblatt nutzen. - Was? Warum? Welcher Preis?)</p>
+  <textarea>
+
+  </textarea>
+
+
+  <p><strong>Unterschriebenes Protokoll der FS-Sitzung mit genau erläutertem Beschluss im Anhang?</strong> <input type="checkbox"></p>
+
+  <p class="terminhoe"><strong>Termin (geplant):</strong> <input class="dataText" type="text"></p>
+  <p class="terminhoe"><strong>Höhe der Ausgaben (ca.):</strong> <input class="dataText" type="text"> (voraussichtliche Höhe angeben falls nicht genau bekannt)</p>
+  <br>
+  <p><strong>Vergleichsangebote vorhanden?</strong><input type="checkbox"> (<strong>Ab</strong> einem Bestellwert von <strong>150 €</strong> sind <strong>drei Angebote</strong> beizufügen!)</p>
+  <p>(<strong>Begründung</strong> welches Angebot ausgewählt wurde und warum bitte <strong>erläutern</strong>! Muss auch ins FS-Protokoll!)</p>
+
+  <p class="vorschussLine"><strong>Vorschuss nötig?</strong> Ja <input type="checkbox"> / Nein <input type="checkbox">  <strong>Wenn ja in welcher Höhe?</strong> <input type="text"> </p>
+  <ul>
+    <li><strong class="strongsize">Vorschuss bitte zeitnah nach der Veranstaltung/Beschaffung zurückzahlen bzw. abrechnen!</strong></li>
+    <li><strong class="strongsize">Wenn Vorschuss benötigt bitte Seite 2 ausfüllen und unterschreiben!</strong></li>
+    <li><strong class="strongsize">Auslagen bitte immer zeitnah nach der Veranstaltung/Ausgabe beim AStA abrechnen.</strong></li>
+    <li><strong class="strongsize">Bitte beachte, dass bei Getränken das Pfand generell nicht zurückerstattet werden kann!</strong></li>
+  </ul>
+
+  <input type="text" class="UnterschriftSteller">
+  <p><strong>Datum/Unterschrift Antragsteller*in:</strong></p>
+  <p class="ichBestaetige Italic">* Ich bestätige die Vollständigkeit und Richtigkeit der oben gemachten Angaben.</p>
+
+  <div>
+    <p>Anmerkung Antrag vom AStA genehmigt: <input class="AstAGenemigt" type="text"></p>
+  </div>
+
+  <div class="signature">
+    <div>
+      <p>_____________________________________</p>
+      <p>Datum/Unterschrift AStA-Vorsitz</p>
+    </div>
+    <div>
+      <p>_____________________________________</p>
+      <p>Datum/Unterschrift Finanzreferat</p>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="HeaderLine">
+    <address>
+      Studierendenschaft der Hochschule Esslingen<br>
+      Allgemeiner Studierendenausschuss<br>
+      Kanalstr. 33<br>
+      73728 Esslingen<br>
+      <br>
+      E-Mail: asta@hs-esslingen.de
+    </address>
+
+    <img src="AstaRgb.png">
+  </div>
+
+  <h1>Wird ein Vorschuss benötigt?</h1>
+  <p>(Nur ausfüllen falls nötig! Es sind trotzdem alle Seiten einzureichen!)</p>
+
+  <p><strong>Betrag in Euro:</strong> <input class="vorschussUpperText" type="text"></p>
+  <p><strong>Der Vorschuss wird bis zum folgenden Datum benötigt:</strong><input class="vorschussUpperText" type="text"></p>
+  <p><strong>Spätester Termin für die Rückzahlung:</strong><input class="vorschussUpperText" type="text"> (Muss unmittelbar nach dem Kauf erfolgen!)</p>
+
+  <div class="ReciverBlock">
+    <p class="vorschussReciver" ><strong>Empfänger*in:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
+    <p class="vorschussReciver" ><strong>Anschrift:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
+
+    <p  class="vorschussReciver" ><strong>IBAN:</strong> (22 Stellen)<input class="ibanfirst ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanslim vorschussReciver" type="text"></p>
+    <p class="vorschussReciver" ><strong>Kreditinstitut:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
+  </div>
+
+  <ul>
+    <li><strong class="strongsize">Ich bestätige die Richtigkeit der gemachten Angaben.</strong></li>
+    <li><strong class="strongsize">Ich bestätige, dass mir der Vorschussbetrag in Rechnung gestellt wird, sollte die Abrechnung der angemeldeten Ausgaben nicht zeitnah nach dem Kauf im AStA eingereicht werden.</strong></li>
+    <li><strong class="strongsize">Ich verpflichte mich, alle Quittungen zusammen mit der Abrechnung im Original beizulegen.</strong></li>
+  </ul>
+
+
+  <input type="text" class="UnterschriftSteller">
+  <p><strong>Datum/Unterschrift Antragsteller*in:</strong></p>
+
+  <h2 class="VomAstaAusfüllenSpacer">Vom AStA auszufüllen!</h2>
+  <hr>
+
+  <p><strong>Beschluss AStA vorhanden? (>1000€)</strong> <input type="checkbox"> <span class="alignRight"> <strong>Datum der Sitzung:</strong> _______________</span></p>
+  <p><strong>Beschluss FaRat vorhanden? (>5000€)</strong> <input type="checkbox"> <span class="alignRight"> <strong>Datum der Sitzung:</strong> _______________</span></p>
+  <p class="ProtokollAnheften"><strong>(Protokoll mit Beschluss bitte anheften!)</strong></p>
+
+  <p class="AntragGeprueft UnderLine"><strong>Antrag geprüft:</strong></p>
+  <p>__________________________________________</p>
+  <p>Datum/Unterschrift Haushaltsbeauftragte</p>
+
+
+</div>
+[(${Anhang})]
+</body>
+</html>

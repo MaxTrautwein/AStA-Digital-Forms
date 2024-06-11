@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {RouterLink} from "@angular/router";
+import { RouterLink } from "@angular/router";
+import {SearchService} from "../search.service";
 
 @Component({
   selector: 'app-nav-bar',
@@ -11,5 +12,20 @@ import {RouterLink} from "@angular/router";
   styleUrl: './nav-bar.component.css'
 })
 export class NavBarComponent {
+  protected isOpen: boolean = false;
+
+  onClick() {
+    if(this.isOpen) {
+      this.isOpen=false;
+    } else {
+      this.isOpen=true;
+    }
+  }
+
+  constructor(protected search: SearchService) {
+
+  }
+
+
 
 }

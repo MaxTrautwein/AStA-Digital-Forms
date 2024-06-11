@@ -6,12 +6,11 @@ import {authConfig} from "./auth.config";
 import { AppService } from './app.service';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { CollapsableBottomComponent } from './collapsable-bottom/collapsable-bottom.component';
-import { MainButtonsComponent } from './main-buttons/main-buttons.component';
-import {ApiModule, FormsService} from './api-client';
+import { MainButtonsComponent } from './dashboard/main-buttons/main-buttons.component';
+import {ApiModule, FormsService, DefaultService} from './api-client';
 import { HttpClientModule } from '@angular/common/http';
-import { Configuration } from './api-client';
-import { DefaultService } from './api-client';
 import { LoginComponent } from './login/login.component';
+import {TokenService} from "./token.service";
 
 
 @Component({
@@ -20,7 +19,7 @@ import { LoginComponent } from './login/login.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   standalone:true,
-  
+
 })
 export class AppComponent {
   title = 'DigitalForms';
@@ -31,27 +30,22 @@ export class AppComponent {
     this.oauthService.configure(authConfig);
     this.oauthService.setupAutomaticSilentRefresh();
     this.oauthService.loadDiscoveryDocumentAndTryLogin().then(() => {
-    this.updateToken();
     if(!this.oauthService.hasValidAccessToken()) {
       this.router.navigateByUrl('/login');
     }
-    
+
 
     });
 
   }
 
-  private updateToken() {
-    this.defaultservice.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
-    this.formsService.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
-  }
-
-  constructor(private oauthService: OAuthService, private appService: AppService, private defaultservice: DefaultService, private formsService: FormsService, private router :Router) {
+  constructor(private oauthService: OAuthService, private appService: AppService, private defaultservice: DefaultService,
+              private formsService: FormsService, private router :Router, private tokenService: TokenService) {
   this.configure();
   this.service=appService;
-
-
+   // oauthService
   }
+
 
   login() {
     this.oauthService.initCodeFlow();
@@ -61,6 +55,6 @@ export class AppComponent {
 
   logout() {
     this.oauthService.logOut();
-  
+
   }
 }

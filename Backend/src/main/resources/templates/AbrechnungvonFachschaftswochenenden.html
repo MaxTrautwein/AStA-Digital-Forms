@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abrechnung von Fachschaftswochenenden</title>
+  <link rel="stylesheet" href="Styles.css">
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    td, th {
+      border: 1px solid #000;
+      padding: 5px;
+    }
+    .dayInputWidth{
+      width: 160px;
+    }
+    sup{
+      font-size: 7pt;
+    }
+    .footnoteSpace{
+      padding-left: 130px;
+    }
+    .tableSubnoteMargin{
+      padding-top: 10px;
+    }
+    .VomAstaSpacer{
+      margin-top: 50px;
+    }
+    .QuittungenSpacer{
+      margin-bottom: 25px;
+    }
+    .AntragGeprueftSpacer{
+      margin-top: 25px;
+    }
+    .UnterschriftHaushaltSpacer{
+      margin-top: 50px;
+    }
+    .alignMiddleueberw{
+      padding-left: 200px;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+    .InputHeightNormal{
+      height: 20px;
+    }
+    .vorschusswidth{
+      width: 120px;
+    }
+    .teilnehmerArea{
+      height: 70px;
+      width: 360px;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="page">
+  <div class="HeaderLine">
+    <address>
+      Studierendenschaft der Hochschule Esslingen<br>
+      Allgemeiner Studierendenausschuss<br>
+      Kanalstr. 33<br>
+      73728 Esslingen<br>
+      <br>
+      E-Mail: asta@hs-esslingen.de
+    </address>
+
+    <img src="AstaRgb.png">
+  </div>
+  <h1>Abrechnung eines Fachschafts-Wochenendes</h1>
+  <p class="pt11 Italic">(Bitte <strong>Abrechnungsfrist beachten</strong>! Frist ist in „Richtlinie zu Fachschaftswochenenden“ angegeben)</p>
+  <br>
+  <div class="GeneralInformationBox">
+    <p class="pgeneral"><strong>Antragsteller*in:</strong> (Name Vorname) <input class="FirstPageGeneral alignRight" type="text" th:value="${user}"></p>
+    <p class="pgeneral"><strong>Fachschaft/Referat/Arbeitskreis:</strong> <input class="FirstPageGeneral alignRight" type="text" th:value="${fs_ref_ar}"></p>
+    <p class="pgeneral"><strong>Kontaktdaten </strong>(Handy-Nr. E-mail): <input class="FirstPageGeneral alignRight" type="text" th:value="${contact}"></p>
+    <p class="pgeneral"><strong>Bezeichnung der Veranstaltung.:</strong> <input class="FirstPageGeneral alignRight" type="text" th:value="${bez}"></p>
+    <p class="pgeneral"><strong>Veranstaltungsort:</strong> <input class="FirstPageGeneral alignRight" type="text" th:value="${loc}"></p>
+  </div>
+  <p><b>Veranstaltungsdauer:</b>
+    <span class="alignRight"> <strong>von:</strong>
+      <input th:value="${dateFrom}" class="dayInputWidth" type="text"> <strong>bis:</strong>
+      <input th:value="${dateTill}" class="dayInputWidth" type="text">
+    </span></p>
+  <br>
+  <table><thead>
+  <tr>
+    <th class="pt11 UnderLine">Art der Kosten</th>
+    <th class="pt11 UnderLine">Verwendungszweck</th>
+    <th class="pt11 UnderLine" colspan="2">Rechnung<br>Ja / Nein</th>
+    <th class="pt11 UnderLine">Auslagen-Betrag gemäß Belegen</th>
+  </tr></thead>
+    <tbody>
+    <tr>
+      <td><strong class="pt11">Übernachtungskosten</strong><sup>2 3</sup><br> <div class="pt10 tableSubnoteMargin">(Ja / Nein?)</div></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong class="pt11">Verpflegungskosten</strong><sup>2 3</sup> <br><div class="pt10 tableSubnoteMargin">(abzüglich Pfand!)</div></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong class="pt11">Schulungskosten</strong><br><div class="pt10 tableSubnoteMargin">(z.B. Tagungsraum)</div></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong class="pt11">Sonstige Kosten</strong><sup>3</sup><br><div class="pt10 tableSubnoteMargin">(z.B. Teambuilding)</div></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong class="pt11">Fahrtkosten (Bus/Bahn)</strong><sup>3</sup><br><div class="pt10 tableSubnoteMargin">(Tickets beifügen!)</div> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong class="pt11">Fahrtkosten (PkW)</strong><sup>4</sup><br><div class="pt10 tableSubnoteMargin">(Abrechnung Fahrtkosten!)</div></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong class="pt11 UnderLine">Gesamtsumme (in Euro)</strong></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    </tbody></table>
+  <div>
+    <span class="Italic pt10"><sup>2</sup> - Teilnehmer*innenliste ist beizufügen</span>
+    <span class="footnoteSpace Italic pt10"><sup>3</sup> - Belege sind im Original beizufügen </span>
+  </div>
+  <div>
+    <span class="Italic pt10"><sup>4</sup>- Liste der Fahrgemeinschaften ist beizufügen</span>
+  </div>
+
+  <input type="text" class="UnterschriftSteller">
+  <p><strong>Datum/Unterschrift Antragsteller*in:</strong></p>
+  <p class="ichBestaetige Italic">* Ich bestätige die Vollständigkeit und Richtigkeit der oben gemachten Angaben.</p>
+  <p><strong class="pt11 UnderLine">Antrag genehmigt:</strong></p>
+  <div class="signature">
+    <div>
+      <p>_____________________________________</p>
+      <p>Datum/Unterschrift AStA-Vorsitz</p>
+    </div>
+    <div>
+      <p>_____________________________________</p>
+      <p>Datum/Unterschrift Finanzreferat</p>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="HeaderLine">
+    <address>
+      Studierendenschaft der Hochschule Esslingen<br>
+      Allgemeiner Studierendenausschuss<br>
+      Kanalstr. 33<br>
+      73728 Esslingen<br>
+      <br>
+      E-Mail: asta@hs-esslingen.de
+    </address>
+
+    <img src="AstaRgb.png">
+  </div>
+  <h1>Abrechnung Vorschuss für Fachschaftswochenenden</h1>
+  <p class="Italic">(Dieses Blatt ist der Abrechnung zwingend beizulegen!)</p>
+
+  <p><b>Vorschuss erhalten? (Betrag in Euro):</b> <input type="text" class="InputHeightNormal vorschusswidth"> </p>
+  <p><b>Vorschuss zurückgezahlt? (Betrag in Euro):</b> <input type="text" class="InputHeightNormal vorschusswidth">
+    <strong>Datum:</strong> <input type="text" class="InputHeightNormal vorschusswidth"></p>
+  <p><b>Rückerstattung Differenzbetrag notwendig?</b> <strong>Ja</strong> <input type="checkbox"> oder <strong>Nein</strong>
+    <input type="checkbox"> <strong class="">Betrag:</strong> <input type="text" class="InputHeightNormal vorschusswidth"></p>
+
+  <p class="Italic alignMiddleueberw">(Bei Überweisung hier ausfüllen.)</p>
+  <div class="ReciverBlock noTopMargin">
+    <p class="vorschussReciver" ><strong>Empfänger*in:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
+    <p class="vorschussReciver" ><strong>Anschrift:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
+
+    <p  class="vorschussReciver" ><strong>IBAN:</strong> (22 Stellen)<input class="ibanfirst ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanslim vorschussReciver" type="text"></p>
+    <p class="vorschussReciver" ><strong>Kreditinstitut:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
+  </div>
+
+  <ul>
+    <li><strong class="strongsizeSmaller">Ich bestätige die Richtigkeit der gemachten Angaben.</strong></li>
+    <li><strong class="strongsizeSmaller">Ich bestätige dass mir der Vorschussbetrag in Rechnung gestellt werden kann sollte die Abrechnung
+      <br>der angemeldeten Ausgaben nicht zeitnah nach dem FS-WE eingereicht werden.</strong></li>
+    <li><strong class="strongsizeSmaller">Bitte beachte, dass Pfand nicht zurückerstattet werden kann!</strong></li>
+    <li><strong class="strongsizeSmaller">Ich verpflichte mich alle Quittungen in der Abrechnung im Original beizulegen.</strong></li>
+  </ul>
+
+  <input type="text" class="UnterschriftSteller">
+  <p><strong>Datum/Unterschrift Antragsteller*in:</strong></p>
+
+  <h2 class="VomAstaSpacer">Vom AStA auszufüllen!</h2>
+  <hr>
+
+
+  <p class="QuittungenSpacer"><strong>Quittungen/Rechnungen im Original angehängt?</strong> <input type="checkbox"></p>
+  <p><strong>Haushalts-Titel:</strong> __________________________</p>
+  <p class="AntragGeprueftSpacer"><strong class="UnderLine">Antrag geprüft:</strong></p>
+  <p class="UnterschriftHaushaltSpacer">__________________________________________<br>Datum/Unterschrift Haushaltsbeauftragte</p>
+</div>
+
+<div class="page">
+  <div class="HeaderLine">
+    <address>
+      Studierendenschaft der Hochschule Esslingen<br>
+      Allgemeiner Studierendenausschuss<br>
+      Kanalstr. 33<br>
+      73728 Esslingen<br>
+      <br>
+      E-Mail: asta@hs-esslingen.de
+    </address>
+
+    <img src="AstaRgb.png">
+  </div>
+  <h1>Anlage: Tatsächliche TeilnehmerInnenliste des FS-Wochenendes</h1>
+
+  <div style="height: 100px">
+    <span style="width: 200px">
+      Termin: <input type="text">
+    </span>
+    <span style="width: 200px; padding-left: 10px">
+      Anschrift:
+    </span>
+    <span>
+       <textarea style="position: absolute" class="teilnehmerArea">
+
+       </textarea>
+    </span>
+  </div>
+
+
+
+  <table ><thead>
+  <tr>
+    <th class="UnderLine pt12">Nr.</th>
+    <th class="UnderLine pt12">Name</th>
+    <th class="UnderLine pt12">Anschrift</th>
+    <th class="UnderLine pt12">Unterschrift</th>
+  </tr></thead>
+    <tbody>
+    <tr>
+      <td>1</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>19</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>20</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    </tbody></table>
+</div>
+[(${Anhang})]
+</body>
+</html>

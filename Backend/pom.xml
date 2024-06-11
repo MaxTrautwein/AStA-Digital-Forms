@@ -74,6 +74,12 @@
 			<artifactId>de.flapdoodle.embed.mongo</artifactId>
 			<version>4.13.1</version>
 		</dependency>
+		<!-- Thymeleaf dependencies -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>

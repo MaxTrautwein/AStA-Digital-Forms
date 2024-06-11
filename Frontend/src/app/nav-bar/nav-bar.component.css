@@ -66,3 +66,58 @@
 .navbar-toggler-icon{
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-linecap='round' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
+
+.sidebar-content {
+    background-color: white;
+    width: 20vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+@keyframes open {
+    0%  {width: 0vw;}
+    25% {width: 5vw;}
+    50% {width: 10vw;}
+    75% {width: 15vw;}
+    100%{width: 20vw;}
+}
+
+
+.burger-open {
+    width: 20vw;
+    height: 100vh;
+    background-color: var(--asta-blue);
+    position: absolute;
+    border-color: black;
+    border: 50px;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    animation-name: open;
+    animation-duration: 200ms;
+    animation-timing-function: linear;
+    animation-direction: alternate;
+}
+
+.burger-background {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.item {
+    width: 95%;
+    margin: 2.5%;
+    height: 15vh;
+    background-color: var(--asta-bluelight);
+    border: 0;
+    color: var(--asta-white);
+    border-radius: 20px;
+    font-size: x-large;
+}

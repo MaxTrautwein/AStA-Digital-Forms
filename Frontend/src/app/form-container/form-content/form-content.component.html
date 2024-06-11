@@ -3,7 +3,8 @@
     @case ('text'){
       <app-text [description]="formElement.Description"
                 [help]="formElement.help" [value]="formElement.value"
-                (valueChanged)="updateFormSection({'val': $event, 'id': formElement.id } )" />
+                (valueChanged)="updateFormSection({'val': $event, 'id': formElement.id } ) " />
+ 
     }
 @case ('iban') {
   <app-iban [description]="formElement.Description"
@@ -42,7 +43,6 @@
             (valueChanged)="updateFormSection({'val': $event, 'id': formElement.id } )" />
 
 }
-    <!-- TODO Add more Cases for the Different Types -->
 
 
     @default {
@@ -51,3 +51,4 @@
   }
 }
 
+<button (click)="fillData()">Use Own Data</button>

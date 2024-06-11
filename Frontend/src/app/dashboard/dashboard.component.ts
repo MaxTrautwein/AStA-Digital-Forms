@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {CollapsableBottomComponent} from "../collapsable-bottom/collapsable-bottom.component";
-import {MainButtonsComponent} from "../main-buttons/main-buttons.component";
-import {OAuthService} from "angular-oauth2-oidc";
+import {MainButtonsComponent} from "./main-buttons/main-buttons.component";
 
 
 @Component({
@@ -15,7 +14,5 @@ import {OAuthService} from "angular-oauth2-oidc";
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
-
-  constructor(protected Auth: OAuthService) {}
 
 }
