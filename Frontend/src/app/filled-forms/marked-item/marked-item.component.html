@@ -1,1 +1,9 @@
-<button type="button" class="btn btn-light" routerLink="/Form/{{form.id}}">{{displayName()}}</button>
+<div class="card" style="width: 18rem;" routerLink="/Form/{{form.id}}">
+  <div class="card-header">
+    {{displayNameOrTile()}}
+  </div>
+  <div class="card-body">
+    <h6 class="card-subtitle mb-2 text-body-secondary">{{form.titel}}</h6>
+    <p class="card-text">{{form.description}}</p>
+  </div>
+</div>
