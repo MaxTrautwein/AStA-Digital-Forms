@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { TemplateService } from '../template.service';
 import { FavoritenComponent } from './favoriten/favoriten.component';
-import { MarkedItemComponent } from "./marked-item/marked-item.component";
+import { MarkedItemComponent } from "../filled-forms/marked-item/marked-item.component";
 import {Favourite, FavouritesService, Form, FormsService, TemplateGroup} from "../api-client";
 import {Observable, Subscriber} from "rxjs";
 import { AsyncPipe } from "@angular/common";
@@ -16,11 +16,8 @@ import {TokenService} from "../token.service";
 })
 export class CollapsableBottomComponent {
 
-  protected forms: Observable<Form[]>
-
   constructor(private tokenService: TokenService, private api: FormsService,
               protected templateService: TemplateService, protected favService: FavouritesService) {
-    this.forms = api.formsGet()
     this.favourites = new Observable(e => this.favEmitter = e);
   }
 

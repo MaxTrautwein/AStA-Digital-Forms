@@ -15,8 +15,18 @@ export class MarkedItemComponent {
   @Input() form!: Form;
 
 
+  displayNameOrTile(): string{
+    let ret = this.displayName();
+
+    if (ret === ""){
+      ret = "(-) " + this.form.titel!;
+    }
+
+    return ret;
+  }
+
   displayName(): string{
-    let ret = this.form.titel!;
+    let ret = "";
 
     this.form.form?.forEach(fs => {
       const shortName = fs.items?.find(fe => fe.id == "bez")?.value

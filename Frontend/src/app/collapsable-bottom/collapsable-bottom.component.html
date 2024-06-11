@@ -17,25 +17,5 @@
         </div>
       </div>
     </div>
-
-    <div class="card">
-      <div class="card-header" id="headingTwo">
-        <h5 class="mb-0">
-          <button class="btn collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            <span class="text">Fertige Anträge</span>
-          </button>
-        </h5>
-      </div>
-      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion">
-        <div class="card-body">
-          @for (ownedForms of forms | async; track ownedForms) {
-            <app-marked-item [form]="ownedForms" ></app-marked-item>
-          }
-        </div>
-      </div>
-    </div>
- </div>
-
-
-
+</div>
 <!--Bootrstrap Source: https://getbootstrap.com/docs/4.0/components/collapse/         "Accordion example"-->

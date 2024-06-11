@@ -1,0 +1,21 @@
+
+
+<br>
+<div class="cardHolder">
+  <h2>Bearbeitete Anträge und Abrechnungen</h2>
+  <br>
+
+
+  <div class="row row-cols-auto">
+  @if (this.forms | async; as formArray){
+    @for (ownedForms of formArray; track ownedForms) {
+      @if (search.isMatch(ownedForms.titel! + getFormShortName(ownedForms))){
+        <app-marked-item [form]="ownedForms" ></app-marked-item>
+      }
+    }
+  }
+  </div>
+
+</div>
+
+
