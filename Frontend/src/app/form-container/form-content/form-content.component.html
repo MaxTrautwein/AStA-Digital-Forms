@@ -6,7 +6,43 @@
                 (valueChanged)="updateFormSection({'val': $event, 'id': formElement.id } ) " />
  
     }
-    <!-- TODO Add more Cases for the Different Types -->
+@case ('iban') {
+  <app-iban [description]="formElement.Description"
+    [help]="formElement.help" [value]="formElement.value"
+    (valueChanged)="updateFormSection({'val': $event, 'id': formElement.id } )" />
+
+
+}
+@case ('money') {
+  <app-money [description]="formElement.Description"
+    [help]="formElement.help" [value]="formElement.value"
+    (valueChanged)="updateFormSection({'val': $event, 'id': formElement.id } )" />
+
+}
+@case ('address') {
+  <app-address [description]="formElement.Description"
+               [help]="formElement.help" [value]="formElement.value"
+               (valueChanged)="updateFormSection({'val': $event, 'id': formElement.id } )" />
+
+}
+@case ('date') {
+  <app-date [description]="formElement.Description"
+            [help]="formElement.help" [value]="formElement.value"
+            (valueChanged)="updateFormSection({'val': $event, 'id': formElement.id } )" />
+
+}
+@case ('TextMultiLine') {
+  <app-text-multi-line [description]="formElement.Description"
+                       [help]="formElement.help" [value]="formElement.value"
+                       (valueChanged)="updateFormSection({'val': $event, 'id': formElement.id } )" />
+
+}
+@case ('bool') {
+  <app-bool [description]="formElement.Description"
+            [help]="formElement.help" [value]="formElement.value"
+            (valueChanged)="updateFormSection({'val': $event, 'id': formElement.id } )" />
+
+}
 
 
     @default {

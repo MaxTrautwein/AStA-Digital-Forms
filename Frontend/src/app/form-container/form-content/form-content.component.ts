@@ -1,6 +1,12 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import { FormSection } from "../../api-client";
 import {TextComponent} from "./text/text.component";
+import { IbanComponent } from './iban/iban.component';
+import { MoneyComponent } from './money/money.component';
+import { AddressComponent } from './address/address.component';
+import { DateComponent } from './date/date.component';
+import { TextMultiLineComponent } from './text-multi-line/text-multi-line.component';
+import { BoolComponent } from './bool/bool.component';
 import { UserDataService } from '../../api-client';
 import { FormsModule } from '@angular/forms';
 import { OAuthService } from 'angular-oauth2-oidc';
@@ -8,7 +14,9 @@ import { OAuthService } from 'angular-oauth2-oidc';
 @Component({
   selector: 'app-form-content',
   standalone: true,
-  imports: [TextComponent, FormsModule],
+  imports: [
+    TextComponent,IbanComponent,MoneyComponent,AddressComponent,DateComponent,BoolComponent,TextMultiLineComponent,FormsModule,
+  ],
   templateUrl: './form-content.component.html',
   styleUrl: './form-content.component.css'
 })

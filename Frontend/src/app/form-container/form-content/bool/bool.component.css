@@ -1,0 +1,21 @@
+:host {
+    display: block;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+}
+
+.input-group-text {
+    flex: 0 0 auto;
+    margin-right: 1em;
+  }
+
+.form-check-input {
+    opacity: 1;
+    border: var(--asta-orange) solid 3px;
+}
+.input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback){
+  border-radius: 0.25em;
+}

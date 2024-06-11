@@ -1,0 +1,36 @@
+.mb-3 {
+    margin-bottom: 1rem;
+  }
+
+  .input-group {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .input-group-date {
+    display: inline-block;
+    margin-right: 0.5rem;
+    align-self: center;
+  }
+
+  .form-control {
+    flex: 1;
+    min-width: 10em;
+    max-width: 10em;
+  }
+
+  .error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+    padding-left: 2em;
+  }
+
+  .form-date {
+    margin-top: 0.5rem;
+    font-size: 0.9em;
+    color: #6c757d;
+  }
+.form-text {
+  font-size: 0.8rem;
+}

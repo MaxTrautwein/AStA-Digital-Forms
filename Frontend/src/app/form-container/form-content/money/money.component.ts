@@ -1,14 +1,14 @@
-import {AfterViewInit, Component, EventEmitter, Input, Output, SimpleChanges, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, Output, SimpleChanges, ViewChild} from '@angular/core';
 import {FormSection} from "../../../api-client";
 
 @Component({
-  selector: 'app-text',
+  selector: 'app-money',
   standalone: true,
   imports: [],
-  templateUrl: './text.component.html',
-  styleUrl: './text.component.css'
+  templateUrl: './money.component.html',
+  styleUrl: './money.component.css'
 })
-export class TextComponent implements AfterViewInit {
+export class MoneyComponent {
 @Input() description: string | undefined = "";
 @Input() help: string | undefined = "";
 @Input() value: string | undefined = "";
@@ -16,6 +16,7 @@ export class TextComponent implements AfterViewInit {
 @Output() valueChanged = new EventEmitter<string>();
 
 @ViewChild('input') input: any;
+isValidValue: boolean = true;
 
   ngAfterViewInit() {
     this.updateInputValue();
@@ -28,7 +29,18 @@ export class TextComponent implements AfterViewInit {
 
   onValueChange(event: Event) {
     const inputElement = event.target as HTMLInputElement;
+    this.value = inputElement.value;
+    if (this.value !== "") {
+      this.isValidValue = this.validateValue(this.value);
+    } else {
+      this.isValidValue = true;
+    }
     this.valueChanged.emit(inputElement.value);
+  }
+
+  validateValue(value: string): boolean {
+    const regex = /^-?\d+(?:[.,]\d+)?$/;
+    return regex.test(value);
   }
   private updateInputValue() {
     if (this.value === undefined) {
@@ -36,6 +48,11 @@ export class TextComponent implements AfterViewInit {
     }
     if (this.input && this.input.nativeElement) {
       this.input.nativeElement.value = this.value;
+    }
+    if (this.value !== null && this.value !== "") {
+      this.isValidValue = this.validateValue(this.value);
+    }else {
+      this.isValidValue = true;
     }
   }
 }
