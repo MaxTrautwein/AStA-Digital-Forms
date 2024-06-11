@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink } from "@angular/router";
 import {SearchService} from "../search.service";
+import {OAuthService} from "angular-oauth2-oidc";
 
 @Component({
   selector: 'app-nav-bar',
@@ -22,10 +23,12 @@ export class NavBarComponent {
     }
   }
 
-  constructor(protected search: SearchService) {
+  constructor(protected search: SearchService, private OAuthService: OAuthService) {
 
   }
-
+  logout() {
+    this.OAuthService.logOut();
+  }
 
 
 }
