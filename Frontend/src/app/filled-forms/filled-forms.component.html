@@ -1,0 +1,7 @@
+@if (this.forms | async; as formArray){
+  @for (ownedForms of formArray; track ownedForms) {
+    <app-marked-item [form]="ownedForms" ></app-marked-item>
+  }
+}
+
+
