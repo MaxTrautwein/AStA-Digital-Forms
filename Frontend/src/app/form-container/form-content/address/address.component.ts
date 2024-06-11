@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ViewChild, AfterViewInit } from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewChild, AfterViewInit, SimpleChanges} from '@angular/core';
 import {FormSection} from "../../../api-client";
 @Component({
   selector: 'app-address',
@@ -20,17 +20,13 @@ export class AddressComponent implements AfterViewInit {
   isValidPostalCode: boolean = true;
 
   ngAfterViewInit() {
-    if (typeof this.value === 'string') {
-      this.value = this.splitConcatenatedString(this.value);
-    }
+    this.updateInputValues();
+  }
 
-    if (this.value === undefined || this.value === null) {
-      this.value = { street: "", city: "", postalCode: "" };
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['value']) {
+      this.updateInputValues();
     }
-
-    this.streetInput.nativeElement.value = this.value.street;
-    this.cityInput.nativeElement.value = this.value.city;
-    this.postalCodeInput.nativeElement.value = this.value.postalCode;
   }
 
   onValueChange() {
@@ -57,4 +53,28 @@ export class AddressComponent implements AfterViewInit {
     const [street, city, postalCode] = value.split(',').map(part => part.trim());
     return { street, city, postalCode };
   }
+
+private updateInputValues() {
+
+  if (typeof this.value === 'string') {
+    this.value = this.splitConcatenatedString(this.value);
+  } else if (this.value === undefined || this.value === null) {
+    this.value = { street: "", city: "", postalCode: "" };
+  }
+
+  if (this.streetInput && this.streetInput.nativeElement) {
+    this.streetInput.nativeElement.value = this.value.street;
+  }
+  if (this.cityInput && this.cityInput.nativeElement) {
+    this.cityInput.nativeElement.value = this.value.city;
+  }
+  if (this.postalCodeInput && this.postalCodeInput.nativeElement) {
+    this.postalCodeInput.nativeElement.value = this.value.postalCode;
+  }
+  if (this.value.postalCode !== "") {
+    this.isValidPostalCode = this.validatePostalCode(this.value.postalCode);
+  } else {
+    this.isValidPostalCode = true;
+  }
+}
 }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ViewChild, AfterViewInit } from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewChild, AfterViewInit, SimpleChanges} from '@angular/core';
 //import { ValidatorService} from 'angular-iban';
 import {FormSection} from "../../../api-client";
 @Component({
@@ -20,10 +20,12 @@ export class IbanComponent implements AfterViewInit {
   //constructor(private validatorService: ValidatorService) {}
 
   ngAfterViewInit() {
-    if (this.value === undefined || this.value === null) {
-      this.value = "";
+    this.updateInputValue();
+  }
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['value']) {
+      this.updateInputValue();
     }
-    this.input.nativeElement.value = this.value;
   }
 
   onValueChange(event: Event) {
@@ -31,5 +33,13 @@ export class IbanComponent implements AfterViewInit {
     this.value = inputElement.value;
    // this.isValidIban = this.validatorService.validateIban(this.value); // IBAN validieren
     this.valueChanged.emit(this.value);
+  }
+  private updateInputValue() {
+    if (this.value === undefined) {
+      this.value = "";
+    }
+    if (this.input && this.input.nativeElement) {
+      this.input.nativeElement.value = this.value;
+    }
   }
 }

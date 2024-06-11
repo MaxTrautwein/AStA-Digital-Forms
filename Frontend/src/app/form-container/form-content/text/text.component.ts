@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, Output, SimpleChanges, ViewChild} from '@angular/core';
 import {FormSection} from "../../../api-client";
 
 @Component({
@@ -17,15 +17,25 @@ export class TextComponent implements AfterViewInit {
 
 @ViewChild('input') input: any;
 
-  ngAfterViewInit(){
-    if (this.value === undefined){
-      this.value = ""
+  ngAfterViewInit() {
+    this.updateInputValue();
+  }
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['value']) {
+      this.updateInputValue();
     }
-    this.input.nativeElement.value = this.value;
   }
 
   onValueChange(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     this.valueChanged.emit(inputElement.value);
+  }
+  private updateInputValue() {
+    if (this.value === undefined) {
+      this.value = "";
+    }
+    if (this.input && this.input.nativeElement) {
+      this.input.nativeElement.value = this.value;
+    }
   }
 }

@@ -27,7 +27,11 @@ export class DateComponent implements AfterViewInit {
   onValueChange(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     this.value = inputElement.value;
-    this.isValidDate = this.validateDate(this.value);
+    if (this.value !== "") {
+      this.isValidDate = this.validateDate(this.value);
+    } else {
+      this.isValidDate = true;
+    }
     this.valueChanged.emit(this.value);
   }
 
@@ -46,6 +50,11 @@ export class DateComponent implements AfterViewInit {
     }
     if (this.input && this.input.nativeElement) {
       this.input.nativeElement.value = this.value;
+    }
+    if (this.value !== null && this.value !== "") {
+      this.isValidDate = this.validateDate(this.value);
+    } else {
+      this.isValidDate = true;
     }
   }
 }

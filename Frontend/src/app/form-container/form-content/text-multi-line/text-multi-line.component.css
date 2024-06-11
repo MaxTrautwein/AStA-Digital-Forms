@@ -1,9 +1,9 @@
-.form-text{
+.form-text {
   padding: .375rem .75rem;
 }
 .grow-wrap > textarea {
-  resize: both;
-  overflow: hidden;
+  resize: none;
+  overflow-y: auto;
   max-width: 80vw;
   min-width: 80vw;
   min-height: 10vw;
@@ -16,7 +16,6 @@
   grid-area: 1 / 1 / 2 / 2;
   max-width: 80vw;
   min-width: 80vw;
-  min-height: 10vw;
 }
 .grow-wrap {
   display: grid;
@@ -25,5 +24,6 @@
 .grow-wrap::after {
   content: attr(data-replicated-value) " ";
   white-space: pre-wrap;
+  overflow-wrap: break-word;
   visibility: hidden;
 }

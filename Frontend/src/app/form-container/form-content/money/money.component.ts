@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, Output, SimpleChanges, ViewChild} from '@angular/core';
 import {FormSection} from "../../../api-client";
 
 @Component({
@@ -17,22 +17,42 @@ export class MoneyComponent {
 
 @ViewChild('input') input: any;
 isValidValue: boolean = true;
-  ngAfterViewInit(){
-    if (this.value === undefined){
-      this.value = ""
+
+  ngAfterViewInit() {
+    this.updateInputValue();
+  }
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['value']) {
+      this.updateInputValue();
     }
-    this.input.nativeElement.value = this.value;
   }
 
   onValueChange(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     this.value = inputElement.value;
-    this.isValidValue = this.validateValue(this.value);
+    if (this.value !== "") {
+      this.isValidValue = this.validateValue(this.value);
+    } else {
+      this.isValidValue = true;
+    }
     this.valueChanged.emit(inputElement.value);
   }
 
   validateValue(value: string): boolean {
-    const regex = /^[0-9]+$/;
+    const regex = /^-?\d+(?:[.,]\d+)?$/;
     return regex.test(value);
+  }
+  private updateInputValue() {
+    if (this.value === undefined) {
+      this.value = "";
+    }
+    if (this.input && this.input.nativeElement) {
+      this.input.nativeElement.value = this.value;
+    }
+    if (this.value !== null && this.value !== "") {
+      this.isValidValue = this.validateValue(this.value);
+    }else {
+      this.isValidValue = true;
+    }
   }
 }
