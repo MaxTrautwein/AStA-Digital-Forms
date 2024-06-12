@@ -2,24 +2,29 @@
     width: fit-content;
     height: fit-content;
     float: inline-start;
+    position: relative;
 }
 
 .delete {
-    height: 99%;
+    height: 100%;
     width: 2.5vw;
     background-color:crimson;
-    padding: 0;
     border: 0;
     margin-right: 1vw;
+    margin-left: 10vw;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     display: block;
     float: left;
+    position: absolute;
+    top: 0;
+    bottom: 0;
 }
 
 .icon {
-    margin-top: 36%;
-    margin-bottom: 36%;
+    width: 2vw;
+    height: 4vh;
+    min-height: 35px;
 }
 
 .fav {
@@ -30,6 +35,8 @@
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     float: left;
+    margin-right: 3vw;
+
 }
 
 .background {
