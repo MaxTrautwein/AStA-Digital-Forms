@@ -1,0 +1,60 @@
+title Aufüllen eines Antrags
+
+actor User
+fontawesome6solid f390 Frontend
+fontawesome6solid f233 Backend
+materialdesignicons F0492 Auth Resource Server
+database Database
+
+
+User->Frontend:Click auf "Ausgaben und Anschaffungen/Antrag"
+Frontend->Backend:Get Form Data()
+Backend->Auth Resource Server: Validate Bearer Token
+Auth Resource Server-->Backend:Responce
+Backend->Database:Request Form Data
+Database-->Backend:Responce
+Backend-->Frontend: Retrieve Form Data
+Frontend->Frontend: Display Form
+Frontend->Backend:Save new Form
+Backend->Auth Resource Server: Validate Bearer Token
+Auth Resource Server-->Backend:Responce
+Backend->Database: Create new Template
+Database-->Backend: Responce
+User->Frontend: Click auf "Use Own Data"
+Frontend->Backend:Get User Data()
+Backend->Auth Resource Server: Validate Bearer Token
+Auth Resource Server-->Backend:Responce
+Backend->Database:Request User Data
+Database-->Backend:Responce
+Backend-->Frontend:Retrieve User Data
+Frontend->Frontend:Display User Data
+Frontend->Backend:Save Changes
+Backend->Auth Resource Server: Validate Bearer Token
+Auth Resource Server-->Backend:Responce
+Backend->Database:Save Changes
+Database-->Backend:Responce
+Backend-->Frontend:Responce
+
+group bei Änderungen
+User->Frontend:Ändert Daten oder fügt sie hinzu
+Frontend->Backend:Save Changes
+Backend->Auth Resource Server: Validate Bearer Token
+Auth Resource Server-->Backend:Responce
+Backend->Database:Save Changes
+Database-->Backend:Responce
+Backend-->Frontend:Responce
+end
+
+User->Frontend:Click auf PDF Download
+Frontend->Backend:Request PDF Download
+Backend->Auth Resource Server: Validate Bearer Token
+Auth Resource Server-->Backend:Responce
+Backend->Database:Request Form Data
+Database-->Backend:Responce
+Backend->Backend:Generate PDF via chromium
+Backend->Frontend:Retrieve PDF File
+
+
+
+
+

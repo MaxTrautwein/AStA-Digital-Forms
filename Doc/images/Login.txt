@@ -1,0 +1,21 @@
+title Login
+
+actor User
+fontawesome6solid f390 Frontend
+fontawesome6solid f233 Backend
+materialdesignicons F0492 Auth Resource Server
+database Database
+
+User->Frontend:Click auf "Login"
+Frontend->Auth Resource Server:Redirect to Keycloak
+User->Auth Resource Server:Enter Login Data
+Auth Resource Server->Auth Resource Server:Validate Login Data
+Auth Resource Server->Frontend:Parse valid acces Token & Redirect to Frontend
+Frontend->Backend:Get Dashboard Content
+Backend->Auth Resource Server: Validate Bearer Token
+Auth Resource Server-->Backend:Responce
+Backend->Database:Request Dasboard Data
+Database-->Backend:Responce
+Backend-->Frontend: Retrieve Dashboard Data
+Frontend->Frontend:Show Dashboard Content
+
