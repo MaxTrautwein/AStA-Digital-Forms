@@ -9,20 +9,20 @@
     <div class="Account-Text-Holder">
       Account
     </div>
+    @if(isLoggedIn){
     <div class="account-dropdown-menu">
       <button class="account-item" (click)="logout()">Logout</button>
-    </div>
+    </div>}
   </div>
 </nav>
-
+@if(isLoggedIn){
 @if(this.isOpen) {
   <div class="burger-background" (click)="this.onClick();">
     <div class="burger-open">
       <button class="item" routerLink="userdata">Eigene Daten</button>
       <button class="item" routerLink="filledForms">Eigene Anträge</button>
     </div>
-  </div>
-
+  </div>}
 }
 
 
