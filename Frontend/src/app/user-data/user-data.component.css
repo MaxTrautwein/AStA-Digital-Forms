@@ -1,9 +1,20 @@
-.inputfield {
-    margin: 5vh;
-    display: block;
+.sub {
+    background-color: var(--asta-bluelight);
+    color: var(--asta-white);
+    border-radius: 20px;
+    height: 3rem;
+    width: 24rem;
 }
 
-.input-wrapper {
-    height: 60vh;
-    width: 50vw;
+.input-group-text {
+    width: 10rem;
+}
+.form-control {
+    width: 35rem;
+    flex: none;
+}
+
+.i-wrapper {
+    margin-left: 1rem;
+    margin-top: 1rem;
 }
