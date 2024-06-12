@@ -43,7 +43,7 @@
 
 .popup {
     width: 40vw;
-    height: 40vh;
+    height: fit-content;
     background-color: var(--asta-blue);
     position: fixed;
     top: 30%;
@@ -63,6 +63,7 @@
     margin-top: 5vh;
     color: var(--asta-white);
     border-width: 0;
+    margin-bottom: 10%;
 }
 .cancel {
     background-color: var(--asta-bluelight);
@@ -70,9 +71,10 @@
     width: 15vw;
     height: 8vh;
     margin-left: 1vw;
-    margin-top: 5vh;
+    margin-top: 10%;
     color: var(--asta-white);
     border-width: 0;
+    margin-bottom: 10%;
 }
 
 h6 {
