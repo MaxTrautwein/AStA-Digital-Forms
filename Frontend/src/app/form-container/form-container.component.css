@@ -1,4 +1,14 @@
 .fav-button {
     background-color: transparent;
     border-color: transparent;
+  padding-left: 1em;
+}
+
+.form-container{
+  display: flex;
+  flex-direction: row;
+  padding: .375rem .75rem;
+}
+.fav-button:hover svg {
+  fill: red;
 }
