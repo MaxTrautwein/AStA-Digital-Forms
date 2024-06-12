@@ -18,7 +18,7 @@ Frontend->Frontend: Display Form
 Frontend->Backend:Save new Form
 Backend->Auth Resource Server: Validate Bearer Token
 Auth Resource Server-->Backend:Responce
-Backend->Database: Create new Template
+Backend->Database: Create new Form
 Database-->Backend: Responce
 User->Frontend: Click auf "Use Own Data"
 Frontend->Backend:Get User Data()
