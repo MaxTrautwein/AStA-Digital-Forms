@@ -53,9 +53,27 @@ Diese verwenden generierte Interfaces, wie in \refa{fig:Backend-API-Controller} 
 % Finde Beim Frontend Derzeit nichts Sinfolles
 
 \section{Verhaltensschicht}\label{sec:verhaltensschicht}
-Im Folgenden wird das Verhalten der Applikation bei verschiedenen Usecases beschrieben.
+Im Folgenden wird das Verhalten der Applikation exemplarisch bei den Usecases Ausfüllen 
+eines Antrags, sowie Login beschrieben.
 
-\newpage
+\begin{figure}[H]
+    \includegraphics[width=15cm]{Doc/images/Fill in Form Sequence Diagramm part 1.png}
+    \caption{Antrag ausfüllen Diagramm Teil 1}\label{fig:Antrag Flow 1}
+\end{figure}   
+\begin{figure}[H]
+    \includegraphics[width=15cm]{Doc/images/Fill in Form Sequence Diagramm part 2.png}
+    \caption{Antrag ausfüllen Sequence Diagramm Teil 2}\label{fig:Antrag Flow 2}
+\end{figure}
+\refa{fig:Antrag Flow 1} und \refa{fig:Antrag Flow 2} zeigen den sequenziellen Ablauf 
+und die Interaktionen, die Ablaufen, wenn der Nutzer einen Antrrag ausfüllt und dabei 
+gegebenenfalls diverse Features wie die Autofill Funktion nutzt.
+\begin{figure}[H]
+    \includegraphics[width=15cm]{Doc/images/Login.png}
+    \caption{Login Sequence Diagramm}\label{fig:Login Flow}
+\end{figure}
+\refa{fig:Login Flow} zeigt, wie die Applikation eine Authentifizierung des Nutzers und damit 
+eine Login Funktionalität ermöglicht, bzw. wie diese umgesetzt wird.
+
 \section{Verteilungsschicht}\label{sec:verteilungsschicht}
 Die Applikation verteilt sich, wie \refa{fig:Netzwerksuebersicht} zeigt, auf drei frei verfügbare Komponenten.
 Ein Nutzer kann über die Subdomains "df." für das Frontend, "backend.df." für das Backend und "auth.df."
