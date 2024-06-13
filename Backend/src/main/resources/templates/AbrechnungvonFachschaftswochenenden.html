@@ -189,15 +189,21 @@
   <p><b>Vorschuss zurückgezahlt? (Betrag in Euro):</b> <input th:value="${vorschuss_payback_sum}" type="text" class="InputHeightNormal vorschusswidth">
     <strong>Datum:</strong> <input th:value="${vorschuss_payback_date}" type="text" class="InputHeightNormal vorschusswidth"></p>
   <p><b>Rückerstattung Differenzbetrag notwendig?</b> <strong>Ja</strong> <input th:checked="${erstatt_req_YES}" type="checkbox"> oder <strong>Nein</strong>
-    <input th:checked="${erstatt_req_NO}" type="checkbox"> <strong class="">Betrag:</strong> <input type="text" class="InputHeightNormal vorschusswidth"></p>
+    <input th:checked="${erstatt_req_NO}" type="checkbox"> <strong class="">Betrag:</strong> <input th:value="${erstatt_sum}" type="text" class="InputHeightNormal vorschusswidth"></p>
 
   <p class="Italic alignMiddleueberw">(Bei Überweisung hier ausfüllen.)</p>
   <div class="ReciverBlock noTopMargin">
-    <p class="vorschussReciver" ><strong>Empfänger*in:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
-    <p class="vorschussReciver" ><strong>Anschrift:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
+    <p class="vorschussReciver" ><strong>Empfänger*in:</strong><input th:value="${prepay_empf}" class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
+    <p class="vorschussReciver" ><strong>Anschrift:</strong><input th:value="${prepay_adress}" class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
 
-    <p  class="vorschussReciver" ><strong>IBAN:</strong> (22 Stellen)<input class="ibanfirst ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanslim vorschussReciver" type="text"></p>
-    <p class="vorschussReciver" ><strong>Kreditinstitut:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
+    <p  class="vorschussReciver" ><strong>IBAN:</strong> (22 Stellen)
+      <input th:value="${prepay_iban_1}" class="ibanfirst ibanwide vorschussReciver" type="text">
+      <input th:value="${prepay_iban_2}" class="ibanwide vorschussReciver" type="text">
+      <input th:value="${prepay_iban_3}" class="ibanwide vorschussReciver" type="text">
+      <input th:value="${prepay_iban_4}" class="ibanwide vorschussReciver" type="text">
+      <input th:value="${prepay_iban_5}" class="ibanwide vorschussReciver" type="text">
+      <input th:value="${prepay_iban_6}" class="ibanslim vorschussReciver" type="text"></p>
+    <p class="vorschussReciver" ><strong>Kreditinstitut:</strong><input th:value="${prepay_bank}" class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
   </div>
 
   <ul>
@@ -238,13 +244,13 @@
 
   <div style="height: 100px">
     <span style="width: 200px">
-      Termin: <input type="text">
+      Termin: <input th:value="${date_actual}" type="text">
     </span>
     <span style="width: 200px; padding-left: 10px">
       Anschrift:
     </span>
     <span>
-       <textarea style="position: absolute" class="teilnehmerArea">
+       <textarea th:value="${loc_actual}" style="position: absolute" class="teilnehmerArea">
 
        </textarea>
     </span>
