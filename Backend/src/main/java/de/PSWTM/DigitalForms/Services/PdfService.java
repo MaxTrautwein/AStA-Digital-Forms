@@ -26,12 +26,24 @@ public class PdfService {
         this.templateEngine = templateEngine;
     }
 
+    private Boolean isTrue(String string){
+        return string.equalsIgnoreCase("true");
+    }
+
     // Match up Form Values with Template Placeholders
     private Context LoadContextVariables(Form form) {
         Context context = new Context();
         for (FormSection fs : form.getForm()){
             for (FormElement fe: fs.getItems()){
-                context.setVariable(fe.getId(),fe.getValue());
+                switch (fe.getType()){
+
+                    case BOOL -> {
+                        context.setVariable(fe.getId() + "_YES",isTrue(fe.getValue()));
+                        context.setVariable(fe.getId() + "_NO",!isTrue(fe.getValue()));
+                    }
+
+                    default -> context.setVariable(fe.getId(),fe.getValue());
+                }
             }
         }
         return context;
@@ -50,8 +62,7 @@ public class PdfService {
 
             attachmentContext.setVariable("ReqAttachment",attachmentUtil.getAttachmentsReq());
             attachmentContext.setVariable("UserAttachment",attachmentUtil.getAttachmentsUser());
-            //TODO: Link up attachment Context
-
+            
             String Checklist = templateEngine.process("AttachmentsChecklist", attachmentContext);
 
             context.setVariable("Anhang",Checklist);
