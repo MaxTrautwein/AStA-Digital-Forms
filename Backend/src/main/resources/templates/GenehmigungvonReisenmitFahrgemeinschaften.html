@@ -71,17 +71,17 @@
 
     <br>
 
-    <div class="FahrgemeinschaftHeight"><b>Antragsteller*in</b> (Name Vorname): <input class="FahrgemeinschaftHeight alignRight afk_width" type="text"></div>
-    <div class="FahrgemeinschaftHeight"><b>Fachschaft/Referat/Arbeitskreis:</b><input class="FahrgemeinschaftHeight alignRight afk_width" type="text"></div>
-    <div class="FahrgemeinschaftHeight"><b>Kontaktdaten</b> (Handy-Nr. E-Mail):<input class="FahrgemeinschaftHeight alignRight afk_width" type="text"></div>
-    <div class="FahrgemeinschaftHeight"><b>Reise-Grund:</b><input class="FahrgemeinschaftHeight reiseGrundZihl alignRight" type="text"></div>
-    <div class="FahrgemeinschaftHeight"><b>Reise-Ziel:</b><input class="FahrgemeinschaftHeight reiseGrundZihl alignRight" type="text"></div>
-    <div class="FahrgemeinschaftHeight"><b>Reise-Beginn:</b><input class="FahrgemeinschaftHeight ReiseBeginn" type="text"> (Dat./Uhrzeit) Ort:<input class="FahrgemeinschaftHeight alignRight ortWidth" type="text"></div>
-    <div class="FahrgemeinschaftHeight"><b>Reise-Ende:</b><input class="FahrgemeinschaftHeight ReiseEnde" type="text"> (Dat./Uhrzeit) Ort:<input class="FahrgemeinschaftHeight alignRight ortWidth" type="text"></div>
-    <div class="FahrgemeinschaftHeight"><b>Mitreisende:</b> <input class="FahrgemeinschaftHeight Mitreisende" type="text"> (Name Vorn.) Zustieg:<input class="FahrgemeinschaftHeight alignRight" type="text"></div>
-    <div class="FahrgemeinschaftHeight"><b>Beförderungsmittel:</b><input style="width: 540px" class="FahrgemeinschaftHeight alignRight" type="text"></div>
-    <div class="FahrgemeinschaftHeight"><b>Voraussichtlich anfallende Kosten:</b><input style="width: 430px" class="FahrgemeinschaftHeight alignRight" type="text"></div>
-    <div class="FahrgemeinschaftHeight"><b>Begründung:</b><input style="width: 590px" class="FahrgemeinschaftHeight alignRight" type="text"></div>
+    <div class="FahrgemeinschaftHeight"><b>Antragsteller*in</b> (Name Vorname): <input th:value="${user}" class="FahrgemeinschaftHeight alignRight afk_width" type="text"></div>
+    <div class="FahrgemeinschaftHeight"><b>Fachschaft/Referat/Arbeitskreis:</b><input th:value="${fs_ref_ar}" class="FahrgemeinschaftHeight alignRight afk_width" type="text"></div>
+    <div class="FahrgemeinschaftHeight"><b>Kontaktdaten</b> (Handy-Nr. E-Mail):<input th:value="${contact}" class="FahrgemeinschaftHeight alignRight afk_width" type="text"></div>
+    <div class="FahrgemeinschaftHeight"><b>Reise-Grund:</b><input th:value="${reason}" class="FahrgemeinschaftHeight reiseGrundZihl alignRight" type="text"></div>
+    <div class="FahrgemeinschaftHeight"><b>Reise-Ziel:</b><input th:value="${target}" class="FahrgemeinschaftHeight reiseGrundZihl alignRight" type="text"></div>
+    <div class="FahrgemeinschaftHeight"><b>Reise-Beginn:</b><input th:value="${start_time}" class="FahrgemeinschaftHeight ReiseBeginn" type="text"> (Dat./Uhrzeit) Ort:<input th:value="${start_loc}" class="FahrgemeinschaftHeight alignRight ortWidth" type="text"></div>
+    <div class="FahrgemeinschaftHeight"><b>Reise-Ende:</b><input th:value="${end_time}" class="FahrgemeinschaftHeight ReiseEnde" type="text"> (Dat./Uhrzeit) Ort:<input th:value="${end_loc}" class="FahrgemeinschaftHeight alignRight ortWidth" type="text"></div>
+    <div class="FahrgemeinschaftHeight"><b>Mitreisende:</b> <input th:value="${persons}" class="FahrgemeinschaftHeight Mitreisende" type="text"> (Name Vorn.) Zustieg:<input th:value="${zustieg}" class="FahrgemeinschaftHeight alignRight" type="text"></div>
+    <div class="FahrgemeinschaftHeight"><b>Beförderungsmittel:</b><input th:value="${vehicle}" style="width: 540px" class="FahrgemeinschaftHeight alignRight" type="text"></div>
+    <div class="FahrgemeinschaftHeight"><b>Voraussichtlich anfallende Kosten:</b><input th:value="${cost}" style="width: 430px" class="FahrgemeinschaftHeight alignRight" type="text"></div>
+    <div class="FahrgemeinschaftHeight"><b>Begründung:</b><input th:value="${explReason}" style="width: 590px" class="FahrgemeinschaftHeight alignRight" type="text"></div>
 
     <input type="text" class="UnterschriftSteller">
     <p><strong>Datum/Unterschrift Antragsteller*in:</strong></p>
@@ -131,9 +131,9 @@
 
     <h1>Anlage: Teilnehmer*innenliste der Reise</h1>
     <p style="padding-bottom: 20px">(Teilnehmerliste ist aus Versicherungsgründen <strong>unbedingt vorher auszufüllen</strong> und beim AStA einzureichen!)</p>
-    <p style="height: 25px"><b>Veranstaltung:</b> <input type="text" class="alignRight" style="height: 20px; width: 80%"></p>
-    <p style="height: 25px"><b>Termin:</b> <input type="text" class="" style="height: 20px; width: 50%; margin-left: 78px"></p>
-    <p style="height: 25px"><b>Ort:</b> <input type="text" class="" style="height: 20px; width: 50%; margin-left: 104px"></p>
+    <p style="height: 25px"><b>Veranstaltung:</b> <input th:value="${A_event}" type="text" class="alignRight" style="height: 20px; width: 80%"></p>
+    <p style="height: 25px"><b>Termin:</b> <input th:value="${A_date}" type="text" class="" style="height: 20px; width: 50%; margin-left: 78px"></p>
+    <p style="height: 25px"><b>Ort:</b> <input th:value="${A_loc}" type="text" class="" style="height: 20px; width: 50%; margin-left: 104px"></p>
     <br>
     <table>
         <tr>

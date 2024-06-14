@@ -52,20 +52,20 @@
         <p class="pgeneral"><strong>Kurzbezeichnung des Antrages:</strong> <input class="FirstPageGeneral" type="text" th:value="${bez}"></p>
     </div>
     <p><strong>Beschreibung des geplanten Fachschafts-Wochenendes:</strong> (Thema Zweck <strong>Ablaufplan</strong> Dozent*innen etc.)</p>
-    <textarea style="width: 100%; height: 200px">
+    <textarea th:text="${reason}" style="width: 100%; height: 200px">
 
     </textarea>
     <ul>
-        <li><strong class="strongsizeSmaller">Teilnehmer*innenliste (vorläufig) ist angefügt?</strong> <input type="checkbox"></li>
-        <li><strong class="strongsizeSmaller">Ablaufplan Angebot Unterkunft und genaue Kostenaufstellung sind angefügt?</strong><input type="checkbox"></li>
+        <li><strong class="strongsizeSmaller">Teilnehmer*innenliste (vorläufig) ist angefügt?</strong> <input th:checked="${personList_YES}" type="checkbox"></li>
+        <li><strong class="strongsizeSmaller">Ablaufplan Angebot Unterkunft und genaue Kostenaufstellung sind angefügt?</strong><input th:checked="${detailPlanningDocs_YES}" type="checkbox"></li>
         <li><strong class="strongsizeSmaller">Für die Unterkünfte müssen 3 Vergleichsangebote eingeholt werden</strong></li>
     </ul>
 
-    <p><strong>Termin:</strong> <input style="height: 20px" type="text"> </p>
-    <p><strong>Teilnehmer*innenzahl</strong> <input style="height: 20px; width: 100px" type="text"> (Angabe ist wichtig für Versicherung!)</p>
-    <p><strong>Geschätzte Höhe der Ausgaben:</strong><input style="height: 20px; width: 150px" type="text"></p>
+    <p><strong>Termin:</strong> <input th:value="${date}" style="height: 20px" type="text"> </p>
+    <p><strong>Teilnehmer*innenzahl</strong> <input th:value="${personCnt}" style="height: 20px; width: 100px" type="text"> (Angabe ist wichtig für Versicherung!)</p>
+    <p><strong>Geschätzte Höhe der Ausgaben:</strong><input th:value="${cost}" style="height: 20px; width: 150px" type="text"></p>
     <p><strong>Genaue Anschrift der Unterkunft</strong> (Adresse Ort):</p>
-    <textarea style="width: 100%; height: 50px; margin-bottom: 10px">
+    <textarea th:text="${loc}" style="width: 100%; height: 50px; margin-bottom: 10px">
 
     </textarea>
 
@@ -105,15 +105,21 @@
 
     <br> <br>
 
-    <p><b>Betrag in Euro:</b><input style="width: 150px; height: 20px" type="text"> </p>
-    <p>Der <b>Vorschuss</b> wird bis zum folgenden Datum <b>benötigt</b>:<input style="width: 100px; height: 20px" type="text"> </p>
-    <p class="pt11" >Spätester Termin für die Rückzahlung: <input style="width: 100px; height: 20px" type="text"> (Muss unmittelbar nach dem FS-WE erfolgen!)</p>
+    <p><b>Betrag in Euro:</b><input th:value="${prepay_sum}" style="width: 150px; height: 20px" type="text"> </p>
+    <p>Der <b>Vorschuss</b> wird bis zum folgenden Datum <b>benötigt</b>:<input th:value="${prepay_req_till}" style="width: 100px; height: 20px" type="text"> </p>
+    <p class="pt11" >Spätester Termin für die Rückzahlung: <input th:value="${prepay_payback_till}" style="width: 100px; height: 20px" type="text"> (Muss unmittelbar nach dem FS-WE erfolgen!)</p>
     <div class="ReciverBlock">
-        <p class="vorschussReciver" ><strong>Empfänger*in:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
-        <p class="vorschussReciver" ><strong>Anschrift:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
+        <p class="vorschussReciver" ><strong>Empfänger*in:</strong><input th:value="${prepay_empf}" class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
+        <p class="vorschussReciver" ><strong>Anschrift:</strong><input th:value="${prepay_adress}" class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
 
-        <p  class="vorschussReciver" ><strong>IBAN:</strong> (22 Stellen)<input class="ibanfirst ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanslim vorschussReciver" type="text"></p>
-        <p class="vorschussReciver" ><strong>Kreditinstitut:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
+        <p  class="vorschussReciver" ><strong>IBAN:</strong> (22 Stellen)
+            <input th:value="${prepay_iban_1}" class="ibanfirst ibanwide vorschussReciver" type="text">
+            <input th:value="${prepay_iban_2}" class="ibanwide vorschussReciver" type="text">
+            <input th:value="${prepay_iban_3}" class="ibanwide vorschussReciver" type="text">
+            <input th:value="${prepay_iban_4}" class="ibanwide vorschussReciver" type="text">
+            <input th:value="${prepay_iban_5}" class="ibanwide vorschussReciver" type="text">
+            <input th:value="${prepay_iban_6}" class="ibanslim vorschussReciver" type="text"></p>
+        <p class="vorschussReciver" ><strong>Kreditinstitut:</strong><input th:value="${prepay_bank}" class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
     </div>
 
 

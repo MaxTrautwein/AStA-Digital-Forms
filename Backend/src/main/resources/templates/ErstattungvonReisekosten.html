@@ -66,26 +66,26 @@
 
     <br>
 
-    <div class="FahrgemeinschaftHeight"><b>Antragsteller*in</b> (Name Vorname): <input class="FahrgemeinschaftHeight alignRight afk_width" type="text"></div>
-    <div class="FahrgemeinschaftHeight"><b>Fachschaft/Referat/Arbeitskreis:</b><input class="FahrgemeinschaftHeight alignRight afk_width" type="text"></div>
-    <div class="FahrgemeinschaftHeight"><b>Kontaktdaten</b> (Handy-Nr. E-Mail):<input class="FahrgemeinschaftHeight alignRight afk_width" type="text"></div>
+    <div class="FahrgemeinschaftHeight"><b>Antragsteller*in</b> (Name Vorname): <input th:value="${user}" class="FahrgemeinschaftHeight alignRight afk_width" type="text"></div>
+    <div class="FahrgemeinschaftHeight"><b>Fachschaft/Referat/Arbeitskreis:</b><input th:value="${fs_ref_ar}" class="FahrgemeinschaftHeight alignRight afk_width" type="text"></div>
+    <div class="FahrgemeinschaftHeight"><b>Kontaktdaten</b> (Handy-Nr. E-Mail):<input th:value="${contact}" class="FahrgemeinschaftHeight alignRight afk_width" type="text"></div>
     <br>
-    <div class="FahrgemeinschaftHeight"><b>Zweck der Reis:</b><input class="FahrgemeinschaftHeight reiseGrundZihl alignRight" type="text"></div>
-    <div class="FahrgemeinschaftHeight"><b>Ziel-Anschrift</b><input class="FahrgemeinschaftHeight reiseGrundZihl alignRight" type="text"></div>
+    <div class="FahrgemeinschaftHeight"><b>Zweck der Reis:</b><input th:value="${reason}" class="FahrgemeinschaftHeight reiseGrundZihl alignRight" type="text"></div>
+    <div class="FahrgemeinschaftHeight"><b>Ziel-Anschrift</b><input th:value="${target}" class="FahrgemeinschaftHeight reiseGrundZihl alignRight" type="text"></div>
     <br>
-    <div class="FahrgemeinschaftHeight"><b>Reisebeginn:</b><input class="FahrgemeinschaftHeight ReiseBeginn" type="text"> (Dat./Uhrzeit) Ort:<input class="FahrgemeinschaftHeight alignRight" type="text"></div>
-    <div class="FahrgemeinschaftHeight"><b>Reiseende:</b><input class="FahrgemeinschaftHeight ReiseEnde" type="text"> (Dat./Uhrzeit) Ort:<input class="FahrgemeinschaftHeight alignRight" type="text"></div>
-    <div class="FahrgemeinschaftHeight"><b>Mitreisende:</b> <input class="FahrgemeinschaftHeight Mitreisende" type="text"> (Name Vorn.) Zustieg:<input class="FahrgemeinschaftHeight alignRight" type="text"></div>
-    <div class="FahrgemeinschaftHeight"><b>Beförderungsmittel:</b><input style="width: 140px" class="FahrgemeinschaftHeight" type="text"> (Kfz/Bahn etc.) Km <input class="alignRight FahrgemeinschaftHeight" type="text"> </div>
+    <div class="FahrgemeinschaftHeight"><b>Reisebeginn:</b><input th:value="${startDate}" class="FahrgemeinschaftHeight ReiseBeginn" type="text"> (Dat./Uhrzeit) Ort:<input th:value="${startLoc}" class="FahrgemeinschaftHeight alignRight" type="text"></div>
+    <div class="FahrgemeinschaftHeight"><b>Reiseende:</b><input th:value="${endDate}" class="FahrgemeinschaftHeight ReiseEnde" type="text"> (Dat./Uhrzeit) Ort:<input th:value="${endLoc}" class="FahrgemeinschaftHeight alignRight" type="text"></div>
+    <div class="FahrgemeinschaftHeight"><b>Mitreisende:</b> <input th:value="${persons}" class="FahrgemeinschaftHeight Mitreisende" type="text"> (Name Vorn.) Zustieg:<input th:value="${zustieg}" class="FahrgemeinschaftHeight alignRight" type="text"></div>
+    <div class="FahrgemeinschaftHeight"><b>Beförderungsmittel:</b><input th:value="${vehicle}" style="width: 140px" class="FahrgemeinschaftHeight" type="text"> (Kfz/Bahn etc.) Km <input th:value="${distance}" class="alignRight FahrgemeinschaftHeight" type="text"> </div>
 
     <br><br>
 
-    <div class="pt12 FahrgemeinschaftHeight"><b>Entfernung (Hin+Rückfahrt):</b><input style="width: 100px" class="FahrgemeinschaftHeight" type="text">
-        <b> Anzahl Km mit Mitreisenden: </b><input class=" FahrgemeinschaftHeight" style="width: 100px" type="text"> </div>
+    <div class="pt12 FahrgemeinschaftHeight"><b>Entfernung (Hin+Rückfahrt):</b><input th:value="${distanceTotal}" style="width: 100px" class="FahrgemeinschaftHeight" type="text">
+        <b> Anzahl Km mit Mitreisenden: </b><input th:value="${distanceMultiPerson}" class=" FahrgemeinschaftHeight" style="width: 100px" type="text"> </div>
 
-    <div class="pt11 FahrgemeinschaftHeight"><b> Nebenkosten (z.B. Parkgebühren Seminargebühren -unterlagen etc.):</b> <input type="text" class="FahrgemeinschaftHeight alignRight"></div>
-    <div class="pt11 FahrgemeinschaftHeight"><b>Begründung für zusätzliche Kosten (z.B. Taxi)</b><input type="text" style="width: 360px" class="FahrgemeinschaftHeight alignRight"></div>
-    <div class="pt11 FahrgemeinschaftHeight"><b>Übernachtungskosten (inkl. Frühstück)</b><input type="text" style="width: 400px" class="FahrgemeinschaftHeight alignRight"></div>
+    <div class="pt11 FahrgemeinschaftHeight"><b> Nebenkosten (z.B. Parkgebühren Seminargebühren -unterlagen etc.):</b> <input th:value="${sideMoney}" type="text" class="FahrgemeinschaftHeight alignRight"></div>
+    <div class="pt11 FahrgemeinschaftHeight"><b>Begründung für zusätzliche Kosten (z.B. Taxi)</b><input th:value="${sideMoneyReason}" type="text" style="width: 360px" class="FahrgemeinschaftHeight alignRight"></div>
+    <div class="pt11 FahrgemeinschaftHeight"><b>Übernachtungskosten (inkl. Frühstück)</b><input th:value="${sleepMoney}" type="text" style="width: 400px" class="FahrgemeinschaftHeight alignRight"></div>
 
     <br>
 
@@ -94,19 +94,19 @@
     <table><tbody>
     <tr>
         <td style="width: 120px">Frühstück</td>
-        <td style="width: 150px">ja <input type="checkbox"> / nein <input type="checkbox"></td>
+        <td style="width: 150px">ja <input th:checked="${unentgeltBreak_YES}" type="checkbox"> / nein <input th:checked="${unentgeltBreak_NO}" type="checkbox"></td>
         <td style="width: 30px">&rarr;</td>
         <td>Kürzung des Tagesgeldes um 20 %</td>
     </tr>
     <tr>
         <td>Mittagessen</td>
-        <td>ja <input type="checkbox"> / nein <input type="checkbox"></td>
+        <td>ja <input th:checked="${unentgeltLunch_YES}" type="checkbox"> / nein <input th:checked="${unentgeltLunch_NO}" type="checkbox"></td>
         <td>&rarr;</td>
         <td>Kürzung des Tagesgeldes um 50 %</td>
     </tr>
     <tr>
         <td>Abendessen</td>
-        <td>ja <input type="checkbox"> / nein <input type="checkbox"></td>
+        <td>ja <input th:checked="${unentgeltDinner_YES}" type="checkbox"> / nein <input th:checked="${unentgeltDinner_NO}" type="checkbox"></td>
         <td>&rarr;</td>
         <td>Kürzung des Tagesgeldes um 30 %</td>
     </tr>
@@ -115,14 +115,14 @@
     <br>
 
     <div class="pt11">Anlage zur Reisekostenabrechnung mit Begründung Hotel- und/oder Taxikosten liegt bei:
-    <div class="alignRight" style="width: 120px" >ja <input type="checkbox"> / nein<input type="checkbox"> </div>
+    <div class="alignRight" style="width: 120px" >ja <input th:checked="${anlageReiseMoney_YES}" type="checkbox"> / nein<input th:checked="${anlageReiseMoney_NO}" type="checkbox"> </div>
     </div>
     <br>
     <div>Aufstellung zur Sammelreisekostenabrechnung liegt bei:
-        <div class="alignRight" style="width: 120px" >ja <input type="checkbox"> / nein<input type="checkbox"> </div></div>
+        <div class="alignRight" style="width: 120px" >ja <input th:checked="${anlageSammelMoney_YES}" type="checkbox"> / nein<input th:checked="${anlageSammelMoney_NO}" type="checkbox"> </div></div>
     <br>
     <div>Teilnehmer*innenliste (bei Gruppenreisen) liegt bei:
-    <div class="alignRight" style="width: 120px" >ja <input type="checkbox"> / nein<input type="checkbox"> </div></div>
+    <div class="alignRight" style="width: 120px" >ja <input th:checked="${anlagePersons_YES}" type="checkbox"> / nein<input th:checked="${anlagePersons_NO}" type="checkbox"> </div></div>
     <br><br>
     <input type="text" class="UnterschriftSteller">
     <p><strong>Datum/Unterschrift Antragsteller*in:</strong></p>
@@ -144,20 +144,26 @@
     </div>
     <h1>Antrag auf Erstattung von Reisekosten</h1>
 
-    <p><strong>Betrag in Euro:</strong> <input type="text" style="height: 20px; width: 100px; margin-left: 20px"></p>
+    <p><strong>Betrag in Euro:</strong> <input th:value="${prepay_sum}" type="text" style="height: 20px; width: 100px; margin-left: 20px"></p>
 
     <div class="ReciverBlock">
-        <p class="vorschussReciver" ><strong>Empfänger*in:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
-        <p class="vorschussReciver" ><strong>Anschrift:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
+        <p class="vorschussReciver" ><strong>Empfänger*in:</strong><input th:value="${prepay_empf}" class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
+        <p class="vorschussReciver" ><strong>Anschrift:</strong><input th:value="${prepay_adress}" class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
 
-        <p  class="vorschussReciver" ><strong>IBAN:</strong> (22 Stellen)<input class="ibanfirst ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanslim vorschussReciver" type="text"></p>
-        <p class="vorschussReciver" ><strong>Kreditinstitut:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
+        <p  class="vorschussReciver" ><strong>IBAN:</strong> (22 Stellen)
+            <input th:value="${prepay_iban_1}" class="ibanfirst ibanwide vorschussReciver" type="text">
+            <input th:value="${prepay_iban_2}" class="ibanwide vorschussReciver" type="text">
+            <input th:value="${prepay_iban_3}" class="ibanwide vorschussReciver" type="text">
+            <input th:value="${prepay_iban_4}" class="ibanwide vorschussReciver" type="text">
+            <input th:value="${prepay_iban_5}" class="ibanwide vorschussReciver" type="text">
+            <input th:value="${prepay_iban_6}" class="ibanslim vorschussReciver" type="text"></p>
+        <p class="vorschussReciver" ><strong>Kreditinstitut:</strong><input th:value="${prepay_bank}" class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
     </div>
 
     <br>
 
-    <p><strong>Vorschuss gezahlt?</strong>  Ja <input type="checkbox"> / nein <input type="checkbox">
-        <strong>Höhe in €</strong> <input style="width: 100px; height: 20px" type="text">  <strong>Restbetrag:</strong> <input style="width: 100px; height: 20px" type="text"></p>
+    <p><strong>Vorschuss gezahlt?</strong>  Ja <input th:checked="${vorschuss_exists_YES}" type="checkbox"> / nein <input th:checked="${vorschuss_exists_NO}" type="checkbox">
+        <strong>Höhe in €</strong> <input th:value="${vorschuss_sum}" style="width: 100px; height: 20px" type="text">  <strong>Restbetrag:</strong> <input th:value="${vorschuss_sum_diff}" style="width: 100px; height: 20px" type="text"></p>
 
     <br><br>
     <input type="text" class="UnterschriftSteller">
@@ -212,23 +218,23 @@
     <br><br> <br><br>
     <strong>Begründung Hotelkosten:</strong>
     <ul>
-        <li><input type="checkbox" th:checked="${hotel1}" > Anreise mit öffentlichen Verkehrsmitteln, dadurch geringere Flexibilität, aber dadurch Einsparung von zusätzlichen Fahrtkosten</li>
-        <li><input type="checkbox" th:checked="${hotel2}" >Tagungshotel, gemeinsame Abendveranstaltung, keine zusätzlichen Fahrtkosten</li>
-        <li><input type="checkbox" th:checked="${hotel3}" >keine günstigere Unterkunft verfügbar (Ausdruck von HRS, hotel.de o.ä. liegt bei)</li>
-        <li><input type="checkbox" th:checked="${hotel4}" >Messezeit</li>
+        <li><input type="checkbox" th:checked="${hotel1_YES}" > Anreise mit öffentlichen Verkehrsmitteln, dadurch geringere Flexibilität, aber dadurch Einsparung von zusätzlichen Fahrtkosten</li>
+        <li><input type="checkbox" th:checked="${hotel2_YES}" >Tagungshotel, gemeinsame Abendveranstaltung, keine zusätzlichen Fahrtkosten</li>
+        <li><input type="checkbox" th:checked="${hotel3_YES}" >keine günstigere Unterkunft verfügbar (Ausdruck von HRS, hotel.de o.ä. liegt bei)</li>
+        <li><input type="checkbox" th:checked="${hotel4_YES}" >Messezeit</li>
     </ul>
     <br>
 
     <strong>Begründung Taxibenutzung/Sonstige:</strong>
     <ul>
-        <li><input type="checkbox" th:checked="${taxi1}" >Keine öffentlichen Verkehrsmittel vorhanden (frühe/späte Abfahrt/Ankunft, Sonn-/Feiertag)</li>
-        <li><input type="checkbox" th:checked="${taxi2}" >Unhandliches und schweres Gepäck/Unterlagen</li>
-        <li><input type="checkbox" th:checked="${taxi3}" >Taxi mit anderen Mitreisenden geteilt</li>
-        <li><input type="checkbox" th:checked="${taxi4}" >Im Ausland: sichere und relativ günstige Alternative zu öffentlichen Verkehrsmitteln</li>
+        <li><input type="checkbox" th:checked="${taxi1_YES}" >Keine öffentlichen Verkehrsmittel vorhanden (frühe/späte Abfahrt/Ankunft, Sonn-/Feiertag)</li>
+        <li><input type="checkbox" th:checked="${taxi2_YES}" >Unhandliches und schweres Gepäck/Unterlagen</li>
+        <li><input type="checkbox" th:checked="${taxi3_YES}" >Taxi mit anderen Mitreisenden geteilt</li>
+        <li><input type="checkbox" th:checked="${taxi4_YES}" >Im Ausland: sichere und relativ günstige Alternative zu öffentlichen Verkehrsmitteln</li>
     </ul>
     <br>
     <strong>Sonstige Bemerkungen:</strong>
-    <textarea style="width: 100%; height: 150px">
+    <textarea th:text="${AdditionalReason}" style="width: 100%; height: 150px">
 
     </textarea>
 

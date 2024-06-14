@@ -66,23 +66,23 @@ padding-top: 70px;
     <h1>Abrechnung erhaltener Vorschüsse</h1>
     <p>(Bitte alle Rechnungen/Quittungen im Original anheften! Es sind alle Seiten einzureichen!)</p>
 <br>
-    <div class="topsectionheight"><strong>Datum der Veranstaltung: </strong><input type="text" class="alignRight topsectionWidth"></div>
-    <div class="topsectionheight"><strong>Name der Veranstaltung:</strong><input type="text" class="alignRight topsectionWidth"></div>
-    <div class="topsectionheight"><strong>Fachschaft/Referat/Arbeitskreis:</strong><input type="text" class="alignRight topsectionWidth"></div>
-    <div class="topsectionheight"><strong>Name Verantwortliche*r:</strong><input type="text" class="alignRight topsectionWidth"></div>
-    <div class="topsectionheight"><strong>Kontaktdaten</strong> (Handy-Nr. E-mail):<input type="text" class="alignRight topsectionWidth"></div>
+    <div class="topsectionheight"><strong>Datum der Veranstaltung: </strong><input th:value="${date}" type="text" class="alignRight topsectionWidth"></div>
+    <div class="topsectionheight"><strong>Name der Veranstaltung:</strong><input th:value="${bez}" type="text" class="alignRight topsectionWidth"></div>
+    <div class="topsectionheight"><strong>Fachschaft/Referat/Arbeitskreis:</strong><input th:value="${fs_ref_ar}" type="text" class="alignRight topsectionWidth"></div>
+    <div class="topsectionheight"><strong>Name Verantwortliche*r:</strong><input th:value="${user}" type="text" class="alignRight topsectionWidth"></div>
+    <div class="topsectionheight"><strong>Kontaktdaten</strong> (Handy-Nr. E-mail):<input th:value="${contact}" type="text" class="alignRight topsectionWidth"></div>
 
     <hr>
 
-    <div class="sectiontwoheight"><strong>Datum der Vorschusszahlung:</strong><input style="margin-left: 27px" type="text" ></div>
-    <div class="sectiontwoheight"><strong>Höhe des Vorschusses:</strong><input style="margin-left: 77px; width: 130px" type="text" ></div>
-    <div class="sectiontwoheight"><strong>Gesamtsumme der Ausgaben:</strong><input style="margin-left: 27px; width: 130px" type="text" ></div>
+    <div class="sectiontwoheight"><strong>Datum der Vorschusszahlung:</strong><input th:value="${dateVorschussPayment}" style="margin-left: 27px" type="text" ></div>
+    <div class="sectiontwoheight"><strong>Höhe des Vorschusses:</strong><input th:value="${VorschussMoney}" style="margin-left: 77px; width: 130px" type="text" ></div>
+    <div class="sectiontwoheight"><strong>Gesamtsumme der Ausgaben:</strong><input th:value="${MoneySpent}" style="margin-left: 27px; width: 130px" type="text" ></div>
     <div class="sectiontwoheight"><strong>Zu zahlender Differenzbetrag:</strong><input style="margin-left: 30px; width: 130px" type="text" ></div>
 
     <table><thead>
     <tr>
-        <td><strong class="pt11"> Differenzbetrag ist vom AStA zu erstatten </strong><input type="checkbox"><br>
-            <strong class="pt11">Differenzbetrag ist vom Veranstalter zurückzuzahlen </strong><input type="checkbox"></td>
+        <td><strong class="pt11"> Differenzbetrag ist vom AStA zu erstatten </strong><input th:checked="${AstaPayBack_YES}" type="checkbox"><br>
+            <strong class="pt11">Differenzbetrag ist vom Veranstalter zurückzuzahlen </strong><input th:checked="${AstaPayBack_NO}" type="checkbox"></td>
         <td style="width: 280px" rowspan="2"><strong class="pt11">Bankdaten vom AStA für Rückzahlung:</strong> <br><br>
             <strong class="pt11">Empfänger:</strong>  <br>
             <span class="pt10">Studierendenschaft der Hochschule Esslingen</span><br>
@@ -90,7 +90,7 @@ padding-top: 70px;
                     <strong>Bank:</strong><span class="pt10"> KSK Esslingen-Nürtingen</span> <br><br><br></td>
     </tr>
     <tr>
-        <td><strong>Datum der Rückzahlung:</strong> <input style="width: 150px; height: 20px" type="text"> </td>
+        <td><strong>Datum der Rückzahlung:</strong> <input th:value="${datePayBack}" style="width: 150px; height: 20px" type="text"> </td>
     </tr></thead>
     </table>
 
@@ -220,20 +220,20 @@ padding-top: 70px;
     </div>
     <h1>Erstattung des Differenzbetrages bei Vorschüssen</h1>
     <p>(Bitte alle Rechnungen/Quittungen im Original anheften! Es sind alle Seiten einzureichen!)</p>
-    <p style="padding-top: 30px"><strong>Differenzbetrag in Euro:</strong> <input type="text" class="InputHeightNormal "></p>
+    <p style="padding-top: 30px"><strong>Differenzbetrag in Euro:</strong> <input th:value="${prepay_sum}" type="text" class="InputHeightNormal "></p>
 
     <div class="ReciverBlock">
-        <p class="vorschussReciver" ><strong>Empfänger*in:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
-        <p class="vorschussReciver" ><strong>Anschrift:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
+        <p class="vorschussReciver" ><strong>Empfänger*in:</strong><input th:value="${prepay_empf}" class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
+        <p class="vorschussReciver" ><strong>Anschrift:</strong><input th:value="${prepay_adress}" class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
 
         <p  class="vorschussReciver" ><strong>IBAN:</strong> (22 Stellen)
-            <input class="ibanfirst ibanwide vorschussReciver" type="text">
-            <input class="ibanwide vorschussReciver" type="text">
-            <input class="ibanwide vorschussReciver" type="text">
-            <input class="ibanwide vorschussReciver" type="text">
-            <input class="ibanwide vorschussReciver" type="text">
-            <input class="ibanslim vorschussReciver" type="text"></p>
-        <p class="vorschussReciver" ><strong>Kreditinstitut:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
+            <input th:value="${prepay_iban_1}" class="ibanfirst ibanwide vorschussReciver" type="text">
+            <input th:value="${prepay_iban_2}" class="ibanwide vorschussReciver" type="text">
+            <input th:value="${prepay_iban_3}" class="ibanwide vorschussReciver" type="text">
+            <input th:value="${prepay_iban_4}" class="ibanwide vorschussReciver" type="text">
+            <input th:value="${prepay_iban_5}" class="ibanwide vorschussReciver" type="text">
+            <input th:value="${prepay_iban_6}" class="ibanslim vorschussReciver" type="text"></p>
+        <p class="vorschussReciver" ><strong>Kreditinstitut:</strong><input th:value="${prepay_bank}" class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
     </div>
 
     <ul>
