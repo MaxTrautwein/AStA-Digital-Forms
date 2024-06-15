@@ -15,14 +15,14 @@ Dies generiert mithilfe von `openssl rand -base64` zufällige Werte für Passwö
 ```
 docker compose up
 ```
-Startet Alle Dinste bis auf Keycloak.
+Startet alle Dienste bis auf Keycloak.
 
 ### Hosting
 
 ```
 docker compose --profile server up
 ```
-Startet Alle Dinste.
+Startet alle Dienste.
 
 ## Details
 
