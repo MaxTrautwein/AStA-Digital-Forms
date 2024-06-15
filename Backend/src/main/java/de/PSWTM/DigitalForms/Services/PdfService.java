@@ -14,6 +14,9 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 @Service
 public class PdfService {
@@ -26,12 +29,45 @@ public class PdfService {
         this.templateEngine = templateEngine;
     }
 
+    private Boolean isTrue(String string){
+        return string.equalsIgnoreCase("true");
+    }
+
     // Match up Form Values with Template Placeholders
     private Context LoadContextVariables(Form form) {
         Context context = new Context();
         for (FormSection fs : form.getForm()){
             for (FormElement fe: fs.getItems()){
-                context.setVariable(fe.getId(),fe.getValue());
+                switch (fe.getType()){
+
+                    case BOOL -> {
+                        context.setVariable(fe.getId() + "_YES",isTrue(fe.getValue()));
+                        context.setVariable(fe.getId() + "_NO",!isTrue(fe.getValue()));
+                    }
+                    case DATE -> {
+                        LocalDate date = LocalDate.parse(fe.getValue(),
+                                DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+                        context.setVariable(fe.getId(),date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
+                    }
+                    case IBAN -> {
+                        // 22 Chars
+                        StringBuilder iban = new StringBuilder(fe.getValue().replaceAll(" ",""));
+                        // Padd if needed
+                        iban.append(" ".repeat(Math.max(0, 22 - iban.length())));
+
+
+                        context.setVariable(fe.getId() + "_1",iban.substring(0, 4));
+                        context.setVariable(fe.getId() + "_2",iban.substring(4, 8));
+                        context.setVariable(fe.getId() + "_3",iban.substring(8, 12));
+                        context.setVariable(fe.getId() + "_4",iban.substring(12, 16));
+                        context.setVariable(fe.getId() + "_5",iban.substring(16, 20));
+                        context.setVariable(fe.getId() + "_6",iban.substring(20, 22));
+
+                    }
+
+                    default -> context.setVariable(fe.getId(),fe.getValue());
+                }
             }
         }
         return context;
@@ -50,8 +86,7 @@ public class PdfService {
 
             attachmentContext.setVariable("ReqAttachment",attachmentUtil.getAttachmentsReq());
             attachmentContext.setVariable("UserAttachment",attachmentUtil.getAttachmentsUser());
-            //TODO: Link up attachment Context
-
+            
             String Checklist = templateEngine.process("AttachmentsChecklist", attachmentContext);
 
             context.setVariable("Anhang",Checklist);

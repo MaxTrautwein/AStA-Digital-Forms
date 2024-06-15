@@ -224,9 +224,9 @@ public class DatabaseLoader {
                 ,null,"loc");
 
         addFormElement(sections,FormElement.TypeEnum.DATE,"Veranstaltungsdauer"
-                ,null,"dur-from");
+                ,null,"dur_from");
         addFormElement(sections,FormElement.TypeEnum.DATE,"Veranstaltungsdauer"
-                ,null,"dur-till");
+                ,null,"dur_till");
 
         sections.add(createFormSection(1,"Details"));
         // TODO Add Table Details
