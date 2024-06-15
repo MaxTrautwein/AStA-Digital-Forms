@@ -26,4 +26,4 @@ Startet Alle Dinste.
 
 ## Details
 
-Weitere Details fineden sich in der Wiki unter: https://github.com/MaxTrautwein/AStA-Digital-Forms/wiki
+Weitere Details finden sich in der Wiki unter: https://github.com/MaxTrautwein/AStA-Digital-Forms/wiki
