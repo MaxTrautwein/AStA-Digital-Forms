@@ -1,7 +1,7 @@
 \newcommand{\trWork}[6]
 {
     \multicolumn{1}{|l|}{\textbf{\begin{tabular}[c]{@{}l@{}}#1\end{tabular}}} &
-    \multicolumn{1}{l|}{#2} &
+    \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}#2\end{tabular}} &
     \multicolumn{1}{l|}{#3} &
     \\ \cline{1-3}
     \begin{tabular}[c]{@{}l@{}}#4\end{tabular} &
@@ -69,36 +69,37 @@ total: 1h 5min + 30min + 1h 15min + 6h + 5h 30min + 1h + 3h + 5h 30 + 30min + 5h
         \multicolumn{1}{l|}{\cellcolor[HTML]{9B9B9B}\textbf{Aufwand}} &
         \multirow{\cellcolor[HTML]{9B9B9B}Sprint / Date} \\ \hline
         \endhead
-        \trWork{Repo Init}{-}{1h 5min}{-}{\gitIssue{1} \\ \gitPull{2}}{-}
+        \trWork{Repo Init}{Init}{1h 5min}{-}{\gitIssue{1} \\ \gitPull{2}}{-}
 
-        \trWork{Documentation prep Milestone 1}{-}{30min}{-}{\gitIssue{3} \\ \gitPull{4}}{-}
-        \trWork{Doku - Randbedingungen}{-}{1h 15min}{-}{\gitIssue{6} \\ \gitPull{15}}{-}
-        \trWork{Doku \& Planung - Funktionsumfang \\ \& Aufwandsschätzung}{-}{6h}{-}{\gitIssue{7} \\ \gitPull{16}}{-}
-        \trWork{Doku \& Planung - Architektur}{-}{5h 30min}{-}{\gitIssue{9} \\ \gitPull{12}}{-}
-        \trWork{Allgemeine Anpassungen Doku}{-}{1h}{-}{\gitIssue{18} \\ \gitPull{21}}{-}
-        \trWork{Präsentation Vorbereiten}{-}{3h}{-}{\gitIssue{22}}{-}
-        \trWork{Docker Compose Setup}{-}{5h 30 min}{-}{\gitIssue{24} \\ \gitPull{31}}{-}
-        \trWork{Interviews}{-}{30min}{-}{\gitIssue{27}}{-}
-        \trWork{Doku 2 Technologien \& Frameworks}{-}{5h 30min}{-}{\gitIssue{28} \\ \gitPull{41}}{-}
-        \trWork{Doku 2 Datenbankmodell}{-}{1h}{-}{\gitIssue{29} \\ \gitPull{40}}{-}
-        \trWork{Setup Keycloak Deployment}{-}{45min}{-}{\gitIssue{32}}{-}
+        \trWork{Documentation prep Milestone 1}{Doku}{30min}{-}{\gitIssue{3} \\ \gitPull{4}}{-}
+        \trWork{Doku - Randbedingungen}{Doku}{1h 15min}{-}{\gitIssue{6} \\ \gitPull{15}}{-}
+        \trWork{Doku \& Planung - Funktionsumfang \\ \& Aufwandsschätzung}{Doku}{6h}{-}{\gitIssue{7} \\ \gitPull{16}}{-}
+        \trWork{Doku \& Planung - Architektur}{Doku}{5h 30min}{-}{\gitIssue{9} \\ \gitPull{12}}{-}
+        \trWork{Allgemeine Anpassungen Doku}{Doku}{1h}{-}{\gitIssue{18} \\ \gitPull{21}}{-}
+        \trWork{Präsentation Vorbereiten}{Doku}{3h}{-}{\gitIssue{22}}{-}
+        \trWork{Docker Compose Setup}{NF-\ref{subsec:dockerized} }{5h 30 min}{-}{\gitIssue{24} \\ \gitPull{31}}{-}
+        \trWork{Interviews}{NF-\ref{subsec:bedienung/layout}}{30min}{-}{\gitIssue{27}}{-}
+        \trWork{Doku 2 Technologien \& Frameworks}{Doku}{5h 30min}{-}{\gitIssue{28} \\ \gitPull{41}}{-}
+        \trWork{Doku 2 Datenbankmodell}{Doku}{1h}{-}{\gitIssue{29} \\ \gitPull{40}}{-}
+        % Alternativ könnte das auch auf Docker linken
+        \trWork{Setup Keycloak Deployment}{NF-\ref{subsec:technologie}}{45min}{-}{\gitIssue{32}}{-}
 
-        \trWork{Setup CI/CD}{-}{4h 15min}{-}{\gitIssue{33} \\ \gitPull{51} \\ \gitPull{53}}{-}
+        \trWork{Setup CI/CD}{Extra}{4h 15min}{-}{\gitIssue{33} \\ \gitPull{51} \\ \gitPull{53}}{-}
         \trWork{Datenbank Verbindung Backend}{-}{1h}{-}{\gitIssue{49}}{-}
-        \trWork{Config Konzept}{-}{8h 30min}{-}{\gitIssue{50} \\ \gitPull{60}}{-}
-        \trWork{Barebones Form}{-}{6h 30min}{-}{\gitIssue{66} \\ \gitPull{72}}{-}
+        \trWork{Config Konzept}{F-\ref{subsec:dynamischer-formular-aufbau}}{8h 30min}{-}{\gitIssue{50} \\ \gitPull{60}}{-}
+        \trWork{Barebones Form}{F-\ref{subsec:dynamischer-formular-aufbau}}{6h 30min}{-}{\gitIssue{66} \\ \gitPull{72}}{-}
         \trWork{CORS Setting in Backend \\with OpenAPI}{-}{30min}{-}{\gitIssue{67} \\ \gitPull{69}}{-}
-        \trWork{Feature Speichern \\(+ Laden im Backend \& API)}{-}{10h 45min}{-}{\gitIssue{75} \\ \gitPull{79}}{-}
-        \trWork{Feature Laden Frontend}{-}{2h 30min}{-}{\gitIssue{76} \\ \gitPull{84}}{-}
-        \trWork{Architekturschichten Doku Update}{-}{6h}{-}{\gitIssue{78} \\ \gitPull{85}}{-}
-        \trWork{PDF}{-}{31h 22min}{-}{\gitIssue{88} \\ \gitPull{100}}{-}
+        \trWork{Feature Speichern \\(+ Laden im Backend \& API)}{F-\ref{subsec:persistente-antragsbearbeitung}}{10h 45min}{-}{\gitIssue{75} \\ \gitPull{79}}{-}
+        \trWork{Feature Laden Frontend}{F-\ref{subsec:persistente-antragsbearbeitung}}{2h 30min}{-}{\gitIssue{76} \\ \gitPull{84}}{-}
+        \trWork{Architekturschichten Doku Update}{Doku}{6h}{-}{\gitIssue{78} \\ \gitPull{85}}{-}
+        \trWork{PDF}{F-\ref{subsec:pdf-generator}}{31h 22min}{-}{\gitIssue{88} \\ \gitPull{100}}{-}
         \trWork{Code Cleanup}{-}{3h 15min}{-}{\gitIssue{89} \\ \gitPull{97}}{-}
         \trWork{Move Done / In Progesss Anträge}{-}{45min}{-}{\gitIssue{105} \\ \gitPull{113}}{-}
-        \trWork{Anhangs System}{-}{12h 10min}{-}{\gitIssue{107} \\ \gitPull{112}}{-}
+        \trWork{Anhangs System}{F-\ref{subsec:anhangs-lieferschein}}{12h 10min}{-}{\gitIssue{107} \\ \gitPull{112}}{-}
         \trWork{Verbessung - Antrags \\ Abrechnungs Linking System}{-}{5h 30min}{-}{\gitIssue{108} \\ \gitPull{110}}{-}
-        \trWork{Setup Installations- und \\Administrationshandbuch}{-}{6h 35min}{-}{\gitIssue{39} \\ \gitPull{124}}{-}
-        \trWork{Setup Aufteilungs Doku}{-}{In Progress}{-}{\gitIssue{38}}{-}
-        \trWork{added cite for Lizenzen}{-}{-}{-}{\gitPull{47}}{-}
+        \trWork{Setup Installations- und \\Administrationshandbuch}{Dokz}{6h 35min}{-}{\gitIssue{39} \\ \gitPull{124}}{-}
+        \trWork{Setup Aufteilungs Doku}{Doku}{In Progress}{-}{\gitIssue{38}}{-}
+        \trWork{added cite for Lizenzen}{Doku}{-}{-}{\gitPull{47}}{-}
         \trWork{Fixed issues with DB use in deployment}{-}{-}{-}{\gitPull{56}}{-}
         \trWork{Improved build time on slower \\Internet connections}{-}{15min}{Not Merged}{\gitPull{58}}{-}
         \trWork{Issue48 login fixes ihope}{-}{20min}{Behebt fehler in \gitPull{55}}{\gitPull{61}}{-}
@@ -107,7 +108,7 @@ total: 1h 5min + 30min + 1h 15min + 6h + 5h 30min + 1h + 3h + 5h 30 + 30min + 5h
         \trWork{Added Embedded MongoDB to \\allow tests to run in compose build}{-}{45min}{-}{\gitPull{82}}{-}
         \trWork{fix for mistakes}{-}{-}{Behebt fehler in \gitPull{79}}{\gitPull{83}}{-}
         \trWork{Doku3 Final}{-}{-}{-}{\gitPull{95}}{-}
-        \trWork{Async Update}{-}{-}{Not Merged}{\gitPull{104}}{-}
+        \trWork{Async Update}{Doku}{-}{Not Merged}{\gitPull{104}}{-}
     \end{longtable}
 
 
@@ -130,12 +131,12 @@ Total: 2h + 4h + 4h + 1h + 30min + 20h 30min + 14h 30min + 2h + 21h 5min + 1h + 
     \multirow{\cellcolor[HTML]{9B9B9B}Sprint / Date} \\ \hline
     \endhead
 
-    \trWork{Doku \& Planung - Funktionsumfang\\ \& Aufwandsschätzung}{-}{2h}{-}{\gitIssue{7}}{-}
-    \trWork{Doku - Projektmanagement}{-}{4h}{-}{\gitIssue{8} \\ \gitPull{13}}{-}
-    \trWork{Präsentation Vorbereiten}{-}{4h}{-}{\gitIssue{22}}{-}
-    \trWork{Interviews Vorbereiten}{-}{1h}{-}{\gitIssue{26}}{-}
-    \trWork{Interviews}{-}{30min}{-}{\gitIssue{27}}{-}
-    \trWork{Login Implementiren}{-}{20h 30min}{-}{\gitIssue{48} \\ \gitPull{55}}{-}
+    \trWork{Doku \& Planung - Funktionsumfang\\ \& Aufwandsschätzung}{Doku}{2h}{-}{\gitIssue{7}}{-}
+    \trWork{Doku - Projektmanagement}{Doku}{4h}{-}{\gitIssue{8} \\ \gitPull{13}}{-}
+    \trWork{Präsentation Vorbereiten}{Doku}{4h}{-}{\gitIssue{22}}{-}
+    \trWork{Interviews Vorbereiten}{NF-\ref{subsec:bedienung/layout}}{1h}{-}{\gitIssue{26}}{-}
+    \trWork{Interviews}{NF-\ref{subsec:bedienung/layout}}{30min}{-}{\gitIssue{27}}{-}
+    \trWork{Login Implementiren}{F-\ref{subsec:login}}{20h 30min}{-}{\gitIssue{48} \\ \gitPull{55}}{-}
     \trWork{Integrate login into Landing page}{-}{14h 30min}{-}{\gitIssue{63} \\ \gitPull{73}}{-}
     \trWork{Update Color scheme For Landing page}{-}{2h}{-}{\gitIssue{68} \\ \gitPull{86}}{-}
     \trWork{Editor Ausbauen}{-}{21h 5min}{-}{\gitIssue{77} \\ \gitPull{103}}{-}
@@ -166,33 +167,33 @@ total: 2h 30min + 30min + 7h + 3h + 2h 15min + 5h 10min + 30min + 15min + 5h 45m
     \multirow{\cellcolor[HTML]{9B9B9B}Sprint / Date} \\ \hline
     \endhead
 
-    \trWork{Doku - Einführung und Ziele}{-}{2h 30min}{-}{\gitIssue{5} \\ \gitPull{17}}{-}
-    \trWork{Doku \& Planung - Funktionsumfang\\ \& Aufwandsschätzung}{-}{30 min}{-}
+    \trWork{Doku - Einführung und Ziele}{Doku}{2h 30min}{-}{\gitIssue{5} \\ \gitPull{17}}{-}
+    \trWork{Doku \& Planung - Funktionsumfang\\ \& Aufwandsschätzung}{Doku}{30 min}{-}
     {\gitCommit{16}{33a47b39aae996437d0e8a44f02ad4f1d116f8fb} \\ \gitCommit{16}{bd358a830650a1d39ce75798687fc2956a6a299c}}{-}
-    \trWork{Doku \& Erstellen - UI Design}{-}{7h}{-}{\gitIssue{10} \\ \gitPull{14}}{-}
-    \trWork{Präsentation Vorbereiten}{-}{3h}{-}{\gitIssue{22}}{-}
-    \trWork{User Stories}{-}{2h 15min}{-}{\gitIssue{23} \\ \gitPull{30}}{-}
-    \trWork{Klickdummy bauen}{-}{5h 10min}{-}{\gitIssue{25}}{-}
-    \trWork{Doku 2 API}{-}{30min}{-}{\gitIssue{34} \\ \gitPull{43}}{-}
-    \trWork{Softwarearchitektur \\mit logischen Schichten aufsetzen}{-}{15min}{-}{\gitIssue{42} \\ \gitPull{44}}{-}
+    \trWork{Doku \& Erstellen - UI Design}{Doku}{7h}{-}{\gitIssue{10} \\ \gitPull{14}}{-}
+    \trWork{Präsentation Vorbereiten}{Doku}{3h}{-}{\gitIssue{22}}{-}
+    \trWork{User Stories}{Doku}{2h 15min}{-}{\gitIssue{23} \\ \gitPull{30}}{-}
+    \trWork{Klickdummy bauen}{NF-\ref{subsec:bedienung/layout}}{5h 10min}{-}{\gitIssue{25}}{-}
+    \trWork{Doku 2 API}{Doku}{30min}{-}{\gitIssue{34} \\ \gitPull{43}}{-}
+    \trWork{Softwarearchitektur \\mit logischen Schichten aufsetzen}{Doku}{15min}{-}{\gitIssue{42} \\ \gitPull{44}}{-}
     \trWork{database connection}{-}{5h 45min}{-}{\gitIssue{49} \\ \gitPull{54}}{-}
     \trWork{Landing Page}{-}{5h 10min}{-}{\gitIssue{57} \\ \gitPull{59}}{-}
     \trWork{Integrate generated \\OpenAPI Angular Client}{-}{7h 10min}
     {\gitCommit{70}{6c963aed4a62d6dc778862a1d045bae542f767be} mit 30min gerechnet}{\gitIssue{64} \\ \gitPull{70}}{-}
     \trWork{Dynamic Landing page}{-}{2h 35min}{-}{\gitIssue{65} \\ \gitPull{71}}{-}
-    \trWork{Api Spec Doku Update}{-}{1h 40min}{-}{\gitIssue{74} \\ \gitPull{80}}{-}
+    \trWork{Api Spec Doku Update}{Doku}{1h 40min}{-}{\gitIssue{74} \\ \gitPull{80}}{-}
     \trWork{Code Cleanup}{-}{30 min}{-}{\gitIssue{89} \\ \gitPull{102}}{-}
     \trWork{Main Page Spelction}{-}{6h 20min}{-}{\gitIssue{90} \\ \gitPull{99}}{-}
     \trWork{Issue91/sidebar}{-}{2h 25min}{-}{\gitIssue{91} \\ \gitPull{109}}{-}
     \trWork{Autofill}{-}{13h 40min}{-}{\gitIssue{91} \\ \gitPull{111}}{-}
     \trWork{Favoriten}{-}{12h 10min}{-}{\gitIssue{92} \\ \gitPull{101}}{-}
-    \trWork{Doku - Verhaltensschicht}{-}{40 min}{-}{\gitIssue{114} \\ \gitPull{122}}{-}
+    \trWork{Doku - Verhaltensschicht}{Doku}{40 min}{-}{\gitIssue{114} \\ \gitPull{122}}{-}
     \trWork{Favoriten GUI Update}{-}{1h 25min}{-}{\gitIssue{116} \\ \gitPull{123}}{-}
     \trWork{Autofill Page}{-}{45min}{-}{\gitIssue{117} \\ \gitPull{120}}{-}
     \trWork{Combine paralel changes}{-}{30min}{on master via \gitPull{21}}{\gitIssue{18} \\ \gitPull{19}}{-}
-    \trWork{Issue45 (doku fixes)}{-}{55min}{-}{\gitIssue{45} \\ \gitPull{46}}{-}
-    \trWork{Doku3 Final}{-}{-}{-}{\gitPull{95}}{-}
-    \trWork{noch was... Doku 3}{-}{-}{-}{\gitPull{96}}{-}
+    \trWork{Issue45 (doku fixes)}{Doku}{55min}{-}{\gitIssue{45} \\ \gitPull{46}}{-}
+    \trWork{Doku3 Final}{Doku}{-}{-}{\gitPull{95}}{-}
+    \trWork{noch was... Doku 3}{Doku}{-}{-}{\gitPull{96}}{-}
 
 \end{longtable}
 
