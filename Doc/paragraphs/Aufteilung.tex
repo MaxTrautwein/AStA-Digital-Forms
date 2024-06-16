@@ -23,21 +23,27 @@
 
 \chapter{Aufteilung des Teams}\label{ch:aufteilung-des-teams}
 Die Aufteilung der Aufgaben wurde in den Sprint plannings im Einvernehmen des Teams bestimmt.
-Im Nachfolgenden sind die Aufgaben und die dafür aufgewendet Zeit dokumentiert.
+Im Nachfolgenden sind die erreichten Leistungen sowie die dafür aufgewendet Zeit dokumentiert.
+Zu keinem Zeitpunkt war die Arbeit durch Fehlen von Aufgaben blockiert.
 
-\section{Not Logged}
-Während die Arbeiten an Tickets selbst gemessen wurden, so trifft dies nicht auf alle Tätigkeiten zu.
+\section{Nicht gemessene Zeitaufwände}\label{sec:nicht-gemessene-zeitaufwande}
+Das Messen der aufgewendeten Zeit für Tickets war vorgeschrieben und wurde beachtet.
+Jedoch fällt nicht jede getätigte Arbeit unter Tickets, welches sich besonders für direkte inhaltliche Arbeiten eignen.
 
+So wurden die Aufgewendeten zeiten für die folgenden Tätlichkeiten nicht erfasst.
 \begin{itemize}
     \item Reviews
     \item Meeting Zeit
     \item Unterstützung
     \item Protokoll schreiben
     \item Protokoll/ Meetings vorbereiten
-    \item sprint plannings
+    \item Sprint Plannings
 \end{itemize}
+Da diese Zeiten in keinster Weise insignifikant waren, wäre es sinnvoll gewesen, auch diese genauer zu dokumentieren.
 
 \section{Ganzes Team}
+Einige der Tätlichkeiten wurden vom ganzen Team ausgeübt.
+Nicht alle dieser wurden Zeitlich genau dokumentiert.
 
 \subsection{Doku & Planung - Funktionsumfang & Aufwandsschätzung}
 8h
@@ -69,28 +75,34 @@ total: 1h 5min + 30min + 1h 15min + 6h + 5h 30min + 1h + 3h + 5h 30 + 30min + 5h
         \multicolumn{1}{l|}{\cellcolor[HTML]{9B9B9B}\textbf{Aufwand}} &
         \multirow{\cellcolor[HTML]{9B9B9B}Sprint / Date} \\ \hline
         \endhead
-        \trWork{Repo Init}{Init}{1h 5min}{-}{\gitIssue{1} \\ \gitPull{2}}{-}
+        \trWork{Repo Init}{Init}{1h 5min}{Inizialisirung des GitHub Repositorys\\mit der Dokumentation}{\gitIssue{1} \\ \gitPull{2}}{-}
 
-        \trWork{Documentation prep Milestone 1}{Doku}{30min}{-}{\gitIssue{3} \\ \gitPull{4}}{-}
-        \trWork{Doku - Randbedingungen}{Doku}{1h 15min}{-}{\gitIssue{6} \\ \gitPull{15}}{-}
-        \trWork{Doku \& Planung - Funktionsumfang \\ \& Aufwandsschätzung}{Doku}{6h}{-}{\gitIssue{7} \\ \gitPull{16}}{-}
-        \trWork{Doku \& Planung - Architektur}{Doku}{5h 30min}{-}{\gitIssue{9} \\ \gitPull{12}}{-}
-        \trWork{Allgemeine Anpassungen Doku}{Doku}{1h}{-}{\gitIssue{18} \\ \gitPull{21}}{-}
-        \trWork{Präsentation Vorbereiten}{Doku}{3h}{-}{\gitIssue{22}}{-}
-        \trWork{Docker Compose Setup}{NF-\ref{subsec:dockerized} }{5h 30 min}{-}{\gitIssue{24} \\ \gitPull{31}}{-}
-        \trWork{Interviews}{NF-\ref{subsec:bedienung/layout}}{30min}{-}{\gitIssue{27}}{-}
-        \trWork{Doku 2 Technologien \& Frameworks}{Doku}{5h 30min}{-}{\gitIssue{28} \\ \gitPull{41}}{-}
-        \trWork{Doku 2 Datenbankmodell}{Doku}{1h}{-}{\gitIssue{29} \\ \gitPull{40}}{-}
+        \trWork{Documentation prep Milestone 1}{Doku}{30min}{Erstellung aller Chapters\\Verlinkung in der main.tex}{\gitIssue{3} \\ \gitPull{4}}{-}
+        \trWork{Randbedingungen}{Doku}{1h 15min}{Dokumentation der Randbedingunen}{\gitIssue{6} \\ \gitPull{15}}{-}
+        \trWork{Planung - Funktionsumfang \\ \& Aufwandsschätzung}{Doku}{6h}{Dokumentation des Funktionsumfangs\\sowie der Aufwandsschätzung}{\gitIssue{7} \\ \gitPull{16}}{-}
+        \trWork{Planung - Architektur}{Doku}{5h 30min}{Architektur Design und Dokumentation\\Erstellung von Visualisirung}{\gitIssue{9} \\ \gitPull{12}}{-}
+        \trWork{Allgemeine Anpassungen Doku}{Doku}{1h}{Verschidene Anpassungen vor der ersten Abgabe}{\gitIssue{18} \\ \gitPull{21}}{-}
+        \trWork{Präsentation Vorbereiten}{Doku}{3h}{Vorbereitung auf die erste Präsentation}{\gitIssue{22}}{-}
+        \trWork{Docker Compose Setup}{NF-\ref{subsec:dockerized}\\init}{5h 30 min}
+        {Inizalisirung des Frontends und Backends\\Erstellungs des Docker-Compose\\Testen auf verschidenen Systemen\\Doku in Redme}{\gitIssue{24} \\ \gitPull{31}}{-}
+        \trWork{Durchführung Interviews}{NF-\ref{subsec:bedienung/layout}}{30min}{Durchführung der Interviews}{\gitIssue{27}}{-}
+        \trWork{Technologien \& Frameworks}{Doku}{5h 30min}
+        {Dokumentation der Verwendeten Technologien\\sowie Frameworks\\Dokumentation der Lizenzen}{\gitIssue{28} \\ \gitPull{41}}{-}
+        \trWork{Datenbankmodell}{Doku}{1h}{Dokumentation eines vorläufigen Datenbankmodells}{\gitIssue{29} \\ \gitPull{40}}{-}
         % Alternativ könnte das auch auf Docker linken
-        \trWork{Setup Keycloak Deployment}{NF-\ref{subsec:technologie}}{45min}{-}{\gitIssue{32}}{-}
+        \trWork{Setup Keycloak Deployment}{NF-\ref{subsec:technologie}}{45min}{Configuration von Keycloak}{\gitIssue{32}}{-}
 
-        \trWork{Setup CI/CD}{Extra}{4h 15min}{-}{\gitIssue{33} \\ \gitPull{51} \\ \gitPull{53}}{-}
-        \trWork{Datenbank Verbindung Backend}{-}{1h}{-}{\gitIssue{49}}{-}
-        \trWork{Config Konzept}{F-\ref{subsec:dynamischer-formular-aufbau}}{8h 30min}{-}{\gitIssue{50} \\ \gitPull{60}}{-}
-        \trWork{Barebones Form}{F-\ref{subsec:dynamischer-formular-aufbau}}{6h 30min}{-}{\gitIssue{66} \\ \gitPull{72}}{-}
-        \trWork{CORS Setting in Backend \\with OpenAPI}{-}{30min}{-}{\gitIssue{67} \\ \gitPull{69}}{-}
-        \trWork{Feature Speichern \\(+ Laden im Backend \& API)}{F-\ref{subsec:persistente-antragsbearbeitung}}{10h 45min}{-}{\gitIssue{75} \\ \gitPull{79}}{-}
-        \trWork{Feature Laden Frontend}{F-\ref{subsec:persistente-antragsbearbeitung}}{2h 30min}{-}{\gitIssue{76} \\ \gitPull{84}}{-}
+        \trWork{Setup CI/CD}{Extra}{4h 15min}{Einrichtung Server\\Erstellung Deploy Patch & Script\\Configuration Workflow\\Initziale Dokumentation davon}{\gitIssue{33} \\ \gitPull{51} \\ \gitPull{53}}{-}
+        \trWork{Datenbank Verbindung Backend}{Support}{1h}{Bereitstellung eines Beispiels}{\gitIssue{49}}{-}
+        \trWork{Config Konzept}{F-\ref{subsec:dynamischer-formular-aufbau}}{8h 30min}
+        {OpenAPI Specifikation\\Erstes realles Datetenbanklayout\\Füllen der Datenbank mit ersten Formularen\\in der entwikelten Struktur\\Dokumentation dessen}{\gitIssue{50} \\ \gitPull{60}}{-}
+        \trWork{Barebones Form}{F-\ref{subsec:dynamischer-formular-aufbau}}{6h 30min}
+        {Erstellung eines Systems zur dynamischen\\anzeige eines Formulars bestehend aus\\Dynamischen Inhalt}{\gitIssue{66} \\ \gitPull{72}}{-}
+        \trWork{\ac{CORS}\\ Setting in Backend \\with OpenAPI}{-}{30min}{Behebung von problemen mit \ac{CORS}}{\gitIssue{67} \\ \gitPull{69}}{-}
+        \trWork{Feature Speichern \\(+ Laden im Backend \& API)}{F-\ref{subsec:persistente-antragsbearbeitung}}{10h 45min}
+        {Erweiterung der OpenAPI Spezifikation\\Erstellung von Endpunkten zum\\Speichern und Laden\\Erweiterung Frontend zum Speichern}{\gitIssue{75} \\ \gitPull{79}}{-}
+        \trWork{Feature Laden Frontend}{F-\ref{subsec:persistente-antragsbearbeitung}}{2h 30min}
+        {Frontend Support zum Laden\\bearbeiteter Formulare}{\gitIssue{76} \\ \gitPull{84}}{-}
         \trWork{Architekturschichten Doku Update}{Doku}{6h}{-}{\gitIssue{78} \\ \gitPull{85}}{-}
         \trWork{PDF}{F-\ref{subsec:pdf-generator}}{31h 22min}{-}{\gitIssue{88} \\ \gitPull{100}}{-}
         \trWork{Code Cleanup}{-}{3h 15min}{-}{\gitIssue{89} \\ \gitPull{97}}{-}
