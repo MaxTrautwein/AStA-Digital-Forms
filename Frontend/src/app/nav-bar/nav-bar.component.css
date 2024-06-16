@@ -5,8 +5,10 @@
 .AStA-Logo {
     float: left;
     display: block;
-    width: 6%;
+    width: 12vh;
+    height: 7vmin;
     margin: 0;
+    size: 20px;
 }
 
 .AStA-Logo:hover {
