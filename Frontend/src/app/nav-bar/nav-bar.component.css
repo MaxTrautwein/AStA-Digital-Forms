@@ -23,6 +23,7 @@
 .navbar {
     text-align: right;
     justify-content: flex-start;
+    height: 10vh;
 }
 
 .navbar > * {
@@ -60,10 +61,16 @@
 .navbar-toggler{
     background-color: var(--asta-blue);
     color: var(--asta-white);
-    font-size:2.25em;
     border-radius: 12%;
+    height: fit-content;
+    width: fit-content;
+    text-align: center;
 }
 .navbar-toggler-icon{
+    margin: 0;
+    background-size: 5vh;
+    height: 6vh;
+    width: 3vw;
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-linecap='round' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
