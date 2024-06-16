@@ -5,6 +5,7 @@ import { OAuthService } from 'angular-oauth2-oidc';
 import { OnInit, OnChanges } from '@angular/core';
 import { AsyncPipe } from "@angular/common";
 import {of, Observable, Subscriber, map} from "rxjs";
+import { TokenService } from '../token.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -29,14 +30,25 @@ export class NavBarComponent implements OnInit{
     }
   }
 
-  ngOnInit(): void {
+  init() {
     console.log("was hier los?");
-      this.updateUsername();
-      this.isUserLoggedIn();
-  
+    this.updateUsername();
+    this.isUserLoggedIn();
   }
 
-  constructor(protected search: SearchService, protected oauthService: OAuthService) {
+  ngOnInit(): void {
+    if (!this.tokenService.hasValidToken()){
+      this.tokenService.tokenReady.subscribe(s => {
+        if (s){
+          this.init()
+        }
+      })
+    }else {
+      this.init();
+    }
+  }
+
+  constructor(protected search: SearchService, protected oauthService: OAuthService, private tokenService: TokenService) {
     
   }
 
@@ -48,7 +60,7 @@ export class NavBarComponent implements OnInit{
       if(claims != null) {
         this.Username = claims['given_name'];
         console.log(claims['given_name']);
-        }
+      }
     }
   }
 
