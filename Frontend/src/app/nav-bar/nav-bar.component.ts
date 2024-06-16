@@ -16,6 +16,7 @@ import { OnInit } from '@angular/core';
 export class NavBarComponent implements OnInit{
   protected isOpen: boolean = false;
   protected Username: string = "Account";
+  protected isLoggedIn: boolean = false;
 
   onClick() {
     if(this.isOpen) {
@@ -26,20 +27,27 @@ export class NavBarComponent implements OnInit{
   }
 
   ngOnInit(): void {
-      this.test();
+      this.updateUsername();
+      this.isUserLoggedIn();
   }
 
   constructor(protected search: SearchService, protected oauthService: OAuthService) {
 
   }
 
-  test() {
+  updateUsername() {
     let claims = this.oauthService.getIdentityClaims();
     if(!claims) return null;
     this.Username = claims['given_name'];
     console.log(claims['given_name']);
     return null;
   }
+
+  isUserLoggedIn() {
+    this.isLoggedIn = this.oauthService.hasValidAccessToken();
+  }
+
+
 
 
 }
