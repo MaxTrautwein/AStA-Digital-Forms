@@ -67,8 +67,4 @@ export class NavBarComponent implements OnInit{
   isUserLoggedIn() {
     this.isLoggedIn = of(this.oauthService.hasValidAccessToken());
   }
-
-
-
-
 }
