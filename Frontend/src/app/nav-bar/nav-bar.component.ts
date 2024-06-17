@@ -19,10 +19,8 @@ import { TokenService } from '../token.service';
 })
 export class NavBarComponent implements OnInit{
   protected isLoggedIn: Observable<boolean> = of(false);
-  protected isOpen!: boolean = false;
+  protected isOpen: boolean = false;
   protected Username: string = "Account";
-
-  constructor(protected search: SearchService, private oauthService: OAuthService) {}
 
   init() {
     console.log("was hier los?");
