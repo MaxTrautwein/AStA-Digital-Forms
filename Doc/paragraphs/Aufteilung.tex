@@ -129,7 +129,7 @@ total: 1h 5min + 30min + 1h 15min + 6h + 5h 30min + 1h + 3h + 5h 30 + 30min + 5h
         \trWork{fixed incorrect allowed domain}{-}{-}{Behebt Fehler mit fealscher Domain}{\gitPull{81}}{-}
         \trWork{Added Embedded MongoDB to \\allow tests to run in compose build}{-}{45min}{Ermöglicht Ausführung von Tests}{\gitPull{82}}{-}
         \trWork{fix for mistakes}{-}{-}{Behebt fehler in \gitPull{79}\\Typo und Security}{\gitPull{83}}{-}
-        \trWork{Doku3 Final}{Doku}{-}{Behebt fehler in der Docku\\Vor abgabe}{\gitPull{95}}{-}
+        \trWork{Verbesserungen Doku-3}{Doku}{-}{Behebt fehler in der Docku\\Vor abgabe}{\gitPull{95}}{-}
         \trWork{Async Update}{-}{-}{Not Merged\\Zu Späterem Zeitpukt besser Implementiert}{\gitPull{104}}{-}
     \end{longtable}
 
@@ -175,8 +175,8 @@ Total: 2h + 4h + 4h + 1h + 30min + 20h 30min + 14h 30min + 2h + 21h 5min + 1h + 
 
 total: 2h 30min + 30min + 7h + 3h + 2h 15min + 5h 10min + 30min + 15min + 5h 45min + 5h 10min + 7h 10min
 + 2h 35min + 1h 40min + 30min + 6h 20min + 13h 40min + 12h 10min + 40 min + 1h 25min + 45min + 30min + 55min
-+ 2h 25min
-=> 82h 50min
++ 2h 25min + 2h 45min
+=> 85h 35min
 
 % \trWork{Title}{-}{Time}{-}{\gitIssue{1} \\ \gitPull{2}}{-}
 \begin{longtable}{|llll|}
@@ -202,24 +202,31 @@ total: 2h 30min + 30min + 7h + 3h + 2h 15min + 5h 10min + 30min + 15min + 5h 45m
     \trWork{\ac{API} Dokumentation}{Doku}{30min}{Aufsetzten der Doku zu \ac{API}s\\Guidelines, Verwendete \ac{API}s}{\gitIssue{34} \\ \gitPull{43}}{-}
     \trWork{Softwarearchitektur \\mit logischen Schichten aufsetzen}{Doku}{15min}
     {Chapter für Architekturschichten,\\Strukturschicht, Verhaltensschicht\\und Verteilungsschicht\\Aufsetzen}{\gitIssue{42} \\ \gitPull{44}}{-}
-    \trWork{database connection}{-}{5h 45min}{-}{\gitIssue{49} \\ \gitPull{54}}{-}
-    \trWork{Landing Page}{-}{5h 10min}{-}{\gitIssue{57} \\ \gitPull{59}}{-}
+    \trWork{Database connection}{-}{5h 45min}{Mongo DB Verbindung zu Spring Boot}{\gitIssue{49} \\ \gitPull{54}}{-}
+    \trWork{Landing Page}{-}{5h 10min}{Frondend Landing Page}{\gitIssue{57} \\ \gitPull{59}}{-}
     \trWork{Integrate generated \\OpenAPI Angular Client}{-}{7h 10min}
-    {\gitCommit{70}{6c963aed4a62d6dc778862a1d045bae542f767be} mit 30min gerechnet}{\gitIssue{64} \\ \gitPull{70}}{-}
-    \trWork{Dynamic Landing page}{-}{2h 35min}{-}{\gitIssue{65} \\ \gitPull{71}}{-}
-    \trWork{Api Spec Doku Update}{Doku}{1h 40min}{-}{\gitIssue{74} \\ \gitPull{80}}{-}
-    \trWork{Code Cleanup}{-}{30 min}{-}{\gitIssue{89} \\ \gitPull{102}}{-}
-    \trWork{Main Page Spelction}{-}{6h 20min}{-}{\gitIssue{90} \\ \gitPull{99}}{-}
-    \trWork{Issue91/sidebar}{-}{2h 25min}{-}{\gitIssue{91} \\ \gitPull{109}}{-}
-    \trWork{Autofill}{-}{13h 40min}{-}{\gitIssue{91} \\ \gitPull{111}}{-}
-    \trWork{Favoriten}{-}{12h 10min}{-}{\gitIssue{92} \\ \gitPull{101}}{-}
-    \trWork{Doku - Verhaltensschicht}{Doku}{40 min}{-}{\gitIssue{114} \\ \gitPull{122}}{-}
-    \trWork{Favoriten GUI Update}{-}{1h 25min}{-}{\gitIssue{116} \\ \gitPull{123}}{-}
-    \trWork{Autofill Page}{-}{45min}{-}{\gitIssue{117} \\ \gitPull{120}}{-}
-    \trWork{Combine paralel changes}{-}{30min}{on master via \gitPull{21}}{\gitIssue{18} \\ \gitPull{19}}{-}
-    \trWork{Issue45 (doku fixes)}{Doku}{55min}{-}{\gitIssue{45} \\ \gitPull{46}}{-}
-    \trWork{Doku3 Final}{Doku}{-}{-}{\gitPull{95}}{-}
-    \trWork{noch was... Doku 3}{Doku}{-}{-}{\gitPull{96}}{-}
+    {Integration von Autogerieten\\\ac{API} Code im Frontend\\\gitCommit{70}{6c963aed4a62d6dc778862a1d045bae542f767be} mit 30min gerechnet}{\gitIssue{64} \\ \gitPull{70}}{-}
+    \trWork{Dynamic Landing page}{-}{2h 35min}{Landen der Anträge vom Backend}{\gitIssue{65} \\ \gitPull{71}}{-}
+    \trWork{Api Spec Doku Update}{Doku}{1h 40min}{Vorläufige Dokumentation\\ der API für Doku}{\gitIssue{74} \\ \gitPull{80}}{-}
+    \trWork{Code Cleanup}{-}{30 min}
+    {Vorberitung auf Code Review\\Entfernen unötiger Imports}{\gitIssue{89} \\ \gitPull{102}}{-}
+    \trWork{Main Page Spelction}{-}{6h 20min}{Erste Gruppirung von Anträgen\\zu Abrechnungen}{\gitIssue{90} \\ \gitPull{99}}{-}
+    \trWork{Sidebar}{NF-\ref{subsec:bedienung/layout}}{2h 25min}
+    {Sidebar für Autofill und\\Anträge in Arbeit}{\gitIssue{91} \\ \gitPull{109}}{-}
+    \trWork{Autofill}{F-\ref{subsec:automatisches-ausfullen}}{13h 40min}
+    {System zum automatischen aufüllen\\Selectiver Werte\\GUI zum Einspeichern}{\gitIssue{91} \\ \gitPull{111}}{-}
+    \trWork{Favoriten}{F-\ref{subsec:favoriten}}{12h 10min}{Favoriten Funktion\\Frontend \& Backend\\OpenAPI Spec Endpunkte}{\gitIssue{92} \\ \gitPull{101}}{-}
+    \trWork{Verhaltensschicht}{Doku}{40 min}{Sequenzdiagrem Login\\und Fromular ausfüllen.\\Dokumentation dazu}{\gitIssue{114} \\ \gitPull{122}}{-}
+    \trWork{Favoriten GUI Update}{NF-\ref{subsec:bedienung/layout}}{1h 25min}
+    {Visuelle Aufberitung Favoriten\\Liste und Popup\\Besseres Scaling}{\gitIssue{116} \\ \gitPull{123}}{-}
+    \trWork{Autofill Page}{NF-\ref{subsec:bedienung/layout}}{45min}{Anpassung des Layout an\\verwendetes Bootstrap}{\gitIssue{117} \\ \gitPull{120}}{-}
+    \trWork{Combine paralel changes}{-}{30min}
+    {Verbesserung Projektmanagement\\Bessere Beschribung GUI\\on master via \gitPull{21}}{\gitIssue{18} \\ \gitPull{19}}{-}
+    \trWork{Verbesserungen Doku}{Doku}{55min}{GPLv3 Hinzugefügt\\Acronym links hinzugefügt}{\gitIssue{45} \\ \gitPull{46}}{-}
+    \trWork{Verbesserungen Doku-3}{Doku}{-}{Behebt fehler in der Docku\\Vor abgabe}{\gitPull{95}}{-}
+    \trWork{Verbesserungen Doku-3}{Doku}{-}{Behebt fehler in der Docku\\Vor abgabe}{\gitPull{96}}{-}
+    \trWork{Navbar update}{NF-\ref{subsec:bedienung/layout}}{2h 45min}
+    {Besseres Scaling\\Nicht verwendbare Elemente\\werden ausgeblendet}{\gitIssue{115} \\ \gitPull{125}}{-}
 
 \end{longtable}
 
