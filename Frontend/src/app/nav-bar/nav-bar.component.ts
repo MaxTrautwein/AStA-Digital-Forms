@@ -1,42 +1,63 @@
-import {Component,OnInit,OnDestroy} from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterLink } from "@angular/router";
 import {SearchService} from "../search.service";
-import {OAuthService} from "angular-oauth2-oidc";
-import {Subscription} from 'rxjs';
+import { OAuthService } from 'angular-oauth2-oidc';
+import { OnInit, OnChanges } from '@angular/core';
+import { AsyncPipe } from "@angular/common";
+import {of, Observable, Subscriber, map} from "rxjs";
+import { TokenService } from '../token.service';
+
 
 @Component({
   selector: 'app-nav-bar',
   standalone: true,
   imports: [
-    RouterLink
+    RouterLink, AsyncPipe
   ],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.css'
 })
-export class NavBarComponent implements OnInit, OnDestroy {
-  protected isOpen!: boolean;
-  protected isLoggedIn!: boolean;
-  private authSubscription!: Subscription;
+export class NavBarComponent implements OnInit{
+  protected isLoggedIn: Observable<boolean> = of(false);
+  protected isOpen: boolean = false;
+  protected Username: string = "Account";
 
-  constructor(protected search: SearchService, private oauthService: OAuthService) {}
-
-  ngOnInit(): void {
-    this.updateLoginStatus();
-    this.authSubscription = this.oauthService.events.subscribe(event => {
-      if (event.type === 'token_received' || event.type === 'token_expires' || event.type === 'logout') {
-        this.updateLoginStatus();
-      }
-    });
+  init() {
+    console.log("was hier los?");
+    this.updateUsername();
+    this.isUserLoggedIn();
   }
 
-  ngOnDestroy(): void {
-    if (this.authSubscription) {
-      this.authSubscription.unsubscribe();
+  ngOnInit(): void {
+    if (!this.tokenService.hasValidToken()){
+      this.tokenService.tokenReady.subscribe(s => {
+        if (s){
+          this.init()
+        }
+      })
+    }else {
+      this.init();
     }
   }
 
-  private updateLoginStatus(): void {
-    this.isLoggedIn = this.oauthService.hasValidAccessToken();
+  constructor(protected search: SearchService, protected oauthService: OAuthService, private tokenService: TokenService) {
+    
+  }
+
+  updateUsername() {
+    let claims = this.oauthService.getIdentityClaims();
+    if(!this.isLoggedIn) { 
+      this.Username = "default";
+    } else {
+      if(claims != null) {
+        this.Username = claims['given_name'];
+        console.log(claims['given_name']);
+      }
+    }
+  }
+
+  isUserLoggedIn() {
+    this.isLoggedIn = of(this.oauthService.hasValidAccessToken());
   }
 
   onClick() {

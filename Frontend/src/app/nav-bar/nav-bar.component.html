@@ -1,19 +1,24 @@
 <nav class="navbar navbar-dark c-color">
-  <button class="navbar-toggler" type="button" (click)="this.onClick();">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  @if(isLoggedIn | async) {
+    <button class="navbar-toggler" type="button" (click)="this.onClick();">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  }
   <img src="assets/image/AstaRgb.png" alt="AStA-Logo" class="AStA-Logo" routerLink="">
-  <input (input)="this.search.updateSearch($event)" type="text" placeholder="Suche..." class="Searchbar">
-  <div class="Account-holder">
-    <img src="assets/image/useraccount.png" alt="useraccount" class="User-Logo">
-    <div class="Account-Text-Holder">
-      Account
+  @if(isLoggedIn | async) {
+    <input (input)="this.search.updateSearch($event)" type="text" placeholder="Suche..." class="Searchbar">
+  }
+  @if(isLoggedIn | async) {
+    <div class="Account-holder">
+      <img src="assets/image/useraccount.png" alt="useraccount" class="User-Logo">
+      <div class="Account-Text-Holder">
+        {{this.Username}}
+      </div>
+      <div class="account-dropdown-menu">
+        <button class="account-item" (click)="logout()">Logout</button>
+      </div>
     </div>
-    @if(isLoggedIn){
-    <div class="account-dropdown-menu">
-      <button class="account-item" (click)="logout()">Logout</button>
-    </div>}
-  </div>
+  }
 </nav>
 @if(isLoggedIn){
 @if(this.isOpen) {
