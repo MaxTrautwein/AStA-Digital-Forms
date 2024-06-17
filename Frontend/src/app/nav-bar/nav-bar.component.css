@@ -1,4 +1,4 @@
-.c-color {  
+.c-color {
     background-color:var(--asta-bluelight);
 }
 
@@ -38,10 +38,42 @@
     border-radius: 2vh;
     background-color:var(--asta-blue);
     width: fit-content;
+    position: relative;
+    font-size: calc(0.5rem + 1vw);
+    text-align: center;
 }
 
 .Account-holder:hover {
     cursor: pointer;
+}
+
+.account-dropdown-menu {
+  display: none;
+  position: static;
+  top: 100%;
+  width: 100%;
+  border-radius: 20px;
+  background-color:var(--asta-blue);
+  color: var(--asta-white);
+  z-index: 1000;
+}
+
+.Account-holder:hover .account-dropdown-menu {
+  display: block;
+}
+
+.account-item {
+  display: block;
+  color: var(--asta-white);
+  background: none;
+  border: none;
+  width: 100%;
+  height: 12%;
+}
+
+.account-item:hover {
+  background-color: var(--asta-orange);
+  border-radius: 20px;
 }
 
 .User-Logo {
@@ -130,5 +162,5 @@
     border: 0;
     color: var(--asta-white);
     border-radius: 20px;
-    font-size: x-large;
+    font-size: 2vmin;
 }

@@ -7,6 +7,7 @@ import { AsyncPipe } from "@angular/common";
 import {of, Observable, Subscriber, map} from "rxjs";
 import { TokenService } from '../token.service';
 
+
 @Component({
   selector: 'app-nav-bar',
   standalone: true,
@@ -18,17 +19,10 @@ import { TokenService } from '../token.service';
 })
 export class NavBarComponent implements OnInit{
   protected isLoggedIn: Observable<boolean> = of(false);
-  protected isOpen: boolean = false;
+  protected isOpen!: boolean = false;
   protected Username: string = "Account";
- 
 
-  onClick() {
-    if(this.isOpen) {
-      this.isOpen=false;
-    } else {
-      this.isOpen=true;
-    }
-  }
+  constructor(protected search: SearchService, private oauthService: OAuthService) {}
 
   init() {
     console.log("was hier los?");
@@ -66,5 +60,13 @@ export class NavBarComponent implements OnInit{
 
   isUserLoggedIn() {
     this.isLoggedIn = of(this.oauthService.hasValidAccessToken());
+  }
+
+  onClick() {
+    this.isOpen = !this.isOpen;
+  }
+
+  logout() {
+    this.oauthService.logOut();
   }
 }
