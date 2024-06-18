@@ -30,6 +30,7 @@ public class PdfService {
     }
 
     private Boolean isTrue(String string){
+        if (string == null) return false;
         return string.equalsIgnoreCase("true");
     }
 
@@ -45,12 +46,18 @@ public class PdfService {
                         context.setVariable(fe.getId() + "_NO",!isTrue(fe.getValue()));
                     }
                     case DATE -> {
+                        if (fe.getValue() == null){
+                            break;
+                        }
                         LocalDate date = LocalDate.parse(fe.getValue(),
                                 DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
                         context.setVariable(fe.getId(),date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
                     }
                     case IBAN -> {
+                        if (fe.getValue() == null){
+                            break;
+                        }
                         // 22 Chars
                         StringBuilder iban = new StringBuilder(fe.getValue().replaceAll(" ",""));
                         // Padd if needed
