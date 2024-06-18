@@ -17,5 +17,8 @@
     border: var(--asta-orange) solid 3px;
 }
 .input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback){
-  border-radius: 0.25em;
+  border-radius: var(--bs-border-radius);
+}
+.form-text{
+  padding: .375rem .75rem;
 }

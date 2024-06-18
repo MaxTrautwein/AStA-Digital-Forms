@@ -20,6 +20,7 @@
 .grow-wrap {
   display: grid;
   padding: .375rem .75rem;
+  border-radius:var(--bs-border-radius);
 }
 .grow-wrap::after {
   content: attr(data-replicated-value) " ";

@@ -1,0 +1,16 @@
+.form{
+  padding: .375rem .75rem;
+}
+.button-spacing {
+  margin-right: 3em;
+}
+.btn:hover{
+  background-color: var(--asta-orange);
+  cursor: pointer;
+}
+.btn-success{
+  background-color: var(--asta-blue);
+}
+.btn-primary{
+  background-color: var(--asta-bluelight);
+}
