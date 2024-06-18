@@ -12,7 +12,10 @@
   .form-text {
     font-size: 0.8rem;
   }
-
+ .input-group-text{
+   padding: .375rem;
+   padding-left: 10.75rem;
+ }
   .error-message {
     display: block;
     color: red;

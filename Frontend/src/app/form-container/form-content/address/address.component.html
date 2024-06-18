@@ -3,11 +3,11 @@
         <div class="form-group">
           <span class="input-group-text" id="basic-addon3">{{this.description}}</span>
           <div class="form-text" id="basic-addon4">{{ help }}</div>
-            <span class="input-group-text" id="basic-addon5">Straße</span>
+            <span class="input-group-text2" id="basic-addon5">Straße</span>
           <input #streetInput type="text" class="form-control" id="street" aria-describedby="basic-addon3 basic-addon4" (change)="onValueChange()">
-          <span class="input-group-text" id="basic-addon6">Stadt</span>
+          <span class="input-group-text3" id="basic-addon6">Stadt</span>
           <input #cityInput type="text" class="form-control" id="city" aria-describedby="basic-addon3 basic-addon4" (change)="onValueChange()">
-            <span class="input-group-text" id="basic-addon7">Postleitzahl</span>
+            <span class="input-group-text4" id="basic-addon7">Postleitzahl</span>
           <input #postalCodeInput type="text" class="form-control" id="postalCode" aria-describedby="basic-addon3 basic-addon4" (change)="onValueChange()">
           @if (!isValidPostalCode) {<div class="error-message">Ungültige Postleitzahl</div>}
         </div>

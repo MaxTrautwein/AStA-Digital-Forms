@@ -9,3 +9,7 @@
 .form-text{
   padding: .375rem .75rem;
 }
+.input-group-text{
+    padding: .375rem;
+    padding-left: 10.75rem;
+}

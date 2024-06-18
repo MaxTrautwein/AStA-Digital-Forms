@@ -6,3 +6,7 @@
   max-width: 30em;
   border: solid 3px var(--asta-bluelight);
 }
+.input-group-text{
+  padding: .375rem;
+  padding-left: 10.75rem;
+}
