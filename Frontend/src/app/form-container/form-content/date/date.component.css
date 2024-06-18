@@ -5,16 +5,14 @@
   .input-group {
     display: flex;
     flex-direction: row;
+    margin: .375rem;
+    margin-left: 10.75rem;
   }
 
   .input-group-date {
     display: inline-block;
     align-self: center;
   }
-.input-group-text {
-  padding: .375rem;
-  padding-left: 10.75rem;
-}
   .form-control {
     flex: 1;
     min-width: 10em;
@@ -37,6 +35,6 @@
     font-size: 0.9em;
     color: #6c757d;
   }
-.form-text {
-  font-size: 0.8rem;
+.form-text{
+  padding: .375rem .75rem;
 }

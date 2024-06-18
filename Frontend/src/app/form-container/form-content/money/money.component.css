@@ -12,8 +12,8 @@
 .input-group-text {
   flex: 0 0 auto;
   margin-right: 1em;
-  padding: .375rem;
-  padding-left: 10.75rem;
+  margin: .375rem;
+  margin-left: 10.75rem;
 }
  .input-group-text2 {
    flex: 0 0 auto;
@@ -28,4 +28,7 @@
 }
  .input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback){
    border-radius: 0.25em;
+ }
+ .form-text{
+   padding: .375rem .75rem;
  }

@@ -6,7 +6,10 @@
   max-width: 30em;
   border: solid 3px var(--asta-bluelight);
 }
-.input-group-text{
-  padding: .375rem;
-  padding-left: 10.75rem;
+.input-group{
+  margin: .375rem;
+  margin-left: 10.75rem;
+}
+.form-text{
+  padding: .375rem .75rem;
 }

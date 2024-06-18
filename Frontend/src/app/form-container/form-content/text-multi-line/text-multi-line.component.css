@@ -1,8 +1,11 @@
 .form-text {
-  padding: .375rem 10.75rem;
+  padding: .375rem .75rem;
+  margin: .375rem;
+  margin-left: 10.75rem;
 }
-.input-group-text{
-  padding: .375rem 10.75rem;
+.input-group{
+  margin: .375rem;
+  margin-left: 10.75rem;
 }
 .grow-wrap > textarea {
   resize: none;
@@ -22,7 +25,6 @@
 }
 .grow-wrap {
   display: grid;
-  padding: .375rem 10.75rem;
   border-radius:var(--bs-border-radius);
 }
 .grow-wrap::after {
