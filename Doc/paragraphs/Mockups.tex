@@ -9,7 +9,7 @@ Das momentane \ac{UI} Design beruht auf Kunden und Nutzerfeedback, welches wir i
 Interviews erhalten haben. Zukünftig könnte es von Vorteil sein, solche Interviews 
 erneut und mit mehr Probanten durchzuführen, da so eine differenziertere Anaylse
 des Feedback und damit das Erstellen eines besseren, auf den Kunden zugeschnittenen \ac{UI} 
-Designs ermöglicht werden kann.%ref auf Interviews?
+Designs ermöglicht werden kann.
 
 \section{Formular Editor}\label{sec: formular editor}
 Auch das Hinzufügen eines Editors für die Erstellung und Manipulation von 
@@ -27,7 +27,7 @@ Eine weitere potentielle Verbesserung der User Experience bestünde in der Mögl
 Daten, welche in einem bestimmten Antrag verwendet wurden, direkt in ein 
 Abrechnungsformular zu übernehmen. Dies könnte durch eine neue Entität in der Datenbank, 
 oder durch Import einer passenden Datei ermöglicht werden, ähnlich wie es bereits im 
-Autofill Feature der Fall ist. Dadurch ließe sich beim Ausfüllen einer Abrechnung deutlich 
+Autofill-Feature der Fall ist. Dadurch ließe sich beim Ausfüllen einer Abrechnung deutlich 
 mehr Zeit sparen, was eine bessere User Experience zur Folge hätte.%Autofill ref
 
 \section{Maps \ac{API}}\label{sec: maps api}
@@ -37,7 +37,9 @@ Antrag angeben muss, von wo man startet, wo man hinfährt, und welche Zwischenst
 macht, könnte dies durch einfache Klicks auf einer interaktiven Karte passieren. Zusätzlich 
 könnten weitere Daten wie vorraussichtliche Treibstoffkosten, vorraussichtliche Reisedauer 
 und andere wichtige Daten auf Basis dieser Funktion errechnet, und direkt in den Antrag 
-integriert werden. Auch ein Anhängen der Karte mit visualisierter Route an die generierte
+integriert werden. Das Speichern von Adressen, um sie in zukünftigen Anträgen schneller 
+auswählen zu können, wäre ebenfalls sinnvoll.
+Auch ein Anhängen der Karte mit visualisierter Route an die generierte
 PDF als Beleg der Daten, wäre möglich. So ließe sich das mühsame Eingeben von Adressen 
 und die damit einhergehende Fehleranfälligkeit umgehen. Dies würde es den Nutzern 
 ermöglichen, den Antrag schneller und einfacher auszufüllen und würde damit die User 
@@ -60,4 +62,18 @@ wäre es für eine gute Usability von Vorteil, wenn man sich nicht nur über den
 applikationseigenen Account bei Keycloak, sondern beispielsweise auch über den Google 
 Account anmelden könnte. So könnte man das zeitintensive Erstellen und Verwalten eines 
 weiteren Accounts vermeiden. Welche Web Dienste integriert werden könnte auf Basis des in 
-16.1 genannte Interviews entschieden werden.
+\ref{sec: ui design} genannte Interviews entschieden werden.
+
+\section{Umstellung der verwendeten Datenbank}\label{umstellung der verwendeten datenbank}
+Die Applikation könnte dahingehend erweitert werden, dass sie es dem Nutzer ermöglicht, 
+selbst zu entscheiden, ob seine Daten auf der applikationinternen Datenbank, oder auf einer 
+Nextcloud Instanz gespeichert werden sollen. 
+%Häuser speichern kommt in die geo api mit rein
+
+\section{Formularfelder}\label{sec: formularfelder}
+Ein Ausbau der möglichen Eingabefelder beim Ausfüllen eines Antrags wäre für die 
+Userexperience ebenfalls zuträglich, da diese dem Nutzer im Idealfall bereits durch ihr 
+Layout und Design vermittlen, welche Daten hier eingegeben werden sollen. Außerdem können 
+so unterschiedlichere Arten von Eingaben in der Applikation realisiert werden, was wiederum 
+die Flexibilität des Applikation steigern würde.
+
