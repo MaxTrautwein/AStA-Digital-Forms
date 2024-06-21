@@ -1,11 +1,9 @@
 .form-text {
   padding: .375rem .75rem;
   margin: .375rem;
-  margin-left: 10.75rem;
 }
 .input-group{
   margin: .375rem;
-  margin-left: 10.75rem;
 }
 .grow-wrap > textarea {
   resize: none;

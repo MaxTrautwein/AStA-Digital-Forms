@@ -25,7 +25,11 @@
   @if (this.currentSection > ((FormDetail.form?.length ?? 1) - 1)){
     <app-overview [formId]="FormDetail.id!" ></app-overview>
   } @else {
+    <div class="formContent">
+
+
     <app-form-content [section]="FormDetail.form?.[this.currentSection]" [sections]="FormDetail.form" (formSectionEventEmitter)="UpdateFormSectionData($event)" > > ></app-form-content>
+    </div>
   }
   <app-progress-controls [sectionsCnt]="FormDetail.form?.length" [currentSection]="this.currentSection" ></app-progress-controls>
 }
