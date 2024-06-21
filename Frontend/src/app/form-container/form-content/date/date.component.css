@@ -5,20 +5,24 @@
   .input-group {
     display: flex;
     flex-direction: row;
+    margin: .375rem;
+    margin-left: 10.75rem;
   }
 
   .input-group-date {
     display: inline-block;
-    margin-right: 0.5rem;
     align-self: center;
   }
-
   .form-control {
     flex: 1;
     min-width: 10em;
     max-width: 10em;
+    margin-right: 1.5rem;
+    border: solid 3px var(--asta-bluelight);
   }
-
+.input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback){
+  border-radius: var(--bs-border-radius);
+}
   .error-message {
     color: red;
     font-size: 0.9em;
@@ -31,6 +35,6 @@
     font-size: 0.9em;
     color: #6c757d;
   }
-.form-text {
-  font-size: 0.8rem;
+.form-text{
+  padding: .375rem .75rem;
 }

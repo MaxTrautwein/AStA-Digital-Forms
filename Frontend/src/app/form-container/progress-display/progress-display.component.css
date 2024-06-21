@@ -1,5 +1,5 @@
 .progress-Item{
-  border: solid black 1px;
+  border: solid var(--asta-bluelight) 1px;
   margin: 1em;
   width: 3em;
   height: 3em;
@@ -7,8 +7,17 @@
   align-content: center;
   text-align: center;
   font-weight: bold;
+  background-color: var(--asta-blue);
+  color: var(--asta-white);
 }
-
+.progress-Item:hover{
+  background-color: var(--asta-orange);
+  cursor: pointer;
+}
 .progress-container{
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }

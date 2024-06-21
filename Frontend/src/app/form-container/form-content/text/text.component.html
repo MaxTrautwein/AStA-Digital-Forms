@@ -2,7 +2,8 @@
   <div class="input-group">
     <span class="input-group-text" id="basic-addon3">{{this.description}}</span>
     <input #input type="text" class="form-control" aria-describedby="basic-addon3 basic-addon4" (change)="onValueChange($event)" >
+    <div class="form-text" id="basic-addon4">{{ this.help }}</div>
   </div>
-  <div class="form-text" id="basic-addon4">{{ this.help }}</div>
+
 </div>
 
