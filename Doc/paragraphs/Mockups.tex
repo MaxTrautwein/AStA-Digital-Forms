@@ -1,56 +1,79 @@
-\chapter{\ac{UI} Design}\label{ch:ui-design}
-Das \ac{UI} Design wird in mehreren Schritten erstellt und im Laufe des Projekts immer weiter
-verfeinert. Am Anfang dieses Prozesses steht ein Low Fidelity Prototyp der Applikation.
-Dieser dient dazu, das ungefähre Layout zu visualisieren und ein Gefühl für den Aufbau
-des Frontends zu vermitteln. %eventuell etwas umgansprachlich schaffen -> vermitteln?%
-Für die Erstellung dieser Prototypen wird die Prototyping- und
-Designsoftware Figma \footnote{Software zum Erstellen von Softwareprototypen https://www.figma.com} verwendet.
-%Figma mit fußnote oder Tool Liste?%
+\chapter{Ausblick}\label{ch:ausblick}
 
-\section{Low Fidelity}\label{Low Fidelity}
-\begin{figure}[h]
-  \centering
-    \includegraphics[width=1.0\textwidth]{Antragshelfer}
-    \caption{Antragshelfer}\label{Antragshelfer}
-\end{figure}
-Das Layout des Prototyps lässt sich in drei Bereiche einteilen:
-die Kopfzeile, den Hauptinhalt der Seite und die Fußzeile.
+Da die Aufgabe unserer Applikation darin besteht, das Ausfüllen von Anträgen so einfach 
+und schnell wie möglich zu machen, besteht das größte Potential für Weiterentwicklungen
+im Themenbereich der User Experience.
 
-In der Kopfzeile befindet sich das \ac{AStA}-Logo, sowie eine Suchleiste um manuell nach
-Anträgen zu suchen.
-Auch der jeweiligen Nutzeraccount lässt sich über die Schaltfläche
-am rechten Rand erreichen.
-Außerdem befindet sich am linken Rand ein Burger-Menü,
-welches das Hinzufügen von Funktionalitäten in zukünftigen Projekten erleichtern soll.
+\section{\ac{UI} Design}\label{sec: ui design}
+Das momentane \ac{UI} Design beruht auf Kunden und Nutzerfeedback, welches wir in
+Interviews erhalten haben. Zukünftig könnte es von Vorteil sein, solche Interviews
+erneut und mit mehr Probanden durchzuführen, da so eine differenziertere Analyse
+des Feedbacks und damit das Erstellen eines besseren, auf den Kunden zugeschnittenen \ac{UI}
+Designs ermöglicht werden kann.
 
-Der Hauptinhalt der Seite zeigt die Hauptfunktionalitäten unserer Anwendung und wird 
-dynamisch generiert. Bei den Prototypen wird dies
-durch ein statisches Layout simuliert.
+\section{Formular Editor}\label{sec: formular editor}
+Auch das Hinzufügen eines Editors für die Erstellung und Manipulation von 
+Formular-Templates und der daraus resultierenden PDF wäre eine sinnvolle Erweiterung. Denn 
+momentan ist zwar gut dokumentiert, wie neue Anträge in die Applikation eingebunden werden 
+können, dies erfordert jedoch das direkte Manipulieren von Dateien in der Applikation 
+und ist daher von nicht fachkundigen Personen nicht durchführbar. Ein visueller Editor, der 
+beispielsweise nach einem "Drag and Drop" Prinzip funktionieren könnte, würde diese Lücke 
+in der Usability der Applikation schließen, sodass auch IT fremde Nutzer, Anträge 
+erstellen, verändern oder löschen können, was die allgemeine User Experience deutlich 
+verbessern würde.
 
-Durch die Fußzeile soll der Nutzer die Möglichkeit erhalten, schnell und einfach auf
-seine zuvor festgelegten Favoriten zugreifen zu können.
-Was zu einer besseren User Experience führen soll.
-Die Kopf- und Fußzeile der Applikation ist auf jeder Seite identisch.
+\section{Wiederverwenden von Antragsdaten}\label{sec: wiederverwenden von Antragsdaten}
+Eine weitere potenzielle Verbesserung der User Experience bestünde in der Möglichkeit, 
+Daten, welche in einem bestimmten Antrag verwendet wurden, direkt in ein 
+Abrechnungsformular zu übernehmen. Dies könnte durch eine neue Entität in der Datenbank, 
+oder durch Import einer passenden Datei ermöglicht werden, ähnlich wie es bereits im 
+Autofill-Feature der Fall ist. Dadurch ließe sich beim Ausfüllen einer Abrechnung deutlich 
+mehr Zeit sparen, was eine bessere User Experience zur Folge hätte.
 
-Der Antragshelfer ist eine Hauptfunktionalität unserer Applikation deshalb fungiert
-dieser als Landing-Page, wie in \refa{Antragshelfer} dargestellt.
+\section{Maps \ac{API}}\label{sec: maps api}
+Um das Ausfüllen von Anträgen wie der Reisekostenerstattung weiter zu vereinfachen, würde
+sich die Integration einer Karten-\ac{API} anbieten. Wenn man also beispielsweise im
+Antrag angeben muss, von wo man startet, wo man hinfährt, und welche Zwischenstopps man
+macht, könnte dies durch einfache Klicks auf einer interaktiven Karte passieren. Zusätzlich
+könnten weitere Daten wie voraussichtliche Treibstoffkosten, voraussichtliche Reisedauer
+und andere wichtige Daten auf Basis dieser Funktion errechnet, und direkt in den Antrag
+integriert werden. Das Speichern von Adressen, um sie in zukünftigen Anträgen schneller
+auswählen zu können, wäre ebenfalls sinnvoll.
+Auch ein Anhängen der Karte mit visualisierter Route an die generierte
+PDF als Beleg der Daten, wäre möglich. So ließe sich das mühsame Eingeben von Adressen
+und die damit einhergehende Fehleranfälligkeit umgehen. Dies würde es 
+ermöglichen, den Antrag schneller und einfacher auszufüllen und würde damit die User
+Experience deutlich verbessern.
 
-Hier soll der Nutzer die ihm, von der Applikation gestellten, Fragen beantworten,
-um so zum richtigen Antrag zu gelangen. %TODO Satz umvormoliren%
-Die Beantwortung der Fragen erfolgt durch Klicken auf die verschiedenen Buttons. %Passt das so?%
-Zur Übersicht, ist jeder Button mit einer Beschreibung versehen, welche genauere Informationen über die Auswahloption liefert.
+\section{Verwalten von Accounts}\label{sec: verwalten von Accounts}
+Momentan müssen die Nutzeraccounts der Applikation vollständig von einem fachkundigen
+Administrator verwaltet werden. Dies schließt das Erstellen neuer Accounts, sowie das
+Ändern von Passwörtern und Nutzernamen ein. Es wäre jedoch wünschenswert, wenn jeder
+Nutzer über ein geeignetes \ac{UI} die Möglichkeit hätte, die eigenen Login Daten selbst
+zu verwalten, um so zum einen den Administrator zu entlasten und zum anderen selbst mehr
+Einfluss auf den eigenen Account zu haben. Dies würde die User Experience deutlich
+verbessern, da zum Ändern der Logindaten bzw. zum Erstellen eines Accounts keine
+Konsultation des Administrators mehr nötig ist, was den Prozess deutlich vereinfacht und
+beschleunigt.
 
-\begin{figure}[h]
-  \centering
-    \includegraphics[width=1.0\textwidth]{Reisekostenhelper}
-    \caption{Reisekostenhelfer}\label{Reisekostenhelfer}
-\end{figure}
+\section{Login mit anderen Accounts}\label{sec: login mit anderen Accounts}
+Da die meisten Nutzer bereits über Accounts in einigen der gängigsten Webdienste verfügen,
+wäre es für eine gute Usability von Vorteil, wenn man sich nicht nur über den
+applikationseigenen Account bei Keycloak, sondern beispielsweise auch über den Google
+Account anmelden könnte. So könnte man das zeitintensive Erstellen und Verwalten eines
+weiteren Accounts vermeiden. Welche Webdienste integriert werden, könnte auf Basis des in
+\ref{sec: ui design} genannten Interviews entschieden werden.
+
+\section{Umstellung der verwendeten Datenbank}\label{umstellung der verwendeten datenbank}
+Die Applikation könnte dahingehend erweitert werden, dass sie es dem Nutzer ermöglicht, 
+selbst zu entscheiden, ob seine Daten auf der applikationinternen Datenbank, oder auf einer 
+Nextcloud Instanz gespeichert werden sollen. 
 
 
-Beim Ausfüllen des Antrags hat der Nutzer die Möglichkeit über unterschiedliche Eingabemöglichkeiten,
-wie Textfelder, Dropdown Menüs oder Checkboxen die benötigten Informationen einzugeben. Auch die Eingabe
-über die integrierten \ac{API}s ist möglich, wie in \refa{Reisekostenhelfer} am Beispiel eines Reisekosten Antrags zu sehen.
-Um dem Nutzer einen Überblick über den Fortschritt beim Ausfüllen des Antrags zu ermöglichen, befindet sich am oberen 
-Rand eine Fortschrittsanzeige.
-So soll der Nutzer darüber informiert werden, wie viele Schritte noch
-nötig sind, bis der Antrag fertig bearbeitet ist.
+\section{Formularfelder}\label{sec: formularfelder}
+Ein Ausbau der möglichen Eingabefelder beim Ausfüllen eines Antrags wäre für die
+User Experience ebenfalls zuträglich, da diese dem Nutzer im Idealfall bereits durch ihr
+Layout und Design vermitteln, welche Daten hier eingegeben werden sollen. Außerdem können
+so unterschiedlichere Arten von Eingaben in der Applikation realisiert werden, was wiederum
+die Flexibilität der Applikation steigern würde.
+
