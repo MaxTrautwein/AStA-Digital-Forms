@@ -68,6 +68,7 @@ Es soll dem Benutzer ermöglicht werden, seine Daten auf einer Nexcloud Instanz 
 Die Applikation soll es ermöglichen, Häuser oder Locations, welche in vorherigen Anträgen genannt wurden, zu speichern,
 um sie in späteren Anträgen schneller wiederzufinden.
 
+
 \section{Non-Functional}\label{sec:non-functional}
 \subsection{Dockerized}\label{subsec:dockerized}
 Die Applikation soll in Docker Containern Deployed werden können.
@@ -86,3 +87,24 @@ Die Applikation soll sich nicht um die benötigten Unterschriften kümmern,
 diese müssen von den Nutzern selbst auf eigene Weise hinzugefügt werden.
 \subsection{Config Editor}\label{subsec:config-editor}
 Es ist nicht gefordert einen Editor für die Konfigurations-Dateien, welche den dynamischen Aufbau ermöglichen, zu entwickeln.
+
+
+\subsection{PDF Speicherung}\label{subsec: pdf speicherung}
+Es ist nicht vorgesehen, dass die generierten \ac{PDF}s auf dem Server gespeichert werden, 
+da diese jederzeit durch das Abrufen der fertigen Anträge neu generiert werden können.
+
+\section{Änderung der Requirements im Developmentprozess}
+Die folgenden Änderungen wurden im Meeting vom 11.06.2024 mit dem Kunden und Betreuer 
+besprochen, als sinnvoll erachtet und daher übernommen.
+
+\subsection{Automatischer Anhangs Generator}
+Aus Gründen der Komplexität und Priorisierung anderer Features, wurde sich darauf verständigt, das Feature "Automatischer Anhangs Generator", siehe \ref{subsec:automatischer-anhangs-generator}, fortan unter der Kategorie "Nice to have", siehe \ref{sec:nice-to-have}, 
+zu führen.
+
+\subsection{\ac{PDF} Speicherung}\label{subsec: pdf speicherung}
+Während des Developmentprozesses kam die Frage auf, ob es eventuell gewünscht sei, dass die 
+generierten \ac{PDF} Dateien auf dem Server gespeichert werden sollen.
+Unter Absprache mit dem Betreuer und dem Kunden, kamen wir zu dem Schluss, dass
+es nicht sinnvoll ist, die generierten \ac{PDF}s auf dem Server zu speichern, 
+da diese jederzeit durch das Abrufen der fertigen Anträge neu generiert werden können. 
+Daher wurde entschieden, dieses Requirement als nicht erforderlich zu vermerken.
