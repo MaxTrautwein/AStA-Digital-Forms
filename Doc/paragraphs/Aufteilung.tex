@@ -1,0 +1,315 @@
+\newcommand{\trWork}[6]
+{
+    \multicolumn{1}{|l|}{\textbf{\begin{tabular}[c]{@{}l@{}}#1\end{tabular}}} &
+    \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}#2\end{tabular}} &
+    \multicolumn{1}{l|}{#3} &
+    \\ \cline{1-3}
+    \begin{tabular}[c]{@{}l@{}}#4\end{tabular} &
+    \multicolumn{2}{l}{\begin{tabular}[c]{@{}l@{}}#5\end{tabular}} &
+    \multirow{\begin{tabular}[c]{@{}l@{}}#6\end{tabular}} \\ \hline
+}
+\newcommand{\gitIssue}[1]
+{
+    \href{https://github.com/MaxTrautwein/AStA-Digital-Forms/issues/#1}{Issue #1}
+}
+\newcommand{\gitPull}[1]
+{
+    \href{https://github.com/MaxTrautwein/AStA-Digital-Forms/pull/#1}{PR #1}
+}
+\newcommand{\gitCommit}[2]
+{
+    \href{https://github.com/MaxTrautwein/AStA-Digital-Forms/pull/#1/commits/#2}{\StrLeft{#2}{10}}
+}
+
+\chapter{Aufteilung des Teams}\label{ch:aufteilung-des-teams}
+Die Aufteilung der Aufgaben wurde in den Sprint Plannings im Einvernehmen des Teams bestimmt.
+Im Nachfolgenden sind die erreichten Leistungen sowie die dafür aufgewendet Zeit dokumentiert.
+Zu keinem Zeitpunkt war die Arbeit durch Fehlen von Aufgaben blockiert.
+
+\section{Nicht gemessene Zeitaufwände}\label{sec:nicht-gemessene-zeitaufwande}
+Das Messen der aufgewendeten Zeit für Tickets war vorgeschrieben und wurde beachtet.
+Jedoch fällt nicht jede getätigte Arbeit unter Tickets, welches sich besonders für direkte inhaltliche Arbeiten eignen.
+
+So wurden die aufgewendeten Zeiten für die folgenden Tätlichkeiten nicht erfasst.
+\begin{itemize}
+    \item Reviews
+    \item Meeting Zeit
+    \item Unterstützung
+    \item Protokoll schreiben
+    \item Protokoll/ Meetings vorbereiten
+    \item Sprint Plannings
+\end{itemize}
+Da diese Zeiten in keinster Weise insignifikant waren, wäre es sinnvoll gewesen, auch diese genauer zu dokumentieren.
+
+\section{Ganzes Team}
+Einige der Tätlichkeiten wurden vom ganzen Team ausgeübt.
+Nicht alle dieser wurden Zeitlich genau dokumentiert.
+
+\subsection{Spike - Backend Technologie wahl }
+15min
+https://github.com/MaxTrautwein/AStA-Digital-Forms/issues/11
+02.04.2024
+
+\subsection{Doku & Planung - Funktionsumfang & Aufwandsschätzung}
+8h
+https://github.com/MaxTrautwein/AStA-Digital-Forms/issues/7
+für die Planung Selbst
+03.04.2024
+
+\section{Max Trautwein}\label{sec:max-trautwein}
+
+% \trWork{Title}{-}{Time}{-}{\gitIssue{1} \\ \gitPull{2}}{-}
+    \begin{longtable}{|llll|}
+        \hline
+        \rowcolor[HTML]{9B9B9B}
+        \multicolumn{1}{|l|}{\cellcolor[HTML]{9B9B9B}} &
+        \multicolumn{2}{l|}{\cellcolor[HTML]{9B9B9B}\textbf{Links}} &
+        \cellcolor[HTML]{9B9B9B} \\ \cline{2-3}
+        \rowcolor[HTML]{9B9B9B}
+        \multicolumn{1}{|l|}{\multirow{\cellcolor[HTML]{9B9B9B}\textbf{Titel \& Beschreibung}}} &
+        \multicolumn{1}{l|}{\cellcolor[HTML]{9B9B9B}\textbf{Requirement}} &
+        \multicolumn{1}{l|}{\cellcolor[HTML]{9B9B9B}\textbf{Aufwand}} &
+        \multirow{\cellcolor[HTML]{9B9B9B}Datum} \\ \hline
+        \endhead
+        \trWork{Repo Init}{Init}{1h 5min}{Initialisierung des GitHub Repositorys\\mit der Dokumentation}
+        {\gitIssue{1} \\ \gitPull{2}}{26.03.2024\\approve\\26.03.2024}
+        \trWork{Dokumentation Vorbereitung Milestone 1}{Doku}{30min}
+        {Erstellung aller Chapters\\Verlinkung in der main.tex}{\gitIssue{3} \\ \gitPull{4}}{28.03.2024\\approve\\02.04.2024}
+
+        \trWork{Planung - Architektur}{Doku}{5h 30min}{Architektur Design und Dokumentation\\Erstellung von Visualisierung}
+        {\gitIssue{9} \\ \gitPull{12}}{02.04.2024 -\\05.04.2024\\approve\\05.04.2024}
+        \trWork{Randbedingungen}{Doku}{1h 15min}{Dokumentation der Randbedingungen}
+        {\gitIssue{6} \\ \gitPull{15}}{05.04.2024 -\\06.04.2024\\approve\\06.04.2024}
+        \trWork{Planung - Funktionsumfang \\ \& Aufwandsschätzung}{Doku}{6h}
+        {Dokumentation des Funktionsumfangs\\sowie der Aufwandsschätzung}
+        {\gitIssue{7} \\ \gitPull{16}}{06.04.2024 -\\08.04.2024\\approve\\08.04.2024}
+        \trWork{Allgemeine Anpassungen Doku}{Doku}{1h}{Verschiedene Anpassungen vor der ersten Abgabe}
+        {\gitIssue{18} \\ \gitPull{21}}{08.04.2024 -\\09.04.2024\\approve\\09.04.2024}
+        \trWork{Präsentation Vorbereiten}{Doku}{3h}{Vorbereitung auf die erste Präsentation}{\gitIssue{22}}
+        {10.04.2024 -\\16.04.2024}
+        \trWork{Docker Compose Setup}{NF-\ref{subsec:dockerized}\\init}{5h 30 min}
+        {Inizalisirung des Frontends und Backends\\Erstellung des Docker-Compose\\Testen auf verschiedenen Systemen\\Doku in Readme}
+        {\gitIssue{24} \\ \gitPull{31}}{17.04.2024 -\\24.04.2024\\approve\\28.04.2024}
+        \trWork{Durchführung Interviews}{NF-\ref{subsec:bedienung/layout}}{30min}{Durchführung der Interviews}{\gitIssue{27}}{13.05.2024}
+        \trWork{Technologien \& Frameworks}{Doku}{5h 30min}
+        {Dokumentation der Verwendeten\\Technologien sowie Frameworks\\Dokumentation der Lizenzen}
+        {\gitIssue{28} \\ \gitPull{41}}{24.04.2024 -\\28.04.2024\\approve\\28.04.2024}
+        \trWork{Datenbankmodell}{Doku}{1h}{Dokumentation eines\\vorläufigen Datenbankmodells}
+        {\gitIssue{29} \\ \gitPull{40}}{24.04.2024 -\\28.04.2024\\approve\\28.04.2024}
+        \trWork{added cite for Lizenzen}{Doku}{-}{Quelle für Lizenz infos}{\gitPull{47}}{30.04.2024\\approve\\30.04.2024}
+
+        % Alternativ könnte das auch auf Docker linken
+        \trWork{Setup Keycloak Deployment}{NF-\ref{subsec:technologie}}{45min}{Configuration von Keycloak}{\gitIssue{32}}{03.05.2024}
+        \trWork{Setup CI/CD}{Extra}{4h 15min}
+        {Einrichtung Server\\Erstellung Deploy Patch & Script\\Configuration Workflow\\Initziale Dokumentation davon}
+        {\gitIssue{33} \\ \gitPull{51} \\ \gitPull{53}}{03.05.2024 -\\06.05.2024\\approve\\06.05.2024}
+        \trWork{Datenbankverbindung Backend}{Support}{1h}{Bereitstellung eines Beispiels}{\gitIssue{49}}{04.05.2024}
+        \trWork{Config Konzept}{F-\ref{subsec:dynamischer-formular-aufbau}}{8h 30min}
+        {OpenAPI Specifikation\\Erstes realles Datetenbanklayout\\Füllen der Datenbank mit ersten Formularen\\in der entwickelten Struktur\\Dokumentation dessen}
+        {\gitIssue{50} \\ \gitPull{60}}{07.05.2024 -\\14.05.2024\\approve\\14.05.2024}
+        \trWork{Fixed issues with DB use in deployment}{Fix /\\Verbesserung}{-}
+        {Einlesen von DB Verbindungs Daten\\über Docker Secrets\\Aktualisierung Compose \\\& Deploy Patch}{\gitPull{56}}{07.05.2024\\approve\\07.05.2024}
+        \trWork{Improved build time on slower \\Internet connections}{-}{15min}{Not Merged wegen wechsel auf Maven\\Caching von dependencies}
+        {\gitPull{58}}{09.05.2024\\approve\\10.05.2024}
+        \trWork{LF Änderungen Rückgängig}{Fix /\\Verbesserung}{20min}{Behebt fehler in \gitPull{55}}{\gitPull{61}}
+        {14.05.2024\\merged\\14.05.2024}
+        \trWork{fixed issues with compile}{Fix /\\Verbesserung}{-}
+        {Behebt fehler beim Compiele\\füght vergessene dependency hinzu}{\gitPull{62}}{14.05.2024\\approve\\14.05.2024}
+        \trWork{Barebones Form}{F-\ref{subsec:dynamischer-formular-aufbau}}{6h 30min}
+        {Erstellung eines Systems zur dynamischen\\anzeige eines Formulars bestehend aus\\Dynamischen Inhalt}
+        {\gitIssue{66} \\ \gitPull{72}}{19.05.2024 -\\20.05.2024\\approve\\20.05.2024}
+        \trWork{\ac{CORS}\\ Setting in Backend \\with OpenAPI}{Fix /\\Verbesserung}{30min}
+        {Behebung von Problemen mit \ac{CORS}}{\gitIssue{67} \\ \gitPull{69}}{14.05.2024\\approve\\15.05.2024}
+        \trWork{Feature Speichern \\(+ Laden im Backend \& API)}{F-\ref{subsec:persistente-antragsbearbeitung}}{10h 45min}
+        {Erweiterung der OpenAPI Spezifikation\\Erstellung von Endpunkten zum\\Speichern und Laden\\Erweiterung Frontend zum Speichern}
+        {\gitIssue{75} \\ \gitPull{79}}{22.05.2024 -\\24.05.2024\\approve\\24.05.2024}
+        \trWork{Feature Laden Frontend}{F-\ref{subsec:persistente-antragsbearbeitung}}{2h 30min}
+        {Frontend Support zum Laden\\bearbeiteter Formulare}{\gitIssue{76} \\ \gitPull{84}}{26.05.2024\\approve\\28.05.2024}
+        \trWork{fixed incorrect allowed domain}{Fix /\\Verbesserung}{-}{Behebt Fehler mit fealscher Domain}
+        {\gitPull{81}}{24.05.2024\\merged\\24.05.2024}
+        \trWork{Added Embedded MongoDB to \\allow tests to run in compose build}{-}{45min}
+        {Ermöglicht Ausführung von Tests}{\gitPull{82}}{25.05.2024\\approve\\26.05.2024}
+        \trWork{fix for mistakes}{Fix /\\Verbesserung}{-}{Behebt fehler in \gitPull{79}\\Typo und Security}
+        {\gitPull{83}}{25.05.2024\\merged\\25.05.2024}
+        \trWork{Architekturschichten Update}{Doku}{6h}
+        {Strukturschicht (Class Diagrams)\\Verteilungsschicht (Netzwerk & HW Verteilung)\\aktualisiertes Datenbankmodell\\Separates Appendix File}
+        {\gitIssue{78} \\ \gitPull{85}}{27.05.2024 -\\28.05.2024\\approve\\28.05.2024}
+        \trWork{Verbesserungen Doku-3}{Doku}{-}{Behebt fehler in der Docku\\Vor abgabe}
+        {\gitPull{95}}{28.05.2024\\approve\\28.05.2024}
+        \trWork{\ac{PDF}}{F-\ref{subsec:pdf-generator}}{31h 22min}
+        {Wahl der Generator Technologie\\Form-Template \ac{PDF} Template Verlinkung\\OpenAPI Download Endpoint\\Template Logik\\Erstellung der Templates}
+        {\gitIssue{88} \\ \gitPull{100}}{29.05.2024 -\\03.06.2024\\approve\\03.06.2024}
+        \trWork{Code Cleanup}{Fix /\\Verbesserung}{3h 15min}
+        {Vorbereitung auf Code Review\\Entfernen von obsoletem Code\\Entfernen unnötiger Imports\\Auto Delete leerer Forms}
+        {\gitIssue{89} \\ \gitPull{97}}{28.05.2024\\approve\\29.05.2024}
+
+        \trWork{Async Update}{Fix /\\Verbesserung}{-}{Not Merged\\Zu Späterem Zeitpukt besser Implementiert}
+        {\gitPull{104}}{04.06.2024\\closed\\06.06.2024}
+        \trWork{Verbesserung - Antrags \\ Abrechnung Linking System}
+        {F-\ref{subsec:antrags-kategorien}\\F-\ref{subsec:auswahls-helfer}\\F-\ref{subsec:filtermoglichkeiten}}{5h 30min}
+        {Gruppirung von Antrag zu\\ein oder mehr Abrechnungen\\System zur Wahl zwischen\\verschiedenen Abrechnungen\\Suchfunktion\\reaktive Darstellung\\reaktive Favoriten\\Fixed bug requiering reload}
+        {\gitIssue{108} \\ \gitPull{110}}
+        {04.06.2024 -\\07.06.2024\\approve\\07.06.2024}
+        \trWork{Anhangs System}{F-\ref{subsec:anhangs-lieferschein}\\F-\ref{subsec:anhang-system}}{12h 10min}
+        {Anhangs Checkliste\\System für Anhangs Typen\\System für Wertabhänige Anhänge\\Tests\\Frontend Seite Überblick\\Verbessern Form Controls}
+        {\gitIssue{107} \\ \gitPull{112}}
+        {08.06.2024 -\\10.06.2024\\approve\\11.06.2024}
+        \trWork{Move Done / In Progesss Anträge}{NF-\ref{subsec:bedienung/layout}\\F-\ref{subsec:persistente-antragsbearbeitung}\\F-\ref{subsec:filtermoglichkeiten}}{45min}
+        {in Progress / Abgeschlossene Anträge\\auf separater Seite\\Suchfunktion\\reaktive Darstellung}{\gitIssue{105} \\ \gitPull{113}}
+        {11.06.2024\\approve\\11.06.2024}
+        \trWork{Setup Installations- und \\Administrationshandbuch}{Doku}{6h 35min}
+        {Deployment ‐ Setup Server\\Deployment ‐ Auth Keycloak Config\\Deployment ‐ Domain & Hosting\\
+        FAQ Common Issues\\Formular Konfiguration\\PDF Export\\PDF Template Sonderfälle\\Doku, Implementation und Beispiele}
+        {\gitIssue{39} \\ \gitPull{124}}{11.06.2024 -\\15.06.2024\\approve\\15.06.2024}
+        \trWork{Setup Aufteilungs Doku}{Doku}{11h 55min}
+        {Dokumentation der geleisteten Arbeit}{\gitIssue{38}}{14.06.2024 -\\18.06.2024\\In Progress}
+        % TODO Update
+        \trWork{Hotfix PDF Geneeration}{Fix /\\Verbesserung}{16min}
+        {Hofix für PDF Erstellung\\von unvollständigen Formularen\\behebt null ref fehler}
+        {\gitPull{128}}{18.06.2024\\merged\\18.06.2024}
+        \trWork{Inizialisirt Reflections Seiten}{Doku}{6min}
+        {Vorberiten der Seiten,\\sodass jeder unabänig an seinem\\Teil arbeiten kann.}
+        {\gitPull{135}}{20.06.2024\\approve\\20.06.2024}
+        \trWork{Behebt Scroll Fehler}{Fix /\\Verbesserung}{13min}{Behebt Fehler in \gitPull{127}}
+        {\gitIssue{138} \\ \gitPull{141}}{21.06.2024\\approve\\21.06.2024}
+
+    \end{longtable}
+
+
+\section{Ayhan Yasar}\label{sec:ayhan-yasar}
+
+% \trWork{Title}{-}{Time}{-}{\gitIssue{1} \\ \gitPull{2}}{-}
+\begin{longtable}{|llll|}
+    \hline
+    \rowcolor[HTML]{9B9B9B}
+    \multicolumn{1}{|l|}{\cellcolor[HTML]{9B9B9B}} &
+    \multicolumn{2}{l|}{\cellcolor[HTML]{9B9B9B}\textbf{Links}} &
+    \cellcolor[HTML]{9B9B9B} \\ \cline{2-3}
+    \rowcolor[HTML]{9B9B9B}
+    \multicolumn{1}{|l|}{\multirow{\cellcolor[HTML]{9B9B9B}\textbf{Titel \& Beschreibung}}} &
+    \multicolumn{1}{l|}{\cellcolor[HTML]{9B9B9B}\textbf{Requirement}} &
+    \multicolumn{1}{l|}{\cellcolor[HTML]{9B9B9B}\textbf{Aufwand}} &
+    \multirow{\cellcolor[HTML]{9B9B9B}Datum} \\ \hline
+    \endhead
+
+
+    \trWork{Projektmanagement}{Doku}{4h}{Methode, Lizenz, Github Flow\\ und Definition of Done}
+    {\gitIssue{8} \\ \gitPull{13}}{05.04.2024- \\08.04.2024\\approve\\08.04.2024}
+    \trWork{Planung - Funktionsumfang\\ \& Aufwandsschätzung}{Doku}{2h}{Rechtsschreibkorrektur}{\gitIssue{7}}{08.04.2024}
+    \trWork{Einführung und Ziele Text}{Doku}{10min}{on master via \gitPull{21}}{\gitPull{20}}{09.04.2024\\approve\\09.04.2024}
+    \trWork{Präsentation Vorbereiten}{Doku}{4h}{Vorbereitung auf die erste Präsentation}
+    {\gitIssue{22}}{10.04.2024 -\\16.04.2024}
+    \trWork{Interviews Vorbereiten}{NF-\ref{subsec:bedienung/layout}}{1h}{Erstellen der Fragen}
+    {\gitIssue{26}}{29.04.2024 -\\30.04.2024}
+
+    \trWork{Login Implementieren}{F-\ref{subsec:login}}{20h 30min}
+    {Login Funktion Frontend\\\ac{JWT} Validierung im Backend}{\gitIssue{48} \\ \gitPull{55}}{06.05.2024 -\\14.05.2024\\approve\\14.05.2024}
+    \trWork{Auswertung Interviews}{NF-\ref{subsec:bedienung/layout}}{30min}{Auswertung der Interviewergebnisse}
+    {\gitIssue{27}}{13.05.2024}
+    \trWork{Integrate login into Landing page}{NF-\ref{subsec:bedienung/layout}}{14h 30min}
+    {Login Seite im Frontend}{\gitIssue{63} \\ \gitPull{73}}{22.05.2024 -\\24.05.2024\\approve\\24.05.2024}
+    \trWork{Update Color scheme For Landing page}{NF-\ref{subsec:bedienung/layout}}{2h}{Aktualisierung der Farben}
+    {\gitIssue{68} \\ \gitPull{86}}{24.05.2024 -\\28.05.2024\\approve\\28.05.2024}
+
+    \trWork{Editor Ausbauen}{NF-\ref{subsec:bedienung/layout}}{20h 35min}
+    {Neue Felder für den Editor\\Im Frontend:\\Adresse, Bool, Datum, IBAN,\\Geld, Multiline Text\\Styling dieser
+    \\Zeit akktualisirt nach klarstellung in \gitPull{129}}
+    {\gitIssue{77} \\ \gitPull{103}}{01.06.2024 -\\11.06.2024\\approve\\11.06.2024}
+    \trWork{Logout Butten}{NF-\ref{subsec:bedienung/layout}}{4h}
+    {Logout Option\\keine Nav Bar Interaktion ohne Login}{\gitIssue{106} \\ \gitPull{119}}{11.06.2024 -\\12.06.2024\\approve\\12.06.2024}
+    \trWork{login page}{NF-\ref{subsec:bedienung/layout}}{1h}{Aktualisierung \\Größe und Stiel}
+    {\gitIssue{118}\\ \gitPull{121}}{12.06.2024\\approve\\12.06.2024}
+    \trWork{Verbesserte Visualisierung im Editor}{NF-\ref{subsec:bedienung/layout}}{2h 45min}
+    {Einrückung der Elemente\\aktualisierte Farben und\\Positionierung}{\gitIssue{87} \\ \gitPull{127}}{12.06.2024-\\18.06.2024\\approve\\21.06.2024}
+
+\end{longtable}
+
+\section{Tobias Bührle}\label{sec:tobias-buhrle}
+
+% \trWork{Title}{-}{Time}{-}{\gitIssue{1} \\ \gitPull{2}}{-}
+\begin{longtable}{|llll|}
+    \hline
+    \rowcolor[HTML]{9B9B9B}
+    \multicolumn{1}{|l|}{\cellcolor[HTML]{9B9B9B}} &
+    \multicolumn{2}{l|}{\cellcolor[HTML]{9B9B9B}\textbf{Links}} &
+    \cellcolor[HTML]{9B9B9B} \\ \cline{2-3}
+    \rowcolor[HTML]{9B9B9B}
+    \multicolumn{1}{|l|}{\multirow{\cellcolor[HTML]{9B9B9B}\textbf{Titel \& Beschreibung}}} &
+    \multicolumn{1}{l|}{\cellcolor[HTML]{9B9B9B}\textbf{Requirement}} &
+    \multicolumn{1}{l|}{\cellcolor[HTML]{9B9B9B}\textbf{Aufwand}} &
+    \multirow{\cellcolor[HTML]{9B9B9B}Datum} \\ \hline
+    \endhead
+
+    \trWork{Erstellen - UI Design}{Doku}{7h}{GUI Mockup\\Dokumentation zum Layout}{\gitIssue{10} \\ \gitPull{14}}
+    {02.04.2024 -\\06.04.2024\\approve\\06.04.2024}
+    \trWork{Einführung und Ziele}{Doku}{2h 30min}{Aufgabenstellung, Qualitätsziele,\\Stakeholder}
+    {\gitIssue{5} \\ \gitPull{17}}{06.04.2024 -\\08.04.2024\\approve\\08.04.2024}
+    \trWork{Planung - Funktionsumfang\\ \& Aufwandsschätzung}{Doku}{30 min}{Rechtschreibkorrektur}
+    {\gitCommit{16}{33a47b39aae996437d0e8a44f02ad4f1d116f8fb} \\ \gitCommit{16}{bd358a830650a1d39ce75798687fc2956a6a299c}}
+    {08.04.2024}
+    \trWork{Combine paralel changes}{Doku}{30min}
+    {Verbesserung Projektmanagement\\bessere Beschreibung GUI\\on master via \gitPull{21}}
+    {\gitIssue{18} \\ \gitPull{19}}{09.04.2024\\approve\\09.04.2024}
+    \trWork{Präsentation Vorbereiten}{Doku}{3h}{Vorbereitung auf die erste Präsentation}{\gitIssue{22}}{10.04.2024 -\\16.04.2024}
+    \trWork{Klickdummy bauen}{NF-\ref{subsec:bedienung/layout}}{5h 10min}
+    {Figma Clickdummy\\mit Durchlauf für einen Antrag}{\gitIssue{25}}{17.04.2024 -\\28.04.2024}
+    \trWork{User Stories}{Doku}{2h 15min}{Doku von User Stories}{\gitIssue{23} \\ \gitPull{30}}
+    {19.04.2024 -\\21.04.2024\\approve\\21.04.2024}
+    \trWork{\ac{API} Dokumentation}{Doku}{30min}
+    {Aufsetzten der Doku zu \ac{API}s\\Guidelines, verwendete \ac{API}s}{\gitIssue{34} \\ \gitPull{43}}{28.04.2024 -\\29.04.2024\\approve\\29.04.2024}
+    \trWork{Softwarearchitektur \\mit logischen Schichten aufsetzen}{Doku}{15min}
+    {Chapter für Architekturschichten,\\Strukturschicht, Verhaltensschicht\\und Verteilungsschicht\\Aufsetzen}
+    {\gitIssue{42} \\ \gitPull{44}}{29.04.2024\\approve\\29.04.2024}
+    \trWork{Verbesserungen Doku}{Doku}{55min}{GPLv3 Hinzugefügt\\Acronym links hinzugefügt}
+    {\gitIssue{45} \\ \gitPull{46}}{29.04.2024 -\\30.04.2024\\approve\\30.04.2024}
+
+    \trWork{Database connection}{F-\ref{subsec:datenbank}}{5h 45min}{Mongo DB Verbindung zu Spring Boot}
+    {\gitIssue{49} \\ \gitPull{54}}{02.05.2024 -\\06.05.2024\\approve\\06.05.2024}
+    \trWork{Landing-Page}{NF-\ref{subsec:bedienung/layout}}{5h 10min}{Frontend Landing-Page}
+    {\gitIssue{57} \\ \gitPull{59}}{07.05.2024 -\\14.05.2024\\approve\\14.05.2024}
+    \trWork{Integrate generated \\OpenAPI Angular Client}{NF-\ref{subsec:technologie}}{7h 10min}
+    {Integration von Auto gerieten\\\ac{API} Code im Frontend\\\gitCommit{70}{6c963aed4a62d6dc778862a1d045bae542f767be} mit 30min gerechnet}
+    {\gitIssue{64} \\ \gitPull{70}}{14.05.2024 -\\17.05.2024\\approve\\17.05.2024}
+    \trWork{Dynamic Landing-Page}{NF-\ref{subsec:bedienung/layout}}{2h 35min}{Landen der Anträge vom Backend}
+    {\gitIssue{65} \\ \gitPull{71}}{17.05.2024\\approve\\17.05.2024}
+    \trWork{Api Spec Doku Update}{Doku}{1h 40min}{Vorläufige Dokumentation\\ der API für Doku}
+    {\gitIssue{74} \\ \gitPull{80}}{23.05.2024 -\\24.05.2024\\approve\\24.05.2024}
+    \trWork{Main Page Spelction}{F-\ref{subsec:auswahls-helfer}}{6h 20min}
+    {Erste Gruppierung von Anträgen\\zu Abrechnungen}{\gitIssue{90} \\ \gitPull{99}}{28.05.2024 -\\ 01.06.2024\\approve\\01.06.2024}
+    \trWork{Verbesserungen Doku-3}{Doku}{-}{Behebt Fehler in der Doku\\vor Abgabe}{\gitPull{95}}{28.05.2024\\approve\\28.05.2024}
+    \trWork{Verbesserungen Doku-3}{Doku}{-}{Behebt Fehler in der Doku\\vor Abgabe}{\gitPull{96}}{28.05.2024\\approve\\28.05.2024}
+    \trWork{Favoriten}{F-\ref{subsec:favoriten}}{12h 10min}
+    {Favoritenfunktion\\Frontend \& Backend\\OpenAPI Spec Endpunkte}{\gitIssue{92} \\ \gitPull{101}}{30.05.2024 -\\03.06.2024\\approve\\03.06.2024}
+
+    \trWork{Code Cleanup}{Fix /\\Verbesserung}{30 min}
+    {Vorbereitung auf Code Review\\Entfernen unnötiger Imports}{\gitIssue{89} \\ \gitPull{102}}
+    {03.06.2024\\approve\\03.06.2024}
+    \trWork{Sidebar}{NF-\ref{subsec:bedienung/layout}}{2h 25min}
+    {Sidebar für Autofill und\\Anträge in Arbeit}{\gitIssue{91} \\ \gitPull{109}}
+    {04.06.2024\\approve\\05.06.2024}
+    \trWork{Autofill}{F-\ref{subsec:automatisches-ausfullen}}{13h 40min}
+    {System zum automatischen Ausfüllen\\selektiver Werte\\GUI zum Einspeichern}{\gitIssue{91} \\ \gitPull{111}}
+    {05.06.2024 -\\07.06.2024\\approve\\07.06.2024}
+    \trWork{Verhaltensschicht}{Doku}{40 min}{Sequenzdiagrem Login\\und Formular ausfüllen.\\Dokumentation dazu}
+    {\gitIssue{114} \\ \gitPull{122}}{11.06.2024 -\\12.06.2024\\approve\\12.06.2024}
+    \trWork{Autofill Page}{NF-\ref{subsec:bedienung/layout}}{45min}
+    {Anpassung des Layout an\\verwendetes Bootstrap}{\gitIssue{117} \\ \gitPull{120}}{11.06.2024\\approve\\12.06.2024}
+    \trWork{Favoriten GUI Update}{NF-\ref{subsec:bedienung/layout}}{1h 5min}
+    {Visuelle Aufbereitung Favoriten\\Liste und Pop-up\\besseres Scaling}{\gitIssue{116} \\ \gitPull{123}}
+    {12.06.2024\\approve\\12.06.2024}
+    \trWork{Navbar update}{NF-\ref{subsec:bedienung/layout}}{2h 45min}
+    {Besseres Scaling\\nicht verwendbare Elemente\\werden ausgeblendet}{\gitIssue{115} \\ \gitPull{125}}
+    {16.06.2024 -\\17.06.2024\\approve\\17.06.2024}
+    \trWork{UI Documentation Update}{Doku}{1h 45min}{Aktualisierte Dokumentation\\mit dem neuen Layout}
+    {\gitIssue{94} \\ \gitPull{126}}{17.06.2024-\\21.06.2024\\approve\\21.06.2024}
+    \trWork{Ausblick}{Doku}{2h}{Ausblick für die Zukunft\\des Projekts}
+    {\gitIssue{35} \\ \gitPull{136}}{20.06.2024-\\21.06.2024\\approve\\21.06.2024}
+    \trWork{Reflektion}{Doku}{50min}{Eigene Reflektion von\\Lernfortschritt \& \\ Projektmanagement}
+    {\gitIssue{36} \\ \gitIssue{37} \\ \gitPull{139}}{21.06.2024\\approve\\21.06.2024}
+    \trWork{Behebt Scroll Fehler}{Fix /\\Verbesserung}{10min}
+    {Behebt Fehler in \gitPull{127}\\closed in favor of \gitPull{141}}
+    {\gitIssue{138} \\ \gitPull{140}}{21.06.2024\\closed\\21.06.2024}
+
+
+\end{longtable}
+
