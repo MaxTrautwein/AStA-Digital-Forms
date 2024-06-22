@@ -43,6 +43,10 @@ Bei Eingabe einer Adresse für die Routenberechnung über eine Fremd-\ac{API} so
 \subsection{\ac{PDF} Generator}\label{subsec:pdf-generator}
 Der fertig bearbeitete Antrag muss als A4 \ac{PDF} exportier- und ausdruckbar sein.
 Das Generierte \ac{PDF} Dokument soll im Aufbau und Design den bisherigen Anträgen gleichen.
+\subsection{Automatischer Anhangs Generator}\label{subsec:automatischer-anhangs-generator}
+Um auch in der Zukunft Sachverhalte nachvollziehen zu können, müssen bestimmte Informationen festgehalten werden.
+Dazu sollten diese dem Antrag angehängt werden.
+Dies umfasst explizit Angebote sowie Strecken.
 \subsection{Anhang System}\label{subsec:anhang-system}
 Es muss möglich sein, dass Dateien angehängt werden, jedoch nur \ac{PDF} und statische Bilddateien.
 Zudem soll der User beim Bearbeiten des Antrags daran erinnert werden, falls noch gewisse Dateien im Anhang fehlen.
@@ -63,10 +67,7 @@ Es soll dem Benutzer ermöglicht werden, seine Daten auf einer Nexcloud Instanz 
 \subsection{Häuser Speichern}\label{subsec:hauser-speichern}
 Die Applikation soll es ermöglichen, Häuser oder Locations, welche in vorherigen Anträgen genannt wurden, zu speichern,
 um sie in späteren Anträgen schneller wiederzufinden.
-\subsection{Automatischer Anhangs Generator}\label{subsec:automatischer-anhangs-generator}
-Um auch in der Zukunft Sachverhalte nachvollziehen zu können, müssen bestimmte Informationen festgehalten werden.
-Dazu sollten diese dem Antrag angehängt werden.
-Dies umfasst explizit Angebote sowie Strecken.
+
 
 \section{Non-Functional}\label{sec:non-functional}
 \subsection{Dockerized}\label{subsec:dockerized}
@@ -86,6 +87,24 @@ Die Applikation soll sich nicht um die benötigten Unterschriften kümmern,
 diese müssen von den Nutzern selbst auf eigene Weise hinzugefügt werden.
 \subsection{Config Editor}\label{subsec:config-editor}
 Es ist nicht gefordert einen Editor für die Konfigurations-Dateien, welche den dynamischen Aufbau ermöglichen, zu entwickeln.
+
+
 \subsection{PDF Speicherung}\label{subsec: pdf speicherung}
 Es ist nicht vorgesehen, dass die generierten \ac{PDF}s auf dem Server gespeichert werden, 
 da diese jederzeit durch das Abrufen der fertigen Anträge neu generiert werden können.
+
+\section{Änderung der Requirements im Developmentprozess}
+Die folgenden Änderungen wurden im Meeting vom 11.06.2024 mit dem Kunden und Betreuer 
+besprochen, als sinnvoll erachtet und daher übernommen.
+
+\subsection{Automatischer Anhangs Generator}
+Aus Gründen der Komplexität und Priorisierung anderer Features, wurde sich darauf verständigt, das Feature "Automatischer Anhangs Generator", siehe \ref{subsec:automatischer-anhangs-generator}, fortan unter der Kategorie "Nice to have", siehe \ref{sec:nice-to-have} 
+zu führen.
+
+\subsection{\ac{PDF} Speicherung}\label{subsec: pdf speicherung}
+Während des Developmentprozesses kam die Frage auf, ob es eventuell gewünscht sei, dass die 
+generierten \ac{PDF} Dateien auf dem Server gespeichert werden sollen.
+Unter Absprache mit dem Betreuer und dem Kunden, kamen wir zu dem Schluss, dass
+es nicht sinnvoll ist, die generierten \ac{PDF}s auf dem Server zu speichern, 
+da diese jederzeit durch das Abrufen der fertigen Anträge neu generiert werden können. 
+Daher wurde entschieden, dieses Requirement als nicht erforderlich zu vermerken.
