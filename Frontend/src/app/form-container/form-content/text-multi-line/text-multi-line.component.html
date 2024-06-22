@@ -1,9 +1,11 @@
 <div class="mb-3">
-  <span class="input-group-text" id="basic-addon3">{{description}}</span>
+
     <div class="input-group">
+      <span class="input-group-text" id="basic-addon3">{{description}}</span>
       <div class="grow-wrap">
       <textarea #input class="form-control" aria-describedby="text-multi-line" onInput="this.parentNode.dataset.replicatedValue = this.value" (input)="onValueChange($event)">{{ value }}</textarea>
       </div>
+
     </div>
   <div class="form-text" id="basic-addon4">{{ help }}</div>
 </div>

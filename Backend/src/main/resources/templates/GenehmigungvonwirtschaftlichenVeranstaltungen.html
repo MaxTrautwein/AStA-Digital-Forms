@@ -69,33 +69,33 @@
     <h1>Genehmigung von wirtschaftlichen Veranstaltungen</h1>
     <p class="Italic">(<strong>Bitte beachten:</strong> Antrag ist <strong>mindestens 6 Wochen vorher einzureichen</strong>! Später wird er abgelehnt!)</p>
 <div class="General_gvwv">
-    <p><b>Name der Veranstaltung:</b> <input class="height_gvwvGeneral width_gvwvGeneral alignRight" type="text"></p>
-    <p><b>Datum der Veranstaltung:</b><input class="height_gvwvGeneral width_gvwvGeneral alignRight" type="text"></p>
-    <p><b>Fachschaft/Referat/Arbeitskreis:</b><input class="height_gvwvGeneral width_gvwvGeneral alignRight" type="text"></p>
-    <p><b>Name Verantwortliche*r:</b><input class="height_gvwvGeneral width_gvwvGeneral alignRight" type="text"></p>
-    <p><b>Kontaktdaten (Handy-Nr. E-Mail):</b><input class="height_gvwvGeneral width_gvwvGeneral alignRight" type="text"></p>
+    <p><b>Name der Veranstaltung:</b> <input th:value="${bez}" class="height_gvwvGeneral width_gvwvGeneral alignRight" type="text"></p>
+    <p><b>Datum der Veranstaltung:</b><input th:value="${date}" class="height_gvwvGeneral width_gvwvGeneral alignRight" type="text"></p>
+    <p><b>Fachschaft/Referat/Arbeitskreis:</b><input th:value="${fs_ref_ar}" class="height_gvwvGeneral width_gvwvGeneral alignRight" type="text"></p>
+    <p><b>Name Verantwortliche*r:</b><input th:value="${responsible}" class="height_gvwvGeneral width_gvwvGeneral alignRight" type="text"></p>
+    <p><b>Kontaktdaten (Handy-Nr. E-Mail):</b><input th:value="${contact}" class="height_gvwvGeneral width_gvwvGeneral alignRight" type="text"></p>
 </div>
 
     <p class="Italic pt10"><b>Verwendungszweck: (Bitte ausführlich beschreiben! Evtl. Beiblatt nutzen.</b> - Was? Warum? Welcher Preis?)</p>
-    <textarea>
+    <textarea th:text="${reason}">
 
     </textarea>
 
     <ul>
-        <li><strong class="strongsizeSmaller">Unterschriebenes Protokoll der FS-Sitzung mit genau erläutertem Beschluss angehängt?</strong> <input type="checkbox"> </li>
-        <li><strong class="strongsizeSmaller">Veranstaltungsplanung (Finanzplanung Einnahmen/Ausgaben) incl. Preislisten angehängt?</strong> <input type="checkbox"> </li>
-        <li><strong class="strongsizeSmaller">Veranstaltung bei Facilitymanagement / Ordnungsamt / Gema angemeldet? Kopie angehängt?</strong> <input type="checkbox"> </li>
-        <li><strong class="strongsizeSmaller">Zutatenliste erstellt und Aushänge für den Stand vorbereitet? (bei Verkauf von Speisen)</strong> <input type="checkbox"> </li>
+        <li><strong class="strongsizeSmaller">Unterschriebenes Protokoll der FS-Sitzung mit genau erläutertem Beschluss angehängt?</strong> <input th:checked="${protocoll_YES}" type="checkbox"> </li>
+        <li><strong class="strongsizeSmaller">Veranstaltungsplanung (Finanzplanung Einnahmen/Ausgaben) incl. Preislisten angehängt?</strong> <input th:checked="${planning_YES}" type="checkbox"> </li>
+        <li><strong class="strongsizeSmaller">Veranstaltung bei Facilitymanagement / Ordnungsamt / Gema angemeldet? Kopie angehängt?</strong> <input th:checked="${fm_gema_YES}" type="checkbox"> </li>
+        <li><strong class="strongsizeSmaller">Zutatenliste erstellt und Aushänge für den Stand vorbereitet? (bei Verkauf von Speisen)</strong> <input th:checked="${ingredients_YES}" type="checkbox"> </li>
     </ul>
 
-    <p><b>Termin</b> (geplant): <input class="height_gvwvGeneral" style="width: 100px" type="text"> <strong> Anzahl der Gäste</strong> (geplant):<input class="height_gvwvGeneral" style="width: 100px" type="text"></p>
-    <p><b>Höhe der Ausgaben (ca.):</b> <input class="height_gvwvGeneral" style="width: 100px" type="text">
+    <p><b>Termin</b> (geplant): <input th:value="${date}" class="height_gvwvGeneral" style="width: 100px" type="text"> <strong> Anzahl der Gäste</strong> (geplant):<input th:value="${guests}" class="height_gvwvGeneral" style="width: 100px" type="text"></p>
+    <p><b>Höhe der Ausgaben (ca.):</b> <input th:value="${cost}" class="height_gvwvGeneral" style="width: 100px" type="text">
         <span class="Italic alignRight">(voraussichtliche Höhe laut Veranstaltungsplanung)<br>(bei großen Summen begründen welches Angebot + Warum)</span></p>
     <br>
 
-    <p><b>Vorschuss notwendig? Ja </b><input type="checkbox"> <strong> / Nein </strong><input type="checkbox"> <strong>Wenn ja in welcher Höhe?</strong>
+    <p><b>Vorschuss notwendig? Ja </b><input th:checked="${req_vorschuss_YES}" type="checkbox"> <strong> / Nein </strong><input th:checked="${req_vorschuss_NO}" type="checkbox"> <strong>Wenn ja in welcher Höhe?</strong>
     <input type="text"></p>
-    <p><b>Wechselgeld notwendig? Ja </b><input type="checkbox"> <strong> / Nein </strong><input type="checkbox"></p>
+    <p><b>Wechselgeld notwendig? Ja </b><input th:checked="${req_wechsel_YES}" type="checkbox"> <strong> / Nein </strong><input th:checked="${req_wechsel_NO}" type="checkbox"></p>
 
     <ul>
         <li><strong class="strongsizeSmaller">Bitte beachte dass Pfand nicht zurückerstattet werden kann!</strong></li>
@@ -137,16 +137,22 @@
     <h1>Wird ein Vorschuss oder Wechselgeld benötigt?</h1>
     <p>(Nur ausfüllen falls nötig! Es sind trotzdem alle Seiten einzureichen!)</p>
 
-    <p><strong>Betrag in Euro:</strong> <input class="vorschussUpperText" type="text"></p>
-    <p><strong>Der Vorschuss wird bis zum folgenden Datum benötigt:</strong><input class="vorschussUpperText" type="text"></p>
-    <p><strong>Spätester Termin für die Rückzahlung:</strong><input class="vorschussUpperText" type="text"> (Muss unmittelbar nach der Veranst. erfolgen!)</p>
+    <p><strong>Betrag in Euro:</strong> <input th:value="${prepay_sum}" class="vorschussUpperText" type="text"></p>
+    <p><strong>Der Vorschuss wird bis zum folgenden Datum benötigt:</strong><input th:value="${prepay_req_till}" class="vorschussUpperText" type="text"></p>
+    <p><strong>Spätester Termin für die Rückzahlung:</strong><input th:value="${prepay_payback_till}" class="vorschussUpperText" type="text"> (Muss unmittelbar nach der Veranst. erfolgen!)</p>
 
     <div class="ReciverBlock">
-        <p class="vorschussReciver" ><strong>Empfänger*in:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
-        <p class="vorschussReciver" ><strong>Anschrift:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
+        <p class="vorschussReciver" ><strong>Empfänger*in:</strong><input th:value="${prepay_empf}" class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
+        <p class="vorschussReciver" ><strong>Anschrift:</strong><input th:value="${prepay_adress}" class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
 
-        <p  class="vorschussReciver" ><strong>IBAN:</strong> (22 Stellen)<input class="ibanfirst ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanslim vorschussReciver" type="text"></p>
-        <p class="vorschussReciver" ><strong>Kreditinstitut:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
+        <p  class="vorschussReciver" ><strong>IBAN:</strong> (22 Stellen)
+            <input th:value="${prepay_iban_1}" class="ibanfirst ibanwide vorschussReciver" type="text">
+            <input th:value="${prepay_iban_2}" class="ibanwide vorschussReciver" type="text">
+            <input th:value="${prepay_iban_3}" class="ibanwide vorschussReciver" type="text">
+            <input th:value="${prepay_iban_4}" class="ibanwide vorschussReciver" type="text">
+            <input th:value="${prepay_iban_5}" class="ibanwide vorschussReciver" type="text">
+            <input th:value="${prepay_iban_6}" class="ibanslim vorschussReciver" type="text"></p>
+        <p class="vorschussReciver" ><strong>Kreditinstitut:</strong><input th:value="${prepay_bank}" class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
     </div>
 
     <ul>

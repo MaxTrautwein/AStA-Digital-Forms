@@ -2,28 +2,28 @@
 Das \ac{UI} Design wird in mehreren Schritten erstellt und im Laufe des Projekts immer weiter
 verfeinert. Am Anfang dieses Prozesses steht ein Low Fidelity Prototyp der Applikation.
 Dieser dient dazu, das ungefähre Layout zu visualisieren und ein Gefühl für den Aufbau
-des Frontends zu vermitteln. %eventuell etwas umgansprachlich schaffen -> vermitteln?%
+des Frontends zu vermitteln. %eventuell etwas umgangssprachlich schaffen -> vermitteln?%
 Für die Erstellung dieser Prototypen wird die Prototyping- und
 Designsoftware Figma \footnote{Software zum Erstellen von Softwareprototypen https://www.figma.com} verwendet.
 %Figma mit fußnote oder Tool Liste?%
 
 \section{Low Fidelity}\label{Low Fidelity}
 \begin{figure}[h]
-  \centering
-    \includegraphics[width=1.0\textwidth]{Antragshelfer}
-    \caption{Antragshelfer}\label{Antragshelfer}
+\centering
+\includegraphics[width=1.0\textwidth]{Antragshelfer}
+\caption{Antragshelfer}\label{Antragshelfer}
 \end{figure}
 Das Layout des Prototyps lässt sich in drei Bereiche einteilen:
 die Kopfzeile, den Hauptinhalt der Seite und die Fußzeile.
 
 In der Kopfzeile befindet sich das \ac{AStA}-Logo, sowie eine Suchleiste um manuell nach
 Anträgen zu suchen.
-Auch der jeweiligen Nutzeraccount lässt sich über die Schaltfläche
+Auch der jeweilige Nutzeraccount lässt sich über die Schaltfläche
 am rechten Rand erreichen.
 Außerdem befindet sich am linken Rand ein Burger-Menü,
 welches das Hinzufügen von Funktionalitäten in zukünftigen Projekten erleichtern soll.
 
-Der Hauptinhalt der Seite zeigt die Hauptfunktionalitäten unserer Anwendung und wird 
+Der Hauptinhalt der Seite zeigt die Hauptfunktionalitäten unserer Anwendung und wird
 dynamisch generiert. Bei den Prototypen wird dies
 durch ein statisches Layout simuliert.
 
@@ -41,23 +41,108 @@ Die Beantwortung der Fragen erfolgt durch Klicken auf die verschiedenen Buttons.
 Zur Übersicht, ist jeder Button mit einer Beschreibung versehen, welche genauere Informationen über die Auswahloption liefert.
 
 \begin{figure}[h]
-  \centering
-    \includegraphics[width=1.0\textwidth]{Reisekostenhelper}
-    \caption{Reisekostenhelfer}\label{Reisekostenhelfer}
+\centering
+\includegraphics[width=1.0\textwidth]{Reisekostenhelper}
+\caption{Reisekostenhelfer}\label{Reisekostenhelfer}
 \end{figure}
-
 
 Beim Ausfüllen des Antrags hat der Nutzer die Möglichkeit über unterschiedliche Eingabemöglichkeiten,
 wie Textfelder, Dropdown Menüs oder Checkboxen die benötigten Informationen einzugeben. Auch die Eingabe
-über die integrierten \ac{API}s ist möglich, wie in \refa{Reisekostenhelfer} am Beispiel eines Reisekosten Antrags zu sehen.
-Um dem Nutzer einen Überblick über den Fortschritt beim Ausfüllen des Antrags zu ermöglichen, befindet sich am oberen 
+über die integrierten \ac{API}s ist möglich, wie in \refa{Reisekostenhelfer} am Beispiel eines Reisekostenantrags zu sehen.
+Um dem Nutzer einen Überblick über den Fortschritt beim Ausfüllen des Antrags zu ermöglichen, befindet sich am oberen
 Rand eine Fortschrittsanzeige.
 So soll der Nutzer darüber informiert werden, wie viele Schritte noch
-nötig sind, bis der Antrag fertig bearbeitet ist. 
+nötig sind, bis der Antrag fertig bearbeitet ist.
 
+\section{Finales Design}\label{Finales Design}
+Im Laufe des Development Prozesses wurde das Design fortwährend angepasst und auf Basis
+von Kunden- und Nutzerfeedback weiterentwickelt. Am Ende dieses Prozesses steht nun
+dieses finale \ac{UI} Design.
 
+\subsection{Login Seite}\label{Login Seite}
+Die Login Seite wurde absichtlich mit wenigen \ac{UI} Elementen designt, um den Nutzer
+nicht zu überfordern. Klickt der Nutzer auf den Login Button, wird er zu unserem
+Authentifizierungsdienst Keycloak weitergeleitet, wo er sich mit seinen Logindaten
+authentifizieren kann. Ist dies erfolgreich, wird er auf die Hauptseite weitergeleitet.
 
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\textwidth]{Doc/images/Login Page.png}
+\caption{Login Seite}\label{Login Page}
+\end{figure}
 
+\subsection{Haupt Seite}\label{Haupt Seite}
+Die Hauptseite orientiert sich am grundlegenden Aufbau stark am Low Fidelity Prototyp,
+wurde jedoch in bestimmten Details verfeinert. So wurde bei der Auswahl der Anträge eine
+Unterscheidung zwischen Anträgen und Abrechnungen ermöglicht. Zudem wurde das \ac{UI}
+Element der Fertigen Anträge vom unteren Ende der Hauptseite, in die aufklappbare Sidebar
+verschoben um die Seite trotz mehr Details, übersichtlicher zu gestalten. Zu guter Letzt
+wurde die Darstellung der Favoriten verbessert und deren einzelne Bedienelemente farblich
+passend zu ihrer Funktion hervorgehoben.
 
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\textwidth]{Doc/images/Landing Page.png}
+\caption{Haupt Seite}\label{Hautp Seite}
+\end{figure}
 
+\pagebreak
+
+\subsection{Eigene Daten}\label{Eigene Daten}
+In dieser Seite, welche über das Burger Menü erreichbar ist, kann der Nutzer, die eigenen
+Daten hinterlegen, um diese später beim Ausfüllen eines Antrages nutzen zu können. Ähnlich
+wie der Login ist sie sehr schlicht gehalten, da für die simple Aufgabe der Dateneingabe ein
+aufwendig gestaltetes \ac{UI} eher störend wirken würde.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\textwidth]{Doc/images/Own Data.png}
+\caption{Eigene Daten}\label{Eigene Daten}
+\end{figure}
+
+\pagebreak
+
+\subsection{Eigene Anträge}\label{Eigene Anträge}
+
+Auf diese Seite, welche ebenfalls über das Burger Menü erreichbar ist, finden sich alle
+fertigen sowie nicht fertigen Anträge, die der Nutzer bearbeitet hat. Wie zuvor auf der Hauptseite erwähnt, war dieses Feature zuvor am Boden der Hauptseite zu finden, wurde
+jedoch auf eine eigene Seite verschoben. Hier kann der Nutzer durch Klicken auf eine der
+Karten auf einen alten Antrag zugreifen. Der Fortschritt bleibt dabei erhalten. Das Design
+der Karten orientiert sich in seinen Grundzügen am Design der Antragselemente der
+Hauptseite.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\textwidth]{Doc/images/Own Antraege.png}
+\caption{Eigene Anträge}\label{Eigene Daten}
+\end{figure}
+
+\pagebreak
+
+\subsection{Antrag Ausfüllen}\label{Antrag Ausfüllen}
+
+Hier kann der Nutzer die von ihm ausgewählten Anträge ausfüllen. Über die Sektionsanzeige
+oben ist es möglich schnell und unkompliziert zwischen den einzelnen Sektionen hin und her
+zu wechseln. Das Wechseln an sich ist jedoch auch über die beiden Buttons am unteren Ende
+der Seite möglich. Auch dieses Design orientiert sich stark am Prototypen und wurde nur
+verfeinert. Neu ist das Herz Icon, über welches man per Klick den momentanen Antrag zu den
+Favoriten hinzufügen kann. Diese Funktionalität wurde mit dem Ziel einer guten Usability
+hier implementiert, da das Hinzufügen von Favoriten über einen Klick auf ein Herz für
+den Nutzer bereits aus anderen Applikationen, wie Spotify, wohl vertraut ist.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\textwidth]{Doc/images/Fill in Antrag.png}
+\caption{Ausfüllen eines Antrages}\label{Ausfüllen eines Antrages}
+\end{figure}
+
+\subsection{Allgemeines Design}\label{Allgemeines Design}
+Zunächst ist anzumerken, dass die Farbgebung angepasst wurde. Dies geschah auf
+Kundenfeedback, welches einen, vom AStA-Logo inspirierten Blauton, der orangen
+Farbgebung vorzog. Auch die Farbabstufungen zwischen den einzelnen \ac{UI} Elementen
+wurden deutlich verstärkt, um ein Unterscheiden derselben zu vereinfachen.
+Eine weitere, auf Basis von Kundenfeedback getroffene Designentscheidung war es, die
+verschiedenen \ac{UI} Elemente, wenn möglich zu verkleinern. Daher wurde beschlossen, die
+fertigen Anträge aus der Fußkomponente zu entfernen und stattdessen die über das Burger
+Menü erreichbare Sidebar hierfür zu verwenden.
 

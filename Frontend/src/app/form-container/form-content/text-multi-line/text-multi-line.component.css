@@ -1,5 +1,9 @@
 .form-text {
   padding: .375rem .75rem;
+  margin: .375rem;
+}
+.input-group{
+  margin: .375rem;
 }
 .grow-wrap > textarea {
   resize: none;
@@ -19,7 +23,7 @@
 }
 .grow-wrap {
   display: grid;
-  padding: .375rem .75rem;
+  border-radius:var(--bs-border-radius);
 }
 .grow-wrap::after {
   content: attr(data-replicated-value) " ";

@@ -71,20 +71,20 @@
     </div>
 
     <p><strong>Beschreibung der geplanten Reise:</strong> <span class="Italic">(Zweck der Reise + Begründung Unterkunft / geplantes Transportmittel)</span></p>
-<textarea class="BeschreibungArea">
+<textarea th:text="${reason}" class="BeschreibungArea">
 
 </textarea>
 
 
-    <p><strong>Termin:</strong> <input class="heigtdetails" type="text"> </p>
-    <p><strong>Mitfahrer*innen:</strong><input class="heigtdetails mitfahrerWidth" type="text"></p>
-    <p><strong>Geschätzte Höhe der Ausgaben:</strong><input class="heigtdetails" type="text"></p>
+    <p><strong>Termin:</strong> <input th:value="${date}" class="heigtdetails" type="text"> </p>
+    <p><strong>Mitfahrer*innen:</strong><input th:value="${persons}" class="heigtdetails mitfahrerWidth" type="text"></p>
+    <p><strong>Geschätzte Höhe der Ausgaben:</strong><input th:value="${cost}" class="heigtdetails" type="text"></p>
     <p><strong>Genaue Anschrift Reisebeginn</strong> (PLZ Ort Straße Hausnummer):</p>
-    <textarea class="AnschriftArea">
+    <textarea th:text="${start}" class="AnschriftArea">
 
 </textarea>
     <p><strong>Genaue Anschrift Reiseziel</strong> (PLZ Ort Straße Hausnummer):</p>
-    <textarea class="AnschriftArea">
+    <textarea th:text="${end}" class="AnschriftArea">
 
 </textarea>
 
@@ -123,16 +123,22 @@
     <h1>Wird ein Vorschuss benötigt?</h1>
     <p>(Nur ausfüllen falls nötig! Es sind trotzdem alle Seiten einzureichen!)</p>
 
-    <p><strong>Betrag in Euro:</strong> <input class="vorschussUpperText" type="text"></p>
-    <p><strong>Der Vorschuss wird bis zum folgenden Datum benötigt:</strong><input class="vorschussUpperText" type="text"></p>
-    <p><strong>Spätester Termin für die Rückzahlung:</strong><input class="vorschussUpperText" type="text"> (muss zeitnah nach der Reise erfolgen)</p>
+    <p><strong>Betrag in Euro:</strong> <input th:value="${prepay_sum}" class="vorschussUpperText" type="text"></p>
+    <p><strong>Der Vorschuss wird bis zum folgenden Datum benötigt:</strong><input th:value="${prepay_req_till}" class="vorschussUpperText" type="text"></p>
+    <p><strong>Spätester Termin für die Rückzahlung:</strong><input th:value="${prepay_payback_till}" class="vorschussUpperText" type="text"> (muss zeitnah nach der Reise erfolgen)</p>
 
     <div class="ReciverBlock ReciverBlockSpacer">
-        <p class="vorschussReciver" ><strong>Empfänger*in:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
-        <p class="vorschussReciver" ><strong>Anschrift:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
+        <p class="vorschussReciver" ><strong>Empfänger*in:</strong><input th:value="${prepay_empf}" class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
+        <p class="vorschussReciver" ><strong>Anschrift:</strong><input th:value="${prepay_adress}" class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
 
-        <p  class="vorschussReciver" ><strong>IBAN:</strong> (22 Stellen)<input class="ibanfirst ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanslim vorschussReciver" type="text"></p>
-        <p class="vorschussReciver" ><strong>Kreditinstitut:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
+        <p  class="vorschussReciver" ><strong>IBAN:</strong> (22 Stellen)
+            <input th:value="${prepay_iban_1}" class="ibanfirst ibanwide vorschussReciver" type="text">
+            <input th:value="${prepay_iban_2}" class="ibanwide vorschussReciver" type="text">
+            <input th:value="${prepay_iban_3}" class="ibanwide vorschussReciver" type="text">
+            <input th:value="${prepay_iban_4}" class="ibanwide vorschussReciver" type="text">
+            <input th:value="${prepay_iban_5}" class="ibanwide vorschussReciver" type="text">
+            <input th:value="${prepay_iban_6}" class="ibanslim vorschussReciver" type="text"></p>
+        <p class="vorschussReciver" ><strong>Kreditinstitut:</strong><input th:value="${prepay_bank}" class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
     </div>
 
     <ul>

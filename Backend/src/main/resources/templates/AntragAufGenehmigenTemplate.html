@@ -74,20 +74,20 @@
   </div>
 
   <p><strong>Verwendungszweck:</strong> (Bitte ausführlich beschreiben! Evtl. Beiblatt nutzen. - Was? Warum? Welcher Preis?)</p>
-  <textarea>
+  <textarea th:text="${reason}">
 
   </textarea>
 
 
-  <p><strong>Unterschriebenes Protokoll der FS-Sitzung mit genau erläutertem Beschluss im Anhang?</strong> <input type="checkbox"></p>
+  <p><strong>Unterschriebenes Protokoll der FS-Sitzung mit genau erläutertem Beschluss im Anhang?</strong> <input  th:checked="${prtocoll_YES}" type="checkbox"></p>
 
-  <p class="terminhoe"><strong>Termin (geplant):</strong> <input class="dataText" type="text"></p>
-  <p class="terminhoe"><strong>Höhe der Ausgaben (ca.):</strong> <input class="dataText" type="text"> (voraussichtliche Höhe angeben falls nicht genau bekannt)</p>
+  <p class="terminhoe"><strong>Termin (geplant):</strong> <input th:value="${date}" class="dataText" type="text"></p>
+  <p class="terminhoe"><strong>Höhe der Ausgaben (ca.):</strong> <input th:value="${money}" class="dataText" type="text"> (voraussichtliche Höhe angeben falls nicht genau bekannt)</p>
   <br>
-  <p><strong>Vergleichsangebote vorhanden?</strong><input type="checkbox"> (<strong>Ab</strong> einem Bestellwert von <strong>150 €</strong> sind <strong>drei Angebote</strong> beizufügen!)</p>
+  <p><strong>Vergleichsangebote vorhanden?</strong><input  th:checked="${prtocoll_YES}" type="checkbox"> (<strong>Ab</strong> einem Bestellwert von <strong>150 €</strong> sind <strong>drei Angebote</strong> beizufügen!)</p>
   <p>(<strong>Begründung</strong> welches Angebot ausgewählt wurde und warum bitte <strong>erläutern</strong>! Muss auch ins FS-Protokoll!)</p>
 
-  <p class="vorschussLine"><strong>Vorschuss nötig?</strong> Ja <input type="checkbox"> / Nein <input type="checkbox">  <strong>Wenn ja in welcher Höhe?</strong> <input type="text"> </p>
+  <p class="vorschussLine"><strong>Vorschuss nötig?</strong> Ja <input th:checked="${req_Vorschuss_YES}" type="checkbox"> / Nein <input th:checked="${req_Vorschuss_NO}" type="checkbox">  <strong>Wenn ja in welcher Höhe?</strong> <input th:value="${prepay_sum}" type="text"> </p>
   <ul>
     <li><strong class="strongsize">Vorschuss bitte zeitnah nach der Veranstaltung/Beschaffung zurückzahlen bzw. abrechnen!</strong></li>
     <li><strong class="strongsize">Wenn Vorschuss benötigt bitte Seite 2 ausfüllen und unterschreiben!</strong></li>
@@ -132,16 +132,22 @@
   <h1>Wird ein Vorschuss benötigt?</h1>
   <p>(Nur ausfüllen falls nötig! Es sind trotzdem alle Seiten einzureichen!)</p>
 
-  <p><strong>Betrag in Euro:</strong> <input class="vorschussUpperText" type="text"></p>
-  <p><strong>Der Vorschuss wird bis zum folgenden Datum benötigt:</strong><input class="vorschussUpperText" type="text"></p>
-  <p><strong>Spätester Termin für die Rückzahlung:</strong><input class="vorschussUpperText" type="text"> (Muss unmittelbar nach dem Kauf erfolgen!)</p>
+  <p><strong>Betrag in Euro:</strong> <input th:value="${prepay_sum}" class="vorschussUpperText" type="text"></p>
+  <p><strong>Der Vorschuss wird bis zum folgenden Datum benötigt:</strong><input th:value="${prepay_req_till}" class="vorschussUpperText" type="text"></p>
+  <p><strong>Spätester Termin für die Rückzahlung:</strong><input th:value="${prepay_payback_till}" class="vorschussUpperText" type="text"> (Muss unmittelbar nach dem Kauf erfolgen!)</p>
 
   <div class="ReciverBlock">
-    <p class="vorschussReciver" ><strong>Empfänger*in:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
-    <p class="vorschussReciver" ><strong>Anschrift:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
+    <p class="vorschussReciver" ><strong>Empfänger*in:</strong><input th:value="${prepay_empf}" class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
+    <p class="vorschussReciver" ><strong>Anschrift:</strong><input th:value="${prepay_adress}" class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
 
-    <p  class="vorschussReciver" ><strong>IBAN:</strong> (22 Stellen)<input class="ibanfirst ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanwide vorschussReciver" type="text"><input class="ibanslim vorschussReciver" type="text"></p>
-    <p class="vorschussReciver" ><strong>Kreditinstitut:</strong><input class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
+    <p  class="vorschussReciver" ><strong>IBAN:</strong> (22 Stellen)
+      <input th:value="${prepay_iban_1}" class="ibanfirst ibanwide vorschussReciver" type="text">
+      <input th:value="${prepay_iban_2}" class="ibanwide vorschussReciver" type="text">
+      <input th:value="${prepay_iban_3}" class="ibanwide vorschussReciver" type="text">
+      <input th:value="${prepay_iban_4}" class="ibanwide vorschussReciver" type="text">
+      <input th:value="${prepay_iban_5}" class="ibanwide vorschussReciver" type="text">
+      <input th:value="${prepay_iban_6}" class="ibanslim vorschussReciver" type="text"></p>
+    <p class="vorschussReciver" ><strong>Kreditinstitut:</strong><input th:value="${prepay_bank}" class="vorschussReciver alignRight vorschussFullLen" type="text"></p>
   </div>
 
   <ul>

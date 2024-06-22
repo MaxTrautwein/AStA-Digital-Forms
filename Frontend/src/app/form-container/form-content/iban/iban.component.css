@@ -1,0 +1,14 @@
+.input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback){
+  border-radius: var(--bs-border-radius);
+}
+.form-control{
+  min-width: 10em;
+  max-width: 30em;
+  border: solid 3px var(--asta-bluelight);
+}
+.input-group{
+  margin: .375rem;
+}
+.form-text{
+  padding: .375rem .75rem;
+}
