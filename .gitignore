@@ -318,3 +318,6 @@ Frontend/src/app/api-client/*
 !Doc/images/API_Spec.pdf
 #Admin Guide
 !Doc/images/guide.pdf
+#Doku Auslagerung
+!Doc/AnhangAbhaengigkeitsbaum.pdf
+
