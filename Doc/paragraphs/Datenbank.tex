@@ -12,7 +12,7 @@ Dennoch gibt es einige Punkte die zu beachten sind:
 Es folgt die vorläufige Struktur für die verschiedenen Dokumente.
 
 \section{Userdata / Autofill}
-
+In diesem Dokument werden Daten vom Nutzer gespeichert, um diese für die Autofill Funktion zu verwenden.
 \begin{lstlisting}[label={lst:lstlistingusers}]
     // userData Document
     {
@@ -31,6 +31,7 @@ Es folgt die vorläufige Struktur für die verschiedenen Dokumente.
 \end{lstlisting}
 
 \section{Template PDF}
+Verbindet Templates mit deren PDF Vorlagen.
 \begin{lstlisting}[label={lst:lstlistingauto}]
     // templatePDF Document
     {
@@ -43,6 +44,8 @@ Es folgt die vorläufige Struktur für die verschiedenen Dokumente.
 \end{lstlisting}
 
 \section{Template Gruppe}
+Verlinkt Formular Vorlagen miteinander.
+Erlaubt die Gruppierung eines Antrags mit ein oder mehreren dazugehörigen Abrechnungen.
 \begin{lstlisting}[label={lst:templateGroup}]
     // templateGroup Document
     {
@@ -58,7 +61,8 @@ Es folgt die vorläufige Struktur für die verschiedenen Dokumente.
 \end{lstlisting}
 
 
-\section{Favourite}
+\section{Favoriten}
+Speichert die Favoriten eines Nutzers.
 \begin{lstlisting}[label={lst:favourite}]
     // favourite Document
     {
