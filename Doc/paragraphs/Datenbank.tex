@@ -10,48 +10,79 @@ Dennoch gibt es einige Punkte die zu beachten sind:
 \end{itemize}
 
 Es folgt die vorläufige Struktur für die verschiedenen Dokumente.
-Der genaue Inhalt wird angefügt, sobald dieser bekannt wird.
 
-\section{Settings}
-
+\section{Userdata / Autofill}
+In diesem Dokument werden Daten vom Nutzer gespeichert, um diese für die Autofill Funktion zu verwenden.
 \begin{lstlisting}[label={lst:lstlistingusers}]
-    // Settings Document
+    // userData Document
     {
-    id: string
-    settings:
-        {
-            ...
-        }
+      "_id": {"$oid": string},
+      "IBAN": string,
+      "_class": "de.PSWTM.DigitalForms.model.UserData",
+      "adress": string,
+      "creditInstitute": string,
+      "email": string,
+      "firstName": string,
+      "name": string,
+      "userId": string
     }
+
 
 \end{lstlisting}
 
-\section{Autofill}
+\section{Template PDF}
+Verbindet Templates mit deren PDF Vorlagen.
 \begin{lstlisting}[label={lst:lstlistingauto}]
-    // Autofill Document
+    // templatePDF Document
     {
-    Userid: ref
-    pairs:
-        [
-            {
-                key:value
-            },
-            {
-            ...
-            }
-        ]
+      "_id": {"$oid": string},
+      "_class": "de.PSWTM.DigitalForms.Model.TemplatePDF",
+      "formId": string,
+      "templatePdf": string
     }
 
 \end{lstlisting}
+
+\section{Template Gruppe}
+Verlinkt Formular Vorlagen miteinander.
+Erlaubt die Gruppierung eines Antrags mit ein oder mehreren dazugehörigen Abrechnungen.
+\begin{lstlisting}[label={lst:templateGroup}]
+    // templateGroup Document
+    {
+      "_id": {"$oid": string},
+      "_class": "de.PSWTM.DigitalForms.model.TemplateGroup",
+      "antragId": string,
+      "description": string,
+      "reasons": [string, string],
+      "rechnungen": [string, string],
+      "titel": string
+    }
+
+\end{lstlisting}
+
+
+\section{Favoriten}
+Speichert die Favoriten eines Nutzers.
+\begin{lstlisting}[label={lst:favourite}]
+    // favourite Document
+    {
+      "_id": {"$oid": string},
+      "_class": "de.PSWTM.DigitalForms.model.Favourite",
+      "formId": string,
+      "owner": string
+    }
+
+\end{lstlisting}
+
 
 \section{Form}\label{sec:form}
 Das Form-Dokument definiert die Struktur, in welcher Formulare gespeichert werden.
 Hierbei werden verschiedene \gls{enum}s verwendet, welche im Folgenden näher beschrieben werden.
 
 
-'EFormElement' beschreibt die verschiedenen Feldtypen, welche dargestellt werden sollen.
-\begin{lstlisting}[label={lst:EFormElement}]
-    public enum EFormElement {
+'TypeEnum' beschreibt die verschiedenen Feldtypen, welche dargestellt werden sollen.
+\begin{lstlisting}[label={lst:TypeEnum}]
+    public enum TypeEnum {
         text,
         address,
         iban,
@@ -63,13 +94,25 @@ Hierbei werden verschiedene \gls{enum}s verwendet, welche im Folgenden näher be
 \end{lstlisting}
 
 
-'ECategory' ermöglicht die Unterteilung eines Formulars in fest definierte Kategorien
-\begin{lstlisting}[label={lst:ECategory}]
-    public enum ECategory {
+'CategoryEnum' ermöglicht die Unterteilung eines Formulars in fest definierte Kategorien
+\begin{lstlisting}[label={lst:CategoryEnum}]
+    public enum CategoryEnum {
         Antrag,
         Abrechnung
     }
 \end{lstlisting}
+
+
+'RequiredEnum' teilt Anhänge in einen von 3 Typen ein.
+Dabei steht die Option zwischen, immer notwendig, eventuell notwendig, je nach bedingung notwendig.
+\begin{lstlisting}[label={lst:RequiredEnum}]
+    public enum RequiredEnum {
+        always,
+        user,
+        conditional
+    }
+\end{lstlisting}
+
 
 Das Form-Dokument selbst ist im Folgenden beschrieben.
 Der Boolean "Template" dient hierbei zur Unterscheidung zwischen
@@ -79,53 +122,52 @@ dargestellt werden soll, sowie Form-Dokumenten, welche Daten enthalten.
 Sollte es sich nicht um eine Vorlage zum Ausfüllen handeln, so werden nur die notwendigen Informationen erfasst.
 \begin{lstlisting}[label={lst:lstlistingdoc}]
     {
-        "id": string,
-        "owner": string,
-        "Title": string,
-        "Template": bool,
-        "Description": string,
-        "Category": ECategory
-        "form":[
+      "_id": {"$oid": string},
+      "_class": "de.PSWTM.DigitalForms.model.Form",
+      "template": bool,
+      "titel": string,
+      "category": CategoryEnum,
+      "description": string,
+      "form": [
+        {
+          "order": integer,
+          "section": string,
+          "items": [
             {
-                "order": integer,
-                "section": string,
-                "items": [
-                    {
-                        "Description": string,
-                        "type": EFormElement,
-                        "id": string,
-                        "value" string
-                    },
-                    {
-                        "Description": string,
-                        "type": EFormElement,
-                        "id": string,
-                        "value" string
-                    }
-                ]
+              "_id": string,
+              "description": string,
+              "type": TypeEnum,
+              "value": string
             },
             {
-                "order": integer,
-                "section": string,
-                "items": [
-                    {
-                        "Description": string,
-                        "type": EFormElement,
-                        "id": string,
-                        "value" string
-                    },
-                    ...
-                ]
-            },
-            {
-                ...
+              "_id": string,
+              "description": string,
+              "type": TypeEnum,
+              "value": string
             }
-        ],
-        "Attachments":[
-            {
-                "id": string,
-                "Description": string
-            }
-        ]
+          ]
+        },
+        {
+          "order": integer,
+          "section": string,
+          "items": [
+            ...
+          ]
+        },
+        {
+          ...
+        }
+      ],
+      "attachments": [
+        {
+          "_id": string,
+          "description": string,
+          "required": RequiredEnum,
+          "conditionRef": string,
+          "conditionRefVal": string,
+          "help": string
+        }
+      ]
     }
+
 \end{lstlisting}
