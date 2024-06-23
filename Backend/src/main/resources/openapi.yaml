@@ -8,7 +8,7 @@ info:
   contact:
     name: GitHub Page
     url: https://github.com/MaxTrautwein/AStA-Digital-Forms
-  version: 0.0.3
+  version: 0.0.4
 servers:
   - url: https://backend.df.dk4max.com/api/v3
   - url: http://localhost:8080/api/v3
@@ -18,8 +18,8 @@ paths:
     get:
       tags:
         - userData
-      summary: Get userdata of a user
-      description: Returns the userdata of the user
+      summary: Get Autofill userdata of a user
+      description: Returns the Autofill userdata of the user
       security:
         - BearerAuth: []
       responses:
@@ -35,8 +35,8 @@ paths:
     post:
       tags:
         - userData
-      summary: Save new Userdata
-      description: Save new Userdata
+      summary: Save new Autofill Userdata
+      description: Save new Autofill Userdata
       security:
         - BearerAuth: []
       requestBody:
@@ -448,19 +448,25 @@ components:
           type: "string"
         owner:
           type: "string"
+          description: "User this Favourite belongs to"
         formId:
           type: "string"
+          description: "ID of Template"
     FormElement:
       type: "object"
       properties:
         id:
           type: "string"
+          description: "uniqe ID within Form"
         Description:
           type: "string"
+          description: "Description of expected content"
         help:
           type: "string"
+          description: "Help text"
         type:
           type: "string"
+          description: "Type of this input"
           enum:
             - "text"
             - "address"
@@ -471,16 +477,20 @@ components:
             - "bool"
         value:
           type: "string"
+          description: "saved Value"
     FormSection:
       type: "object"
       properties:
         order:
           type: "integer"
           format: "int32"
+          description: "Position of this Section"
         section:
           type: "string"
+          description: "Name of this Section"
         items:
           type: "array"
+          description: "List of Elements in this Section"
           items:
             $ref: "#/components/schemas/FormElement"
     Attachment:
@@ -508,7 +518,7 @@ components:
           type: "string"
           description: "Additional help text regarding the Attachment"
 
-    
+
     TemplateGroup :
       type: "object"
       properties:
@@ -539,16 +549,22 @@ components:
       properties:
         id:
           type: "string"
+          description: "the id"
         owner:
           type: "string"
+          description: "User this Form belongs to"
         parent:
           type: "string"
+          description: "id of the parent Template"
         template:
           type: "boolean"
+          description: "Is this a Template?"
         titel:
           type: "string"
+          description: "titel of the Form"
         description:
           type: "string"
+          description: "description of the Form"
         category:
           type: "string"
           enum:
@@ -556,10 +572,12 @@ components:
             - "Abrechnung"
         form:
           type: "array"
+          description: "Content of the Form"
           items:
             $ref: "#/components/schemas/FormSection"
         attachments:
           type: "array"
+          description: "All Attachments"
           items:
             $ref: "#/components/schemas/Attachment"
 security:
