@@ -5,25 +5,25 @@ Die Anforderungen an das Projekt \workTitel~sind in diesem Kapitel dokumentiert.
 \section{Functional}\label{sec:functional}
 \subsection{Dynamischer Formular Aufbau}\label{subsec:dynamischer-formular-aufbau}
 Die einzelnen Formulare in der Darstellung sollen basierend auf Konfigurationsdateien generiert werden.
-Die exportierte \ac{PDF} kann mit Hilfe von Vorlagen konfiguriert werden.
+Das exportierte \ac{PDF} kann mit Hilfe von Vorlagen konfiguriert werden.
 \subsection{Filtermöglichkeiten}\label{subsec:filtermoglichkeiten}
 Die Applikation sollte die Möglichkeit bieten, Anträge nach bestimmten Kriterien zu filtern.
-\subsection{Antrags Beschreibung}\label{subsec:antrags-beschreibung}
-Anträge verfügen neben Ihrem Namen über eine Beschreibung, welche genau beschreibt, was der Zweck des Antrags ist.
+\subsection{Antragsbeschreibung}\label{subsec:antrags-beschreibung}
+Anträge verfügen neben ihrem Namen über eine Beschreibung, welche genau beschreibt, was der Zweck des Antrags ist.
 Dies soll dabei helfen, den passenden Antrag zu wählen.
 \subsection{Vollständigkeitskontrolle}\label{subsec:vollstandigkeitskontrolle}
 Die Applikation soll prüfen, ob der Antrag vollständig ausgefüllt ist.
 Falls nicht, soll der Nutzer informiert werden, was noch aussteht.
 \subsection{Auswahlhelfer}\label{subsec:auswahls-helfer}
-Es soll einen Funktion zur Verfügung stehen, welche einem Nutzer dabei hilft,
+Es soll eine Funktion zur Verfügung stehen, welche einem Nutzer dabei hilft,
 den passenden Antrag zu finden, indem dem Nutzer Fragen gestellt werden und so schrittweise der passende Antrag ermittelt wird.
 \subsection{Favoriten}\label{subsec:favoriten}
 Anträge sollen favorisiert werden können, um so einen schnellen Zugriff auf diese zu ermöglichen.
-\subsection{Antrags Kategorien}\label{subsec:antrags-kategorien}
+\subsection{Antragskategorien}\label{subsec:antrags-kategorien}
 Anträge sollen einer generellen Kategorie zugeordnet werden können.
 Dabei ist zwischen Anträgen auf X, sowie Anträgen auf Abrechnung von X Beantragtem zu unterscheiden.
 \subsection{Import von Antragsdaten}\label{subsec:import-von-antragsdaten}
-Es soll möglich sein, Daten aus einem Antrag in dessen Abrechnungs-Antrag zu übernehmen.
+Es soll möglich sein, Daten aus einem Antrag in dessen Abrechnungsantrag zu übernehmen.
 \subsection{Hinweissystem}\label{subsec:hinweis-system}
 Die Applikation soll einen Nutzer darauf hinweisen, wenn eine von ihm getroffene Entscheidung eine Begründung erfordert.
 \subsection{Login}\label{subsec:login}
@@ -34,7 +34,7 @@ Es ist vorzusehen, dass bestimmte Daten auch an anderer Stelle gespeichert werde
 Der Ausfüllungsfortschritt von Anträgen muss geräteübergreifend für jeden Nutzer gespeichert werden.
 Es soll dem Nutzer ermöglicht werden, die Bearbeitung fortzusetzen oder vollendete Anträge zu überarbeiten.
 \subsection{Automatisches Ausfüllen}\label{subsec:automatisches-ausfullen}
-Die Applikation soll das teilweise automatische Ausfüllen von Anträgen ermöglichen, hierfür sollen Nutzer Daten verwendet werden,
+Die Applikation soll das teilweise automatische Ausfüllen von Anträgen ermöglichen, hierfür sollen Nutzerdaten verwendet werden,
 die der Nutzer selbst in der Applikation hinterlegt hat.
 \subsection{Routenberechnung}\label{subsec:routenberechnung}
 Über eine Fremd \ac{API} soll die kürzest mögliche Route zwischen den angegebenen Punkten abgerufen und dargestellt werden können.
@@ -42,7 +42,7 @@ die der Nutzer selbst in der Applikation hinterlegt hat.
 Bei Eingabe einer Adresse für die Routenberechnung über eine Fremd-\ac{API} soll eine Adressvervollständigung angeboten werden.
 \subsection{\ac{PDF} Generator}\label{subsec:pdf-generator}
 Der fertig bearbeitete Antrag muss als A4 \ac{PDF} exportier- und ausdruckbar sein.
-Das Generierte \ac{PDF} Dokument soll im Aufbau und Design den bisherigen Anträgen gleichen.
+Das generierte \ac{PDF} Dokument soll im Aufbau und Design den bisherigen Anträgen gleichen.
 \subsection{Automatischer Anhangs Generator}\label{subsec:automatischer-anhangs-generator}
 Um auch in der Zukunft Sachverhalte nachvollziehen zu können, müssen bestimmte Informationen festgehalten werden.
 Dazu sollten diese dem Antrag angehängt werden.
@@ -52,26 +52,26 @@ Es muss möglich sein, dass Dateien angehängt werden, jedoch nur \ac{PDF} und s
 Zudem soll der User beim Bearbeiten des Antrags daran erinnert werden, falls noch gewisse Dateien im Anhang fehlen.
 \subsection{Anhangs Lieferschein}\label{subsec:anhangs-lieferschein}
 Es soll ein Lieferschein generiert werden, welcher für den Nutzer als Checkliste fungiert, welchen Anhänge er noch beifügen muss.
-\subsection{Überschreiben Generierter Inhalte}\label{subsec:uberschreiben-generierter-inhalte}
+\subsection{Überschreiben generierter Inhalte}\label{subsec:uberschreiben-generierter-inhalte}
 Dem Nutzer soll es ermöglicht werden, automatisch generierte Inhalte zu überschreiben.
-\subsection{Reisekosten Helper}\label{subsec:reisekosten-helper}
+\subsection{Reisekosten Helfer}\label{subsec:reisekosten-helper}
 Es muss kalkuliert werden, wie viel für die Reise erstattet wird.
 Bei der konfigurierbaren Berechnung des Erstattungsbetrages sollte neben der Entfernung auch die Zahl der Insassen für
 die individuellen Abschnitte berücksichtigt werden.
 
 \section{Nice To Have}\label{sec:nice-to-have}
 \subsection{Nextcloud Integration}\label{subsec:nextcloud-integration}
-Es soll dem Benutzer ermöglicht werden, seine Daten auf einer Nexcloud Instanz statt der integrierten Datenbank zu speichern.
+Es soll dem Benutzer ermöglicht werden, seine Daten auf einer Nextcloud-Instanz statt der integrierten Datenbank zu speichern.
 \subsection{DB Preiskalkulation}\label{subsec:db-preiskalkulation}
 Über die Deutsche Bahn \ac{API} soll der Preis zwischen zwei Punkten zu einem bestimmten Zeitpunkt abgefragt werden können.
-\subsection{Häuser Speichern}\label{subsec:hauser-speichern}
+\subsection{Häuser speichern}\label{subsec:hauser-speichern}
 Die Applikation soll es ermöglichen, Häuser oder Locations, welche in vorherigen Anträgen genannt wurden, zu speichern,
 um sie in späteren Anträgen schneller wiederzufinden.
 
 
 \section{Non-Functional}\label{sec:non-functional}
 \subsection{Dockerized}\label{subsec:dockerized}
-Die Applikation soll in Docker Containern Deployed werden können.
+Die Applikation soll in Docker Containern deployed werden können.
 \subsection{Vorgehen}\label{subsec:vorgehen}
 Im Projekt soll eine agile Vorgehensweise verwendet werden.
 \subsection{Bedienung/Layout}\label{subsec:bedienung/layout}
@@ -79,14 +79,14 @@ Die Bedienung der Applikation soll auch für fachfremde Personen möglich sein.
 Daher sollte das Layout nach den gängigen Prinzipien der Usability und User Experience gestaltet werden.
 Die Oberfläche sollte ferner nicht zu sehr verschachtelt sein.
 \subsection{Technologie}\label{subsec:technologie}
-Es sollen auf bewährte Technologien gesetzt werden
+Es soll auf bewährte Technologien gesetzt werden
 
 \section{Out of Scope}\label{sec:nicht-anforderung}
 \subsection{Unterschriften}\label{subsec:unterschriften}
 Die Applikation soll sich nicht um die benötigten Unterschriften kümmern,
 diese müssen von den Nutzern selbst auf eigene Weise hinzugefügt werden.
 \subsection{Config Editor}\label{subsec:config-editor}
-Es ist nicht gefordert einen Editor für die Konfigurations-Dateien, welche den dynamischen Aufbau ermöglichen, zu entwickeln.
+Es ist nicht gefordert einen Editor für die Konfigurationsdateien, welche den dynamischen Aufbau ermöglichen, zu entwickeln.
 
 
 \subsection{PDF Speicherung}\label{subsec: pdf speicherung}

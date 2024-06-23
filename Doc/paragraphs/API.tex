@@ -3,7 +3,7 @@ In diesem Kapitel wird detaillierter auf die Verwendung von verschiedenen \ac{AP
 Projekt eingegangen.
 
 \section{Guidelines}
-In dieses Projekt orientiert sich in Bezug auf \ac{API}s an den Zalando API 
+Dieses Projekt orientiert sich in Bezug auf \ac{API}s an den Zalando API
 Guidelines\footnote{https://opensource.zalando.com/restful-api-guidelines/}.
 Diese werden, so weit sie für das Projekt förderlich und sinnvoll sind, bei der Implementierung
 berücksichtigt.
@@ -20,9 +20,9 @@ Folgende Endpunkte sind in der verwendeten \ac{API}, mit Hilfe eines gültigen B
 
 \subsection{GET /templates}
 
-Dieser \ac{API} Endpunkt liefert alle in der Datenbank gespeicherten Templates zurück. Diese
-werden genutzt, um die Buttons auf der Main Page dynamisch zu generieren. Da hierfür nicht
-alle Informationen über die Templates benötigt werden, sind in der Antwort nicht alle
+Dieser \ac{API} Endpunkt stellt alle in der Datenbank gespeicherten Templates zur verfügung.
+Diese werden genutzt, um die Buttons auf der Main Page dynamisch zu generieren.
+Da hierfür nicht alle Informationen über die Templates benötigt werden, sind in der Antwort nicht alle
 Informationen über die einzelnen Templates enthalten.
 
 \subsection{GET /templates/{templateId}}
@@ -35,7 +35,7 @@ wird auf \ref{sec:Detailiertere Informationen} verwiesen.
 
 \subsection{FormElement}
 Das FormElement Schema beinhaltet alle Daten, die für ein einzelnes, dynamisch generiertes
-Eingabeelement benötigt wird.
+Eingabeelement benötigt werden.
 
 \subsection{FormSection}
 Das Schema der FormSection beinhaltet Daten, die für die dynamische Generierung einer Sektion
@@ -46,7 +46,7 @@ dieser Section, sowie eine Reihenfolge, um die Sections ordnen zu können.
 Das Attachment Schema dient der Organisation und Ordnung der dem Antrag beigefügten Dateien.
 
 \subsection{Form}
-Das Form Schema entspricht in seinen Daten, einem kompletten Antrag und besteht aus mehreren
+Das Formschema entspricht in seinen Daten, einem kompletten Antrag und besteht aus mehreren
 FormSections, die wiederum aus mehreren FormElements bestehen, sowie potenziellen Attachments.
 
 \section{Detailierte Informtionen}\label{sec:Detailiertere Informationen}

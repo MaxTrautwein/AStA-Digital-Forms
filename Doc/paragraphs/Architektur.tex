@@ -4,7 +4,7 @@ welche um einen Authentifizierungsdienst erweitert wird.\\
 Das Frontend übernimmt die Aufgabe der Darstellung und Interaktion mit dem Benutzer.
 Dabei interagiert dieses mit dem Backend über eine \ac{REST} Schnittstelle, sowie dem Authentifizierungsdienst.\\
 Das Backend stellt dem Frontend Daten bereit und interagiert mit einem Datenspeicher.\\
-Der Authentifizierungsdienst ist ein externer Dienst, um die Nutzer Accounts zu managen.
+Der Authentifizierungsdienst ist ein externer Dienst, um die Nutzeraccounts zu managen.
 Über diesen erhält das Frontend einen \ac{JWT}, welcher den Nutzer gegenüber dem Backend authentifiziert.
 Dazu stellt das Backend eine entsprechende Anfrage an den Authentifizierungsdienst mit dem \ac{JWT}.
 
@@ -17,11 +17,11 @@ Dazu stellt das Backend eine entsprechende Anfrage an den Authentifizierungsdien
 \section{Frontend}\label{sec:frontend}
 
 Die innere Struktur des Frontends ist stark vom verwendeten Framework abhängig.
-Daher ist an diese Stelle keine näher Beschreibung möglich.
+Daher ist an dieser Stelle keine näher Beschreibung möglich.
 
 \section{Backend}\label{sec:fokus:-backend}
 
-\refa{fig:BackendArch} Zeigt den strukturellen Aufbau des Backends Näher, dabei kann die grafik in vier zonen unterteilt werden:
+\refa{fig:BackendArch} zeigt den strukturellen Aufbau des Backends näher, dabei kann die Grafik in vier Zonen unterteilt werden:
 \begin{itemize}
     \item Links (grün): Kommunikation mit Webdiensten sowie dem eigenen Frontend.
     \item Unten (gelb): Interface mit Datenspeicher.
@@ -50,9 +50,9 @@ Hierbei ist die Datenbanktechnologie selbst durch das Datenbankinterface entkopp
 "User Daten" hingegen könnten an anderer Stelle gespeichert werden.
 Diese Möglichkeit wird hier zwar eindeutig berücksichtigt, jedoch wird ein dementsprechendes Interface nicht explizit entwickelt.
 
-Prozess Konfigurationen beinhalten all jene, welche den Fluss und Inhalt eines Antrags sowie dessen Export beschreiben.
+Prozesskonfigurationen beinhalten all jene, welche den Fluss und Inhalt eines Antrags sowie dessen Export beschreiben.
 Diese weisen eine hohe Komplexität auf und können nicht unbedingt ohne weiteres bearbeitet werden.
-Regel Konfigurationen hingegen sind einfach gestaltet und sollten nach einer Erklärung aus der Anleitung leicht anpassbar sein.
+Regelkonfigurationen hingegen sind einfach gestaltet und sollten nach einer Erklärung aus der Anleitung leicht anpassbar sein.
 Diese enthalten beispielsweise Parameter zur Berechnung von Reisekosten.
 
 Zentral steht die Verarbeitung der außenstehenden Module.
