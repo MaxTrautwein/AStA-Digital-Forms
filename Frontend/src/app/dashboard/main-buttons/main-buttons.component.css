@@ -17,6 +17,10 @@
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     text-align: center;
+    padding: 0.7em 0.5em 0.5em
+}
+.auswahlbutton h2{
+  padding-top: 0.5em;
 }
 
 .subbutton {
