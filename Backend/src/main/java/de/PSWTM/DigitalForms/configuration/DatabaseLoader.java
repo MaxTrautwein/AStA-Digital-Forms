@@ -765,7 +765,7 @@ public class DatabaseLoader {
         Id_Abrechnung_eines_Vorschusses = repository.save(gen_Abrechnung_eines_Vorschusses()).getId();
         pdfRepository.save(new TemplatePDF(Id_Abrechnung_eines_Vorschusses, "AbrechnungeinesVorschusses"));
 
-        TemplateGroup tg = createTemplateGroup("Ausgaben und Anschaffungen", "Geld für dinge", newForm.getId());
+        TemplateGroup tg = createTemplateGroup("Ausgaben und Anschaffungen", "Wir wollen uns was Anschaffen", newForm.getId());
         tg.getRechnungen().add(Id_Erstattung_von_Auslagen_und_Rechnungen);
         tg.getReasons().add("Gab keinen Vorschuss");
         tg.getRechnungen().add(Id_Abrechnung_eines_Vorschusses);
@@ -775,7 +775,7 @@ public class DatabaseLoader {
         newForm = repository.save(gen_Genehmigung_von_Fachschafts_wochenenden());
         pdfRepository.save(new TemplatePDF(newForm.getId(), "GenehmigungvonFachschaftswochenenden"));
 
-        tg = createTemplateGroup("FS - WE", "Wir gehen mit der FS wor hin", newForm.getId());
+        tg = createTemplateGroup("FS - WE", "Wir gehen mit der FS wo hin. Besprechen und Planen", newForm.getId());
 
         newForm = repository.save(gen_Abrechnung_von_Fachschafts_wochenenden());
         pdfRepository.save(new TemplatePDF(newForm.getId(), "AbrechnungvonFachschaftswochenenden"));
@@ -786,7 +786,7 @@ public class DatabaseLoader {
         newForm = repository.save(gen_Genehmigung_von_kulturellen_Veranstaltungen());
         pdfRepository.save(new TemplatePDF(newForm.getId(), "GenehmigungvonkulturellenVeranstaltungen"));
 
-        tg = createTemplateGroup("Kulturelle Veranstaltung", "Ne Veranstaltung ohne Gewinn absicht", newForm.getId());
+        tg = createTemplateGroup("Kulturelle Veranstaltung", "Eine Veranstaltung ohne Gewinnabsicht", newForm.getId());
         tg.getRechnungen().add(Id_Erstattung_von_Auslagen_und_Rechnungen);
         tg.getReasons().add("Gab keinen Vorschuss");
         tg.getRechnungen().add(Id_Abrechnung_eines_Vorschusses);
@@ -798,7 +798,7 @@ public class DatabaseLoader {
         newForm = repository.save(gen_Genehmigung_von_Reisen());
         pdfRepository.save(new TemplatePDF(newForm.getId(), "GenehmigungvonReisen"));
 
-        tg = createTemplateGroup("Reise", "Ich will wo hin", newForm.getId());
+        tg = createTemplateGroup("Reise", "Ich plane eine Reise alleine", newForm.getId());
 
 
         Id_Erstattung_von_Reisekosten = repository.save(gen_Erstattung_von_Reisekosten()).getId();
@@ -810,7 +810,7 @@ public class DatabaseLoader {
         newForm = repository.save(gen_Genehmigung_von_Reisen_mit_Fahrgemeinschaften());
         pdfRepository.save(new TemplatePDF(newForm.getId(), "GenehmigungvonReisenmitFahrgemeinschaften"));
 
-        tg = createTemplateGroup("Reise mit Fahrgemeinschaft", "Ich will mit anderen wo hin", newForm.getId());
+        tg = createTemplateGroup("Reise mit Fahrgemeinschaft", "Wir wollen in einer Gruppe Reisen", newForm.getId());
         tg.getRechnungen().add(Id_Erstattung_von_Reisekosten);
         tgRepository.save(tg);
 
@@ -818,7 +818,7 @@ public class DatabaseLoader {
         newForm = repository.save(gen_Genehmigung_von_wirtschaftlichen_Veranstaltungen());
         pdfRepository.save(new TemplatePDF(newForm.getId(), "GenehmigungvonwirtschaftlichenVeranstaltungen"));
 
-        tg = createTemplateGroup("Wirtschaftliche Veranstaltung", "Ne Veranstaltung mit Gewinn absicht", newForm.getId());
+        tg = createTemplateGroup("Wirtschaftliche Veranstaltung", "Eine Veranstaltung mit Gewinnabsicht", newForm.getId());
         tg.getRechnungen().add(Id_Erstattung_von_Auslagen_und_Rechnungen);
         tg.getReasons().add("Gab keinen Vorschuss");
         tg.getRechnungen().add(Id_Abrechnung_eines_Vorschusses);
