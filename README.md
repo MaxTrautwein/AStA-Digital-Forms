@@ -4,6 +4,8 @@
 
 Zwischenpräsentation: https://docs.google.com/presentation/d/1JXEr9MCTt3LuM759lyKnwTBYi2K5tTDE3HMVEOUADk0/edit?usp=drivesdk
 
+Abschlusspräsentation: https://docs.google.com/presentation/d/1Hlw78PqZDwb4849tPc723-GbfcKOyShbt-arkFQOFwk/edit?usp=sharing
+
 ## Docker Compose
 
 Zuerst müssen die `Docker Secrets` generiert werden.
