@@ -18,3 +18,16 @@
   padding-left: var(--paddingLeft);
   width: calc(100% - var(--paddingLeft)); ;
 }
+
+.button-spacing {
+  margin-left: 50rem;
+}
+.btn-primary:hover{
+  background-color: var(--asta-orange);
+  cursor: pointer;
+}
+
+.btn-primary{
+  background-color: var(--asta-blue);
+
+}

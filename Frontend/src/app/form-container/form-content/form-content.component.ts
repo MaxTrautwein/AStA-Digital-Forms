@@ -34,31 +34,4 @@ export class FormContentComponent {
     this.section.items.find(i => i.id == value.id).value = value.val;
     this.formSectionEventEmitter.emit(this.section);
   }
-
-  fillData() {
-    for(let sec of this.sections!) {
-      this.userdataservice.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
-      this.userdataservice.userDataGet().subscribe(Response => {
-        for(let formElements of sec.items!) {
-          switch(formElements.id) {
-            case("contact"): {
-              formElements.value = Response.adress;
-              break;
-            }
-            case("user"): {
-              formElements.value = Response.firstName + " " + Response.name;
-              break;
-            }
-            case("prepay_bank"): {
-              formElements.value = Response.CreditInstitute;
-              break;
-            }
-            default: {
-              formElements.value = "";
-            }
-          }
-        }
-      });
-    }
-  }
 }

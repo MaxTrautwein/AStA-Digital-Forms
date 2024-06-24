@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {OAuthService} from "angular-oauth2-oidc";
 import {Observable, Subject} from "rxjs";
-import {DefaultService, FavouritesService, FormsService, GroupsService} from "./api-client";
+import {DefaultService, FavouritesService, FormsService, GroupsService, UserDataService} from "./api-client";
 
 @Injectable({
   providedIn: 'root'
@@ -28,10 +28,11 @@ export class TokenService {
     this.formService.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
     this.groupService.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
     this.favoritesService.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
+    this.userDataService.configuration.credentials["BearerAuth"] = this.oauthService.getAccessToken();
   }
 
   constructor(private oauthService: OAuthService, private defaultService: DefaultService, private formService: FormsService,
-              private groupService: GroupsService, private favoritesService: FavouritesService) {
+              private groupService: GroupsService, private favoritesService: FavouritesService, private userDataService: UserDataService) {
     this.tokenReady = this.emitter.asObservable();
     //this.emitter.next(false);
 

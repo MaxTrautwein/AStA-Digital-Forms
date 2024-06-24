@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {NavBarComponent} from "../nav-bar/nav-bar.component";
-import {Favourite, FavouritesService, Form, FormSection, FormsService} from "../api-client";
+import {Favourite, FavouritesService, Form, FormSection, FormsService, UserDataService} from "../api-client";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {TemplateService} from "../template.service";
 import {map, Observable, Subscriber, switchMap} from "rxjs";
@@ -40,7 +40,8 @@ export class FormContainerComponent {
 
   constructor(private route: ActivatedRoute, private templateService: TemplateService,
               private api: FormsService, private tokenService: TokenService,
-              private router: Router, protected FavService: FavouritesService) {
+              private router: Router, protected FavService: FavouritesService,
+              private userDataService: UserDataService) {
     this.isFav = new Observable<Favourite>(e => this.isFavEmitter = e)
 
   }
@@ -131,4 +132,38 @@ export class FormContainerComponent {
   private SendUpdate(){
     this.api.formsFormIDPut(this.form.id!, this.form).subscribe()
   }
+
+  fillData() {
+    this.userDataService.userDataGet().subscribe(Response => {
+      for(let sec of this.form.form!) {
+        for(let formElements of sec.items!) {
+          switch(formElements.type) {
+            case("address"): {
+              if (["prepay_adress"].includes(formElements.id!) ){
+                formElements.value = Response.adress;
+              }
+              break;
+            }
+            case("iban"): {
+              formElements.value = Response.IBAN;
+              break;
+            }
+            case("text"): {
+              if (["user", "prepay_empf"].includes(formElements.id!)) {
+                formElements.value = Response.firstName + " " + Response.name;
+              } else if (formElements.id == "prepay_bank") {
+                formElements.value = Response.CreditInstitute;
+              } else if(formElements.id == "contact") {
+                formElements.value = Response.email;
+              }
+              break;
+            }
+
+          }
+        }
+      }
+      this.formdetails = this.api.formsFormIDPut(this.form.id!, this.form).pipe(formdata => formdata);
+    });
+  }
+
 }

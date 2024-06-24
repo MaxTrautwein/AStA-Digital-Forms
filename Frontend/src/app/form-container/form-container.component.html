@@ -26,9 +26,8 @@
     <app-overview [formId]="FormDetail.id!" ></app-overview>
   } @else {
     <div class="formContent">
-
-
-    <app-form-content [section]="FormDetail.form?.[this.currentSection]" [sections]="FormDetail.form" (formSectionEventEmitter)="UpdateFormSectionData($event)" > > ></app-form-content>
+      <app-form-content [section]="FormDetail.form?.[this.currentSection]" [sections]="FormDetail.form" (formSectionEventEmitter)="UpdateFormSectionData($event)" > > ></app-form-content>
+      <button class="btn btn-primary button-spacing" (click)="fillData()">Use Own Data</button>
     </div>
   }
   <app-progress-controls [sectionsCnt]="FormDetail.form?.length" [currentSection]="this.currentSection" ></app-progress-controls>
