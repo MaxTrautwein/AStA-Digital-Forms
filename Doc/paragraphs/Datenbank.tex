@@ -1,10 +1,10 @@
 \chapter{Datenbank}
 Da in diesem Projekt eine NoSQL Datenbank verwendet wird, gibt es kein Datenbanklayout im klassischen Sinne.
-Regeln für die Strukturierung von Daten wie Normalformen bei Relationalen Datenbanken gibt es bei MongoDB nicht.
+Regeln für die Strukturierung von Daten wie Normalformen bei relationalen Datenbanken gibt es bei MongoDB nicht.
 
-Dennoch gibt es einige Punkte die zu beachten sind:
+Dennoch gibt es einige Punkte, die zu beachten sind:
 \begin{itemize}
-    \item Limit von 16\ac{MB} Pro Dokument
+    \item Limit von 16 \ac{MB} Pro Dokument
     \item Einbetten ist bei NoSQL Datenbanken zu bevorzugen, jedoch nicht immer passend
     \item Arrays sollten nicht unendlich wachsen können
 \end{itemize}
@@ -30,8 +30,8 @@ In diesem Dokument werden Daten vom Nutzer gespeichert, um diese für die Autofi
 
 \end{lstlisting}
 
-\section{Template PDF}
-Verbindet Templates mit deren PDF Vorlagen.
+\section{Template \ac{PDF}}
+Verbindet Templates mit deren \ac{PDF} Vorlagen.
 \begin{lstlisting}[label={lst:lstlistingauto}]
     // templatePDF Document
     {
@@ -44,7 +44,7 @@ Verbindet Templates mit deren PDF Vorlagen.
 \end{lstlisting}
 
 \section{Template Gruppe}
-Verlinkt Formular Vorlagen miteinander.
+Verlinkt Formularvorlagen miteinander.
 Erlaubt die Gruppierung eines Antrags mit ein oder mehreren dazugehörigen Abrechnungen.
 \begin{lstlisting}[label={lst:templateGroup}]
     // templateGroup Document
