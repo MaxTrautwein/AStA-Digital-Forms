@@ -7,3 +7,13 @@
 h4 {
   margin-top: 1em;
 }
+
+.btn-primary:hover{
+  background-color: var(--asta-orange);
+  cursor: pointer;
+}
+
+.btn-primary{
+  background-color: var(--asta-blue);
+
+}
